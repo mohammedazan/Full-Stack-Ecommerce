@@ -22,7 +22,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&amp;display=swap" rel="stylesheet">
     <link href="{{asset('assets/adminPanel')}}/css/app.css" rel="stylesheet">
     <link href="{{asset('assets/adminPanel')}}/css/icons.css" rel="stylesheet">
-    <title>ForBast </title>
+    <title>ForBest </title>
 </head>
 
 <body class="">
@@ -36,7 +36,7 @@
                         <div class="card-body p-4">
                             <div class="">
                                 <div class="mb-3 text-center">
-{{--                                    <img src="{{asset('assets/adminPanel')}}/images/logo-icon.png" width="60" alt="" />--}}
+                                    <img src="{{asset('assets/adminPanel')}}/images/forbast.jpg" width="120" alt="" />
                                 </div>
                                 <div class="text-center mb-3">
                                     <h5 class="">Admin</h5>

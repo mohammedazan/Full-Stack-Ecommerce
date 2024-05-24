@@ -39,6 +39,7 @@ Route::get('/', [AdminController::class, 'loginView'])->name('login');
 Route::post('admin/login', array(AdminController::class, 'loginAdmin'))->name('admin.login');
 
 Route::group(['middleware' => 'authCheck'], function () {
+    
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/create/product/view', [ProductController::class, 'createProduct'])->name('admin.create.product');
     Route::post('/product/store', [ProductController::class, 'storeProduct'])->name('admin.store.product');
