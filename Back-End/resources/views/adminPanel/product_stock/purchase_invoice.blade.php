@@ -161,7 +161,8 @@
     <div  style="padding: 10px 20px;margin-bottom: 20px">
 
         <div style="text-align: center;font-size: 30px">
-            <img height="100px" width="100px" src="{{ public_path($company_info_share->company_logo) }}">
+            {{-- <img height="100px" width="100px" src="{{ public_path($company_info_share->company_logo) }}"> --}}
+            <h1>Image Company </h1>
         </div>
 {{--        <div style="text-align: center;font-size: 30px">--}}
 {{--          <h5>sldfkjs</h5>--}}
@@ -243,10 +244,12 @@
     </div>
 </main>
 <div style="text-align: center;margin-top:40px">
-    <p>
+    <p> {{-- 
         {{$company_info_share->name}}
         <br>
         {{$company_info_share->company_address}}
+         --}}
+         name and address company 
     </p>
 
 </div>

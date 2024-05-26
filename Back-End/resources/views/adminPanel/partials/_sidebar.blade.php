@@ -248,12 +248,12 @@
                     <div class="menu-title">Setting</div>
                 </a>
                 <ul>
-                    @if(userCanAccess('12'))
+                    {{-- @if(userCanAccess('12'))  --}}
                         <li>
                             <a href="{{route('setting.company.details')}}"><i class="bx bx-right-arrow-alt"></i>Company
                                 Details</a>
                         </li>
-                    @endif
+                    {{-- @endif --}} 
                     @if(userCanAccess('12'))
                         <li>
                             <a href="{{route('setting.shipping.rate')}}"><i class="bx bx-right-arrow-alt"></i>Shipping

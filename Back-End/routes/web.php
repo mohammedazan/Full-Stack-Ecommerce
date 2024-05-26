@@ -96,8 +96,11 @@ Route::group(['middleware' => 'authCheck'], function () {
     Route::get('/purchase/supplier/store', [SupplierController::class, 'purchaseSupplierStore'])->name('admin.supplier.store.form.purchase');
     Route::get('/purchase/item/get', [SupplierController::class, 'purchaseItemGet'])->name('admin.pos.purchase.item.get');
     Route::post('/purchase/payment/store', [PurchaseController::class, 'purchasePaymentStore'])->name('purchase.payment.store');
+    
+    
+    Route::get('/purchase/invoice/{id}', [PurchaseController::class, 'purchaseInvoice'])->name('purchase.invoice');
+    //Route::get('/purchase/invoice', [PurchaseController::class, 'purchaseInvoice'])->name('purchase.invoice');
 
-    Route::get('/purchase/invoice', [PurchaseController::class, 'purchaseInvoice'])->name('purchase.invoice');
 
     Route::get('/post/sell/list', [PosController::class, 'sellList'])->name('sell.list');
 
