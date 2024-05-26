@@ -17,7 +17,7 @@
     <!--start page wrapper -->
     <div class="page-content">
         <!--breadcrumb-->
-        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+    {{--  $role = Role::where('status', 1)->get();<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
             <div class="breadcrumb-title"></div>
             <input type="hidden" id="selectimgdiv">
             <div class="ms-auto">
@@ -27,11 +27,12 @@
                                 data-bs-target="#exampleModal">
                             <i class="lni lni-circle-plus"></i> Add User
                         </button>
-                        {{--                        <a href="#" class="btn btn-primary"><i class="lni lni-circle-plus"></i> Add Category</a>--}}
+                        {{--                        <a href="#" class="btn btn-primary"><i class="lni lni-circle-plus"></i> Add Category</a>
                     </div>
                 </div>
             </div>
-        </div>
+        </div>--}}
+
 
         <div class="card">
             <div class="card-body">
@@ -40,23 +41,19 @@
                         <thead>
                         <tr>
                             <th>SI</th>
-                            <th>Admin Name</th>
-                            <th>Email</th>
-                            <th>Role</th>
+                            <th>Role Name</th>
+                            <th>Date created</th>
                             <th>Start</th>
                             <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
 
-                        @foreach($admin as $key=>$admindata)
+                        @foreach($listrole as $key=>$role)
                             <tr>
                                 <td>{{$key}}</td>
-                                <td>{{$admindata->name}}</td>
-                                <td> {{$admindata->email}}</td>
-                                <td>{{ $admindata->role ? $admindata->role->name : 'No Role' }}</td>
-                                <td> {{$admindata->admin_type}}</td>
-
+                                <td>{{$role->name}}</td>
+                                <td> {{$role->created_at}}</td>
                                 @if(1==1)
                                     <td><span class="badge bg-success">Active</span></td>
                                 @else
@@ -98,7 +95,7 @@
                                                 onclick="return confirm('Are you sure you want to delete this item?');">
                                                 <a
                                                     class="dropdown-item"
-                                                    href="{{route('admin.admin.delete',['id'=>$admindata->id])}}">
+                                                    href="{{route('admin.role.delete',['id'=>$role->id])}}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                          viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                          stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -130,100 +127,9 @@
         </div>
         {{--        modal--}}
         <!-- Modal -->
-        <form action="{{route('admin.admin.store')}}" method="post">
-            @csrf
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Create User</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-sm-12" style="border-right:1px solid #dfdada">
-                                    <div class="mb-2 row">
-                                        <div class="col-sm-12">
-                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Name
-                                                <stong class="text-danger">*</stong>
-                                            </label>
-                                            <div class="col-sm-12">
-                                                <input type="text" id="inputname" class="form-control"
-                                                       name="name"
-                                                       placeholder="Name" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Email
-                                                <stong class="text-danger">*</stong>
-                                            </label>
-                                            <div class="col-sm-12">
-                                                <input type="text" id="inputname" class="form-control"
-                                                       name="email"
-                                                       placeholder="Name" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12 mt-2">
-                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Role
-                                                <stong class="text-danger">*</stong>
-                                            </label>
-                                            <div class="col-sm-12">
-                                                <select name="role_id" class="form-control" id="" required>
-                                                    <option value="">SELECT ROLE</option>
-                                                    @foreach($role as $roledata)
-                                                        <option value="{{$roledata->id}}">{{$roledata->name}}</option>
-                                                    @endforeach
-                                                </select>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12 mt-2">
-                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Password
-                                                <stong class="text-danger">*</stong>
-                                            </label>
-                                            <div class="col-sm-12">
-                                                <input type="password" id="inputname" class="form-control"
-                                                       name="password"
-                                                       placeholder="Password" required>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-end p-3">
-                            <button type="submit" class="btn btn-primary">Save</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </form>
+    
 
         {{--Edit --}}
-        <form action="{{route('admin.update.supplier')}}" method="post">
-            @csrf
-            <div class="modal fade" id="supplier_edit" tabindex="-1" aria-labelledby="exampleModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Edit Supplier</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body" id="updateinfo">
-
-                        </div>
-                        <div class="d-flex justify-content-end p-3">
-                            <button type="submit" class="btn btn-primary">Update</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
 
         {{--        modal--}}
     </div>

@@ -21,4 +21,8 @@ class Role extends Model
         'deleted_at',
         'deleted_by',
     ];
+
+    public function admins(){
+        return $this->hasMany(Admin::class, 'admin_type', 'id');
+    }
 }

@@ -12,13 +12,27 @@ function getUploadPath()
     return public_path('storage');
 }
 
-function userCanAccess($access_id){
-  //  $access_list = Auth::guard('admin')->user()->access_role_list;
-  //  $accessListArray=explode(",",$access_list);
-
-    return true ;//$result=in_array($access_id,$accessListArray);
+function userCanAccess($access_id) {
+    // Retrieve the authenticated admin
+    $admin = Auth::guard('admin')->user();
+    
+    // Get the role associated with the admin
+    $role = $admin->role;
+    
+    if ($role) {
+        // Retrieve the access_role_list from the role
+        $access_list = $role->access_role_list;
+        
+        // Explode the access_role_list into an array
+        $accessListArray = explode(",", $access_list);
+        
+        // Check if the access_id is in the accessListArray
+        return in_array($access_id, $accessListArray);
+    }
+    
+    // Return false if the role is not found
+    return false;
 }
-
 
 function calculateDiscount($item)
 {

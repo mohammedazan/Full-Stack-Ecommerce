@@ -45,6 +45,9 @@
                         <li>
                             <a href="{{route('admin.role.create')}}"><i class="bx bx-right-arrow-alt"></i>Role</a>
                         </li>
+                        <li>
+                            <a href="{{route('admin.role.list')}}"><i class="bx bx-right-arrow-alt"></i>List Role</a>
+                        </li>
                     @endif
 
                     @if(userCanAccess('2'))
@@ -248,12 +251,12 @@
                     <div class="menu-title">Setting</div>
                 </a>
                 <ul>
-                    {{-- @if(userCanAccess('12'))  --}}
+                    @if(userCanAccess('12'))
                         <li>
                             <a href="{{route('setting.company.details')}}"><i class="bx bx-right-arrow-alt"></i>Company
                                 Details</a>
                         </li>
-                    {{-- @endif --}} 
+                    @endif
                     @if(userCanAccess('12'))
                         <li>
                             <a href="{{route('setting.shipping.rate')}}"><i class="bx bx-right-arrow-alt"></i>Shipping

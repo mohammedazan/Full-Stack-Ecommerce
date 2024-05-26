@@ -65,14 +65,17 @@ class AdminController extends Controller
         }
     }
 
-    public function adminCreate()
-    {
+    public function adminCreate() {
         $common_data = new Array_();
         $common_data->title = 'User Create';
+        // Retrieve roles where status is 1
         $role = Role::where('status', 1)->get();
-        $admin=Admin::get();
-        return view('adminPanel.role.create_admin')->with(compact('common_data', 'role','admin'));
+        // Retrieve all admins with their associated roles
+        $admin = Admin::with('role')->get();
+        // Pass the data to the view
+        return view('adminPanel.role.create_admin', compact('common_data', 'role','admin'));
     }
+
 
     public function adminRoleStore(Request $request)
     {
@@ -81,6 +84,29 @@ class AdminController extends Controller
         $role->access_role_list = implode(",", $request->role_id);
         $role->save();
         return redirect()->back()->with('success', 'Successfully Created Role');
+    }
+
+    
+    public function roleDelete(Request $request){
+        // Find the role by id
+        $role = Role::find($request->id);
+    
+        // Check if the role is linked to any admin
+        if ($role->admins()->exists()) {
+            // Return with error message
+            return redirect()->back()->with('success', 'Cannot delete role because it is linked to an admin.');
+        }
+    
+        // Delete the role if not linked to any admin
+        $role->delete();
+    
+        // Return with success message
+        return redirect()->back()->with('success', 'Successfully deleted role.');
+    }
+
+    public function listRole() {
+        $listrole = Role::get();
+        return view('adminPanel.role.list_roles', compact('listrole'));
     }
 
 }
