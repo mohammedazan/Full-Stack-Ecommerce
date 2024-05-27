@@ -46,12 +46,21 @@ class ProductSubcategoryController extends Controller
         return redirect()->back()->with('success', 'Subcategory Successfully Updated');
 
     }
-    public function productSubCategoryDelete(Request $request){
+    
+    //update function  productSubCategoryDelete  
+
+    public function productSubCategoryDelete(Request $request)
+    {
         $subcategory = ProductSubCategory::find($request->id);
-        $subcategory->deleted=1;
-        $subcategory->save();
-        return redirect()->back()->with('success', 'Subcategory Successfully Deleted');
+    
+        if ($subcategory) {
+            $subcategory->delete();
+            return redirect()->back()->with('success', 'Subcategory Successfully Deleted');
+        }
+    
+        return redirect()->back()->with('success', 'Subcategory not found');
     }
+    
 
     public function subcategoryListGet(Request $request){
 
