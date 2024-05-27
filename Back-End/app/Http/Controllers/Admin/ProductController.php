@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\Wishlist;
+use App\Models\Offer_product_list;
+use App\Models\Sell_details;
+use App\Models\PurchaseDetails;
 use App\Models\ProductColor;
 use App\Models\ProductImage;
 use App\Models\ProductSize;
@@ -52,6 +56,46 @@ class ProductController extends Controller
         return redirect()->back()->with('success', 'Product Size Successfully Updated');
 
     }
+
+    public function productDelete(Request $request)
+    {
+        $product = Product::find($request->id);
+    
+        if ($product) {
+            // Check if the product is linked to any of the tables
+            $linkedTables = [];
+    
+            if (PurchaseDetails::where('product_id', $product->id)->exists()) {
+                $linkedTables[] = 'PurchaseDetails';
+            }
+    
+            if (Sell_details::where('product_id', $product->id)->exists()) {
+                $linkedTables[] = 'Sell_details';
+            }
+    
+            if (Offer_product_list::where('product_id', $product->id)->exists()) {
+                $linkedTables[] = 'Offer_product_list';
+            }
+    
+            if (Wishlist::where('product_id', $product->id)->exists()) {
+                $linkedTables[] = 'Wishlist';
+            }
+    
+            if (!empty($linkedTables)) {
+                $linkedTablesList = implode(', ', $linkedTables);
+                return redirect()->back()->with('success', 'Cannot delete product because it is linked to the following tables: ' . $linkedTablesList);
+            }
+    
+            // Permanently delete the product
+            $product->delete();
+    
+            return redirect()->back()->with('success', 'Product successfully deleted');
+        }
+    
+        return redirect()->back()->with('success', 'Product not found');
+    }
+    
+
     public function productColorUpdate(Request $request){
         $productColor= ProductColor::find($request->id);
         $productColor->name=$request->name;

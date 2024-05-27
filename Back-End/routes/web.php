@@ -44,6 +44,8 @@ Route::group(['middleware' => 'authCheck'], function () {
     Route::get('/create/product/view', [ProductController::class, 'createProduct'])->name('admin.create.product');
     Route::post('/product/store', [ProductController::class, 'storeProduct'])->name('admin.store.product');
     Route::get('/product/list', [ProductController::class, 'productList'])->name('admin.product.list');
+    Route::get('/product/list/delete', [ProductController::class, 'productDelete'])->name('product.list.delete');
+
     Route::get('/product/edit/info', [ProductController::class, 'productEditDetails'])->name('product.edit.info');
     Route::get('/product/image/delete', [ProductController::class, 'imageDelete'])->name('product.image.delete');
     Route::post('/product/update', [ProductController::class, 'productUpdate'])->name('admin.edit.product');
