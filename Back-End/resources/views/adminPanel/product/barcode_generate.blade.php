@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>How to Generate Bar Code in Laravel? - ItSolutionStuff.com</title>
+    <title>Bar Code </title>
 
   <style>
       .tdst{

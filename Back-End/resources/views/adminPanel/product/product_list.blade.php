@@ -117,7 +117,7 @@
                                                 onclick="return confirm('Are you sure you want to delete this item?');">
                                                 <a
                                                     class="dropdown-item"
-                                                    href="{{route('product.list.delete',['id'=>$product->id])}}">
+                                                    href="#">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                          viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                          stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
