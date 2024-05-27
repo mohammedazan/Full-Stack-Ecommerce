@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\ProductCategory;
+use App\Models\Product;
 use App\Models\ProductSubCategory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -49,13 +50,36 @@ class ProductCategoryController extends Controller
         return redirect()->back()->with('success', 'Category Successfully Updated');
 
     }
-    public function productCategoryDelete(Request $request){
-        $subcategory = ProductSubCategory::find($request->id);
-        $subcategory->deleted=1;
-        $subcategory->save();
-        return redirect()->back()->with('success', 'Subcategory Successfully Deleted');
-    }
 
+    public function productCategoryDelete(Request $request)
+    {
+        $category = ProductCategory::find($request->id);
+    
+        if ($category) {
+            // Check if there are any products linked to this category
+            $linkedProduct = Product::where('category_id', $category->id)->first();
+    
+            if ($linkedProduct) {
+                return redirect()->back()->with('success', 'Cannot delete category because it is linked to the product: ' . $linkedProduct->name);
+            }
+    
+            // Check if there are any subcategories linked to this category
+            $linkedSubcategory = ProductSubCategory::where('category_id', $category->id)->first();
+    
+            if ($linkedSubcategory) {
+                return redirect()->back()->with('success', 'Cannot delete category because it is linked to the subcategory: ' . $linkedSubcategory->name);
+            }
+    
+            // Permanently delete the category
+            $category->delete();
+    
+            return redirect()->back()->with('success', 'Category successfully deleted');
+        }
+    
+        return redirect()->back()->with('success', 'Category not found');
+    }
+    
+    
 
     public function categoryIcon($image)
     {
