@@ -51,26 +51,24 @@ class ProductCategoryController extends Controller
 
     }
 
+
     public function productCategoryDelete(Request $request)
     {
         $category = ProductCategory::find($request->id);
     
         if ($category) {
-            // Check if there are any products linked to this category
             $linkedProduct = Product::where('category_id', $category->id)->first();
     
             if ($linkedProduct) {
                 return redirect()->back()->with('success', 'Cannot delete category because it is linked to the product: ' . $linkedProduct->name);
             }
     
-            // Check if there are any subcategories linked to this category
             $linkedSubcategory = ProductSubCategory::where('category_id', $category->id)->first();
     
             if ($linkedSubcategory) {
                 return redirect()->back()->with('success', 'Cannot delete category because it is linked to the subcategory: ' . $linkedSubcategory->name);
             }
     
-            // Permanently delete the category
             $category->delete();
     
             return redirect()->back()->with('success', 'Category successfully deleted');
