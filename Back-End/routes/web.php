@@ -64,8 +64,9 @@ Route::group(['middleware' => 'authCheck'], function () {
 
     Route::get('/product/brand', [BrandController::class, 'brandShow'])->name('admin.product.brand');
     Route::post('/product/brand/store', [BrandController::class, 'brandStore'])->name('admin.product.brand.store');
-
+    Route::get('/product/brand/delete', [BrandController::class, 'BrandDelete'])->name('admin.delete.brand');
     Route::post('/product/brand/update', [BrandController::class, 'brandUpdate'])->name('admin.product.brand.update');
+    
 
     Route::get('/product/subcategory', [ProductSubcategoryController::class, 'productSubcategory'])->name('admin.product.subcategory');
     Route::post('/product/subcategory/store', [ProductSubcategoryController::class, 'productSubCategoryStore'])->name('admin.store.subcategory');

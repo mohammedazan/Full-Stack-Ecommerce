@@ -35,6 +35,18 @@ class BrandController extends Controller
         return redirect()->back()->with('success', 'Product Brand Successfully Updated');
     }
 
+
+    public function BrandDelete(Request $request)
+    {
+        $brand = Brand::find($request->id);
+        if ($brand) {
+            $brand->delete();
+            return redirect()->back()->with('success', 'Brand Successfully Deleted');
+        }
+    
+        return redirect()->back()->with('success', 'Brand not found');
+    }
+
     public function brandIcon($image)
     {
         if (isset($image) && ($image != '') && ($image != null)) {
