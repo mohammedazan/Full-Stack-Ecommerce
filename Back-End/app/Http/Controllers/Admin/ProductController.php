@@ -136,6 +136,17 @@ class ProductController extends Controller
         }
          return redirect()->back()->with('success', 'Product Size Successfully Created');
      }
+
+     public function SizedDelete(Request $request)
+    {
+        $size = ProductSize::find($request->id);
+        if ($size) {
+            $size->delete();
+            return redirect()->back()->with('success', 'Size Successfully Deleted');
+        }
+    
+        return redirect()->back()->with('success', 'Size not found');
+    }
     public function storeProduct(Request $request)
     {
 

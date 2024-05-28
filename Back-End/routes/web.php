@@ -56,6 +56,8 @@ Route::group(['middleware' => 'authCheck'], function () {
     Route::get('/product/size', [ProductController::class, 'productSize'])->name('admin.product.size.show');
     Route::post('/product/size/store', [ProductController::class, 'productSizeStore'])->name('admin.product.size.store');
     Route::post('/product/size/update', [ProductController::class, 'productSizeUpdate'])->name('admin.product.size.update');
+    Route::get('/product/size/delete', [ProductController::class, 'SizedDelete'])->name('admin.delete.size');
+
 
     Route::get('/product/category', [ProductCategoryController::class, 'productCategory'])->name('admin.product.category');
     Route::post('/product/category/store', [ProductCategoryController::class, 'productCategoryStore'])->name('admin.store.category');
