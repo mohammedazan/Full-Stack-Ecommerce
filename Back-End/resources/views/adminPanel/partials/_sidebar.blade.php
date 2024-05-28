@@ -3,7 +3,7 @@
 <div class="sidebar-wrapper" data-simplebar="true">
     <div class="sidebar-header d-flex justify-content-center">
         <div>
-            <h4 class="logo-text">Reinforce</h4>
+            <h4 class="logo-text">Forbest</h4>
         </div>
         <div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
         </div>
