@@ -52,6 +52,8 @@ Route::group(['middleware' => 'authCheck'], function () {
     Route::get('/product/color', [ProductController::class, 'productColor'])->name('admin.product.color.show');
     Route::post('/product/color/store', [ProductController::class, 'productColorStore'])->name('admin.product.color.store');
     Route::post('/product/color/update', [ProductController::class, 'productColorUpdate'])->name('admin.product.color.update');
+    Route::get('/product/color/delete', [ProductController::class, 'ColordDelete'])->name('admin.delete.color');
+
 
     Route::get('/product/size', [ProductController::class, 'productSize'])->name('admin.product.size.show');
     Route::post('/product/size/store', [ProductController::class, 'productSizeStore'])->name('admin.product.size.store');
