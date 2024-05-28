@@ -40,38 +40,43 @@ Route::post('admin/login', array(AdminController::class, 'loginAdmin'))->name('a
 
 Route::group(['middleware' => 'authCheck'], function () {
     
+   // _____________________ Route product_______________________________________ 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/create/product/view', [ProductController::class, 'createProduct'])->name('admin.create.product');
     Route::post('/product/store', [ProductController::class, 'storeProduct'])->name('admin.store.product');
     Route::get('/product/list', [ProductController::class, 'productList'])->name('admin.product.list');
+    Route::post('/product/update', [ProductController::class, 'productUpdate'])->name('admin.edit.product');
     Route::get('/product/list/delete', [ProductController::class, 'productDelete'])->name('product.list.delete');
 
+   // _____________________ Route color_______________________________________ 
     Route::get('/product/edit/info', [ProductController::class, 'productEditDetails'])->name('product.edit.info');
     Route::get('/product/image/delete', [ProductController::class, 'imageDelete'])->name('product.image.delete');
-    Route::post('/product/update', [ProductController::class, 'productUpdate'])->name('admin.edit.product');
     Route::get('/product/color', [ProductController::class, 'productColor'])->name('admin.product.color.show');
     Route::post('/product/color/store', [ProductController::class, 'productColorStore'])->name('admin.product.color.store');
     Route::post('/product/color/update', [ProductController::class, 'productColorUpdate'])->name('admin.product.color.update');
     Route::get('/product/color/delete', [ProductController::class, 'ColordDelete'])->name('admin.delete.color');
 
-
+   // _____________________ Route size_______________________________________ 
     Route::get('/product/size', [ProductController::class, 'productSize'])->name('admin.product.size.show');
     Route::post('/product/size/store', [ProductController::class, 'productSizeStore'])->name('admin.product.size.store');
     Route::post('/product/size/update', [ProductController::class, 'productSizeUpdate'])->name('admin.product.size.update');
     Route::get('/product/size/delete', [ProductController::class, 'SizedDelete'])->name('admin.delete.size');
 
-
+   // _____________________ Route category_______________________________________ 
     Route::get('/product/category', [ProductCategoryController::class, 'productCategory'])->name('admin.product.category');
     Route::post('/product/category/store', [ProductCategoryController::class, 'productCategoryStore'])->name('admin.store.category');
     Route::post('/product/category/update', [ProductCategoryController::class, 'productCategoryUpdate'])->name('admin.update.category');
     Route::get('/product/category/delete', [ProductCategoryController::class, 'productCategoryDelete'])->name('admin.delete.category');
 
+
+   // _____________________ Route brand_______________________________________ 
     Route::get('/product/brand', [BrandController::class, 'brandShow'])->name('admin.product.brand');
     Route::post('/product/brand/store', [BrandController::class, 'brandStore'])->name('admin.product.brand.store');
     Route::get('/product/brand/delete', [BrandController::class, 'BrandDelete'])->name('admin.delete.brand');
     Route::post('/product/brand/update', [BrandController::class, 'brandUpdate'])->name('admin.product.brand.update');
     
 
+    // _____________________ Route subcategory_______________________________________ 
     Route::get('/product/subcategory', [ProductSubcategoryController::class, 'productSubcategory'])->name('admin.product.subcategory');
     Route::post('/product/subcategory/store', [ProductSubcategoryController::class, 'productSubCategoryStore'])->name('admin.store.subcategory');
     Route::post('/product/subcategory/update', [ProductSubcategoryController::class, 'productSubCategoryUpdate'])->name('admin.update.subcategory');
@@ -79,15 +84,18 @@ Route::group(['middleware' => 'authCheck'], function () {
     Route::get('/product/subcategory/list/get', [ProductSubcategoryController::class, 'subcategoryListGet'])->name('subcategory.list.get');
 
 
+       // _____________________ Route supplier_______________________________________ 
     Route::get('/supplier/list', [SupplierController::class, 'supplierList'])->name('admin.supplier.list');
     Route::post('/supplier/store', [SupplierController::class, 'supplierStore'])->name('admin.store.supplier');
     Route::get('/supplier/edit/info', [SupplierController::class, 'supplierEditInfo'])->name('supplier.edit.info');
     Route::post('/supplier/update', [SupplierController::class, 'supplierUpdate'])->name('admin.update.supplier');
 
+       // _____________________ Route bank_______________________________________ 
     Route::get('/bank/list', [BankAccountController::class, 'bankList'])->name('admin.bank.list');
     Route::post('/bank/store', [BankAccountController::class, 'bankStore'])->name('admin.store.bank');
     Route::post('/bank/update', [BankAccountController::class, 'bankUpdate'])->name('admin.update.bank');
 
+       // _____________________ Route pos_______________________________________ 
     Route::get('/pos/customer', [PosController::class, 'posCustomerList'])->name('admin.pos.customer.list');
     Route::post('/pos/customer/store', [PosController::class, 'posCustomerStore'])->name('admin.store.pos.customer');
     Route::get('/pos/customer/store/in-pos', [PosController::class, 'posCustomerStoreInPos'])->name('admin.pos.customer.add.in-pos');
@@ -97,6 +105,9 @@ Route::group(['middleware' => 'authCheck'], function () {
     Route::get('/pos/product/src/get', [PosController::class, 'postProductSearch'])->name('admin.pos.product.src');
     Route::get('/pos/sell/item/get', [PosController::class, 'sellItemGet'])->name('admin.pos.sell.item.get');
     Route::post('/pos/payment/store', [PosController::class, 'posPaymentStore'])->name('pos.payment.store');
+    Route::get('/post/sell/list', [PosController::class, 'sellList'])->name('sell.list');
+
+
 
     Route::get('/product/stock/view', [PurchaseController::class, 'purchaseProductView'])->name('admin.product.purchase');
     Route::get('/product/purchase/list', [PurchaseController::class, 'purchaseList'])->name('admin.product.purchase.list');
@@ -109,26 +120,21 @@ Route::group(['middleware' => 'authCheck'], function () {
     //Route::get('/purchase/invoice', [PurchaseController::class, 'purchaseInvoice'])->name('purchase.invoice');
 
 
-    Route::get('/post/sell/list', [PosController::class, 'sellList'])->name('sell.list');
-
+       // _____________________ Route offer _______________________________________ 
     Route::get('/post/offer/list', [offerController::class, 'offerList'])->name('offer.list');
-
     Route::post('admin/store/offer', [offerController::class, 'storeOffer'])->name('admin.store.offer');
     Route::get('admin/set/offer/product', [offerController::class, 'setOfferProduct'])->name('admin.set.offer.product');
-
     Route::get('admin/offer/product/list', [offerController::class, 'offerProductList'])->name('admin.offer.product.list');
-
     Route::post('admin/offer/product/store', [offerController::class, 'storeOfferProduct'])->name('admin.offer.product.store');
-
     Route::get('admin/product/offerProduct/delete', [offerController::class, 'offerProductDelete'])->name('admin.product.offerProduct.delete');
-
     Route::get('admin/delete/offer/banner', [offerController::class, 'offerBannerDelete'])->name('admin.delete.offer.banner');
     Route::post('admin/update/offer', [offerController::class, 'offerBannerUpdate'])->name('admin.update.offer');
-
     Route::get('sell/invoice', [PosController::class, 'sellInvoice'])->name('sell.invoice');
 
     Route::get('product/barcode/generate', [ProductController::class, 'productBarcodeGenerate'])->name('product.barcode.generate');
 
+
+    // _____________________ Route admin_______________________________________ 
     Route::get('admin/order/all', [OrderController::class, 'orderAll'])->name('admin.order.all');
     Route::get('admin/order/pending', [OrderController::class, 'orderPending'])->name('admin.order.pending');
     Route::get('admin/order/processing', [OrderController::class, 'orderProcessing'])->name('admin.order.processing');
