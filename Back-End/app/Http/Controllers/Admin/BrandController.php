@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Image;
 
@@ -39,14 +40,25 @@ class BrandController extends Controller
     public function BrandDelete(Request $request)
     {
         $brand = Brand::find($request->id);
+    
         if ($brand) {
+            // Check if there are any products linked to this brand
+            $linkedProduct = Product::where('brand_id', $brand->id)->first();
+    
+            if ($linkedProduct) {
+                return redirect()->back()->with('success', 'Cannot delete brand because it is linked to the product: ' . $linkedProduct->name);
+            }
+    
+            // Permanently delete the brand
             $brand->delete();
-            return redirect()->back()->with('success', 'Brand Successfully Deleted');
+    
+            return redirect()->back()->with('success', 'Brand successfully deleted');
         }
     
         return redirect()->back()->with('success', 'Brand not found');
     }
-
+ 
+    
     public function brandIcon($image)
     {
         if (isset($image) && ($image != '') && ($image != null)) {
