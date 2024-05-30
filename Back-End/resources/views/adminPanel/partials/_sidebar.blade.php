@@ -49,6 +49,9 @@
                         <li>
                             <a href="{{route('admin.role.list')}}"><i class="bx bx-right-arrow-alt"></i>List Role</a>
                         </li>
+                        <li>
+                            <a href="{{route('admin.user.list')}}"><i class="bx bx-right-arrow-alt"></i>List Users</a>
+                        </li>
                     @endif
 
                     @if(userCanAccess('2'))
