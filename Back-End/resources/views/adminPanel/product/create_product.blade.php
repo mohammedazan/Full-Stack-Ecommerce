@@ -88,9 +88,6 @@
                                         </div>
 
                                         <div class="col-sm-6">
-
-
-
                                             <label for="inputProductType" class="form-label">Color</label>
 {{--                                            <div class="colorinputdiv" id="color">--}}
 {{--                                                <span><input type="color" name="product_color[]" class="form-control form-control-color" id="exampleColorInput" value="#563d7c" title="Choose your color"></span>--}}
@@ -104,7 +101,21 @@
 
                                             </select>
                                         </div>
-
+                                        <div class="col-sm-6">
+                                            <label for="inputProductType" class="form-label">Reference
+                                                <stong class="text-danger">*</stong>
+                                            </label>
+{{--                                            <div class="colorinputdiv" id="color">--}}
+{{--                                                <span><input type="color" name="product_color[]" class="form-control form-control-color" id="exampleColorInput" value="#563d7c" title="Choose your color"></span>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="addcoilorbtndiv"> <div class="addcolorbtn" onclick="addnewcolor()">+</div></div>--}}
+                                                <div class="col-sm-12">
+                                                    {{--                                    <input type="text" id="inputname" class="form-control" name="size"  placeholder="Product Size">--}}
+                                                    <input type="text" class="form-control" name="reference"
+                                                    id="inputProductreference"
+                                                    placeholder="Enter Reference Name" required data-role="tagsinput" >
+                                                </div>
+                                        </div>
                                         <div class="col-sm-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Size</label>

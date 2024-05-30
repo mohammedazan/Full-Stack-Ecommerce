@@ -14,6 +14,7 @@ use App\Models\ProductColor;
 use App\Models\ProductImage;
 use App\Models\ProductSize;
 use App\Models\ProductSubCategory;
+use App\Models\Reference;
 use App\Models\Sell;
 use App\Models\Supplier;
 use Carbon\Carbon;
@@ -45,7 +46,7 @@ class ProductController extends Controller
         $brand=Brand::get();
         $color=ProductColor::get();
         $size=ProductSize::get();
-        return view('adminPanel.product.create_product')->with(compact('productCategory', 'supplierList', 'common_data','brand','color','size'));
+        return view('adminPanel.product.create_product')->with(compact('productCategory', 'supplierList', 'common_data','brand','color','size',));
 
     }
 
@@ -177,6 +178,7 @@ class ProductController extends Controller
         $product->image_path = $request->image_path;
         $product->color = implode(",", $request->color);
         $product->size = implode(",", $request->size);
+        $product->reference = $request->reference;
         $product->brand_id = $request->brand_id;
         $product->supplier_id = $request->supplier_id;
         $product->current_purchase_cost = $request->current_purchase_cost;
