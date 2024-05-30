@@ -190,13 +190,13 @@
                                 <div class="border border-3 p-4 rounded">
                                     <div class="row g-3">
                                         <div class="col-md-6">
-                                            <label for="inputCostPerPrice" class="form-label">Purchase Cost</label>
+                                            <label for="inputCostPerPrice" class="form-label">Purchase Cost <b>Prix_V_HT</b></label>
                                             <input type="number" name="current_purchase_cost"
                                                    value="{{old('current_purchase_cost')}}"
                                                    class="form-control" id="inputCostPerPrice" placeholder="00.00">
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="inputPrice" class="form-label">Sell Price <strong
+                                            <label for="inputPrice" class="form-label">Sell Price <b>Prix_V_TTC</b> <strong
                                                     class="text-danger">*</strong> </label>
                                             <input type="number" name="current_sale_price"
                                                    value="{{old('current_sale_price')}}" class="form-control"

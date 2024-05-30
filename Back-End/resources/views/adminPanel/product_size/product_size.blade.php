@@ -110,7 +110,7 @@
         </div>
         {{--        modal--}}
         <!-- Modal -->
-        <form action="{{route('admin.product.size.store')}}" method="post">
+        <form action="{{route('fe')}}" method="post">
             @csrf
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
