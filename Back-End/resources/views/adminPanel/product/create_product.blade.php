@@ -201,9 +201,11 @@
                                 <div class="border border-3 p-4 rounded">
                                     <div class="row g-3">
                                         <div class="col-md-6">
-                                            <label for="inputCostPerPrice" class="form-label">Purchase Cost <b>Prix_V_HT</b></label>
+                                            <label for="inputCostPerPrice" class="form-label">Purchase Cost <b>Prix_V_HT</b>
+                                                <strong class="text-danger">*</strong>
+                                            </label>
                                             <input type="number" name="current_purchase_cost"
-                                                   value="{{old('current_purchase_cost')}}"
+                                                   value="{{old('current_purchase_cost')}}" id="wholesalepricce"
                                                    class="form-control" id="inputCostPerPrice" placeholder="00.00">
                                         </div>
                                         <div class="col-md-6">
