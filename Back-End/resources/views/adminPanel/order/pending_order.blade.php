@@ -24,7 +24,7 @@
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                         <tr>
-                            <th>SI</th>
+                            <th>ID</th>
                             <th>Invoice No</th>
                             <th>Phone</th>
                             <th>Total Payable</th>
