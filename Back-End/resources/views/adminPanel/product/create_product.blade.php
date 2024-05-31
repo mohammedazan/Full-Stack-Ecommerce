@@ -88,9 +88,6 @@
                                         </div>
 
                                         <div class="col-sm-6">
-
-
-
                                             <label for="inputProductType" class="form-label">Color</label>
 {{--                                            <div class="colorinputdiv" id="color">--}}
 {{--                                                <span><input type="color" name="product_color[]" class="form-control form-control-color" id="exampleColorInput" value="#563d7c" title="Choose your color"></span>--}}
@@ -104,7 +101,21 @@
 
                                             </select>
                                         </div>
-
+                                        <div class="col-sm-6">
+                                            <label for="inputProductType" class="form-label">Reference
+                                                <stong class="text-danger">*</stong>
+                                            </label>
+{{--                                            <div class="colorinputdiv" id="color">--}}
+{{--                                                <span><input type="color" name="product_color[]" class="form-control form-control-color" id="exampleColorInput" value="#563d7c" title="Choose your color"></span>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="addcoilorbtndiv"> <div class="addcolorbtn" onclick="addnewcolor()">+</div></div>--}}
+                                                <div class="col-sm-12">
+                                                    {{--                                    <input type="text" id="inputname" class="form-control" name="size"  placeholder="Product Size">--}}
+                                                    <input type="text" class="form-control" name="reference"
+                                                    id="inputProductreference"
+                                                    placeholder="Enter Reference Name" required data-role="tagsinput" >
+                                                </div>
+                                        </div>
                                         <div class="col-sm-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Size</label>
@@ -190,13 +201,15 @@
                                 <div class="border border-3 p-4 rounded">
                                     <div class="row g-3">
                                         <div class="col-md-6">
-                                            <label for="inputCostPerPrice" class="form-label">Purchase Cost</label>
+                                            <label for="inputCostPerPrice" class="form-label">Purchase Cost <b>Prix_V_HT</b>
+                                                <strong class="text-danger">*</strong>
+                                            </label>
                                             <input type="number" name="current_purchase_cost"
-                                                   value="{{old('current_purchase_cost')}}"
+                                                   value="{{old('current_purchase_cost')}}" id="wholesalepricce"
                                                    class="form-control" id="inputCostPerPrice" placeholder="00.00">
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="inputPrice" class="form-label">Sell Price <strong
+                                            <label for="inputPrice" class="form-label">Sell Price <b>Prix_V_TTC</b> <strong
                                                     class="text-danger">*</strong> </label>
                                             <input type="number" name="current_sale_price"
                                                    value="{{old('current_sale_price')}}" class="form-control"

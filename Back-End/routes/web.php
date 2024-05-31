@@ -161,6 +161,7 @@ Route::group(['middleware' => 'authCheck'], function () {
     Route::get('admin/role', array(AdminController::class, 'adminRole'))->name('admin.role.create');
     //Crete List Role 
     Route::get('admin/role/list', array(AdminController::class, 'listRole'))->name('admin.role.list');
+    Route::get('admin/user/list', array(AdminController::class, 'listuser'))->name('admin.user.list');
     Route::get('admin/role/delete', array(AdminController::class, 'roleDelete'))->name('admin.role.delete');
 
     Route::post('admin/role/store', array(AdminController::class, 'adminRoleStore'))->name('admin.role.store');

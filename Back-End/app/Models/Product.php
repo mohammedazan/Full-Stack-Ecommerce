@@ -15,6 +15,7 @@ class Product extends Model
         'subcategory_id',
         'image_path',
         'supplier_id',
+        'reference',
         'code',
         'color',
         'size',
@@ -57,4 +58,5 @@ class Product extends Model
     {
         return $this->hasMany(ProductImage::class, 'product_id', 'id');
     }
+
 }

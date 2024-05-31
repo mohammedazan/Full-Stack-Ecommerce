@@ -167,7 +167,7 @@
             <div class="row g-3">
                 <div class="col-md-6">
                     <label for="inputCostPerPrice" class="form-label">Purchase
-                        Cost</label>
+                        Cost <b>Prix_V_TTC</b></label>
                     <input type="number" name="current_purchase_cost"
                            value="{{$productInfo->current_purchase_cost}}"
                            class="form-control" id="inputCostPerPrice"
@@ -175,7 +175,7 @@
 
                 </div>
                 <div class="col-md-6">
-                    <label for="inputPrice" class="form-label">Sell Price <strong
+                    <label for="inputPrice" class="form-label">Sell Price  <b>Prix_V_HT</b><strong
                             class="text-danger">*</strong> </label>
                     <input type="number" name="current_sale_price"
                            value="{{$productInfo->current_sale_price}}" class="form-control"

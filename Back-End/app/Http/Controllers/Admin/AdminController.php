@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -107,6 +108,10 @@ class AdminController extends Controller
     public function listRole() {
         $listrole = Role::get();
         return view('adminPanel.role.list_roles', compact('listrole'));
+    }
+    public function listuser(){
+        $listuser = User::get();
+        return view('adminPanel.role.user_list', compact('listuser'));
     }
 
 }
