@@ -89,6 +89,9 @@
                                         </label>
                                     </div>
                                 </div>
+
+                                
+
                                 <div class="col-sm-3">
                                     <div class="form-check ">
                                         <input class="form-check-input" type="checkbox" value="8"  name="role_id[]" id="flexCheckDefault" checked>
@@ -98,6 +101,7 @@
                                     </div>
                                 </div>
                             </div>
+
 
                             <div class="row mb-2 roldiv">
                                 <div class="col-sm-12 role_head">

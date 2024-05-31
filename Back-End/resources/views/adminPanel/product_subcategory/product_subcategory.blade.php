@@ -23,7 +23,7 @@
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                         <tr class="t-trcolor">
-                            <th>SI</th>
+                        <th>ID</th>
                             <th>Category Name</th>
                             <th>Subcategory Name</th>
                             <th>Description</th>

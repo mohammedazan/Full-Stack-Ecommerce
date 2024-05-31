@@ -40,7 +40,7 @@
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                         <tr>
-                            <th>SI</th>
+                        <th>ID</th>
                             <th>Role Name</th>
                             <th>Date created</th>
                             <th>Start</th>

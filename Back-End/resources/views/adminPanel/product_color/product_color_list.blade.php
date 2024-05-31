@@ -41,7 +41,7 @@
 
                         <thead>
                         <tr class="t-trcolor">
-                            <th>SI</th>
+                        <th>ID</th>
                             <th>Color Name</th>
                             <th>Color</th>
 {{--                            <th>Status</th>--}}

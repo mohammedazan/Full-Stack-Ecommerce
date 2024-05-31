@@ -40,7 +40,7 @@ Route::post('admin/login', array(AdminController::class, 'loginAdmin'))->name('a
 
 Route::group(['middleware' => 'authCheck'], function () {
     
-   // _____________________ Route product_______________________________________ 
+// _____________________ Route product_______________________________________ 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/create/product/view', [ProductController::class, 'createProduct'])->name('admin.create.product');
     Route::post('/product/store', [ProductController::class, 'storeProduct'])->name('admin.store.product');
@@ -48,6 +48,7 @@ Route::group(['middleware' => 'authCheck'], function () {
     Route::post('/product/update', [ProductController::class, 'productUpdate'])->name('admin.edit.product');
     Route::get('/product/list/delete', [ProductController::class, 'productDelete'])->name('product.list.delete');
 
+    
    // _____________________ Route color_______________________________________ 
     Route::get('/product/edit/info', [ProductController::class, 'productEditDetails'])->name('product.edit.info');
     Route::get('/product/image/delete', [ProductController::class, 'imageDelete'])->name('product.image.delete');
@@ -120,7 +121,7 @@ Route::group(['middleware' => 'authCheck'], function () {
     //Route::get('/purchase/invoice', [PurchaseController::class, 'purchaseInvoice'])->name('purchase.invoice');
 
 
-       // _____________________ Route offer _______________________________________ 
+   // _____________________ Route offer _______________________________________ 
     Route::get('/post/offer/list', [offerController::class, 'offerList'])->name('offer.list');
     Route::post('admin/store/offer', [offerController::class, 'storeOffer'])->name('admin.store.offer');
     Route::get('admin/set/offer/product', [offerController::class, 'setOfferProduct'])->name('admin.set.offer.product');

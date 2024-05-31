@@ -35,7 +35,7 @@
         <table class="table table-borderless">
             <thead class="bgclset">
             <tr>
-                <th class="imgthst">SI</th>
+                <th class="imgthst">ID</th>
                 <th class="imgthst">IMG</th>
                 <th class="itemNamePrc">Name</th>
                 <th class="itemprc">QTY</th>
