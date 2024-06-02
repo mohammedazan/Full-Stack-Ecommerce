@@ -3,7 +3,7 @@
 <div class="sidebar-wrapper" data-simplebar="true">
     <div class="sidebar-header d-flex justify-content-center">
         <div>
-            <h4 class="logo-text">Forbest</h4>
+            <img src="{{asset('assets/adminPanel')}}/images/Forbest-Logo-01.png" alt="Forbest "  class="logo-text" width="130px">
         </div>
         <div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
         </div>

@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--favicon-->
-{{--    <link rel="icon" href="{{asset('$company_info_share->company_logo')}}" type="image/png"/>--}}
+    <link rel="icon" href="{{asset('assets/adminPanel')}}/images/Forbest-favicon-01.png" type="image/png"/>
     <link rel="shortcut icon" href="{{asset('$company_info_share->company_logo')}}" />
 {{--    <link rel="icon" href="{{asset('$company_info_share->company_logo')}}" type="image/png"/>--}}
     <!--plugins-->
@@ -40,7 +40,7 @@
     {{--image croper--}}
 
     @yield('css_plugins')
-    <title>title</title>
+    <title>ForBest</title>
     @yield('css')
     <link rel="stylesheet" href="{{asset('assets/adminPanel')}}/css/custom.css"/>
 </head>
