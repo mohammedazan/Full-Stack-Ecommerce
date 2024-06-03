@@ -96,19 +96,8 @@ Route::group(['middleware' => 'authCheck'], function () {
     Route::post('/bank/store', [BankAccountController::class, 'bankStore'])->name('admin.store.bank');
     Route::post('/bank/update', [BankAccountController::class, 'bankUpdate'])->name('admin.update.bank');
 
-       // _____________________ Route pos_______________________________________ 
-    Route::get('/pos/customer', [PosController::class, 'posCustomerList'])->name('admin.pos.customer.list');
-    Route::post('/pos/customer/store', [PosController::class, 'posCustomerStore'])->name('admin.store.pos.customer');
-    Route::get('/pos/customer/store/in-pos', [PosController::class, 'posCustomerStoreInPos'])->name('admin.pos.customer.add.in-pos');
-    Route::post('/pos/customer/update', [PosController::class, 'posCustomerUpdate'])->name('admin.pos.customer.update');
-    Route::get('/pos/view', [PosController::class, 'posView'])->name('admin.pos.view');
-    Route::get('/pos/product/get', [PosController::class, 'getPostProductList'])->name('admin.pos.product.get');
-    Route::get('/pos/product/src/get', [PosController::class, 'postProductSearch'])->name('admin.pos.product.src');
-    Route::get('/pos/sell/item/get', [PosController::class, 'sellItemGet'])->name('admin.pos.sell.item.get');
-    Route::post('/pos/payment/store', [PosController::class, 'posPaymentStore'])->name('pos.payment.store');
-    Route::get('/post/sell/list', [PosController::class, 'sellList'])->name('sell.list');
 
-
+   // _____________________ Route Product _______________________________________ 
 
     Route::get('/product/stock/view', [PurchaseController::class, 'purchaseProductView'])->name('admin.product.purchase');
     Route::get('/product/purchase/list', [PurchaseController::class, 'purchaseList'])->name('admin.product.purchase.list');
@@ -189,3 +178,19 @@ Route::group(['middleware' => 'authCheck'], function () {
 });
 
 
+
+
+/*
+       // _____________________ Route pos_______________________________________ 
+       Route::get('/pos/customer', [PosController::class, 'posCustomerList'])->name('admin.pos.customer.list');
+       Route::post('/pos/customer/store', [PosController::class, 'posCustomerStore'])->name('admin.store.pos.customer');
+       Route::get('/pos/customer/store/in-pos', [PosController::class, 'posCustomerStoreInPos'])->name('admin.pos.customer.add.in-pos');
+       Route::post('/pos/customer/update', [PosController::class, 'posCustomerUpdate'])->name('admin.pos.customer.update');
+       Route::get('/pos/view', [PosController::class, 'posView'])->name('admin.pos.view');
+       Route::get('/pos/product/get', [PosController::class, 'getPostProductList'])->name('admin.pos.product.get');
+       Route::get('/pos/product/src/get', [PosController::class, 'postProductSearch'])->name('admin.pos.product.src');
+       Route::get('/pos/sell/item/get', [PosController::class, 'sellItemGet'])->name('admin.pos.sell.item.get');
+       Route::post('/pos/payment/store', [PosController::class, 'posPaymentStore'])->name('pos.payment.store');
+       Route::get('/post/sell/list', [PosController::class, 'sellList'])->name('sell.list');
+
+*/

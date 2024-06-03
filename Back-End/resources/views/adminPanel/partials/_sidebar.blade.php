@@ -10,7 +10,7 @@
     </div>
     <!--navigation-->
     <ul class="metismenu" id="menu">
-        <li>
+       {{--  <li>
             <a href="{{route('admin.pos.view')}}">
 
                 <div class="menu-title">
@@ -24,7 +24,7 @@
             </a>
 
 
-        </li>
+        </li> --}}
 
         {{--        <li class="menu-label">UI Elements</li>--}}
         <li>
@@ -65,7 +65,7 @@
                 </ul>
             </li>
         @endif
-        @if(userCanAccess('h2'))
+        @if(userCanAccess('invisible'))
             <li>
                 <a href="javascript:;" class="has-arrow">
                     <div class="parent-icon"><i class="lni lni-cart"></i>
