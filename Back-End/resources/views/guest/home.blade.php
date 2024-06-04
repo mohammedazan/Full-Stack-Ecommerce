@@ -923,6 +923,7 @@
 
         <main class="main">
             <div class="intro-slider-container">
+
                 <div class="intro-slider owl-carousel owl-simple owl-nav-inside" data-toggle="owl" data-owl-options='{
                         "nav": false,
                         "responsive": {
@@ -931,6 +932,7 @@
                             }
                         }
                     }'>
+                    
                     <div class="intro-slide" style="background-image: url(assets/images/demos/demo-13/slider/slide-1.png);">
                         <div class="container intro-content">
                             <div class="row">
@@ -1080,6 +1082,7 @@
                 </div><!-- End .cat-blocks-container -->
             </div><!-- End .container -->
 
+            
             <div class="mb-2"></div><!-- End .mb-2 -->
 
             <div class="container">
