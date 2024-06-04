@@ -17,6 +17,7 @@
                                         <img src="{{ asset($categorylist->image) }}" alt="Category image">
                                     </span>
                                 </figure>
+                                <br>
                                 <h3 class="cat-block-title">{{ $categorylist->name }}</h3><!-- End .cat-block-title -->
                             </a>
                         </div>

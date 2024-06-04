@@ -199,14 +199,6 @@ Route::group(['middleware' => 'authCheck'], function () {
 
 */
 
-<<<<<<< HEAD
-// Route::get('/testing', function () {
-//     return view('guest/test');
-// }); 
-
-
-Route::get('/forbest', [GuestController::class, 'Home'])->name('home');
-=======
 
 
  Route::get('/forbest', [GuestController::class, 'Home'])->name('home');
@@ -214,5 +206,5 @@ Route::get('/forbest', [GuestController::class, 'Home'])->name('home');
 
 
 
->>>>>>> 2767252359ac48f4cbbb25c1505636475b7ea309
+
 
