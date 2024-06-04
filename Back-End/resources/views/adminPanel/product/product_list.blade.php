@@ -148,7 +148,7 @@
         </div>
         {{--        modal--}}
         <!-- Modal -->
-        <form action="{{route('admin.store.pos.customer')}}" method="post">
+        <!--form action="{{--route('admin.store.pos.customer')--}}" method="post">
             @csrf
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
@@ -214,7 +214,7 @@
 
                 </div>
             </div>
-        </form>
+        </form-->
 
         {{--Edit --}}
         <form action="{{route('admin.edit.product')}}" method="post">
