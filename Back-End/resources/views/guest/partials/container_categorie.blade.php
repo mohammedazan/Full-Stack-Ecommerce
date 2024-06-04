@@ -4,77 +4,23 @@
 
                 <div class="cat-blocks-container">
                     <div class="row">
+                        @php
+                        // Shuffle the category collection and take the first six
+                        $randomCategories = $category->shuffle()->take(6);
+                    @endphp
+                    
+                    @foreach($randomCategories as $key => $categorylist)
                         <div class="col-6 col-sm-4 col-lg-2">
                             <a href="category.html" class="cat-block">
                                 <figure>
                                     <span>
-                                        <img src="assets/images/demos/demo-13/cats/1.jpg" alt="Category image">
+                                        <img src="{{ asset($categorylist->image) }}" alt="Category image">
                                     </span>
                                 </figure>
-
-                                <h3 class="cat-block-title">Computer & Laptop</h3><!-- End .cat-block-title -->
+                                <h3 class="cat-block-title">{{ $categorylist->name }}</h3><!-- End .cat-block-title -->
                             </a>
-                        </div><!-- End .col-sm-4 col-lg-2 -->
-
-                        <div class="col-6 col-sm-4 col-lg-2">
-                            <a href="category.html" class="cat-block">
-                                <figure>
-                                    <span>
-                                        <img src="assets/images/demos/demo-13/cats/2.jpg" alt="Category image">
-                                    </span>
-                                </figure>
-
-                                <h3 class="cat-block-title">Lighting</h3><!-- End .cat-block-title -->
-                            </a>
-                        </div><!-- End .col-sm-4 col-lg-2 -->
-
-                        <div class="col-6 col-sm-4 col-lg-2">
-                            <a href="category.html" class="cat-block">
-                                <figure>
-                                    <span>
-                                        <img src="assets/images/demos/demo-13/cats/3.jpg" alt="Category image">
-                                    </span>
-                                </figure>
-
-                                <h3 class="cat-block-title">Smart Phones</h3><!-- End .cat-block-title -->
-                            </a>
-                        </div><!-- End .col-sm-4 col-lg-2 -->
-
-                        <div class="col-6 col-sm-4 col-lg-2">
-                            <a href="category.html" class="cat-block">
-                                <figure>
-                                    <span>
-                                        <img src="assets/images/demos/demo-13/cats/4.jpg" alt="Category image">
-                                    </span>
-                                </figure>
-
-                                <h3 class="cat-block-title">Televisions</h3><!-- End .cat-block-title -->
-                            </a>
-                        </div><!-- End .col-sm-4 col-lg-2 -->
-
-                        <div class="col-6 col-sm-4 col-lg-2">
-                            <a href="category.html" class="cat-block">
-                                <figure>
-                                    <span>
-                                        <img src="assets/images/demos/demo-13/cats/5.jpg" alt="Category image">
-                                    </span>
-                                </figure>
-
-                                <h3 class="cat-block-title">Cooking</h3><!-- End .cat-block-title -->
-                            </a>
-                        </div><!-- End .col-sm-4 col-lg-2 -->
-
-                        <div class="col-6 col-sm-4 col-lg-2">
-                            <a href="category.html" class="cat-block">
-                                <figure>
-                                    <span>
-                                        <img src="assets/images/demos/demo-13/cats/6.jpg" alt="Category image">
-                                    </span>
-                                </figure>
-
-                                <h3 class="cat-block-title">Furniture</h3><!-- End .cat-block-title -->
-                            </a>
-                        </div><!-- End .col-sm-4 col-lg-2 -->
+                        </div>
+                    @endforeach<!-- End .col-sm-4 col-lg-2 -->
                     </div><!-- End .row -->
                 </div><!-- End .cat-blocks-container -->
             </div>
