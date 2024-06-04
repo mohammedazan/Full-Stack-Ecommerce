@@ -1,5 +1,5 @@
     <!-- start .container_categorie -->
-    <div class="container">
+            <div class="container">
                 <h2 class="title text-center mb-2">Explore Popular Categories</h2><!-- End .title -->
 
                 <div class="cat-blocks-container">
@@ -17,6 +17,7 @@
                                         <img src="{{ asset($categorylist->image) }}" alt="Category image">
                                     </span>
                                 </figure>
+                                <br>
                                 <h3 class="cat-block-title">{{ $categorylist->name }}</h3><!-- End .cat-block-title -->
                             </a>
                         </div>
