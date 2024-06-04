@@ -196,5 +196,5 @@ Route::group(['middleware' => 'authCheck'], function () {
 
 */
 
-Route::get('/home', [GuestController::class, 'Home'])->name('home');
+Route::get('/forbest', [GuestController::class, 'Home'])->name('home');
 
