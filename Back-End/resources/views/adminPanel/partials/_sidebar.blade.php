@@ -3,14 +3,14 @@
 <div class="sidebar-wrapper" data-simplebar="true">
     <div class="sidebar-header d-flex justify-content-center">
         <div>
-            <h4 class="logo-text">Forbest</h4>
+            <img src="{{asset('assets/adminPanel')}}/images/Forbest-Logo-01.png" alt="Forbest "  class="logo-text" width="130px">
         </div>
         <div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
         </div>
     </div>
     <!--navigation-->
     <ul class="metismenu" id="menu">
-        <li>
+       {{--  <li>
             <a href="{{route('admin.pos.view')}}">
 
                 <div class="menu-title">
@@ -24,7 +24,7 @@
             </a>
 
 
-        </li>
+        </li> --}}
 
         {{--        <li class="menu-label">UI Elements</li>--}}
         <li>
@@ -46,14 +46,17 @@
                         <li>
                             <a href="{{route('admin.role.create')}}"><i class="bx bx-right-arrow-alt"></i>Role</a>
                         </li>
+                    @endif
+                    @if (userCanAccess('m1'))
                         <li>
                             <a href="{{route('admin.role.list')}}"><i class="bx bx-right-arrow-alt"></i>List Role</a>
                         </li>
+                    @endif 
+                    @if (userCanAccess('m2'))
                         <li>
                             <a href="{{route('admin.user.list')}}"><i class="bx bx-right-arrow-alt"></i>List Users</a>
                         </li>
-                    @endif
-
+                    @endif   
                     @if(userCanAccess('2'))
                         <li>
                             <a href="{{route('admin.admin.create')}}"><i class="bx bx-right-arrow-alt"></i>Create Admin</a>
@@ -62,7 +65,7 @@
                 </ul>
             </li>
         @endif
-        @if(userCanAccess('h2'))
+        @if(userCanAccess('invisible'))
             <li>
                 <a href="javascript:;" class="has-arrow">
                     <div class="parent-icon"><i class="lni lni-cart"></i>
@@ -80,12 +83,12 @@
                             <a href="{{route('sell.list')}}"><i class="bx bx-right-arrow-alt"></i>Sell List</a>
                         </li>
                     @endif
-                    {{--@if(userCanAccess('5'))--}}
+                    @if(userCanAccess('m3'))
                     <li>
                         <a href="{{route('admin.pos.customer.list')}}"><i class="bx bx-right-arrow-alt"></i>Pos
                             Customer List</a>
                     </li>
-                    {{--@endif--}}
+                    @endif
 
 
                 </ul>
@@ -118,21 +121,26 @@
                         <li>
                             <a href="{{route('admin.product.subcategory')}}"><i class="bx bx-right-arrow-alt"></i>Subcategory</a>
                         </li>
-                        @endif
+                    @endif
                         </li>
-
+                    @if(userCanAccess('m4'))
                         <li>
                             <a href="{{route('admin.product.color.show')}}"><i class="bx bx-right-arrow-alt"></i>Product
                                 Color</a>
                         </li>
+                    @endif
+                    @if(userCanAccess('m5'))
                         <li>
                             <a href="{{route('admin.product.size.show')}}"><i class="bx bx-right-arrow-alt"></i>Product
                                 Size</a>
                         </li>
+                    @endif    
+                    @if(userCanAccess('m6'))
                         <li>
                             <a href="{{route('admin.product.brand')}}"><i class="bx bx-right-arrow-alt"></i>Product
                                 Brand</a>
                         </li>
+                    @endif    
                 </ul>
             </li>
         @endif
@@ -267,19 +275,23 @@
                                 Rate Set</a>
                         </li>
                     @endif
+                    @if(userCanAccess('m7'))
                         <li>
                             <a href="{{route('faq.view')}}"><i class="bx bx-right-arrow-alt"></i>
                                 FAQ Set</a>
                         </li>
+                    @endif
+                    @if(userCanAccess('m8'))
                         <li>
                             <a href="{{route('ads.view')}}"><i class="bx bx-right-arrow-alt"></i>
                                 Ads Set</a>
                         </li>
-
+                    @endif    
 
                 </ul>
             </li>
         @endif
+        @if(userCanAccess('m9'))
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="lni lni-offer"></i>
@@ -287,12 +299,15 @@
                 <div class="menu-title">Featured Link</div>
             </a>
             <ul>
+                 @if(userCanAccess('m10'))
                 <li>
                     <a href="{{route('admin.featured.link.list')}}"><i class="bx bx-right-arrow-alt"></i> Featured Link
                         List </a>
                 </li>
+                @endif
             </ul>
         </li>
+        @endif
         @if(userCanAccess('h7'))
             <li>
                 <a href="javascript:;" class="has-arrow">
@@ -301,9 +316,11 @@
                     <div class="menu-title">Bank</div>
                 </a>
                 <ul>
+                    @if(userCanAccess('14'))
                     <li>
                         <a href="{{route('admin.bank.list')}}"><i class="bx bx-right-arrow-alt"></i>Bank List</a>
                     </li>
+                    @endif
                 </ul>
             </li>
         @endif

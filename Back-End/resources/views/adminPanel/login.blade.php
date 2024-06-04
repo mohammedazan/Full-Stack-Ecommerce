@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--favicon-->
-    <link rel="icon" href="{{asset('assets/adminPanel')}}/images/ForbastLogo.jpg" type="image/jpg" />
+    <link rel="icon" href="{{asset('assets/adminPanel')}}/images/Forbest-favicon-01.png" type="image/jpg" />
     <!--plugins-->
     <link href="{{asset('assets/adminPanel')}}/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
     <link href="{{asset('assets/adminPanel')}}/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
@@ -37,11 +37,10 @@
                         <div class="card-body p-4">
                             <div class="">
                                 <div class="mb-3 text-center">
-                                    <img src="{{asset('assets/adminPanel')}}/images/forbast.jpg" width="120" alt="" />
+                                    <img src="{{asset('assets/adminPanel')}}/images/Forbest-Logo-01.png" width="150" alt="" />
                                 </div>
                                 <div class="text-center mb-3">
-                                    <h5 class="">Admin</h5>
-                                    <p class="mb-0">Please log in to your account</p>
+                                    <p class="mb-0">Please log in to your account <b>Admin</b></p>
                                 </div>
                                 <br>
                                 @if(Session::get('error'))

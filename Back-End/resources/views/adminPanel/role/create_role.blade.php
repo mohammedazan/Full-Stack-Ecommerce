@@ -29,11 +29,28 @@
                                            Create User Role
                                         </label>
                                     </div>
-                                </div><div class="col-sm-3">
+                                </div>
+                                <div class="col-sm-3">
                                     <div class="form-check ">
                                         <input class="form-check-input" type="checkbox" value="2"  name="role_id[]" id="flexCheckDefault" checked>
                                         <label class="form-check-label" for="flexCheckDefault">
                                             Create Admin
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-check ">
+                                        <input class="form-check-input" type="checkbox" value="m1"  name="role_id[]" id="flexCheckDefault" checked>
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            List Role
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-check ">
+                                        <input class="form-check-input" type="checkbox" value="m2"  name="role_id[]" id="flexCheckDefault" checked>
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            List User
                                         </label>
                                     </div>
                                 </div>
@@ -89,9 +106,6 @@
                                         </label>
                                     </div>
                                 </div>
-
-                                
-
                                 <div class="col-sm-3">
                                     <div class="form-check ">
                                         <input class="form-check-input" type="checkbox" value="8"  name="role_id[]" id="flexCheckDefault" checked>
@@ -100,8 +114,32 @@
                                         </label>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="col-sm-3">
+                                    <div class="form-check ">
+                                        <input class="form-check-input" type="checkbox" value="m4"  name="role_id[]" id="flexCheckDefault" checked>
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Product Color
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-check ">
+                                        <input class="form-check-input" type="checkbox" value="m5"  name="role_id[]" id="flexCheckDefault" checked>
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Product Size
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-check ">
+                                        <input class="form-check-input" type="checkbox" value="m6"  name="role_id[]" id="flexCheckDefault" checked>
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Product Brand
+                                        </label>
+                                    </div>
+                                </div>
 
+                            </div>
 
                             <div class="row mb-2 roldiv">
                                 <div class="col-sm-12 role_head">
@@ -161,7 +199,22 @@
                                         </label>
                                     </div>
                                 </div>
-
+                                <div class="col-sm-3">
+                                    <div class="form-check ">
+                                        <input class="form-check-input" type="checkbox" value="m7"  name="role_id[]" id="flexCheckDefault" checked>
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            FAQ Set
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-check ">
+                                        <input class="form-check-input" type="checkbox" value="m8"  name="role_id[]" id="flexCheckDefault" checked>
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Ads Set
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="row mb-2 roldiv">
@@ -172,17 +225,24 @@
                                     <div class="form-check ">
                                         <input class="form-check-input" type="checkbox" value="14"  name="role_id[]" id="flexCheckDefault" checked>
                                         <label class="form-check-label" for="flexCheckDefault">
-                                            Create Bank
+                                            Bank List /  Create Bank
                                         </label>
                                     </div>
                                 </div>
-
-
                             </div>
-
-
-
-
+                            <div class="row mb-2 roldiv">
+                                <div class="col-sm-12 role_head">
+                                    <h6><p>Featured Link<input class="form-check-input" type="checkbox" value="m9"  name="role_id[]" id="flexCheckDefault" checked></p></h6>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-check ">
+                                        <input class="form-check-input" type="checkbox" value="m10"  name="role_id[]" id="flexCheckDefault" checked>
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Featured Link List
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="row mb-2 roldiv">
                                 <div class="col-sm-12 role_head">
@@ -201,6 +261,14 @@
                                         <input class="form-check-input" type="checkbox" value="16"  name="role_id[]" id="flexCheckDefault" checked>
                                         <label class="form-check-label" for="flexCheckDefault">
                                             Processing
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-check ">
+                                        <input class="form-check-input" type="checkbox" value="m3"  name="role_id[]" id="flexCheckDefault" checked>
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Pos Customer List
                                         </label>
                                     </div>
                                 </div>
