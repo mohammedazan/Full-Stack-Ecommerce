@@ -23,6 +23,9 @@ use App\Http\Controllers\GuestController;
 use App\Models\Supplier;
 use Illuminate\Support\Facades\Route;
 
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -197,4 +200,8 @@ Route::group(['middleware' => 'authCheck'], function () {
 */
 
 Route::get('/forbest', [GuestController::class, 'Home'])->name('home');
+
+
+
+
 
