@@ -202,6 +202,14 @@ Route::group(['middleware' => 'authCheck'], function () {
 
 
  Route::get('/forbest', [GuestController::class, 'Home'])->name('home');
+ Route::get('/about', [GuestController::class, 'about'])->name('about');
+ Route::get('/contact', [GuestController::class, 'contact'])->name('contact');
+ Route::get('/checkout', [GuestController::class, 'checkout'])->name('checkout');
+ Route::get('/wishlist', [GuestController::class, 'wishlist'])->name('wishlist');
+ Route::get('/cart', [GuestController::class, 'cart'])->name('cart');
+ Route::get('/product', [GuestController::class, 'product'])->name('product');
+ Route::get('/productdetail', [GuestController::class, 'productdetail'])->name('productdetail');
+
 
 
 
