@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\api\StripePaymentController;
+use App\Http\Controllers\GuestController;
 use App\Models\Supplier;
 use Illuminate\Support\Facades\Route;
 
@@ -195,7 +196,5 @@ Route::group(['middleware' => 'authCheck'], function () {
 
 */
 
+Route::get('/home', [GuestController::class, 'Home'])->name('home');
 
-Route::get('/guest', function () {
-   return view('guest/home');
-});
