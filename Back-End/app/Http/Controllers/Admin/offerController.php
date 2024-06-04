@@ -18,7 +18,7 @@ class offerController extends Controller
     public function offerList()
     {
         $common_data = new Array_();
-        $common_data->title = 'Offer List';
+        $common_data->title ='Offer List';
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $offer = Offer::where('deleted', 0)->get();
         return view('adminPanel.offer.offer_list')->with(compact('category', 'offer', 'common_data'));

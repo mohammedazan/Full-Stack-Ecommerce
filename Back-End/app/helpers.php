@@ -36,7 +36,7 @@ function calculateDiscount($item)
     $product = Product::find($item['id']);
     $currentDate = strtotime(Carbon::now()->format('Y-m-d'));
     $discount = 0;
-
+    
     if ($product->discount > 0) {
         if ($product->discount_type == 0) {
             $discount = $product->discount;

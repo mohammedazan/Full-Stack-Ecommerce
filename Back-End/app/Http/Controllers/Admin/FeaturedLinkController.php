@@ -71,6 +71,6 @@ class FeaturedLinkController extends Controller
             return $db_media_img_path;
 
         }
-
+        
     }
 }
