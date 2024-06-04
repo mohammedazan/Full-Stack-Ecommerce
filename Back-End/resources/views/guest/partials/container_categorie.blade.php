@@ -1,5 +1,5 @@
     <!-- start .container_categorie -->
-    <div class="container">
+            <div class="container">
                 <h2 class="title text-center mb-2">Explore Popular Categories</h2><!-- End .title -->
 
                 <div class="cat-blocks-container">
