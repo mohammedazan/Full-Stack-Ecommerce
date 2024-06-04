@@ -194,3 +194,8 @@ Route::group(['middleware' => 'authCheck'], function () {
        Route::get('/post/sell/list', [PosController::class, 'sellList'])->name('sell.list');
 
 */
+
+
+Route::get('/guest', function () {
+   return view('guest/home');
+});
