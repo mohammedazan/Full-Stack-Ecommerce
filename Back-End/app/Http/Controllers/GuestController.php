@@ -62,7 +62,8 @@ class GuestController extends Controller
     public function product(){
         $productList = Product::where('deleted', 0)->get();
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
-        return view('guest/pages.product')->with(compact('productList','category'));
+        $brandList=Brand::get();
+        return view('guest/pages.product')->with(compact('productList','category','brandList'));
     }
 
     public function productdetail(){
