@@ -12,7 +12,7 @@ use PhpParser\Node\Expr\Array_;
 
 class GuestController extends Controller
 {
-   
+  
     public function Home(){
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
