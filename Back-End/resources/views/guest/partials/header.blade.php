@@ -200,25 +200,34 @@
                     <div class="dropdown-menu show">
                         <nav class="side-nav">
                             <ul class="menu-vertical sf-arrows">
-                                @foreach($category as $key=>$categorylist)
-                                <li class="megamenu-container">
-                                    <a class="sf-with-ul" href="#">{{$categorylist->name}}</a>
-                                    <div class="megamenu" style="width:300px">
-                                        <div class="row no-gutters">
-                                            <div class="col-md-8">
-                                                <div class="menu-col">
-                                                    @foreach($productSubcategory as $key=>$subcategoryList)
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="menu-title">{{$subcategoryList->category->name}}</div><!-- End .menu-title -->
-                                                        </div><!-- End .col-md-6 -->
-                                                    </div><!-- End .row -->   
-                                                    @endforeach
-                                                </div><!-- End .menu-col -->
-                                            </div><!-- End .col-md-8 -->
-                                        </div><!-- End .row -->
-                                    </div><!-- End .megamenu -->
-                                </li>
+                                    @php
+                                        // Group subcategories by category
+                                        $groupedSubcategories = $productSubcategory->groupBy('category_id');
+                                    @endphp
+                                
+                                    @foreach($groupedSubcategories as $categoryId => $subcategories)
+                                        @php
+                                            // Get the category name from the first subcategory in the group
+                                            $categoryName = $subcategories->first()->category->name;
+                                        @endphp
+                                    <li class="megamenu-container">
+                                        <a class="sf-with-ul" href="#">{{ $categoryName }}</a>
+                                        <div class="megamenu" style="width:300px">
+                                            <div class="row no-gutters">
+                                                <div class="col-md-8">
+                                                    <div class="menu-col">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                @foreach($subcategories as $subcategory)
+                                                                    <div class="menu-title" style="width:270px">{{ $subcategory->name }}</div><!-- End .menu-title -->
+                                                                @endforeach
+                                                            </div><!-- End .col-md-6 -->
+                                                        </div><!-- End .row -->
+                                                    </div><!-- End .menu-col -->
+                                                </div><!-- End .col-md-8 -->
+                                            </div><!-- End .row -->
+                                        </div><!-- End .megamenu -->
+                                    </li>
                                 @endforeach
                             </ul><!-- End .menu-vertical -->
                         </nav><!-- End .side-nav -->

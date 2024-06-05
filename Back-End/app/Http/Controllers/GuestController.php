@@ -12,9 +12,10 @@ class GuestController extends Controller
     public function Home(){
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
+        $productCategory = ProductCategory::where('deleted', 0)->where('status', 1)->get();
         $offer = Offer::where('deleted', 0)->get();
         $featuredImage=FeaturedLink::get();
-        return view('guest/home')->with(compact('productSubcategory','category','offer','featuredImage'));
+        return view('guest/home')->with(compact('productSubcategory','category','productCategory','offer','featuredImage'));
     }
 
 
