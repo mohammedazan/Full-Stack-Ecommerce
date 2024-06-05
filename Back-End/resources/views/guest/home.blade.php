@@ -59,7 +59,9 @@
             <div class="mb-2"></div><!-- End .mb-2 -->
 
             <!-- start .container-banner -->
-            @include('guest/partials.container-banner')
+            @include('guest/partials.container_banner2')
+
+            {{-- @include('guest/partials.container-banner') --}}
             <!-- End .container -->
 
             <div class="mb-3"></div><!-- End .mb-3 -->
@@ -82,7 +84,6 @@
 
             <!-- start .container_banner2 -->
 
-            @include('guest/partials.container_banner2')
 
             <!-- End .container_banner2 -->
 
