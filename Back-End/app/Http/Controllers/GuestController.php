@@ -1,12 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\CompanyInfo;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use App\Models\Offer;
 use App\Models\Product;
 use App\Models\FeaturedLink;
 use App\Models\ProductSubCategory;
+use PhpParser\Node\Expr\Array_;
+
 class GuestController extends Controller
 {
    
@@ -24,7 +28,8 @@ class GuestController extends Controller
     public function about(){
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
-        return view('guest/pages.about')->with(compact('productSubcategory','category'));
+        $company = CompanyInfo::first();
+        return view('guest/pages.about')->with(compact('productSubcategory','category','company'));
 
     }
 
