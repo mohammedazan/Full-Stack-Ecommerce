@@ -62,14 +62,12 @@
             <div class="page-content">
                 <div class="container">
                     <nav class="blog-nav">
-                        <ul class="menu-cat entry-filter justify-content-center">
-                            <li class="active"><a href="#" data-filter="*">All Blog Posts<span>9</span></a></li>
-                            <li><a href="#" data-filter=".lifestyle">Lifestyle<span>3</span></a></li>
-                            <li><a href="#" data-filter=".shopping">Shopping<span>1</span></a></li>
-                            <li><a href="#" data-filter=".fashion">Fashion<span>2</span></a></li>
-                            <li><a href="#" data-filter=".travel">Travel<span>4</span></a></li>
-                            <li><a href="#" data-filter=".hobbies">Hobbies<span>2</span></a></li>
-                        </ul><!-- End .blog-menu -->
+                  
+                    <ul class="menu-cat entry-filter justify-content-center">
+                    @php $blogCount = count($Blogall); @endphp
+                    <li class="active"><a href="#" data-filter="*">All Blog Posts<span>{{ $blogCount }}</span></a></li>
+                </ul><!-- End .blog-menu -->
+                    
                     </nav><!-- End .blog-nav -->
 
                 	<div class="entry-container max-col-3" data-layout="fitRows">

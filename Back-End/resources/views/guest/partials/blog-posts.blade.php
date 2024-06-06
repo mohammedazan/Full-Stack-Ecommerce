@@ -46,7 +46,7 @@
 
                                 <div class="entry-content">
                                     <p><p>
-                                    <a href="/blogdetail/{{$b->id}}" class="read-more">Read More</a>
+                                    <a href="/blogdetail/{{$b->id}}" class="read-more">Continue Reading</a>
                                 </div><!-- End .entry-content -->
                             </div><!-- End .entry-body -->
                         </article><!-- End .entry -->
