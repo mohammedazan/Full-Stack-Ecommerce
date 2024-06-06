@@ -19,6 +19,8 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\api\StripePaymentController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\BlogsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GuestController;
 use App\Models\Supplier;
@@ -180,7 +182,15 @@ Route::group(['middleware' => 'authCheck'], function () {
     Route::get('admin/ads/deleted', [SettingController::class, 'adsDelete'])->name('ads.delete');
 
 
+
+    // _____________________ Methode Blogs_______________________________________
+      Route::get('/admin/blogs', [BlogsController::class, 'index'])->name("blogs");
+      Route::post('/admin/blogs/store', [BlogsController::class, 'store']);
+      Route::get('/admin/blogs/{id}/delete', [BlogsController::class, 'removeBlogs']);
+      Route::put('/update-data-blogs/{id}', [BlogsController::class, 'update']);
+
 });
+
 
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blogs;
 use App\Models\CompanyInfo;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
@@ -22,8 +23,9 @@ class GuestController extends Controller
         $offer = Offer::where('deleted', 0)->get();
         $featuredImage=FeaturedLink::get();
         $productList = Product::where('deleted', 0)->get();
+        $Blogs=Blogs::all();
         $brandList=Brand::get();
-        return view('guest/home')->with(compact('productSubcategory','productList','category','productCategory','offer','featuredImage','brandList'));
+        return view('guest/home')->with(compact('productSubcategory','productList','category','productCategory','offer','featuredImage','brandList','Blogs'));
     }
 
 
