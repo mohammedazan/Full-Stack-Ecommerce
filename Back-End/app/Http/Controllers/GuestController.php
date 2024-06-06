@@ -11,8 +11,7 @@ use App\Models\Brand;
 use App\Models\Product;
 use App\Models\FeaturedLink;
 use App\Models\ProductSubCategory;
-use PhpParser\Node\Expr\Array_;
-
+use App\Models\ProductImage;
 class GuestController extends Controller
 {
   
@@ -68,10 +67,12 @@ class GuestController extends Controller
         return view('guest/pages.product')->with(compact('productList','category','brandList'));
     }
 
-    public function productdetail(){
+    public function productdetail(Request $request){
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
-        return view('guest/pages.productdetail')->with(compact('productSubcategory','category'));
+        $product = Product::find($request->id);
+        $productimage = ProductImage::$encrypter ;
+        return view('guest/pages/productdetail')->with(compact('productSubcategory', 'category', 'product'));
     }
 
     

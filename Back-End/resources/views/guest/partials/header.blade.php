@@ -52,7 +52,7 @@
                     <i class="icon-bars"></i>
                 </button>
                 
-                <a href="{{route('home')}}" class="logo">
+                <a href="{{route('forbest')}}" class="logo">
                     <img  src="{{asset('assets/adminPanel')}}/images/Forbest-Logo-01.png" alt="Molla Logo" width="150" height="25">
                 </a>
             </div><!-- End .header-left -->

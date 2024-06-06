@@ -212,7 +212,7 @@ Route::group(['middleware' => 'authCheck'], function () {
 
 
 
- Route::get('/forbest', [GuestController::class, 'Home'])->name('home');
+ Route::get('/forbest', [GuestController::class, 'Home'])->name('forbest');
  Route::get('/about', [GuestController::class, 'about'])->name('about');
  Route::get('/checkout', [GuestController::class, 'checkout'])->name('checkout');
  Route::get('/wishlist', [GuestController::class, 'wishlist'])->name('wishlist');
