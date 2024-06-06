@@ -75,7 +75,7 @@
                         <div class="entry-item lifestyle shopping col-sm-6 col-md-4 col-lg-3">
                             <article class="entry entry-grid text-center">
                                 <figure class="entry-media">
-                                    <a href="single.html">
+                                    <a href="#">
                                         <!-- <img src="assets/images/blog/grid/3cols/post-1.jpg" alt="image desc"> -->
                                         <img src="{{ asset('uploads_blogs/blogs/' . $all_blog->img) }}" alt="mage desc" style=" height: 150px;"  >
 
