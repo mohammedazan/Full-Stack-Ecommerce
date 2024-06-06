@@ -6,6 +6,7 @@ use App\Models\CompanyInfo;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use App\Models\Offer;
+use App\Models\Brand;
 use App\Models\Product;
 use App\Models\FeaturedLink;
 use App\Models\ProductSubCategory;
@@ -21,7 +22,8 @@ class GuestController extends Controller
         $offer = Offer::where('deleted', 0)->get();
         $featuredImage=FeaturedLink::get();
         $productList = Product::where('deleted', 0)->get();
-        return view('guest/home')->with(compact('productSubcategory','productList','category','productCategory','offer','featuredImage'));
+        $brandList=Brand::get();
+        return view('guest/home')->with(compact('productSubcategory','productList','category','productCategory','offer','featuredImage','brandList'));
     }
 
 
@@ -58,9 +60,10 @@ class GuestController extends Controller
     }
 
     public function product(){
-        $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
+        $productList = Product::where('deleted', 0)->get();
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
-        return view('guest/pages.product')->with(compact('productSubcategory','category'));
+        $brandList=Brand::get();
+        return view('guest/pages.product')->with(compact('productList','category','brandList'));
     }
 
     public function productdetail(){

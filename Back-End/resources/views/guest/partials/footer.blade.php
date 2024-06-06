@@ -1,4 +1,5 @@
 <footer class="footer footer-2">
+<<<<<<< HEAD
     
             <div class="icon-boxes-container">
                 <div class="container">
@@ -59,6 +60,8 @@
             </div>
             <!-- End .icon-boxes-container -->
 
+=======
+>>>>>>> a06e74efebaaebf8477ac78a391bc2ebb10d48d3
             <div class="footer-middle border-0">
                 <div class="container">
                     <div class="row">

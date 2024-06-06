@@ -107,10 +107,6 @@
                                     </div><!-- End .product-body -->
                                 </div><!-- End .product -->
                             @endforeach
-                            
-                            
-                            
-                                
                             </div><!-- End .owl-carousel -->
                         </div><!-- .End .tab-pane -->
                         <div class="tab-pane p-0 fade" id="hot-elec-tab" role="tabpanel" aria-labelledby="hot-elec-link">
