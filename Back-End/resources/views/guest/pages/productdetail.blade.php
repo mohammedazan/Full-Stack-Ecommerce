@@ -48,12 +48,12 @@
             <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
                 <div class="container d-flex align-items-center">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Products</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('forbest')}}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('product')}}">Products</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Default</li>
                     </ol>
 
-                    <nav class="product-pager ml-auto" aria-label="Product">
+                    {{-- <nav class="product-pager ml-auto" aria-label="Product">
                         <a class="product-pager-link product-pager-prev" href="#" aria-label="Previous" tabindex="-1">
                             <i class="icon-angle-left"></i>
                             <span>Prev</span>
@@ -64,18 +64,18 @@
                             <i class="icon-angle-right"></i>
                         </a>
                     </nav><!-- End .pager-nav -->
+                    --}} 
                 </div><!-- End .container -->
             </nav><!-- End .breadcrumb-nav -->
-
             <div class="page-content">
                 <div class="container">
-                    <div class="product-details-top">
+                    <div class="product-details-top mb-2">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="product-gallery product-gallery-vertical">
                                     <div class="row">
                                         <figure class="product-main-image">
-                                            <img id="product-zoom" src="assets/images/products/single/3.jpg" data-zoom-image="assets/images/products/single/1-big.jpg" alt="product image">
+                                            <img id="product-zoom" src="assets/images/products/single/centered/1.jpg" data-zoom-image="assets/images/products/single/centered/1-big.jpg" alt="product image">
 
                                             <a href="#" id="btn-product-gallery" class="btn-product-gallery">
                                                 <i class="icon-arrows"></i>
@@ -83,20 +83,20 @@
                                         </figure><!-- End .product-main-image -->
 
                                         <div id="product-zoom-gallery" class="product-image-gallery">
-                                            <a class="product-gallery-item" href="#" data-image="assets/images/products/single/1.jpg" data-zoom-image="assets/images/products/single/1-big.jpg">
-                                                <img src="assets/images/products/single/1-small.jpg" alt="product side">
+                                            <a class="product-gallery-item active" href="#" data-image="assets/images/products/single/centered/1.jpg" data-zoom-image="assets/images/products/single/centered/1-big.jpg">
+                                                <img src="assets/images/products/single/centered/1-small.jpg" alt="product side">
                                             </a>
 
-                                            <a class="product-gallery-item" href="#" data-image="assets/images/products/single/2.jpg" data-zoom-image="assets/images/products/single/2-big.jpg">
-                                                <img src="assets/images/products/single/2-small.jpg" alt="product cross">
+                                            <a class="product-gallery-item" href="#" data-image="assets/images/products/single/centered/2.jpg" data-zoom-image="assets/images/products/single/centered/2-big.jpg">
+                                                <img src="assets/images/products/single/centered/2-small.jpg" alt="product cross">
                                             </a>
 
-                                            <a class="product-gallery-item active" href="#" data-image="assets/images/products/single/3.jpg" data-zoom-image="assets/images/products/single/3-big.jpg">
-                                                <img src="assets/images/products/single/3-small.jpg" alt="product with model">
+                                            <a class="product-gallery-item" href="#" data-image="assets/images/products/single/centered/3.jpg" data-zoom-image="assets/images/products/single/centered/3-big.jpg">
+                                                <img src="assets/images/products/single/centered/3-small.jpg" alt="product with model">
                                             </a>
 
-                                            <a class="product-gallery-item" href="#" data-image="assets/images/products/single/4.jpg" data-zoom-image="assets/images/products/single/4-big.jpg">
-                                                <img src="assets/images/products/single/4-small.jpg" alt="product back">
+                                            <a class="product-gallery-item" href="#" data-image="assets/images/products/single/centered/4.jpg" data-zoom-image="assets/images/products/single/centered/4-big.jpg">
+                                                <img src="assets/images/products/single/centered/4-small.jpg" alt="product back">
                                             </a>
                                         </div><!-- End .product-image-gallery -->
                                     </div><!-- End .row -->
@@ -104,8 +104,8 @@
                             </div><!-- End .col-md-6 -->
 
                             <div class="col-md-6">
-                                <div class="product-details">
-                                    <h1 class="product-title">Dark yellow lace cut out swing dress</h1><!-- End .product-title -->
+                                <div class="product-details product-details-centered">
+                                    <h1 class="product-title">Beige metal hoop tote bag</h1><!-- End .product-title -->
 
                                     <div class="ratings-container">
                                         <div class="ratings">
@@ -115,23 +115,19 @@
                                     </div><!-- End .rating-container -->
 
                                     <div class="product-price">
-                                        $84.00
+                                        $76.00
                                     </div><!-- End .product-price -->
 
                                     <div class="product-content">
-                                        <p>Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing. Sed lectus. </p>
+                                        <p>Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero.</p>
                                     </div><!-- End .product-content -->
 
                                     <div class="details-filter-row details-row-size">
                                         <label>Color:</label>
 
-                                        <div class="product-nav product-nav-thumbs">
-                                            <a href="#" class="active">
-                                                <img src="assets/images/products/single/1-thumb.jpg" alt="product desc">
-                                            </a>
-                                            <a href="#">
-                                                <img src="assets/images/products/single/2-thumb.jpg" alt="product desc">
-                                            </a>
+                                        <div class="product-nav product-nav-dots">
+                                            <a href="#" class="active" style="background: #cc9966;"><span class="sr-only">Color name</span></a>
+                                            <a href="#" style="background: #333333;"><span class="sr-only">Color name</span></a>
                                         </div><!-- End .product-nav -->
                                     </div><!-- End .details-filter-row -->
 
@@ -139,7 +135,7 @@
                                         <label for="size">Size:</label>
                                         <div class="select-custom">
                                             <select name="size" id="size" class="form-control">
-                                                <option value="#" selected="selected">Select a size</option>
+                                                <option value="#" selected="selected">One Size</option>
                                                 <option value="s">Small</option>
                                                 <option value="m">Medium</option>
                                                 <option value="l">Large</option>
@@ -150,15 +146,14 @@
                                         <a href="#" class="size-guide"><i class="icon-th-list"></i>size guide</a>
                                     </div><!-- End .details-filter-row -->
 
-                                    <div class="details-filter-row details-row-size">
-                                        <label for="qty">Qty:</label>
-                                        <div class="product-details-quantity">
-                                            <input type="number" id="qty" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required="" style="display: none;"><div class="input-group  input-spinner"><div class="input-group-prepend"><button style="min-width: 26px" class="btn btn-decrement btn-spinner" type="button"><i class="icon-minus"></i></button></div><input type="text" style="text-align: center" class="form-control " required="" placeholder=""><div class="input-group-append"><button style="min-width: 26px" class="btn btn-increment btn-spinner" type="button"><i class="icon-plus"></i></button></div></div>
-                                        </div><!-- End .product-details-quantity -->
-                                    </div><!-- End .details-filter-row -->
-
                                     <div class="product-details-action">
-                                        <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                        <div class="details-action-col">
+                                            <div class="product-details-quantity">
+                                                <input type="number" id="qty" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
+                                            </div><!-- End .product-details-quantity -->
+
+                                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                        </div><!-- End .details-action-col -->
 
                                         <div class="details-action-wrapper">
                                             <a href="#" class="btn-product btn-wishlist" title="Wishlist"><span>Add to Wishlist</span></a>
@@ -196,7 +191,7 @@
                                 <a class="nav-link" id="product-info-link" data-toggle="tab" href="#product-info-tab" role="tab" aria-controls="product-info-tab" aria-selected="false">Additional information</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="product-shipping-link" data-toggle="tab" href="#product-shipping-tab" role="tab" aria-controls="product-shipping-tab" aria-selected="false">Shipping &amp; Returns</a>
+                                <a class="nav-link" id="product-shipping-link" data-toggle="tab" href="#product-shipping-tab" role="tab" aria-controls="product-shipping-tab" aria-selected="false">Shipping & Returns</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="product-review-link" data-toggle="tab" href="#product-review-tab" role="tab" aria-controls="product-review-tab" aria-selected="false">Reviews (2)</a>
@@ -221,7 +216,7 @@
                                     <h3>Information</h3>
                                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna viverra non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. </p>
 
-                                    <h3>Fabric &amp; care</h3>
+                                    <h3>Fabric & care</h3>
                                     <ul>
                                         <li>Faux suede fabric</li>
                                         <li>Gold tone metal hoop handles.</li>
@@ -237,7 +232,7 @@
                             </div><!-- .End .tab-pane -->
                             <div class="tab-pane fade" id="product-shipping-tab" role="tabpanel" aria-labelledby="product-shipping-link">
                                 <div class="product-desc-content">
-                                    <h3>Delivery &amp; returns</h3>
+                                    <h3>Delivery & returns</h3>
                                     <p>We deliver to over 100 countries around the world. For full details of the delivery options we offer, please view our <a href="#">Delivery information</a><br>
                                     We hope you’ll love every purchase, but if you ever need to return an item you can do so within a month of receipt. For full details of how to make a return, please view our <a href="#">Returns information</a></p>
                                 </div><!-- End .product-desc-content -->
@@ -302,42 +297,33 @@
                     </div><!-- End .product-details-tab -->
 
                     <h2 class="title text-center mb-4">You May Also Like</h2><!-- End .title text-center -->
-
-                    <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow owl-loaded owl-drag" data-toggle="owl" data-owl-options="{
-                            &quot;nav&quot;: false, 
-                            &quot;dots&quot;: true,
-                            &quot;margin&quot;: 20,
-                            &quot;loop&quot;: false,
-                            &quot;responsive&quot;: {
-                                &quot;0&quot;: {
-                                    &quot;items&quot;:1
+                    <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
+                        data-owl-options='{
+                            "nav": false, 
+                            "dots": true,
+                            "margin": 20,
+                            "loop": false,
+                            "responsive": {
+                                "0": {
+                                    "items":1
                                 },
-                                &quot;480&quot;: {
-                                    &quot;items&quot;:2
+                                "480": {
+                                    "items":2
                                 },
-                                &quot;768&quot;: {
-                                    &quot;items&quot;:3
+                                "768": {
+                                    "items":3
                                 },
-                                &quot;992&quot;: {
-                                    &quot;items&quot;:4
+                                "992": {
+                                    "items":4
                                 },
-                                &quot;1200&quot;: {
-                                    &quot;items&quot;:4,
-                                    &quot;nav&quot;: true,
-                                    &quot;dots&quot;: false
+                                "1200": {
+                                    "items":4,
+                                    "nav": true,
+                                    "dots": false
                                 }
                             }
-                        }">
-                        <!-- End .product -->
-
-                        <!-- End .product -->
-
-                        <!-- End .product -->
-
-                        <!-- End .product -->
-
-                        <!-- End .product -->
-                    <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 900px;"><div class="owl-item active" style="width: 160px; margin-right: 20px;"><div class="product product-7 text-center">
+                        }'>
+                        <div class="product product-7 text-center">
                             <figure class="product-media">
                                 <span class="product-label label-new">New</span>
                                 <a href="product.html">
@@ -370,20 +356,15 @@
                                     <span class="ratings-text">( 2 Reviews )</span>
                                 </div><!-- End .rating-container -->
 
-                                <div class="product-nav product-nav-thumbs">
-                                    <a href="#" class="active">
-                                        <img src="assets/images/products/product-4-thumb.jpg" alt="product desc">
-                                    </a>
-                                    <a href="#">
-                                        <img src="assets/images/products/product-4-2-thumb.jpg" alt="product desc">
-                                    </a>
-
-                                    <a href="#">
-                                        <img src="assets/images/products/product-4-3-thumb.jpg" alt="product desc">
-                                    </a>
+                                <div class="product-nav product-nav-dots">
+                                    <a href="#" class="active" style="background: #cc9966;"><span class="sr-only">Color name</span></a>
+                                    <a href="#" style="background: #333333;"><span class="sr-only">Color name</span></a>
+                                    <a href="#" style="background: #806b3e;"><span class="sr-only">Color name</span></a>
                                 </div><!-- End .product-nav -->
                             </div><!-- End .product-body -->
-                        </div></div><div class="owl-item active" style="width: 160px; margin-right: 20px;"><div class="product product-7 text-center">
+                        </div><!-- End .product -->
+
+                        <div class="product product-7 text-center">
                             <figure class="product-media">
                                 <span class="product-label label-out">Out of Stock</span>
                                 <a href="product.html">
@@ -416,7 +397,9 @@
                                     <span class="ratings-text">( 6 Reviews )</span>
                                 </div><!-- End .rating-container -->
                             </div><!-- End .product-body -->
-                        </div></div><div class="owl-item" style="width: 160px; margin-right: 20px;"><div class="product product-7 text-center">
+                        </div><!-- End .product -->
+
+                        <div class="product product-7 text-center">
                             <figure class="product-media">
                                 <span class="product-label label-top">Top</span>
                                 <a href="product.html">
@@ -449,20 +432,15 @@
                                     <span class="ratings-text">( 1 Reviews )</span>
                                 </div><!-- End .rating-container -->
 
-                                <div class="product-nav product-nav-thumbs">
-                                    <a href="#" class="active">
-                                        <img src="assets/images/products/product-11-thumb.jpg" alt="product desc">
-                                    </a>
-                                    <a href="#">
-                                        <img src="assets/images/products/product-11-2-thumb.jpg" alt="product desc">
-                                    </a>
-
-                                    <a href="#">
-                                        <img src="assets/images/products/product-11-3-thumb.jpg" alt="product desc">
-                                    </a>
+                                <div class="product-nav product-nav-dots">
+                                    <a href="#" class="active" style="background: #8b513d;"><span class="sr-only">Color name</span></a>
+                                    <a href="#" style="background: #333333;"><span class="sr-only">Color name</span></a>
+                                    <a href="#" style="background: #d2b99a;"><span class="sr-only">Color name</span></a>
                                 </div><!-- End .product-nav -->
                             </div><!-- End .product-body -->
-                        </div></div><div class="owl-item" style="width: 160px; margin-right: 20px;"><div class="product product-7 text-center">
+                        </div><!-- End .product -->
+
+                        <div class="product product-7 text-center">
                             <figure class="product-media">
                                 <a href="product.html">
                                     <img src="assets/images/products/product-10.jpg" alt="Product image" class="product-image">
@@ -494,7 +472,9 @@
                                     <span class="ratings-text">( 0 Reviews )</span>
                                 </div><!-- End .rating-container -->
                             </div><!-- End .product-body -->
-                        </div></div><div class="owl-item" style="width: 160px; margin-right: 20px;"><div class="product product-7 text-center">
+                        </div><!-- End .product -->
+
+                        <div class="product product-7 text-center">
                             <figure class="product-media">
                                 <a href="product.html">
                                     <img src="assets/images/products/product-7.jpg" alt="Product image" class="product-image">
@@ -526,9 +506,11 @@
                                     <span class="ratings-text">( 2 Reviews )</span>
                                 </div><!-- End .rating-container -->
                             </div><!-- End .product-body -->
-                        </div></div></div></div><div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev disabled"><i class="icon-angle-left"></i></button><button type="button" role="presentation" class="owl-next"><i class="icon-angle-right"></i></button></div><div class="owl-dots"><button role="button" class="owl-dot active"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button></div></div><!-- End .owl-carousel -->
+                        </div><!-- End .product -->
+                    </div><!-- End .owl-carousel -->
                 </div><!-- End .container -->
             </div><!-- End .page-content -->
+        </main><!-- End .main -->
         </main>
 
         <!-- start .footer -->
@@ -679,6 +661,7 @@
     <script src= "{{asset('assets/js/main.js')}}"></script>
 
     <script src= "{{asset('assets/js/demos/demo-13.js')}}"></script>
+    
 
 </body>
 

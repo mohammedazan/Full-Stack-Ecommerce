@@ -74,7 +74,7 @@
                                         @if($discountLabel >= 1)
                                             <span class="product-label label-sale">{{ $discountLabel }}</span>
                                         @endif
-                                        <a href="product.html">
+                                        <a href="{{ route('productdetail', ['id' => $product->id]) }}">
                                             <img src="{{ asset($product->image_path) }}" alt="Product image" class="product-image">
                                         </a>
                             
@@ -88,15 +88,19 @@
                                             <a href="#" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a>
                                         </div><!-- End .product-action -->
                                     </figure><!-- End .product-media -->
-                            
+                                <a href="{{ route('productdetail', ['id' => $product->id]) }}">
                                     <div class="product-body">
                                         <div class="product-cat">
                                             <a href="#">{{ $product->productCategory->name }}</a>
                                         </div><!-- End .product-cat -->
                                         <h3 class="product-title"><a href="product.html">{{ $product->name }}</a></h3><!-- End .product-title -->
                                         <div class="product-price">
+                                            @if ($discountedPrice != $originalPrice)
                                             <span class="new-price">{{ number_format($discountedPrice, 2) }}</span>
-                                            <span class="old-price">Was {{ number_format($originalPrice, 2) }}</span>
+                                            <span class="old-price">Was {{ number_format($originalPrice, 2) }}  HD</span>
+                                            @else
+                                            <span class="old-price"> {{ number_format($originalPrice, 2) }}  HD</span>
+                                            @endif 
                                         </div><!-- End .product-price -->
                                         <div class="ratings-container">
                                             <div class="ratings">
@@ -105,6 +109,7 @@
                                             <span class="ratings-text">( 2 Reviews )</span>
                                         </div><!-- End .rating-container -->
                                     </div><!-- End .product-body -->
+                                </a>
                                 </div><!-- End .product -->
                             @endforeach
                             </div><!-- End .owl-carousel -->

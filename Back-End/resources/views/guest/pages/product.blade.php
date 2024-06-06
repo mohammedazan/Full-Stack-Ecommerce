@@ -51,7 +51,7 @@
             <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
                 <div class="container">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('forbest')}}">Home</a></li>
                         <li class="breadcrumb-item"><a href="#">Shop</a></li>
                     </ol>
                 </div><!-- End .container -->
@@ -195,8 +195,12 @@
 												</div><!-- End .product-cat -->
 												<h3 class="product-title"><a href="product.html">{{ $product->name }}</a></h3><!-- End .product-title -->
 												<div class="product-price">
+													@if ($discountedPrice != $originalPrice)
 													<span class="new-price">{{ number_format($discountedPrice, 2) }}</span>
-													<span class="old-price">Was {{ number_format($originalPrice, 2) }}</span>
+													<span class="old-price">Was {{ number_format($originalPrice, 2) }}  HD</span>
+													@else
+													<span class="old-price"> {{ number_format($originalPrice, 2) }}  HD</span>
+													@endif 
 												</div><!-- End .product-price -->
 												<div class="ratings-container">
 													<div class="ratings">
