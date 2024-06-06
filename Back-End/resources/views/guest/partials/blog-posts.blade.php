@@ -1,6 +1,6 @@
 <div class="blog-posts bg-light pt-4 pb-7">
                 <div class="container">
-                    <h2 class="title">From Our Blog</h2><!-- End .title-lg text-center -->
+                    <h2 class="title"> @yield('name_blogs','From Our Blog')</h2><!-- End .title-lg text-center -->
 
                     <div class="owl-carousel owl-simple" data-toggle="owl" 
                         data-owl-options='{
@@ -41,12 +41,12 @@
                                 </div><!-- End .entry-meta -->
 
                                 <h3 class="entry-title">
-                                    <a href="single.html">{{$b->content}}</a>
+                                    <a href="single.html">{{$b->remarque}}</a>
                                 </h3><!-- End .entry-title -->
 
                                 <div class="entry-content">
-                                    <p>{{$b->remarque}}</p>
-                                    <a href="single.html" class="read-more">Read More</a>
+                                    <p><p>
+                                    <a href="/blogdetail/{{$b->id}}" class="read-more">Continue Reading</a>
                                 </div><!-- End .entry-content -->
                             </div><!-- End .entry-body -->
                         </article><!-- End .entry -->
