@@ -31,7 +31,7 @@
                         <article class="entry">
                             <figure class="entry-media">
                                 <a href="single.html">
-                                    <img src="{{ asset('uploads_blogs/blogs/' . $b->img) }}" alt="mage desc"  >
+                                    <img src="{{ asset('uploads_blogs/blogs/' . $b->img) }}" alt="mage desc"   style=" height: 200px;">
                                 </a>
                             </figure><!-- End .entry-media -->
 
