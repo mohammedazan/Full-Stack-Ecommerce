@@ -220,6 +220,7 @@ Route::group(['middleware' => 'authCheck'], function () {
  Route::get('/product', [GuestController::class, 'product'])->name('product');
  Route::get('/productdetail', [GuestController::class, 'productdetail'])->name('productdetail');
 
+ Route::get('/blogall', [BlogsController::class, 'blogall'])->name('blogall');
  Route::get('/blogdetail/{id}', [BlogsController::class, 'blogdetails'])->name('blogdetail');
 
 

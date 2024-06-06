@@ -91,6 +91,13 @@ class BlogsController extends Controller
         $Blogs=Blogs::all();
         return view('guest.pages.blogdetails', compact('productSubcategory', 'category','blogs','blogget','Blogs'));
     }
+
+    public function blogall(){
+        $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
+        $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
+        $Blogall=Blogs::all();
+        return view('guest.pages.blogall', compact('productSubcategory', 'category','Blogall'));
+    }
     
 
 
