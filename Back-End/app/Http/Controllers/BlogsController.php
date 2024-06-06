@@ -39,28 +39,35 @@ class BlogsController extends Controller
         return redirect()->back()->with('success', 'blogs added successfully');
     }
 
-
-    public function update(Request $request,$id){
-        $blogs=Blogs::find($id);
-        $blogs->content=$request->content;
-        $blogs->title=$request->title;
-        $blogs->remarque=$request->remarque;
-        $blogs->slug=$request->slug;
-        $blogs->slug = uniqid();
+    public function update(Request $request, $id) {
+        $blogs = Blogs::find($id);
+    
+        $request->validate([
+            'content' => 'required|string',
+            'title' => 'required|string',
+            'remarque' => 'required|string',
+            'slug' => 'required|string',
+            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+    
+        $blogs->content = $request->content;
+        $blogs->title = $request->title;
+        $blogs->remarque = $request->remarque;
+        $blogs->slug = $request->slug;
+    
         if ($request->hasFile('img')) {
             $file = $request->file('img');
             $extension = $file->getClientOriginalExtension();
-            $fillename=time() . '.' .$extension;
-            $file->move('uploads_blogs/blogs', $fillename);
-            $blogs->img=$fillename;
-        }else {
-            return $request;
-            $blogs->img=" "; // or set a default image
-        }       
-        $blogs->update();
-        return redirect("/blogs")->with("status","Data updated successfully");
+            $filename = time() . '.' . $extension;
+            $file->move('uploads_blogs/blogs', $filename);
+            $blogs->img = $filename;
+        }
     
-    }  
+        $blogs->save();
+    
+        return redirect()->back()->with('success', 'Blog updated successfully');
+    }
+    
     
     public function removeBlogs($id ){
         $blogs = Blogs::find($id);
@@ -73,21 +80,21 @@ class BlogsController extends Controller
         }      
     }
 
-    public function getAllBlogs()
-    {
-        $blogs = Blogs::all();
+    // public function getAllBlogs()
+    // {
+    //     $blogs = Blogs::all();
 
-        return response()->json([
-            'success' => true,
-            'data' => $blogs,
-            'message' => 'Blogs retrieved successfully',
-        ]);
-    }
+    //     return response()->json([
+    //         'success' => true,
+    //         'data' => $blogs,
+    //         'message' => 'Blogs retrieved successfully',
+    //     ]);
+    // }
 
-    public function Blog($slug)
-    {
-        $blogs = Blogs::where('slug',$slug)->first();
+    // public function Blog($slug)
+    // {
+    //     $blogs = Blogs::where('slug',$slug)->first();
 
-        return $this->success($blogs);
-    }
+    //     return $this->success($blogs);
+    // }
 }

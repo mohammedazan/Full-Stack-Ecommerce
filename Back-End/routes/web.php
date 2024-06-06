@@ -183,11 +183,11 @@ Route::group(['middleware' => 'authCheck'], function () {
 
 
 
-    // _____________________ Methode Blogs_______________________________________
+    // _____________________ Route Blogs_______________________________________
       Route::get('/admin/blogs', [BlogsController::class, 'index'])->name("blogs");
       Route::post('/admin/blogs/store', [BlogsController::class, 'store']);
       Route::get('/admin/blogs/{id}/delete', [BlogsController::class, 'removeBlogs']);
-      Route::put('/update-data-blogs/{id}', [BlogsController::class, 'update']);
+      Route::post('/admin/blogs/{id}/update', [BlogsController::class, 'update']);
 
 });
 

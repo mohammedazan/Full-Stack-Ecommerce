@@ -43,7 +43,7 @@
                                 <div class="dropdown">
                                     <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">Action</button>
                                     <ul class="dropdown-menu">
-                                        <!-- <li><a class="dropdown-item" href="#" onclick="editBlog({{ $blog }})">Edit</a></li> -->
+                                    <li><a class="dropdown-item" href="#" onclick="editBlog({{ json_encode($blog) }})">Edit</a></li>
                                         <li><a class="dropdown-item" href="/admin/blogs/{{$blog->id}}/delete" onclick="return confirm('Are you sure?')">Delete</a></li>
                                     </ul>
                                 </div>
@@ -97,10 +97,12 @@
         </div>
     </div>
 
-    <!-- Edit Blog Modal -->
-    <!-- <div class="modal fade" id="editBlogModal" tabindex="-1" aria-labelledby="editBlogModalLabel" aria-hidden="true">
+   <!-- Edit Blog Modal -->
+<!-- Edit Blog Modal -->
+<div class="modal fade" id="editBlogModal" tabindex="-1" aria-labelledby="editBlogModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-
+            <form id="editBlogForm" method="post" enctype="multipart/form-data">
+                @csrf
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="editBlogModalLabel">Edit Blog</h5>
@@ -116,8 +118,8 @@
                             <input type="text" name="title" class="form-control" id="edit_title" required>
                         </div>
                         <div class="mb-3">
-                            <label for="edit_logo" class="form-label">Logo</label>
-                            <input type="file" name="logo" class="form-control" id="edit_logo">
+                            <label for="edit_img" class="form-label">Image</label>
+                            <input type="file" name="img" class="form-control" id="edit_img">
                         </div>
                         <div class="mb-3">
                             <label for="edit_remarque" class="form-label">Remarque</label>
@@ -134,13 +136,14 @@
                 </div>
             </form>
         </div>
-    </div> -->
+    </div>
+
 
 </div>
 
 <script>
 function editBlog(blog) {
-    $('#editBlogForm').attr('action', '{{ url("admin/blog/update") }}/' + blog.id);
+    $('#editBlogForm').attr('action', '/admin/blogs/' + blog.id + '/update');
     $('#edit_content').val(blog.content);
     $('#edit_title').val(blog.title);
     $('#edit_remarque').val(blog.remarque);
@@ -148,4 +151,5 @@ function editBlog(blog) {
     $('#editBlogModal').modal('show');
 }
 </script>
+
 @endsection
