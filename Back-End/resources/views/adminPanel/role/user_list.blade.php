@@ -31,7 +31,7 @@
     <!--start page wrapper -->
     <div class="page-content">
         <!--breadcrumb-->
-    {{--  $role = Role::where('status', 1)->get();<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+    {{--  $role = Role::where('status',1)->get();<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
             <div class="breadcrumb-title"></div>
             <input type="hidden" id="selectimgdiv">
             <div class="ms-auto">
@@ -46,7 +46,6 @@
                 </div>
             </div>
         </div>--}}
-
 
         <div class="card">
             <div class="card-body">

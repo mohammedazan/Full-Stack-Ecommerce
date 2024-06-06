@@ -56,7 +56,8 @@
                         </div><!-- End .col-sm-6 col-lg-3 -->
                     </div><!-- End .row -->
                 </div><!-- End .container -->
-            </div><!-- End .icon-boxes-container -->
+            </div>
+            <!-- End .icon-boxes-container -->
 
             <div class="footer-middle border-0">
                 <div class="container">

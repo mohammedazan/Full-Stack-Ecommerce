@@ -35,6 +35,8 @@
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/skins/skin-demo-13.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/demos/demo-13.css')}}" rel="stylesheet">
+
+
 </head>
 
 <body>
@@ -100,39 +102,38 @@
                         </p><!-- End .lead text-primary -->
                         <p class="mb-3">Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
                     </div><!-- End .text-center -->
-
-                    <form action="#" class="contact-form mb-2">
+          
+                    <form action="#" method="" class="contact-form mb-2">
+                        {{csrf_field()}}
                         <div class="row">
                             <div class="col-sm-4">
                                 <label for="cname" class="sr-only">Name</label>
-                                <input type="text" class="form-control" id="cname" placeholder="Name *" required>
+                                <input  name="name" type="text" class="form-control" id="name" placeholder="Name *" required>
                             </div><!-- End .col-sm-4 -->
 
                             <div class="col-sm-4">
-                                <label for="cemail" class="sr-only">Name</label>
-                                <input type="email" class="form-control" id="cemail" placeholder="Email *" required>
+                                <label for="email" class="sr-only">email</label>
+                                <input name="email"  type="email" class="form-control" id="email" placeholder="Email *" required>
                             </div><!-- End .col-sm-4 -->
 
-                            <div class="col-sm-4">
-                                <label for="cphone" class="sr-only">Phone</label>
-                                <input type="tel" class="form-control" id="cphone" placeholder="Phone">
-                            </div><!-- End .col-sm-4 -->
+
                         </div><!-- End .row -->
 
-                        <label for="csubject" class="sr-only">Subject</label>
-                        <input type="text" class="form-control" id="csubject" placeholder="Subject">
+                        <label for="subject" class="sr-only">Subject</label>
+                        <input name="subject" type="text" class="form-control" id="subject" placeholder="Subject">
 
-                        <label for="cmessage" class="sr-only">Message</label>
-                        <textarea class="form-control" cols="30" rows="4" id="cmessage" required placeholder="Message *"></textarea>
+                        <label for="message" class="sr-only">Message</label>
+                        <textarea name="message" class="form-control" cols="30" rows="4" id="message" required placeholder="Message *"></textarea>
 
                         <div class="text-center">
-                            <button type="submit" class="btn btn-outline-primary-2 btn-minwidth-sm">
+                            <button type="submit" onclick="sendMail()" class="btn btn-outline-primary-2 btn-minwidth-sm">
                                 <span>SUBMIT</span>
                                 <i class="icon-long-arrow-right"></i>
                             </button>
                         </div><!-- End .text-center -->
                     </form><!-- End .contact-form -->
-                </div><!-- End .col-md-9 col-lg-7 -->
+                </div>
+                <!-- End .col-md-9 col-lg-7 -->
             </div><!-- End .row -->
         </div><!-- End .container -->
     </div><!-- End .page-content -->
@@ -260,6 +261,8 @@
             </div><!-- End .modal-content -->
         </div><!-- End .modal-dialog -->
     </div><!-- End .modal -->
+
+
 
 
     <script src= "{{asset('assets/js/jquery.min.js')}}"></script>

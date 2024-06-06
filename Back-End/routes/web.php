@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\api\StripePaymentController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GuestController;
 use App\Models\Supplier;
 use Illuminate\Support\Facades\Route;
@@ -203,7 +204,7 @@ Route::group(['middleware' => 'authCheck'], function () {
 
  Route::get('/forbest', [GuestController::class, 'Home'])->name('home');
  Route::get('/about', [GuestController::class, 'about'])->name('about');
- Route::get('/contact', [GuestController::class, 'contact'])->name('contact');
+
  Route::get('/checkout', [GuestController::class, 'checkout'])->name('checkout');
  Route::get('/wishlist', [GuestController::class, 'wishlist'])->name('wishlist');
  Route::get('/cart', [GuestController::class, 'cart'])->name('cart');
@@ -211,8 +212,8 @@ Route::group(['middleware' => 'authCheck'], function () {
  Route::get('/productdetail', [GuestController::class, 'productdetail'])->name('productdetail');
 
 
-
-
+ Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
+ Route::post('/contact_mail', [ContactController::class, 'contact_mail_send']);
 
 
 
