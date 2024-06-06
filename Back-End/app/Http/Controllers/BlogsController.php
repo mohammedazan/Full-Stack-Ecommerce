@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blogs;
+use App\Models\ProductCategory;
+use App\Models\ProductSubCategory;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 class BlogsController extends Controller
@@ -79,6 +81,33 @@ class BlogsController extends Controller
             echo 'you dont have the permission';
         }      
     }
+
+
+    public function blogdetails($id){
+        $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
+        $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
+        $blogs=Blogs::find($id);
+        $blogget=Blogs::where('id','!=',$id)->get();
+        $Blogs=Blogs::all();
+        return view('guest.pages.blogdetails', compact('productSubcategory', 'category','blogs','blogget','Blogs'));
+    }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // public function getAllBlogs()
     // {

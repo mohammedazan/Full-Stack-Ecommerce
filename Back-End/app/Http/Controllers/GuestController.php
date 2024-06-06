@@ -74,4 +74,6 @@ class GuestController extends Controller
         return view('guest/pages.productdetail')->with(compact('productSubcategory','category'));
     }
 
+    
+
 }

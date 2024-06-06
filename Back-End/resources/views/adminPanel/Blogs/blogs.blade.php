@@ -99,7 +99,7 @@
 
    <!-- Edit Blog Modal -->
 <!-- Edit Blog Modal -->
-<div class="modal fade" id="editBlogModal" tabindex="-1" aria-labelledby="editBlogModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editBlogModal" tabindex="-1" aria-labelledby="editBlogModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <form id="editBlogForm" method="post" enctype="multipart/form-data">
                 @csrf
