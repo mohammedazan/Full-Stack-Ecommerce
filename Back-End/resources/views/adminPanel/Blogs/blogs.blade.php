@@ -18,10 +18,11 @@
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>blogowner</th>
+                            <th>Shorttitle</th>
                             <th>Title</th>
                             <th>content</th>
                             <th>Logo</th>
-                            <th>Remarque</th>
                             <th>Slug</th>
                             <th>Date</th>
                             <th>Action</th>
@@ -31,12 +32,13 @@
                         @foreach($blogs as $blog)
                         <tr>
                             <td>{{ $blog->id }}</td>
+                            <td>{{ $blog->blogowner }}</td>
+                            <td>{{ $blog->Shorttitle }}</td>
                             <td>{{ $blog->title }}</td>
                             <td>{{ $blog->content }}</td>
                             <td>
                             <img src="{{ asset('uploads_blogs/blogs/' . $blog->img) }}" alt="Post Image" style="width: 70px; height: auto;">
                             </td>
-                            <td>{{ $blog->remarque }}</td>
                             <td>{{ $blog->slug }}</td>
                             <td>{{ $blog->created_at }}</td>
                             <td>
@@ -68,10 +70,17 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
+                        
                         <div class="mb-3">
                             <label for="content" class="form-label">Content</label>
                             <textarea name="content" class="form-control" rows="3" required></textarea>
                         </div>
+
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Blog Owner</label>
+                            <input type="text" name="blogowner" class="form-control" required>
+                        </div>
+
                         <div class="mb-3">
                             <label for="title" class="form-label">Title</label>
                             <input type="text" name="title" class="form-control" required>
@@ -81,8 +90,8 @@
                             <input type="file" name="img" class="form-control">
                         </div>
                         <div class="mb-3">
-                            <label for="remarque" class="form-label">Remarque</label>
-                            <input type="text" name="remarque" class="form-control" required>
+                            <label for="remarque" class="form-label">Short Title</label>
+                            <input type="text" name="Shorttitle" class="form-control" required>
                         </div>
                         <div class="mb-3">
                             <label for="slug" class="form-label">Slug</label>
@@ -114,6 +123,10 @@
                             <textarea name="content" class="form-control" id="edit_content" rows="3" required></textarea>
                         </div>
                         <div class="mb-3">
+                            <label for="edit_blogowner" class="form-label">Blog Owner</label>
+                            <input id="edit_blogowner" type="text" name="blogowner" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
                             <label for="edit_title" class="form-label">Title</label>
                             <input type="text" name="title" class="form-control" id="edit_title" required>
                         </div>
@@ -122,8 +135,8 @@
                             <input type="file" name="img" class="form-control" id="edit_img">
                         </div>
                         <div class="mb-3">
-                            <label for="edit_remarque" class="form-label">Remarque</label>
-                            <input type="text" name="remarque" class="form-control" id="edit_remarque" required>
+                            <label for="edit_Shorttitle" class="form-label">Short Title</label>
+                            <input id="edit_Shorttitle" type="text" name="Shorttitle" class="form-control" required>
                         </div>
                         <div class="mb-3">
                             <label for="edit_slug" class="form-label">Slug</label>
@@ -145,8 +158,9 @@
 function editBlog(blog) {
     $('#editBlogForm').attr('action', '/admin/blogs/' + blog.id + '/update');
     $('#edit_content').val(blog.content);
+    $('#edit_blogowner').val(blog.blogowner);
     $('#edit_title').val(blog.title);
-    $('#edit_remarque').val(blog.remarque);
+    $('#edit_Shorttitle').val(blog.Shorttitle);
     $('#edit_slug').val(blog.slug);
     $('#editBlogModal').modal('show');
 }

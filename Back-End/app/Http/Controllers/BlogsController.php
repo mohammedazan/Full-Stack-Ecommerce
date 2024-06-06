@@ -17,14 +17,16 @@ class BlogsController extends Controller
         $request->validate([
             'content' => 'required|string',
             'title' => 'required|string',
-            'remarque' => 'required|string',
+            'blogowner' => 'required|string',
+            'Shorttitle' => 'required|string',
             'slug' => 'required|string',
             'img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         $blogs=new Blogs();
         $blogs->content=$request->content;
+        $blogs->blogowner=$request->blogowner;
         $blogs->title=$request->title;
-        $blogs->remarque=$request->remarque;
+        $blogs->Shorttitle=$request->Shorttitle;
         $blogs->slug=$request->slug;
         $blogs->slug=uniqid();
         if ($request->hasFile('img')) {
@@ -47,14 +49,18 @@ class BlogsController extends Controller
         $request->validate([
             'content' => 'required|string',
             'title' => 'required|string',
-            'remarque' => 'required|string',
+            'blogowner' => 'required|string',
+            'Shorttitle' => 'required|string',
             'slug' => 'required|string',
             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
     
+
+
         $blogs->content = $request->content;
+        $blogs->blogowner=$request->blogowner;
         $blogs->title = $request->title;
-        $blogs->remarque = $request->remarque;
+        $blogs->Shorttitle=$request->Shorttitle;
         $blogs->slug = $request->slug;
     
         if ($request->hasFile('img')) {

@@ -68,12 +68,13 @@
                                 <div class="entry-body">
                                     <div class="entry-meta">
                                         <span class="entry-author">
-                                            by <a href="#">John Doe</a>
+                                            by <a href="#">{{$blogs->blogowner}}</a>
                                         </span>
                                         <span class="meta-separator">|</span>
                                         <a href="#">{{$blogs->created_at}}</a>
                                     </div><!-- End .entry-meta -->
 
+                                    <br>
                                     <h2 class="entry-title entry-title-big">
                                       {{$blogs->title}}
                                     </h2><!-- End .entry-title -->
@@ -82,7 +83,7 @@
                                         in <a href="#">Travel</a>
                                     </div> -->
                                     <!-- End .entry-cats -->
-
+                                    <br>
                                     <div class="entry-content editor-content">
                                         <p>{{$blogs->content}}</p>
 

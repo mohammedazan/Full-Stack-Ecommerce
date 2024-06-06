@@ -41,7 +41,7 @@
                                 </div><!-- End .entry-meta -->
 
                                 <h3 class="entry-title">
-                                    <a href="single.html">{{$b->remarque}}</a>
+                                    <a href="single.html">{{$b->Shorttitle}}</a>
                                 </h3><!-- End .entry-title -->
 
                                 <div class="entry-content">
