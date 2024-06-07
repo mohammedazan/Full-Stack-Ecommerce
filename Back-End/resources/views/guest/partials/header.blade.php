@@ -209,9 +209,10 @@
                                         @php
                                             // Get the category name from the first subcategory in the group
                                             $categoryName = $subcategories->first()->category->name;
+                                            $categoryid = $subcategories->first()->category->id;
                                         @endphp
                                     <li class="megamenu-container">
-                                        <a class="sf-with-ul" href="#">{{ $categoryName }}</a>
+                                        <a class="sf-with-ul" href="{{ route('product.category', ['id' => $categoryid]) }}">{{ $categoryName }}</a>
                                         <div class="megamenu" style="width:300px">
                                             <div class="row no-gutters">
                                                 <div class="col-md-8">
@@ -219,7 +220,9 @@
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 @foreach($subcategories as $subcategory)
-                                                                    <div class="menu-title" style="width:270px">{{ $subcategory->name }}</div><!-- End .menu-title -->
+                                                                    <div class="menu-title" style="width:270px">
+                                                                        <a href="{{ route('product.subcategory', ['id' => $subcategory->id]) }}">{{ $subcategory->name }}</a>
+                                                                    </div><!-- End .menu-title -->
                                                                 @endforeach
                                                             </div><!-- End .col-md-6 -->
                                                         </div><!-- End .row -->

@@ -65,14 +65,21 @@
                 				<div class="toolbox-left">
                 					<div class="toolbox-info">
 										@php 
-										    $number_f = 0 
-										@endphp
-										@foreach($productList as $key=>$product)
+										$number_f = 0;
+										$number_c = 0;
+									@endphp
+									
+									@foreach($productList as $key=>$product)
 										@php
-										    $number_f = ++$number_f
-										@endphp	
+											$number_f++;
+											if($number_f <= 12) {
+												$number_c = $number_f;
+											} else {
+												$number_c = 12;
+											}
+										@endphp
 										@endforeach
-                						Showing <span>9 of {{ $number_f }}</span> Products
+                						Showing <span> {{ $number_c }} of {{ $number_f }}</span> Products
                 					</div><!-- End .toolbox-info -->
                 				</div><!-- End .toolbox-left -->
 
@@ -174,7 +181,7 @@
 												@if($discountLabel)
 												<span class="product-label label-new">{{ $discountLabel }}</span>
 												@endif
-												<a href="product.html">
+												<a href="{{ route('productdetail', ['id' => $product->id]) }}">
 													<img src="{{ asset($product->image_path) }}"  alt="Product image" class="product-image">
 												</a>
 							
@@ -190,10 +197,13 @@
 											</figure><!-- End .product-media -->
 							
 											<div class="product-body">
+												@php
+												    $id = $product->productCategory->id
+												@endphp
 												<div class="product-cat">
-													<a href="#">{{ $product->productCategory->name }}</a>
+													<a href="{{ route('product.category', ['id' => $id]) }}">{{ $product->productCategory->name }}</a>
 												</div><!-- End .product-cat -->
-												<h3 class="product-title"><a href="product.html">{{ $product->name }}</a></h3><!-- End .product-title -->
+												<h3 class="product-title"><a href="{{ route('productdetail', ['id' => $product->id]) }}">{{ $product->name }}</a></h3><!-- End .product-title -->
 												<div class="product-price">
 													@if ($discountedPrice != $originalPrice)
 													<span class="new-price">{{ number_format($discountedPrice, 2) }}</span>

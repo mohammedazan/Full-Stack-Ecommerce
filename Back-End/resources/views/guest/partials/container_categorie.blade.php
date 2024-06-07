@@ -10,8 +10,11 @@
                     @endphp
                     
                     @foreach($randomCategories as $key => $categorylist)
+                    @php
+                    $id = $categorylist->id
+                    @endphp
                         <div class="col-6 col-sm-4 col-lg-2">
-                            <a href="category.html" class="cat-block">
+                            <a href="{{ route('product.category', ['id' => $id]) }}"  class="cat-block">
                                 <figure>
                                     <span>
                                         <img src="{{ asset($categorylist->image) }}" alt="Category image">

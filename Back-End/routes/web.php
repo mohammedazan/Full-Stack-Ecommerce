@@ -242,7 +242,11 @@ Route::middleware('auth')->group(function () {
 });
 Route::get('/about', [GuestController::class, 'about'])->name('about');
 Route::get('/forbest', [GuestController::class, 'Home'])->name('forbest');
-Route::get('/product', [GuestController::class, 'product'])->name('product');
+Route::get('forbest/product', [GuestController::class, 'product'])->name('product');
+Route::get('forbest/product/category', [GuestController::class, 'productcategory'])->name('product.category');
+Route::get('forbest/product/subcategory', [GuestController::class, 'productsubcategory'])->name('product.subcategory');
+
+
 Route::get('/productdetail', [GuestController::class, 'productdetail'])->name('productdetail');
 Route::get('/blogall', [BlogsController::class, 'blogall'])->name('blogall');
 Route::get('/blogdetail/{id}', [BlogsController::class, 'blogdetails'])->name('blogdetail');

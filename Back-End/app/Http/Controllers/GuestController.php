@@ -17,15 +17,24 @@ use App\Models\User;
 class GuestController extends Controller
 {
   
-    public function Home(){
+    public function Home(Request $request){
+
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $productCategory = ProductCategory::where('deleted', 0)->where('status', 1)->get();
         $offer = Offer::where('deleted', 0)->get();
         $featuredImage=FeaturedLink::get();
-        $productList = Product::where('deleted', 0)->get();
         $Blogs=Blogs::all();
         $brandList=Brand::get();
+
+        $categoryId = $request->id;
+        if ($categoryId) {
+            $productList = Product::where('category_id', $categoryId)
+                                  ->where('deleted', 0)
+                                  ->get();
+        } else {
+            $productList = Product::where('deleted', 0)->get();
+        }
         return view('guest/home')->with(compact('productSubcategory','productList','category','productCategory','offer','featuredImage','brandList','Blogs'));
     }
 
@@ -69,12 +78,43 @@ class GuestController extends Controller
         return view('guest/pages.product')->with(compact('productList','category','brandList'));
     }
 
+    public function productcategory(Request $request) {
+        $brandList = Brand::get();
+        $categoryId = $request->id;
+        if ($categoryId) {
+            $productList = Product::where('category_id', $categoryId)
+                                  ->where('deleted', 0)
+                                  ->get();
+        } else {
+            $productList = Product::where('deleted', 0)->get();
+        }
+        $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
+    
+        return view('guest/pages.product')->with(compact('productList', 'category', 'brandList'));
+    }
+    public function productsubcategory(Request $request) {
+        $brandList = Brand::get();
+        // Get the subcategory_id from the request
+        $subcategoryId = $request->id;
+        // Query products based on the provided subcategory_id
+        if ($subcategoryId) {
+            $productList = Product::where('subcategory_id', $subcategoryId)
+                                  ->where('deleted', 0)
+                                  ->get();
+        } else {
+            $productList = Product::where('deleted', 0)->get();
+        }
+        $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
+        return view('guest/pages.product')->with(compact('productList', 'category', 'brandList'));
+    }
+    
+
     public function productdetail(Request $request){
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
-        $product = Product::find($request->id);
-        $productimage = ProductImage::$encrypter ;
-        return view('guest/pages/productdetail')->with(compact('productSubcategory', 'category', 'product'));
+        $productdetail = Product::find($request->id);
+        $productList = Product::where('deleted', 0)->get();
+        return view('guest/pages/productdetail')->with(compact('productSubcategory', 'category', 'productdetail','productList'));
     }
 
     public function listuser(){
