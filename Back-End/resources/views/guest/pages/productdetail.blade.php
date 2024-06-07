@@ -164,7 +164,10 @@
                                     <div class="product-details-footer details-footer-col">
                                         <div class="product-cat">
                                             <span>Category:</span>
-                                            <a href="#">{{ $productdetail->productCategory->name }}</a>,
+                                            @php
+                                               $id = $productdetail->productCategory->id
+                                            @endphp
+                                            <a href="{{ route('product.category', ['id' => $id]) }}">{{ $productdetail->productCategory->name }}</a>,
                                         </div><!-- End .product-cat -->
 
                                         <div class="social-icons social-icons-sm">
@@ -324,7 +327,10 @@
                             <a href="{{ route('productdetail', ['id' => $product->id]) }}">
                                 <div class="product-body">
                                     <div class="product-cat">
-                                        <a href="#">{{ $product->productCategory->name }}</a>
+                                        @php 
+                                          $id = $product->productCategory->id
+                                        @endphp
+                                        <a href="{{ route('product.category', ['id' => $id]) }}">{{ $product->productCategory->name }}</a>
                                     </div><!-- End .product-cat -->
                                     <h3 class="product-title"><a href="{{ route('productdetail', ['id' => $product->id]) }}">{{ $product->name }}</a></h3><!-- End .product-title -->
                                     <div class="product-price">
