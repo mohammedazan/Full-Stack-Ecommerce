@@ -88,11 +88,7 @@
                                         <input type="email" class="form-control" id="email" name="email" required autofocus>
                                     </div><!-- End .form-group -->
 
-                                    <div class="form-group">
-                                        <label for="register-phone">Phone *</label>
-                                        <input type="text" class="form-control" id="phone" name="phone" required autofocus>
-                                    </div><!-- End .form-group -->
-
+                                
                                     <div class="form-group">
                                         <label for="address">Address *</label>
                                         <input type="text" class="form-control" id="address" name="address" required autofocus>
