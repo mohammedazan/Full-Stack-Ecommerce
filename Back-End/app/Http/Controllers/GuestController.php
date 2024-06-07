@@ -74,8 +74,9 @@ class GuestController extends Controller
     public function product(){
         $productList = Product::where('deleted', 0)->get();
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
+        $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $brandList=Brand::get();
-        return view('guest/pages.product')->with(compact('productList','category','brandList'));
+        return view('guest/pages.product')->with(compact('productList','category','brandList','productSubcategory'));
     }
 
     public function productcategory(Request $request) {
@@ -89,8 +90,10 @@ class GuestController extends Controller
             $productList = Product::where('deleted', 0)->get();
         }
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
+        $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
+
     
-        return view('guest/pages.product')->with(compact('productList', 'category', 'brandList'));
+        return view('guest/pages.product')->with(compact('productList','productSubcategory', 'category', 'brandList'));
     }
     public function productsubcategory(Request $request) {
         $brandList = Brand::get();

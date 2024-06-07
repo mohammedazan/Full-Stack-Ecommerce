@@ -17,7 +17,7 @@
                             <a href="{{ route('product.category', ['id' => $id]) }}"  class="cat-block">
                                 <figure>
                                     <span>
-                                        <img src="{{ asset($categorylist->image) }}" alt="Category image">
+                                        <img src="{{ asset($categorylist->image) }}" alt="Category image"  style="width: 100px ; height: 100px;">
                                     </span>
                                 </figure>
                                 <br>
