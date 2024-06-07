@@ -17,10 +17,10 @@ class AuthCheck
      */
     public function handle(Request $request, Closure $next)
     {
-
         if(!Auth::guard('admin')->check()){
             return redirect()->intended('/');
-        }
+        } 
         return $next($request);
     }
 }
+

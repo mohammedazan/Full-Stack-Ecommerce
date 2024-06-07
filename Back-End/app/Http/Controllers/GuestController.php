@@ -12,6 +12,8 @@ use App\Models\Product;
 use App\Models\FeaturedLink;
 use App\Models\ProductSubCategory;
 use App\Models\ProductImage;
+use App\Models\User;
+
 class GuestController extends Controller
 {
   
@@ -73,6 +75,11 @@ class GuestController extends Controller
         $product = Product::find($request->id);
         $productimage = ProductImage::$encrypter ;
         return view('guest/pages/productdetail')->with(compact('productSubcategory', 'category', 'product'));
+    }
+
+    public function listuser(){
+        $listuser = User::get();
+        return view('Login/login', compact('listuser'));
     }
 
     

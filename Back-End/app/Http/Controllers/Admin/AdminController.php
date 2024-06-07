@@ -25,6 +25,9 @@ class AdminController extends Controller
             return redirect()->intended('/home');
         }
         return redirect()->back()->with('error', 'Email or password is incorrect');
+
+                // dd(Auth::user()->id->first() );
+
     }
 
 
@@ -109,6 +112,7 @@ class AdminController extends Controller
         $listrole = Role::get();
         return view('adminPanel.role.list_roles', compact('listrole'));
     }
+    
     public function listuser(){
         $listuser = User::get();
         return view('adminPanel.role.user_list', compact('listuser'));

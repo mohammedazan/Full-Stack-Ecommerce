@@ -27,9 +27,6 @@ class UserController extends Controller
             $userinfo->shipping_state=$request->shipping_state;
             $userinfo->shipping_division=$request->shipping_division;
             $userinfo->shipping_district=$request->shipping_district;
-
-
-
             $userinfo->billing_address=$request->billing_address;
             $userinfo->billing_city=$request->billing_city ;
             $userinfo->billing_country=$request->billing_country;
@@ -39,12 +36,8 @@ class UserController extends Controller
             $userinfo->billing_last_name=$request->billing_last_name;
             $userinfo->billing_email=$request->billing_email;
             $userinfo->billing_phone=$request->billing_phone;
-
-
             $userinfo->billing_division=$request->billing_division;
             $userinfo->billing_district=$request->billing_district;
-
-
             $edit=$userinfo->save();
         }
         else{
@@ -70,7 +63,6 @@ class UserController extends Controller
             $useraddress->billing_phone=$request->billing_phone;
             $create=$useraddress->save();
         }
-
         if($edit){
             return response()->json(['status' => 200,'msg'=>'Address edited successfully']);
         }
