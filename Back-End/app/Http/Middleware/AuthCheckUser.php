@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AuthCheck
+class AuthCheckUser
 {
     /**
      * Handle an incoming request.
@@ -17,11 +17,10 @@ class AuthCheck
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!Auth::guard('admin')->check()){
-            return redirect()->intended('/');
-        } 
+        if (!Auth::check()) {
+            return redirect()->route('forbest');
+        }
 
         return $next($request);
     }
 }
-

@@ -1,48 +1,68 @@
 <header class="header header-10 header-intro-clearance">
-    <div class="header-top">
-        <div class="container">
-            <div class="header-left">
-                <a href="tel:#"><i class="icon-phone"></i>Call: +0123 456 789</a>
-            </div><!-- End .header-left -->
+<div class="header-top">
+    <div class="container">
+        <div class="header-left">
+            <a href="tel:#"><i class="icon-phone"></i>Call: +0123 456 789</a>
+        </div><!-- End .header-left -->
 
-            <div class="header-right">
+        <div class="header-right">
+            <ul class="top-menu">
+                <li>
+                    <a href="#">Links</a>
+                    <ul>
+                        <li>
+                            <div class="header-dropdown">
+                                <a href="#">USD</a>
+                                <div class="header-menu">
+                                    <ul>
+                                        <li><a href="#">Eur</a></li>
+                                        <li><a href="#">Usd</a></li>
+                                    </ul>
+                                </div><!-- End .header-menu -->
+                            </div><!-- End .header-dropdown -->
+                        </li>
+                        <li>   
+                            <div class="header-dropdown">
+                                <a href="#">English</a>
+                                <div class="header-menu">
+                                    <ul>
+                                        <li><a href="#">English</a></li>
+                                        <li><a href="#">French</a></li>
+                                        <li><a href="#">Spanish</a></li>
+                                    </ul>
+                                </div><!-- End .header-menu -->
+                            </div><!-- End .header-dropdown -->
+                        </li>
+                        <li>
+                            @guest
+                                <a class="nav-link" href="#" data-toggle="modal" data-target="#signin-modal">Login-user</a>
+                                <!-- Sign In / Register -->
+                                <a class="navbar-brand" href="{{ url('/') }}">Admin</a>
 
-                <ul class="top-menu">
-                    <li>
-                        <a href="#">Links</a>
-                        <ul>
-                            <li>
-                                <div class="header-dropdown">
-                                    <a href="#">USD</a>
-                                    <div class="header-menu">
-                                        <ul>
-                                            <li><a href="#">Eur</a></li>
-                                            <li><a href="#">Usd</a></li>
-                                        </ul>
-                                    </div><!-- End .header-menu -->
-                                </div><!-- End .header-dropdown -->
-                            </li>
-                            <li>   
-                                <div class="header-dropdown">
-                                    <a href="#">Engligh</a>
-                                    <div class="header-menu">
-                                        <ul>
-                                            <li><a href="#">English</a></li>
-                                            <li><a href="#">French</a></li>
-                                            <li><a href="#">Spanish</a></li>
-                                        </ul>
-                                    </div><!-- End .header-menu -->
-                                </div><!-- End .header-dropdown -->
-                            </li>
-                            <li class="login">
-                                <a href="#signin-modal" data-toggle="modal">Sign in / Sign up</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul><!-- End .top-menu -->
-            </div><!-- End .header-right -->
-        </div><!-- End .container -->
-    </div><!-- End .header-top -->
+                            @else
+                                <div class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {{ Auth::user()->name }}
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="#">Profile</a>
+                                        <a class="dropdown-item" href="#">Settings</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                    </div>
+                                </div>
+                            @endguest
+                        </li>
+                    </ul>
+                </li>
+            </ul><!-- End .top-menu -->
+        </div><!-- End .header-right -->
+    </div><!-- End .container -->
+</div><!-- End .header-top -->
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+</form>
+
 
     <div class="header-middle">
         <div class="container">
@@ -184,6 +204,13 @@
                             </div><!-- End .dropdown-cart-total -->
                         </div><!-- End .dropdown-menu -->
                     </div><!-- End .cart-dropdown -->
+                    <!-- guest/partials/header.blade.php -->
+
+
+                    
+
+
+
                 </div>
             </div><!-- End .header-right -->
         </div><!-- End .container -->
