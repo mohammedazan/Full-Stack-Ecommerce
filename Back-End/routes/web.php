@@ -213,37 +213,39 @@ Route::group(['middleware' => 'authCheck'], function () {
 */
 
 
+Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
+Route::post('/register', [RegisteredUserController::class, 'store']);
+
+Route::get('/login-user', [AuthenticatedSessionController::class, 'create'])->name('login-user');
+Route::post('/login-user', [AuthenticatedSessionController::class, 'store']);
+
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 
 
-// Routes accessible only to guests
-Route::middleware('guest')->group(function () {
-   Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
-   Route::post('/register', [RegisteredUserController::class, 'store']);
-
-   Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
-   Route::post('/login', [AuthenticatedSessionController::class, 'store']);
-});
-
-// Routes accessible only to authenticated users
-Route::middleware('auth')->group(function () {
-
-   Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
-   
+Route::group(['middleware' => 'AuthCheckUser'], function () {
    Route::get('/checkout', [GuestController::class, 'checkout'])->name('checkout');
    Route::get('/wishlist', [GuestController::class, 'wishlist'])->name('wishlist');
    Route::get('/cart', [GuestController::class, 'cart'])->name('cart');
 
-
-   Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
-   Route::post('/contact_mail', [ContactController::class, 'contact_mail_send']);
-  
-  
 });
+Route::post('/contact_mail', [ContactController::class, 'contact_mail_send']);
+Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
 Route::get('/about', [GuestController::class, 'about'])->name('about');
 Route::get('/forbest', [GuestController::class, 'Home'])->name('forbest');
 Route::get('/product', [GuestController::class, 'product'])->name('product');
 Route::get('/productdetail', [GuestController::class, 'productdetail'])->name('productdetail');
 Route::get('/blogall', [BlogsController::class, 'blogall'])->name('blogall');
 Route::get('/blogdetail/{id}', [BlogsController::class, 'blogdetails'])->name('blogdetail');
+
+
+
+
+
+
+// Routes accessible only to authenticated users
+
+
+
+
 

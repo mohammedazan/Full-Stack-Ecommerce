@@ -34,9 +34,35 @@
                                     </div><!-- End .header-menu -->
                                 </div><!-- End .header-dropdown -->
                             </li>
-                            <li class="login">
-                                <a href="#signin-modal" data-toggle="modal">Sign in / Sign up</a>
-                            </li>
+                            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- <a class="navbar-brand" href="{{ url('/') }}">ForBest</a> -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            @guest
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#signin-modal">Sign In / Register</a>
+                </li>
+            @else
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ Auth::user()->name }}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" href="#">Settings</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                    </div>
+                </li>
+            @endguest
+        </ul>
+    </div>
+</nav>
+
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+</form>
+
                         </ul>
                     </li>
                 </ul><!-- End .top-menu -->
@@ -184,6 +210,13 @@
                             </div><!-- End .dropdown-cart-total -->
                         </div><!-- End .dropdown-menu -->
                     </div><!-- End .cart-dropdown -->
+                    <!-- guest/partials/header.blade.php -->
+
+
+                    
+
+
+
                 </div>
             </div><!-- End .header-right -->
         </div><!-- End .container -->

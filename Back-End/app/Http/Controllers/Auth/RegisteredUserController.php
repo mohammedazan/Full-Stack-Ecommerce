@@ -15,7 +15,7 @@ class RegisteredUserController extends Controller
 {
     public function create()
     {
-        return view('auth.register');
+        return view('guest/home');
     }
 
     public function store(Request $request)
@@ -39,6 +39,6 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
         
-        return redirect(RouteServiceProvider::HOME);
+        return redirect('/forbest');
     }
 }

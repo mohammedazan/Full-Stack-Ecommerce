@@ -19,6 +19,9 @@
                     <div class="login-title">
                         <h2>Register</h2>
                     </div>
+
+
+
                     <div class="input">
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" value="{{ old('name') }}" required autofocus>

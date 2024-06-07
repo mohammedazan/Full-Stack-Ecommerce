@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\AuthCheck;
+use App\Http\Middleware\AuthCheckUser;
 use Fruitcake\Cors\HandleCors;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -57,6 +58,7 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $routeMiddleware = [
+        'redirectIfUserAuthenticated' => \App\Http\Middleware\RedirectIfUserAuthenticated::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
@@ -68,6 +70,8 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'authCheck' => AuthCheck::class,
+        'AuthCheckUser' => AuthCheckUser::class,
+        
 
     ];
 }
