@@ -1,4 +1,4 @@
-<div class="intro-slider-container" style="margin-top: 3px">
+<div class="intro-slider-container" style="margin-top: 0.1px">
                 <div class="intro-slider owl-carousel owl-simple owl-nav-inside" data-toggle="owl" data-owl-options='{
                         "nav": false,
                         "responsive": {

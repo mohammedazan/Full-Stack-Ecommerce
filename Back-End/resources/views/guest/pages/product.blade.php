@@ -41,13 +41,9 @@
 
 <body>
     <div class="page-wrapper">
-    {{--  @include('guest/partials.header') --}}
+    @include('guest/partials.header')
     <main class="main">
-        	<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
-        		<div class="container">
-        			<h1 class="page-title"><span>Shop</span></h1>
-        		</div><!-- End .container -->
-        	</div><!-- End .page-header -->
+
             <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
                 <div class="container">
                     <ol class="breadcrumb">
@@ -255,11 +251,6 @@
 					 </div><!-- End .col-lg-9 -->
                 		<aside class="col-lg-3 order-lg-first">
                 			<div class="sidebar sidebar-shop">
-                				<div class="widget widget-clean">
-                					<label>Filters:</label>
-                					<a href="#" class="sidebar-filter-clear">Clean All</a>
-                				</div><!-- End .widget widget-clean -->
-
                 				<div class="widget widget-collapsible">
     								<h3 class="widget-title">
 									    <a data-toggle="collapse" href="#widget-1" role="button" aria-expanded="true" aria-controls="widget-1">
@@ -272,10 +263,13 @@
 											<div class="filter-items filter-items-count">
 												@foreach($category as $key => $categorylist)
 												<div class="filter-item">
-													<div class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" id="cat-{{ $categorylist->id }}" name="categories[]" value="{{ $categorylist->id }}">
-														<label class="custom-control-label" for="cat-{{ $categorylist->id }}">{{ $categorylist->name }}</label>
-													</div><!-- End .custom-checkbox -->
+													<ul>
+														<li>
+															<a href="{{ route('product.category', ['id' => $categorylist->id]) }}" >
+																{{ $categorylist->name }}
+															</a>
+														</li>
+													</ul>
 												</div><!-- End .filter-item -->
 												@endforeach
 											</div><!-- End .filter-items -->
