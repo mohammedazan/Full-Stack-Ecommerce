@@ -227,6 +227,7 @@
                     <div class="dropdown-menu show">
                         <nav class="side-nav">
                             <ul class="menu-vertical sf-arrows">
+                                {{--  
                                     @php
                                         // Group subcategories by category
                                         $groupedSubcategories = $productSubcategory->groupBy('category_id');
@@ -258,7 +259,118 @@
                                             </div><!-- End .row -->
                                         </div><!-- End .megamenu -->
                                     </li>
+                                    <li class="megamenu-container">
+                                            <a class="sf-with-ul" href="#">ProductCategory </a>
+                                            <div class="megamenu">
+                                                <div class="menu-col">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="menu-title">ProductSubCategory </div><!-- End .menu-title -->
+                                                            <ul>
+                                                                <li><a href="#">Product </a></li>
+                                                                <li><a href="#">Product </a></li>
+                                                                <li><a href="#">Product </a></li>
+                                                                <li><a href="#">Product </a></li>
+                                                                <li><a href="#">Product </a></li>
+                                                                <li><a href="#">Show more </a></li>
+                                                            </ul>
+                                                        </div><!-- End .col-md-4 -->
+
+                                                        <div class="col-md-4">
+                                                            <div class="menu-title">ProductSubCategory </div><!-- End .menu-title -->
+                                                            <ul>
+                                                                <li><a href="#">Product </a></li>
+                                                                <li><a href="#">Product </a></li>
+                                                                <li><a href="#">Product </a></li>
+                                                                <li><a href="#">Product </a></li>
+                                                                <li><a href="#">Show more </a></li>
+                                                            </ul>
+                                                        </div><!-- End .col-md-4 -->
+
+                                                        <div class="col-md-4">
+                                                            <div class="menu-title">ProductSubCategory </div><!-- End .menu-title -->
+                                                            <ul>
+                                                                <li><a href="#">Product </a></li>
+                                                                <li><a href="#">Product </a></li>
+                                                                <li><a href="#">Product </a></li>
+                                                                <li><a href="#">Product </a></li>
+                                                                <li><a href="#">Product </a></li>
+                                                                <li><a href="#">Show more </a></li>
+                                                            </ul>
+                                                        </div><!-- End .col-md-4 -->
+                                                    </div><!-- End .row -->
+
+                                                    <div class="row menu-banners">
+                                                        <div class="col-md-4">
+                                                            <div class="banner">
+                                                                <a href="#">
+                                                                    <img src="assets/images/demos/demo-13/menu/Product.jpg" alt="image">
+                                                                </a>
+                                                            </div><!-- End .banner -->
+                                                        </div><!-- End .col-md-4 -->
+
+                                                        <div class="col-md-4">
+                                                            <div class="banner">
+                                                                <a href="#">
+                                                                    <img src="assets/images/demos/demo-13/menu/Product .jpg" alt="image">
+                                                                </a>
+                                                            </div><!-- End .banner -->
+                                                        </div><!-- End .col-md-4 -->
+
+                                                        <div class="col-md-4">
+                                                            <div class="banner">
+                                                                <a href="#">
+                                                                    <img src="assets/images/demos/demo-13/menu/Product .jpg" alt="image">
+                                                                </a>
+                                                            </div><!-- End .banner -->
+                                                        </div><!-- End .col-md-4 -->
+                                                    </div><!-- End .row -->
+                                                </div><!-- End .menu-col -->
+                                            </div><!-- End .megamenu -->
+                                        </li>
                                 @endforeach
+                                --}}
+                                
+                                    @foreach($categoriesWithProducts2 as $category)
+                                        <li class="megamenu-container">
+                                            <a class="sf-with-ul" href="#">{{ $category->name }}</a>
+                                            <div class="megamenu">
+                                                <div class="menu-col">
+                                                    <div class="row">
+                                                        @php
+                                                            $relatedSubcategories = $productSubcategory2->where('category_id', $category->id)->take(3);
+                                                            $relatedProducts = $productList2->where('category_id', $category->id)->take(5);
+                                                        @endphp
+                                
+                                                        <div class="col-md-4">
+                                                            <div class="menu-title">ProductSubCategory</div><!-- End .menu-title -->
+                                                            <ul>
+                                                                @foreach($relatedSubcategories as $subcategory)
+                                                                    <li><a href="#">{{ $subcategory->name }}</a></li>
+                                                                @endforeach
+                                                                @if($relatedSubcategories->isEmpty() && $relatedProducts->isNotEmpty())
+                                                                    <li><a href="#">Related Products</a></li>
+                                                                @endif
+                                                            </ul>
+                                                        </div><!-- End .col-md-4 -->
+                                                    </div><!-- End .row -->
+                                
+                                                    <div class="row menu-banners">
+                                                        @foreach($relatedProducts as $product)
+                                                            <div class="col-md-4">
+                                                                <div class="banner">
+                                                                    <a href="#">
+                                                                        <img src="{{ asset($product->image_path) }}" alt="{{ $product->name }}">
+                                                                    </a>
+                                                                </div><!-- End .banner -->
+                                                            </div><!-- End .col-md-4 -->
+                                                        @endforeach
+                                                    </div><!-- End .row -->
+                                                </div><!-- End .menu-col -->
+                                            </div><!-- End .megamenu -->
+                                        </li>
+                                    @endforeach
+                                                                
                             </ul><!-- End .menu-vertical -->
                         </nav><!-- End .side-nav -->
                     </div><!-- End .dropdown-menu -->
