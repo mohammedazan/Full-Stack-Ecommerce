@@ -71,6 +71,12 @@
                         </nav><!-- End .breadcrumb-nav -->
                         <div class="container">
                             <div class="product-gallery-carousel owl-carousel owl-full owl-nav-dark">
+                                <figure class="product-gallery-image">
+                                    <!-- Display the main image from the Product table -->
+                                    <img src="{{ asset($productdetail->image_path) }}" data-zoom-image="{{ asset($productdetail->image_path) }}" alt="product image">
+                                </figure><!-- End .product-gallery-image -->
+                                
+                                <!-- Loop through related images from the ProductImage table -->
                                 @foreach($productdetail->productImage as $image)
                                     <figure class="product-gallery-image">
                                         <img src="{{ asset($image->image) }}" data-zoom-image="{{ asset($image->image) }}" alt="product image">
