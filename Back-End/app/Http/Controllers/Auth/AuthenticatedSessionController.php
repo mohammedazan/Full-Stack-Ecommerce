@@ -26,19 +26,20 @@ class AuthenticatedSessionController extends Controller
             'password' => 'required|string',
         ]);
 
+        
     // محاولة مصادقة المستخدم باستخدام البريد الإلكتروني وكلمة المرور 
         if (Auth::attempt($request->only('email', 'password'))) {
-
+            
             $request->session()->regenerate();
 
             return redirect('/forbest');
+            
         }
 
-        
-
-        throw ValidationException::withMessages([
-            'email' => __('auth.failed'),
-        ]);
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records * .',
+            // 'password' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
     }
 
 

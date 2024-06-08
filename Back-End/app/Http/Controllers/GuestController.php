@@ -92,6 +92,7 @@ class GuestController extends Controller
     
         return view('guest/pages.product')->with(compact('productList', 'category', 'brandList'));
     }
+
     public function productsubcategory(Request $request) {
         $brandList = Brand::get();
         // Get the subcategory_id from the request
@@ -115,12 +116,13 @@ class GuestController extends Controller
         $productdetail = Product::find($request->id);
         $productList = Product::where('deleted', 0)->get();
         return view('guest/pages/productdetail')->with(compact('productSubcategory', 'category', 'productdetail','productList'));
+        
     }
 
-    public function listuser(){
-        $listuser = User::get();
-        return view('Login/login', compact('listuser'));
-    }
+    // public function listuser(){
+    //     $listuser = User::get();
+    //     return view('Login/login', compact('listuser'));
+    // }
 
     
 

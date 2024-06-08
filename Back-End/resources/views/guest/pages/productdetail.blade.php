@@ -357,7 +357,6 @@
         </main><!-- End .main -->
 
     
-         @include('guest/partials.header')
         <!-- start .footer -->
         @include('guest/partials.footer')
         <!-- End .footer -->

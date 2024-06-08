@@ -24,23 +24,33 @@
                                     @csrf 
                                     <div class="form-group">
                                         <label for="singin-email">Email address *</label>
-                                        <input type="text" class="form-control" id="singin-email" name="email" value="{{ old('email') }}" required autofocus>
+                                        <input type="email" class="form-control" id="singin-email" name="email" value="" required autofocus>
+                                        @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                     </div><!-- End .form-group -->
 
                                     <div class="form-group">
                                         <label for="singin-password">Password *</label>
                                         <input type="password" class="form-control" id="singin-password" name="password" required>
+                                        @error('password')
+                                    <span  class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                     </div><!-- End .form-group -->
 
                                     @if ($errors->any())
-                                        <div>
-                                            <ul>
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endif
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
 
                                     <div class="form-footer">
                                         <button type="submit" class="btn btn-outline-primary-2">
@@ -104,15 +114,7 @@
                                         <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required autofocus>
                                     </div><!-- End .form-group -->
 
-                                    @if ($errors->any())
-                                        <div>
-                                            <ul>
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endif
+                       
 
                                     <div class="form-footer">
                                         <button type="submit" class="btn btn-outline-primary-2">

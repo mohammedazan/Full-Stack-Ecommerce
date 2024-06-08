@@ -25,7 +25,7 @@ return new class extends Migration
             $table->tinyInteger('deleted')->default(0)->comment('0=active,1=deleted');
             $table->timestamp('deleted_at')->nullable()->default(null);
             $table->unsignedInteger('deleted_by')->nullable()->default(null);
-
+            
         });
     }
 
