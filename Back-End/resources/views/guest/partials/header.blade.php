@@ -101,6 +101,7 @@
                                     <option value="16">- Auto Tools &amp; Supplies</option>
                                 </select>
                             </div><!-- End .select-custom -->
+                            
                             <label for="q" class="sr-only">Search</label>
                             <input type="search" class="form-control" name="q" id="q" placeholder="Search product ..." required>
                             <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>

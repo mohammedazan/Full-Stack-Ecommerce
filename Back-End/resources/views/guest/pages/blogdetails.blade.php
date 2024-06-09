@@ -96,15 +96,18 @@
                             </div><!-- End .col-lg-11 -->
 
                             <div class="col-lg-1 order-lg-first mb-2 mb-lg-0">
-                                <div class="sticky-content">
-                                    <div class="social-icons social-icons-colored social-icons-vertical">
-                                        <span class="social-label">SHARE:</span>
-                                        <a href="#" class="social-icon social-facebook" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
-                                        <a href="#" class="social-icon social-twitter" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
-                                        <a href="#" class="social-icon social-pinterest" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a>
-                                        <a href="#" class="social-icon social-linkedin" title="Linkedin" target="_blank"><i class="icon-linkedin"></i></a>
-                                    </div><!-- End .soial-icons -->
-                                </div><!-- End .sticky-content -->
+                            <div class="sticky-content">
+                <div class="social-icons social-icons-colored social-icons-vertical">
+                    <span class="social-label">SHARE:</span>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->fullUrl()) }}" class="social-icon social-facebook" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
+                    <a href="https://twitter.com/intent/tweet?url={{ urlencode(request()->fullUrl()) }}" class="social-icon social-twitter" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+                    <!-- Add more social media sharing links for other platforms -->
+                    <!-- For Pinterest -->
+                    <a href="https://pinterest.com/pin/create/button/?url={{ urlencode(request()->fullUrl()) }}" class="social-icon social-pinterest" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a>
+                    <!-- For LinkedIn -->
+                    <a href="https://www.linkedin.com/shareArticle?url={{ urlencode(request()->fullUrl()) }}" class="social-icon social-linkedin" title="Linkedin" target="_blank"><i class="icon-linkedin"></i></a>
+                </div><!-- End .soial-icons -->
+            </div><!-- End .sticky-content -->
                             </div><!-- End .col-lg-1 -->
                         </div><!-- End .row -->
 

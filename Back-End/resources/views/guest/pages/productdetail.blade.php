@@ -41,7 +41,9 @@
 </head>
 
 <body>
-    <div class="page-wrapper">
+
+@include('guest/partials.header')
+<div class="page-wrapper">
         <main class="main">
             <div class="page-content">
                 <div class="product-details-top">
@@ -196,7 +198,7 @@
                                 <a class="nav-link active" id="product-desc-link" data-toggle="tab" href="#product-desc-tab" role="tab" aria-controls="product-desc-tab" aria-selected="true">Description</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="product-review-link" data-toggle="tab" href="#product-review-tab" role="tab" aria-controls="product-review-tab" aria-selected="false">Reviews (2)</a>
+                                <a class="nav-link" id="product-review-link" data-toggle="tab" href="#product-review-tab" role="tab" aria-controls="product-review-tab" aria-selected="false">Reviews ({{ count($productdetail->reviews) }})</a>
                             </li>
                         </ul>
                         <div class="tab-content">
@@ -206,12 +208,13 @@
                                 </div><!-- End .product-desc-content -->
                             </div><!-- .End .tab-pane -->
                             <div class="tab-pane fade" id="product-review-tab" role="tabpanel" aria-labelledby="product-review-link">
-                            <h4>Reviews ({{ count($productdetail->reviews) }})</h4>
+                            <h6>Reviews ({{ count($productdetail->reviews) }})</h6>
                             @foreach($productdetail->reviews as $r)
                             <div class="review">
                                         <div class="row no-gutters">
                                             <div class="col-auto">
-                                                <h4><a href="#">{{ $r->user->name }}  /{{ $r->rate }}</a></h4>
+                                                <h4><a href="#">by : {{ $r->user->name }} </a></h4>
+                                                <p> {{ $r->rate }}</p>
 
                                                 <span class="review-date">{{ $r->created_at->diffForHumans() }}</span>
                                             </div><!-- End .col -->

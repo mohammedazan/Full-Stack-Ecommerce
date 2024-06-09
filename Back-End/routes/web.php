@@ -241,6 +241,8 @@ Route::get('/blogdetail/{id}', [BlogsController::class, 'blogdetails'])->name('b
 
 
 
+
+
 Route::get('/product/review',[ReviewProduct::class,'index'])->name('reviews');
 Route::post('/forbest/review/store', [ReviewProduct::class, 'addreview'])->name('forbest.review.store');
 

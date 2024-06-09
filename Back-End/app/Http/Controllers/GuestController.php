@@ -157,6 +157,7 @@ class GuestController extends Controller
     
     
 
+
     // public function listuser(){
     //     $listuser = User::get();
     //     return view('Login/login', compact('listuser'));
