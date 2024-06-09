@@ -12,6 +12,10 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public function reviews()
+    {
+        return $this->hasMany(Product_review::class, 'user_id', 'id');
+    }
     /**
      * The attributes that are mass assignable.
      *

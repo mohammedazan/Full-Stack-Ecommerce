@@ -10,9 +10,11 @@ use App\Models\Offer;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\FeaturedLink;
+use App\Models\Product_review;
 use App\Models\ProductSubCategory;
 use App\Models\ProductImage;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class GuestController extends Controller
 {
@@ -25,6 +27,7 @@ class GuestController extends Controller
         $featuredImage=FeaturedLink::get();
         $Blogs=Blogs::all();
         $brandList=Brand::get();
+
 
         $categoryId = $request->id;
         if ($categoryId) {
@@ -138,8 +141,10 @@ class GuestController extends Controller
         $productdetail = Product::find($request->id);
         $productList = Product::where('deleted', 0)->get();
         return view('guest/pages/productdetail')->with(compact('productSubcategory', 'category', 'productdetail','productList'));
-        
     }
+
+    
+   
 
     // public function listuser(){
     //     $listuser = User::get();
