@@ -87,3 +87,71 @@
         </nav><!-- End .side-nav -->
     </div><!-- End .dropdown-menu -->
 </div><!-- End .category-dropdown -->
+
+<!--
+            $productList2 = Product::where('deleted', 0)->get();
+        $productCategory2 = ProductCategory::where('deleted', 0)
+            ->where('status', 1)
+            ->whereHas('subcategory.products', function ($query) {
+                $query->where('deleted', 0);
+            })
+            ->get();
+    
+        $categoriesWithProducts2 = $productCategory2->filter(function($category) use ($productList2) {
+            return $productList2->where('category_id', $category->id)->isNotEmpty();
+        });
+    
+        $productSubcategory2 = ProductSubCategory::where('deleted', 0)
+            ->where('status', 1)
+            ->whereHas('products', function ($query) {
+                $query->where('deleted', 0);
+            })
+            ->get();
+                                            @foreach($categoriesWithProducts2 as $category)
+                                <li class="megamenu-container">
+                                    <a class="sf-with-ul" href="#">{{ $category->name }}</a>
+                                    <div class="megamenu">
+                                        <div class="menu-col">
+                                            <div class="row">
+                                                @php
+                                                    $relatedSubcategories = $productSubcategory2->where('category_id', $category->id)->take(3);
+                                                @endphp
+            
+                                                @foreach($relatedSubcategories as $subcategory)
+                                                    <div class="col-md-4">
+                                                        <div class="menu-title">{{ $subcategory->name }}</div>
+                                                        <ul>
+                                                            @php
+                                                                $relatedProducts = $productList2->where('subcategory_id', $subcategory->id)->take(5);
+                                                            @endphp
+                                                            @foreach($relatedProducts as $product)
+                                                                <li><a href="#">{{ $product->name }}</a></li>
+                                                            @endforeach
+                                                            <li><a href="#">Show more</a></li>
+                                                        </ul>
+                                                    </div>
+                                                @endforeach
+                                            </div>w
+            
+                                            <div class="row menu-banners">
+                                                @foreach($relatedSubcategories as $subcategory)
+                                                    <div class="col-md-4">
+                                                        <div class="banner">
+                                                            @php
+                                                                $bannerProduct = $productList2->where('subcategory_id', $subcategory->id)->first();
+                                                            @endphp
+                                                            @if($bannerProduct)
+                                                                <a href="#">
+                                                                    <img src="{{ asset($bannerProduct->image_path) }}" alt="{{ $bannerProduct->name }}" style="width: 100%; height: 100%;">
+                                                                </a>
+                                                            @endif
+                                                        </div>
+                                                    </div><!-- End .col-md-4 -->
+                                                @endforeach
+                                            </div><!-- End .row -->
+                                        </div><!-- End .menu-col -->
+                                    </div><!-- End .megamenu -->
+                                </li>
+                            @endforeach  
+                            
+-->
