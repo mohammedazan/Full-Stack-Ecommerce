@@ -134,8 +134,13 @@
     <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
 
     <!-- End .mobile-menu-container -->
+    @include('guest/partials.mobile-menu')
+
 
     @include('guest/partials.signin_register')
+
+    {{--  @include('guest/partials.popup-container')--}}
+
 
     <script src= "{{asset('assets/js/jquery.min.js')}}"></script>
 
