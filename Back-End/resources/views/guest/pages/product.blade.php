@@ -370,10 +370,11 @@
 											@foreach($brandList as $key=>$brand)
 											<div class="filter-items">
 												<div class="filter-item">
-													<div class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" id="brand-{{ $brand->id }}" name="brands[]" value="{{ $brand->id }}">
-														<label class="custom-control-label" for="brand-{{ $brand->id }}">{{ $brand->name }}</label>
-													</div><!-- End .custom-checkbox -->
+													<ul>
+														<li>
+															<a href="{{ route('product.brand', ['id' => $brand->id]) }}">{{ $brand->name }}</a>
+														</li>
+													</ul>
 												</div><!-- End .filter-item -->
 											</div><!-- End .filter-items -->
 											@endforeach

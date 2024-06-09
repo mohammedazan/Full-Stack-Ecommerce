@@ -236,6 +236,8 @@ Route::get('/forbest', [GuestController::class, 'Home'])->name('forbest');
 Route::get('forbest/product', [GuestController::class, 'product'])->name('product');
 Route::get('forbest/product/category', [GuestController::class, 'productcategory'])->name('product.category');
 Route::get('forbest/product/offer', [GuestController::class, 'productoffer'])->name('product.offer');
+Route::get('forbest/product/brand', [GuestController::class, 'productbrand'])->name('product.brand');
+
 Route::get('forbest/product/subcategory', [GuestController::class, 'productsubcategory'])->name('product.subcategory');
 
 

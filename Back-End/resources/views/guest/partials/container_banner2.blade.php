@@ -14,7 +14,7 @@
 
                             <div class="banner-content">
                                 <h3 class="banner-title text-white"><a href="#">{{ $feature->title }}</br><span><small>{{ $feature->link }}</small></span></a></h3><!-- End .banner-title -->
-                                <a href="#" class="banner-link">Discover Now <i class="icon-long-arrow-right"></i></a>
+                                <a href="{{ route('product') }}"  class="banner-link">Discover Now <i class="icon-long-arrow-right"></i></a>
                             </div><!-- End .banner-content -->
                         </div><!-- End .banner -->
                     </div><!-- End .col-lg-6 -->
@@ -39,7 +39,7 @@
 
                             <div class="banner-content">
                                 <h3 class="banner-title text-white"><a href="#">{{ $feature->title }}</br><span><small>{{ $feature->link }}</small></span></a></h3><!-- End .banner-title -->
-                                <a href="#" class="banner-link">Discover Now <i class="icon-long-arrow-right"></i></a>
+                                <a href="{{ route('product') }}" class="banner-link">Discover Now <i class="icon-long-arrow-right"></i></a>
                             </div><!-- End .banner-content -->
                         </div><!-- End .banner -->
                     </div><!-- End .col-lg-6 -->

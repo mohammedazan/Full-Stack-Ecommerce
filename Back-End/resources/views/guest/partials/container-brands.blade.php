@@ -30,7 +30,7 @@
                         }
                     }'>
                     @foreach($brandList as $key=>$brand)
-                    <a href="#" class="brand" >
+                    <a  href="{{ route('product.brand', ['id' => $brand->id]) }}" class="brand" >
                         <img src="{{ asset($brand->image)}}" style="height:100px;"alt="Brand Name">
                     </a>
                     @endforeach

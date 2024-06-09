@@ -35,10 +35,9 @@ class GuestController extends Controller
         } else {
             $productList = Product::where('deleted', 0)->get();
         }
-        
-
-             
-    
+        if ($productList->isEmpty()) {
+            return redirect()->back();
+        }
         return view('guest/home')->with(compact('productSubcategory','productList','category','productCategory','offer','featuredImage','brandList','Blogs'));
     }
 
@@ -95,8 +94,9 @@ class GuestController extends Controller
         }
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
-
-    
+        if ($productList->isEmpty()) {
+            return redirect()->back();
+        }
         return view('guest/pages.product')->with(compact('productList','productSubcategory', 'category', 'brandList'));
     }
 
@@ -113,6 +113,9 @@ class GuestController extends Controller
             $productList = Product::where('deleted', 0)->get();
         }
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
+        if ($productList->isEmpty()) {
+            return redirect()->back();
+        }
         return view('guest/pages.product')->with(compact('productList', 'category', 'brandList'));
     }
     
@@ -131,19 +134,36 @@ class GuestController extends Controller
         if (!$offerId) {
             return response()->json(['error' => 'Offer ID not provided'], 400);
         }
-    
         $offerProductLists = Offer_product_list::where('offer_id', $offerId)->get();
     
         if ($offerProductLists->isEmpty()) {
-            return response()->json(['error' => 'No products found for this offer'], 404);
+            return  redirect()->back();
         }
-    
         $productList = $offerProductLists->map(function($offerProductList) {
             return $offerProductList->productInfo;
         })->filter(); 
     
         if ($productList->isEmpty()) {
-            return response()->json(['error' => 'No products associated with this offer'], 404);
+            return redirect()->back();
+        }
+        $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
+        $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
+        $brandList = Brand::get();
+    
+        return view('guest/pages.product')->with(compact('productList', 'category', 'brandList', 'productSubcategory'));
+    }
+
+    public function productbrand(Request $request){
+        $brandId = $request->id;
+    
+        if (!$brandId) {
+            return response()->json(['error' => 'Brand ID not provided'], 400);
+        }
+    
+        $productList = Product::where('brand_id', $brandId)->where('deleted', 0)->get();
+    
+        if ($productList->isEmpty()) {
+            return redirect()->back();
         }
     
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
@@ -152,6 +172,7 @@ class GuestController extends Controller
     
         return view('guest/pages.product')->with(compact('productList', 'category', 'brandList', 'productSubcategory'));
     }
+    
     
     
 
