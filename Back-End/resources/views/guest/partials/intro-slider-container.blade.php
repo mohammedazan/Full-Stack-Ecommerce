@@ -15,8 +15,10 @@
                                     <h3 class="intro-subtitle">Trade-In Offer</h3><!-- End .h3 intro-subtitle -->
                                     <h1 class="intro-title">{{$offerList->offer_name}} 
                                     </h1><!-- End .intro-title -->
-
-                                    <a href="category.html" class="btn btn-outline-primary-2">
+                                    @php 
+                                       $id = $offerList->id
+                                    @endphp
+                                    <a href="{{ route('product.offer', ['id' => $id]) }}" class="btn btn-outline-primary-2">
                                         <span>Shop Now</span>
                                         <i class="icon-long-arrow-right"></i>
                                     </a>
