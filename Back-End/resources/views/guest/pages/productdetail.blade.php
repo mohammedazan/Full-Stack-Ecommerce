@@ -38,6 +38,10 @@
     <link rel="stylesheet" href="{{asset('assets/css/plugins/nouislider/nouislider.css')}}">
 
     
+
+<!-- Add Font Awesome for stars -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -214,11 +218,15 @@
                                         <div class="row no-gutters">
                                             <div class="col-auto">
                                                 <h4><a href="#">by : {{ $r->user->name }} </a></h4>
-                                                <p> {{ $r->rate }}</p>
-
+                                                @for ($i = 0; $i < $r->rate; $i++)
+                                              <i class="fas fa-star" style="color: #ffc107;"></i>
+                        @endfor
+                                        <br>
                                                 <span class="review-date">{{ $r->created_at->diffForHumans() }}</span>
                                             </div><!-- End .col -->
                                             <div class="col">
+
+                                      
 
                                                 <div class="review-content">
                                                     <p>{{ $r->content }}</p>

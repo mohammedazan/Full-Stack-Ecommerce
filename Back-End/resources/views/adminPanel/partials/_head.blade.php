@@ -19,6 +19,13 @@
     <link href="{{asset('assets/adminPanel')}}/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{asset('assets/adminPanel')}}/css/bootstrap-extended.css" rel="stylesheet">
 
+    <!-- Add Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Add Font Awesome for stars -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+
     {{--    select2--}}
     {{--    <link rel="stylesheet" href="{{asset('assets/adminPanel/plugins')}}/cdn.jsdelivr.net/npm/select2%404.1.0-rc.0/dist/css/select2.min.css" />--}}
     {{--    <link rel="stylesheet" href="{{asset('assets/adminPanel/plugins')}}/cdn.jsdelivr.net/npm/select2-bootstrap-5-theme%401.3.0/dist/select2-bootstrap-5-theme.min.css" />--}}

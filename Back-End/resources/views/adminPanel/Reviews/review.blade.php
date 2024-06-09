@@ -22,7 +22,12 @@
                         @foreach($review as $r)
                         <tr>
                             <td>{{ $r->id }}</td>
-                            <td>{{ $r->rate }}</td>
+                                                    <td>
+                            @for ($i = 0; $i < $r->rate; $i++)
+                                <i class="fas fa-star" style="color: #ffc107;"></i>
+                            @endfor
+                        </td>
+ 
                             <td>{{ $r->content}}</td>
                             <td>{{ $r->user->name}}</td>
                             <td>{{ $r->product_id}}</td>
@@ -40,16 +45,6 @@
 
 </div>
 
-<script>
-function editBlog(blog) {
-    $('#editBlogForm').attr('action', '/admin/blogs/' + blog.id + '/update');
-    $('#edit_content').val(blog.content);
-    $('#edit_blogowner').val(blog.blogowner);
-    $('#edit_title').val(blog.title);
-    $('#edit_Shorttitle').val(blog.Shorttitle);
-    $('#edit_slug').val(blog.slug);
-    $('#editBlogModal').modal('show');
-}
-</script>
+
 
 @endsection
