@@ -8,17 +8,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title> about</title>
+    <title> ForBest</title>
     <meta name="keywords" content="HTML5 Template">
     <meta name="description" content="Molla - Bootstrap eCommerce Template">
     <meta name="author" content="p-themes">
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/icons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/icons/favicon-16x16.png">
-    <link rel="manifest" href="assets/images/icons/site.html">
-    <link rel="mask-icon" href="assets/images/icons/safari-pinned-tab.svg" color="#666666">
-    <link rel="shortcut icon" href="assets/images/icons/favicon.ico">
+	<link rel="icon" href="{{ asset('assets/adminPanel/images/Forbest-favicon-01.png') }}" type="image/jpg">  
     <meta name="apple-mobile-web-app-title" content="Molla">
     <meta name="application-name" content="Molla">
     <meta name="msapplication-TileColor" content="#cc9966">
@@ -90,7 +85,7 @@
 											</select>
 										</div>
                 					</div><!-- End .toolbox-sort -->
-                		{{--        <div class="toolbox-layout">
+                		      <div class="toolbox-layout">
                 						<a href="category-list.html" class="btn-layout">
                 							<svg width="16" height="10">
                 								<rect x="0" y="0" width="4" height="4" />
@@ -99,7 +94,7 @@
                 								<rect x="6" y="6" width="10" height="4" />
                 							</svg>
                 						</a>
-
+{{--  
                 						<a href="category-2cols.html" class="btn-layout">
                 							<svg width="10" height="10">
                 								<rect x="0" y="0" width="4" height="4" />
@@ -132,8 +127,9 @@
                 								<rect x="18" y="6" width="4" height="4" />
                 							</svg>
                 						</a>
+										--}} 
                 					</div>
-						--}} <!-- End .toolbox-layout -->
+						<!-- End .toolbox-layout -->
                 				</div><!-- End .toolbox-right -->
                 			</div><!-- End .toolbox -->
 
