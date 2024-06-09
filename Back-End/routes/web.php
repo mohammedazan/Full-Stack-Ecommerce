@@ -25,6 +25,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BlogsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\ReviewProduct;
 use App\Models\Supplier;
 use Illuminate\Support\Facades\Route;
 
@@ -215,10 +216,8 @@ Route::group(['middleware' => 'authCheck'], function () {
 
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
 Route::post('/register', [RegisteredUserController::class, 'store']);
-
 Route::get('/login-user', [AuthenticatedSessionController::class, 'create'])->name('login-user');
 Route::post('/login-user', [AuthenticatedSessionController::class, 'store']);
-
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 
@@ -239,12 +238,15 @@ Route::get('forbest/product/offer', [GuestController::class, 'productoffer'])->n
 Route::get('forbest/product/brand', [GuestController::class, 'productbrand'])->name('product.brand');
 
 Route::get('forbest/product/subcategory', [GuestController::class, 'productsubcategory'])->name('product.subcategory');
-
-
-Route::get('/productdetail', [GuestController::class, 'productdetail'])->name('productdetail');
 Route::get('/blogall', [BlogsController::class, 'blogall'])->name('blogall');
 Route::get('/blogdetail/{id}', [BlogsController::class, 'blogdetails'])->name('blogdetail');
 
+
+
+Route::get('/product/review',[ReviewProduct::class,'index'])->name('reviews');
+Route::post('/forbest/review/store', [ReviewProduct::class, 'addreview'])->name('forbest.review.store');
+
+Route::get('/productdetail', [GuestController::class, 'productdetail'])->name('productdetail');
 
 
 

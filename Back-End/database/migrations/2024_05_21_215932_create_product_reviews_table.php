@@ -14,6 +14,8 @@ return new class extends Migration {
     {
         Schema::create('product_reviews', function (Blueprint $table) {
             $table->id();
+            $table->float('rate');
+            $table->text('content');
             $table->bigInteger('customer_id');
             $table->bigInteger('product_id');
             $table->text('product_review_details');
