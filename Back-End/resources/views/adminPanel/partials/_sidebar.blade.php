@@ -312,40 +312,37 @@
         @endif
 
         @if(userCanAccess('m9'))
+<li>
+    <a href="javascript:;" class="has-arrow">
+        <div class="parent-icon"><i class="lni lni-pencil"></i></div>
+        <div class="menu-title">Blogs</div>
+    </a>
+    <ul>
+         @if(userCanAccess('m10'))
         <li>
-            <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="lni lni-offer"></i>
-                </div>
-                <div class="menu-title">Blogs</div>
-            </a>
-            <ul>
-                 @if(userCanAccess('m10'))
-                <li>
-                    <a href="{{route('blogs')}}"><i class="bx bx-right-arrow-alt"></i> blog 
-                        List </a>
-                </li>
-                @endif
-            </ul>
+            <a href="{{ route('blogs') }}"><i class="bx bx-right-arrow-alt"></i> Blog List </a>
         </li>
         @endif
+    </ul>
+</li>
+@endif
 
         @if(userCanAccess('m9'))
+<li>
+    <a href="javascript:;" class="has-arrow">
+        <div class="parent-icon"><i class="lni lni-star-filled"></i></div>
+        <div class="menu-title">Product Reviews</div>
+    </a>
+    <ul>
+         @if(userCanAccess('m10'))
         <li>
-            <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="lni lni-offer"></i>
-                </div>
-                <div class="menu-title">Product Reviews</div>
-            </a>
-            <ul>
-                 @if(userCanAccess('m10'))
-                <li>
-                    <a href="{{route('reviews')}}"><i class="bx bx-right-arrow-alt"></i> Reviews 
-                        List </a>
-                </li>
-                @endif
-            </ul>
+            <a href="{{ route('reviews') }}"><i class="bx bx-right-arrow-alt"></i> Reviews List </a>
         </li>
         @endif
+    </ul>
+</li>
+@endif
+
         @if(userCanAccess('h7'))
             <li>
                 <a href="javascript:;" class="has-arrow">

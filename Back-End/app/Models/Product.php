@@ -60,11 +60,17 @@ class Product extends Model
     }
 
 
-    //reviews
+    //reviews 
     public function reviews()
     {
         return $this->hasMany(Product_review::class, 'product_id', 'id');
         
+    }
+
+
+    public function lignecommande()
+    {
+        return $this->hasMany(LigneCommande::class, 'product_id', 'id');
     }
 
 }

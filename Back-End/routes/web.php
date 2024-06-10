@@ -23,6 +23,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BlogsController;
+use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\ReviewProduct;
@@ -223,9 +224,15 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name
 
 
 Route::group(['middleware' => 'AuthCheckUser'], function () {
-   Route::get('/checkout', [GuestController::class, 'checkout'])->name('checkout');
    Route::get('/wishlist', [GuestController::class, 'wishlist'])->name('wishlist');
-   Route::get('/cart', [GuestController::class, 'cart'])->name('cart');
+   Route::post('/user/order/store',[CommandeController::class,'store']);
+   Route::get('/user/cart', [CommandeController::class, 'cart'])->name('cart');
+   Route::get('/user/lc/{idlc}/destroy', [CommandeController::class, 'LigneCommandedestroy']);
+
+   // Route::post('/user/checkout', [GuestController::class, 'checkout']);
+
+
+
 
 });
 Route::post('/contact_mail', [ContactController::class, 'contact_mail_send']);
@@ -249,6 +256,7 @@ Route::get('/product/review',[ReviewProduct::class,'index'])->name('reviews');
 Route::post('/forbest/review/store', [ReviewProduct::class, 'addreview'])->name('forbest.review.store');
 
 Route::get('/productdetail', [GuestController::class, 'productdetail'])->name('productdetail');
+
 
 
 

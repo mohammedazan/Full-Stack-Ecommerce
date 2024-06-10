@@ -110,6 +110,8 @@ class AdminController extends Controller
 
     public function listRole() {
         $listrole = Role::get();
+        // dd($listrole);
+        // access_role_list
         return view('adminPanel.role.list_roles', compact('listrole'));
     }
     

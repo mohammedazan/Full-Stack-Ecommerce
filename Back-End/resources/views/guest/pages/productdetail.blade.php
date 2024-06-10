@@ -155,15 +155,18 @@
                                         <a href="#" class="size-guide"><i class="icon-th-list"></i>size guide</a>
                                     </div><!-- End .details-filter-row -->
                                 </div><!-- End .col-md-6 -->
-
-                                <div class="col-md-6">
+                        <div class="col-md-6">
+                        <form action="/user/order/store" method="post">     
+                            @csrf 
+                            <input type="hidden" name="idproduct" id="idproduct" class="form-control" value="{{$productdetail->id}}" >
+        
                                     <div class="product-details-action">
                                         <div class="details-action-col">
                                             <div class="product-details-quantity">
-                                                <input type="number" id="qty" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
+                                                <input type="number" name="qte" id="qte" class="form-control" value="1"   required>
                                             </div><!-- End .product-details-quantity -->
-
-                                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                            <button class="btn-product btn-cart" type="submit"><span>add to cart</span>   </button>
+                                           
                                         </div><!-- End .details-action-col -->
 
                                         <div class="details-action-wrapper">
@@ -171,7 +174,7 @@
                                             <a href="#" class="btn-product btn-compare" title="Compare"><span>Add to Compare</span></a>
                                         </div><!-- End .details-action-wrapper -->
                                     </div><!-- End .product-details-action -->
-
+                                    </from>
                                     <div class="product-details-footer details-footer-col">
                                         <div class="product-cat">
                                             <span>Category:</span>
@@ -190,6 +193,7 @@
                                         </div>
                                     </div><!-- End .product-details-footer -->
                                 </div><!-- End .col-md-6 -->
+                      
                             </div><!-- End .row -->
                         </div><!-- End .container -->
                     </div><!-- End .product-details -->
@@ -211,7 +215,9 @@
                                     {{ $productdetail->description }}
                                 </div><!-- End .product-desc-content -->
                             </div><!-- .End .tab-pane -->
-                            <div class="tab-pane fade" id="product-review-tab" role="tabpanel" aria-labelledby="product-review-link">
+
+                            
+              <div class="tab-pane fade" id="product-review-tab" role="tabpanel" aria-labelledby="product-review-link">
                             <h6>Reviews ({{ count($productdetail->reviews) }})</h6>
                             @foreach($productdetail->reviews as $r)
                             <div class="review">

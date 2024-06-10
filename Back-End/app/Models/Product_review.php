@@ -13,9 +13,12 @@ class Product_review extends Model
     {
         return $this->belongsTo(User::class, 'customer_id', 'id');
     }
+    
 
     function product()
     {
         return $this->belongsTo(product::class);
     }
+
 }
+

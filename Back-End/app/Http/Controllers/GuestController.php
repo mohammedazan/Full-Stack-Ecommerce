@@ -8,6 +8,7 @@ use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use App\Models\Offer;
 use App\Models\Brand;
+use App\Models\Commande;
 use App\Models\Offer_product_list;
 use App\Models\Product;
 use App\Models\FeaturedLink;
@@ -15,6 +16,7 @@ use App\Models\Product_review;
 use App\Models\ProductSubCategory;
 use App\Models\ProductImage;
 use App\Models\User;
+use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Auth;
 
 class GuestController extends Controller
@@ -59,11 +61,13 @@ class GuestController extends Controller
     //     return view('guest/pages.contact')->with(compact('productSubcategory','category'));
     // }
 
-    public function checkout(){
-        $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
-        $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
-        return view('guest/pages.checkout')->with(compact('productSubcategory','category'));
-    }
+    // public function checkout(Request $request){
+    //     $commande=Commande::find($request->commande);
+    //     $commande->etat='payee';
+    //     $commande->update();
+
+        
+    // }
 
     public function wishlist(){
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
@@ -71,12 +75,7 @@ class GuestController extends Controller
         return view('guest/pages.wishlist')->with(compact('productSubcategory','category'));
     }
 
-    public function cart(){
-        $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
-        $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
-        return view('guest/pages.cart')->with(compact('productSubcategory','category'));
-    }
-
+ 
     public function product(){
         $productList = Product::where('deleted', 0)->get();
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
