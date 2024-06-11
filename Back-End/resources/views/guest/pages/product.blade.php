@@ -25,12 +25,13 @@
     <link href="{{asset('assets/css/plugins/owl-carousel/owl.carousel.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/plugins/magnific-popup/magnific-popup.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/plugins/jquery.countdown.css')}}" rel="stylesheet">
+    <link rel="stylesheet"  href="{{asset('assets/css/plugins/nouislider/nouislider.css')}}" >
+
 
     <!-- Main CSS File -->
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/skins/skin-demo-13.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/demos/demo-13.css')}}" rel="stylesheet">
-
     
 </head>
 
@@ -136,18 +137,29 @@
 							<div class="products mb-3">
 								<div class="row justify-content-center">
 									@php
-										// Number of products per page
-										$productsPerPage = 12;
-							
-										// Calculate the total number of pages
-										$totalPages = ceil($productList->count() / $productsPerPage);
-							
-										// Get the current page from query parameters, default to 1
-										$currentPage = request()->get('page', 1);
-							
-										// Slice the product list to get the products for the current page
-										$currentProducts = $productList->forPage($currentPage, $productsPerPage);
-									@endphp
+									// Number of products per page
+									$productsPerPage = 12;
+								
+									// Get the current page from query parameters, default to 1
+									$currentPage = request()->get('page', 1);
+								
+									// Get the minimum and maximum price from query parameters
+									$minPrice = request()->get('min_price', 0);
+									$maxPrice = request()->get('max_price', PHP_INT_MAX);
+								
+									// Filter the products based on the price range
+									$filteredProducts = $productList->filter(function($product) use ($minPrice, $maxPrice) {
+										return $product->current_sale_price >= $minPrice && $product->current_sale_price <= $maxPrice;
+									});
+								
+									// Calculate the total number of pages
+									$totalPages = ceil($filteredProducts->count() / $productsPerPage);
+								
+									// Slice the product list to get the products for the current page
+									$currentProducts = $filteredProducts->forPage($currentPage, $productsPerPage);
+								@endphp
+								
+								
 							
 									@foreach($currentProducts as $key=>$product)
 									@php
@@ -388,16 +400,22 @@
 
 									<div class="collapse show" id="widget-5">
 										<div class="widget-body">
-                                            <div class="filter-price">
-                                                <div class="filter-price-text">
-                                                    Price Range:
-                                                    <span id="filter-price-range"></span>
-                                                </div><!-- End .filter-price-text -->
-
-                                                <div id="price-slider"></div><!-- End #price-slider -->
-                                            </div><!-- End .filter-price -->
+											<div class="filter-price">
+												<div class="filter-price-text">
+													Price Range:
+													<span id="filter-price-range"></span>
+												</div><!-- End .filter-price-text -->
+									
+												<form id="price-filter-form" method="GET" action="{{ url()->current() }}">
+													<input type="hidden" name="min_price" id="min_price" value="{{ request()->get('min_price', 0) }}">
+													<input type="hidden" name="max_price" id="max_price" value="{{ request()->get('max_price', 10000) }}">
+													<div id="price-slider"></div><!-- End #price-slider -->
+												</form>
+											</div><!-- End .filter-price -->
 										</div><!-- End .widget-body -->
 									</div><!-- End .collapse -->
+									
+									
         						</div><!-- End .widget -->
                 			</div><!-- End .sidebar sidebar-shop -->
                 		</aside><!-- End .col-lg-3 -->
@@ -405,6 +423,40 @@
                 </div><!-- End .container -->
             </div><!-- End .page-content -->
         </main><!-- End .main -->
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+				var priceSlider = document.getElementById('price-slider');
+				var minPriceInput = document.getElementById('min_price');
+				var maxPriceInput = document.getElementById('max_price');
+				var filterPriceRange = document.getElementById('filter-price-range');
+				var priceFilterForm = document.getElementById('price-filter-form');
+
+				noUiSlider.create(priceSlider, {
+					start: [{{ request()->get('min_price', 0) }}, {{ request()->get('max_price', 10000) }}],
+					connect: true,
+					range: {
+						'min': 0,
+						'max': 5000
+					},
+					step: 10,
+					format: wNumb({
+						decimals: 0,
+						thousand: ','
+					})
+				});
+
+				priceSlider.noUiSlider.on('update', function (values, handle) {
+					minPriceInput.value = values[0].replace(/,/g, '');
+					maxPriceInput.value = values[1].replace(/,/g, '');
+					filterPriceRange.innerHTML = values[0]  + ' DH ' + ' - '+values[1] + ' DH ' ;
+				});
+
+				priceSlider.noUiSlider.on('change', function (values, handle) {
+					// Submit the form automatically when the price range is changed
+					priceFilterForm.submit();
+				});
+			});
+		</script>
         <!-- start .footer -->
         @include('guest/partials.footer')
         <!-- End .footer -->
@@ -419,29 +471,23 @@
 
 
     <script src= "{{asset('assets/js/jquery.min.js')}}"></script>
-
     <script src= "{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
-
     <script src= "{{asset('assets/js/jquery.hoverIntent.min.js')}}"></script>
-
     <script src= "{{asset('assets/js/jquery.waypoints.min.js')}}"></script>
-
     <script src= "{{asset('assets/js/superfish.min.js')}}"></script>
-
     <script src= "{{asset('assets/js/owl.carousel.min.js')}}"></script>
-
     <script src= "{{asset('assets/js/bootstrap-input-spinner.js')}}"></script>
-
     <script src= "{{asset('assets/js/jquery.magnific-popup.min.js')}}"></script>
-
     <script src= "{{asset('assets/js/jquery.plugin.min.js')}}"></script>
-
     <script src= "{{asset('assets/js/jquery.countdown.min.js')}}"></script>
-
     <!-- Main JS File -->
     <script src= "{{asset('assets/js/main.js')}}"></script>
-
     <script src= "{{asset('assets/js/demos/demo-13.js')}}"></script>
+    <script  src= "{{asset('assets/js/wNumb.js')}}" ></script>
+	<script  src= "{{asset('assets/js/nouislider.min.js')}}" ></script>
+		<!-- Main JS File -->
+
+
 
 </body>
 
