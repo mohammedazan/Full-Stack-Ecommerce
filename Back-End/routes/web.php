@@ -23,6 +23,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BlogsController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GuestController;
@@ -224,17 +225,26 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name
 
 
 Route::group(['middleware' => 'AuthCheckUser'], function () {
+
    Route::get('/wishlist', [GuestController::class, 'wishlist'])->name('wishlist');
+
+   Route::get('/product/review',[ReviewProduct::class,'index'])->name('reviews');
+   Route::post('/forbest/review/store', [ReviewProduct::class, 'addreview'])->name('forbest.review.store');
+
+
    Route::post('/user/order/store',[CommandeController::class,'store']);
    Route::get('/user/cart', [CommandeController::class, 'cart'])->name('cart');
    Route::get('/user/lc/{idlc}/destroy', [CommandeController::class, 'LigneCommandedestroy']);
 
-   // Route::post('/user/checkout', [GuestController::class, 'checkout']);
 
-
+Route::get('/user/checkout/confirmation', [CheckoutController::class, 'confirmation'])->name('user.checkout.confirmation');
+Route::get('/user/checkout', [CheckoutController::class, 'index'])->name('checkout');
+Route::post('/user/order/place', [CheckoutController::class, 'placeOrder'])->name('order.place');
 
 
 });
+
+
 Route::post('/contact_mail', [ContactController::class, 'contact_mail_send']);
 Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
 Route::get('/about', [GuestController::class, 'about'])->name('about');
@@ -250,16 +260,7 @@ Route::get('/blogdetail/{id}', [BlogsController::class, 'blogdetails'])->name('b
 
 
 
-
-
-Route::get('/product/review',[ReviewProduct::class,'index'])->name('reviews');
-Route::post('/forbest/review/store', [ReviewProduct::class, 'addreview'])->name('forbest.review.store');
-
 Route::get('/productdetail', [GuestController::class, 'productdetail'])->name('productdetail');
-
-
-
-
 
 
 // Routes accessible only to authenticated users

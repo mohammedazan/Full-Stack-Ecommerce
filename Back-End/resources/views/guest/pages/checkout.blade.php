@@ -35,7 +35,6 @@
 <body>
     <div class="page-wrapper">
     
-    @include('guest/partials.header')
 
 
 
@@ -59,63 +58,65 @@
             	<div class="checkout">
 	                <div class="container">
             			<div class="checkout-discount">
-            				<form action="#">
+						<form action="{{ route('order.place') }}" method="POST">
+                    @csrf
         						<input type="text" class="form-control" required id="checkout-discount-input">
             					<label for="checkout-discount-input" class="text-truncate">Have a coupon? <span>Click here to enter your code</span></label>
             				</form>
             			</div><!-- End .checkout-discount -->
-            			<form action="#">
+            			<form action="{{ route('order.place') }}" method="POST">
+                         @csrf
+						 <input type="hidden" name="commande" value="{{$commande->id}}">
 		                	<div class="row">
 		                		<div class="col-lg-9">
 		                			<h2 class="checkout-title">Billing Details</h2><!-- End .checkout-title -->
 		                				<div class="row">
 		                					<div class="col-sm-6">
 		                						<label>First Name *</label>
-		                						<input type="text" class="form-control" required>
+		                						<input name="first_name" type="text" class="form-control" required>
 		                					</div><!-- End .col-sm-6 -->
 
 		                					<div class="col-sm-6">
 		                						<label>Last Name *</label>
-		                						<input type="text" class="form-control" required>
+		                						<input name="last_name" type="text" class="form-control" required>
 		                					</div><!-- End .col-sm-6 -->
 		                				</div><!-- End .row -->
 
 	            						<label>Company Name (Optional)</label>
-	            						<input type="text" class="form-control">
+	            						<input name="company_name" type="text" class="form-control">
 
 	            						<label>Country *</label>
-	            						<input type="text" class="form-control" required>
+	            						<input name="country" type="text" class="form-control" required>
 
 	            						<label>Street address *</label>
-	            						<input type="text" class="form-control" placeholder="House number and Street name" required>
-	            						<input type="text" class="form-control" placeholder="Appartments, suite, unit etc ..." required>
+	            						<input name="street_address" type="text" class="form-control" placeholder="House number and Street name" required>
 
 	            						<div class="row">
 		                					<div class="col-sm-6">
 		                						<label>Town / City *</label>
-		                						<input type="text" class="form-control" required>
+		                						<input name="town_city" type="text" class="form-control" required>
 		                					</div><!-- End .col-sm-6 -->
 
 		                					<div class="col-sm-6">
 		                						<label>State / County *</label>
-		                						<input type="text" class="form-control" required>
+		                						<input name="state_county" type="text" class="form-control" required>
 		                					</div><!-- End .col-sm-6 -->
 		                				</div><!-- End .row -->
 
 		                				<div class="row">
 		                					<div class="col-sm-6">
 		                						<label>Postcode / ZIP *</label>
-		                						<input type="text" class="form-control" required>
+		                						<input name="postcode" type="text" class="form-control" required>
 		                					</div><!-- End .col-sm-6 -->
 
 		                					<div class="col-sm-6">
 		                						<label>Phone *</label>
-		                						<input type="tel" class="form-control" required>
+		                						<input name="phone" type="tel" class="form-control" required>
 		                					</div><!-- End .col-sm-6 -->
 		                				</div><!-- End .row -->
 
 	                					<label>Email address *</label>
-	        							<input type="email" class="form-control" required>
+	        							<input name="email" type="email" class="form-control" required>
 
 	        							<div class="custom-control custom-checkbox">
 											<input type="checkbox" class="custom-control-input" id="checkout-create-acc">

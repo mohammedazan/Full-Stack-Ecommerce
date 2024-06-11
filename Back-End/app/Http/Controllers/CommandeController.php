@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Commande;
 use App\Models\LigneCommande;
+use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProductSubCategory;
 use Illuminate\Http\Request;
@@ -23,6 +24,8 @@ class CommandeController extends Controller
     //     $LigneCommande=LigneCommande::all();
     //     return view('Admin/LigneCommande/lignecommande')->with('LigneCommande',$LigneCommande);
     // }
+
+    
     public function store(Request $request) {
         // Validate the request data
         $request->validate([
@@ -89,8 +92,25 @@ class CommandeController extends Controller
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $commande = Commande::where('users_id', Auth::user()->id)->where('etat', 'en cours')->first();
+        
         return view('guest/pages.cart')->with(compact('productSubcategory','category','commande'));
     }
 
+    // public function checkout(Request $request){
+    //     $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
+    //     $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
+    //     $productdetail = Product::find($request->id);
+    //     $productList = Product::where('deleted', 0)->get();
+    //     return view('guest/pages/checkout')->with(compact('productSubcategory', 'category', 'productdetail','productList'));
+    // }
+
+    // public function checkoutsubmit(Request $request){
+    //     $commande = Commande::first();
+    //     return view('guest/pages.checkout')->with(compact('commande'));
+    //     dd($request);
+    // }
+
+
+  
 
 }

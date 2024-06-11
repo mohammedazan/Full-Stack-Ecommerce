@@ -7,11 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Commande extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'etat', 'users_id', 'first_name', 'last_name', 'country', 'street_address', 'town_city', 'state_county', 'postcode', 'phone', 'email', 'company_name'
+    ];
 
-
-    
- 
 
     public function lignecommande()
     {
