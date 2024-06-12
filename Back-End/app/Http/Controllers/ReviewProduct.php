@@ -28,7 +28,7 @@ class ReviewProduct extends Controller
         $review->content=$request->content;
         $review->customer_id=Auth::user()->id;
         $review->save();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Review submitted successfully.');
     }
 
 

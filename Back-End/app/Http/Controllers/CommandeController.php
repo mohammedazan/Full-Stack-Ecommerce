@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Commande;
 use App\Models\LigneCommande;
+use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProductSubCategory;
 use Illuminate\Http\Request;
@@ -13,16 +14,20 @@ class CommandeController extends Controller
 {
 
     
-    // public function indexCommandes(){
-    //     $Commandes=Commande::all();
-    //     return view('Admin/Commande/commande')->with('commande',$Commandes);
-    // }
+    public function order_in_the_cart(){
+        $commande = Commande::all();
+
+
+        return view('adminPanel.Commande.order_in_the_cart')->with(compact('commande'));
+    }
 
     
     // public function indexLCommandes(){
     //     $LigneCommande=LigneCommande::all();
     //     return view('Admin/LigneCommande/lignecommande')->with('LigneCommande',$LigneCommande);
     // }
+
+    
     public function store(Request $request) {
         // Validate the request data
         $request->validate([
@@ -78,10 +83,14 @@ class CommandeController extends Controller
 
     public function LigneCommandedestroy($id){
 
-        $lc=LigneCommande::find($id);
-        $lc->delete();
-        return redirect()->back()->with('success','Ligne de command supprimee');
+        $lc = LigneCommande::find($id);
 
+        if ($lc) {
+            // Delete the record
+            $lc->delete();
+            return redirect()->back()->with('success', 'Ligne de commande supprimée');
+        }
+            return redirect()->back()->with('error', 'Ligne de commande introuvable');
     }
 
 
@@ -89,8 +98,29 @@ class CommandeController extends Controller
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $commande = Commande::where('users_id', Auth::user()->id)->where('etat', 'en cours')->first();
-        return view('guest/pages.cart')->with(compact('productSubcategory','category','commande'));
+        
+
+        // $shippingCost = 0; // Default shipping cost
+
+
+
+        return view('guest/pages.cart')->with(compact('productSubcategory','category','commande',));
     }
+
+    // public function checkout(Request $request){
+    //     $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
+    //     $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
+    //     $productdetail = Product::find($request->id);
+    //     $productList = Product::where('deleted', 0)->get();
+    //     return view('guest/pages/checkout')->with(compact('productSubcategory', 'category', 'productdetail','productList'));
+    // }
+    
+
+    // public function checkoutsubmit(Request $request){
+    //     $commande = Commande::first();
+    //     return view('guest/pages.checkout')->with(compact('commande'));
+    //     dd($request);
+    //                                                                }
 
 
 }

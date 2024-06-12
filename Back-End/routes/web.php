@@ -23,10 +23,12 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BlogsController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\ReviewProduct;
+use App\Http\Controllers\UserProfileController;
 use App\Models\Supplier;
 use Illuminate\Support\Facades\Route;
 
@@ -193,6 +195,12 @@ Route::group(['middleware' => 'authCheck'], function () {
       Route::get('/admin/blogs/{id}/delete', [BlogsController::class, 'removeBlogs']);
       Route::post('/admin/blogs/{id}/update', [BlogsController::class, 'update']);
 
+
+      Route::get('/admin/order_cart', [CommandeController::class, 'order_in_the_cart'])->name("order_in_the_cart");
+
+
+
+
 });
 
 
@@ -224,21 +232,38 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name
 
 
 Route::group(['middleware' => 'AuthCheckUser'], function () {
+
    Route::get('/wishlist', [GuestController::class, 'wishlist'])->name('wishlist');
+
+   Route::get('/product/review',[ReviewProduct::class,'index'])->name('reviews');
+   Route::post('/forbest/review/store', [ReviewProduct::class, 'addreview'])->name('forbest.review.store');
+
+
    Route::post('/user/order/store',[CommandeController::class,'store']);
    Route::get('/user/cart', [CommandeController::class, 'cart'])->name('cart');
    Route::get('/user/lc/{idlc}/destroy', [CommandeController::class, 'LigneCommandedestroy']);
 
-   // Route::post('/user/checkout', [GuestController::class, 'checkout']);
+
+Route::get('/user/checkout/confirmation', [CheckoutController::class, 'confirmation'])->name('user.checkout.confirmation');
+Route::get('/user/checkout', [CheckoutController::class, 'index'])->name('checkout');
+Route::post('/user/order/place', [CheckoutController::class, 'placeOrder'])->name('order.place');
 
 
+
+Route::get('/user/profile', [UserProfileController::class, 'UserProfile']);
+
+Route::post('/user/profile/update', [UserProfileController::class, 'updateProfile'])->name('user.profile.update');
 
 
 });
+
+
 Route::post('/contact_mail', [ContactController::class, 'contact_mail_send']);
 Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
 Route::get('/about', [GuestController::class, 'about'])->name('about');
 Route::get('/forbest', [GuestController::class, 'Home'])->name('forbest');
+
+
 Route::get('forbest/product', [GuestController::class, 'product'])->name('product');
 Route::get('forbest/product/category', [GuestController::class, 'productcategory'])->name('product.category');
 Route::get('forbest/product/offer', [GuestController::class, 'productoffer'])->name('product.offer');
@@ -250,6 +275,7 @@ Route::get('/blogdetail/{id}', [BlogsController::class, 'blogdetails'])->name('b
 
 
 
+<<<<<<< HEAD
 Route::get('/search', [GuestController::class, 'search'])->name('product.search');
 
 
@@ -258,11 +284,9 @@ Route::get('/search', [GuestController::class, 'search'])->name('product.search'
 Route::get('/product/review',[ReviewProduct::class,'index'])->name('reviews');
 Route::post('/forbest/review/store', [ReviewProduct::class, 'addreview'])->name('forbest.review.store');
 
+=======
+>>>>>>> a050235673caf609e52cd2148e31ca6c4e453c9d
 Route::get('/productdetail', [GuestController::class, 'productdetail'])->name('productdetail');
-
-
-
-
 
 
 // Routes accessible only to authenticated users

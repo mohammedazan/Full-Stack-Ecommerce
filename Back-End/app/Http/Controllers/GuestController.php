@@ -97,13 +97,6 @@ class GuestController extends Controller
     //     return view('guest/pages.contact')->with(compact('productSubcategory','category'));
     // }
 
-    // public function checkout(Request $request){
-    //     $commande=Commande::find($request->commande);
-    //     $commande->etat='payee';
-    //     $commande->update();
-
-        
-    // }
 
     public function wishlist(){
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
@@ -210,6 +203,11 @@ class GuestController extends Controller
     
         return view('guest/pages.product')->with(compact('productList', 'category', 'brandList', 'productSubcategory'));
     }
+
+
+
+
+
     
     
     

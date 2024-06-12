@@ -37,6 +37,9 @@
     
     @include('guest/partials.header')
 
+
+
+
     <main class="main">
         	<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
         		<div class="container">
@@ -71,8 +74,9 @@
 									</thead>
 
 									<tbody>
-				@foreach($commande->lignecommande as $lc)
-										<tr>
+										
+									@foreach($commande->lignecommande ?? [] as $lc)
+									<tr>
 											<td>
 												<h3 class="product-title">
 													<span>{{$lc->product->name}}</span>
@@ -122,15 +126,19 @@
 	                		<aside class="col-lg-3">
 								<form action="" method="">
 									@csrf
-									<input type="hidden" name="commande" value="{{$commande->id}}">
-	                			<div class="summary summary-cart">
+			@if($commande)
+    <input type="hidden" name="commande" value="{{$commande->id}}">
+@endif	                			
+<div class="summary summary-cart">
 	                				<h3 class="summary-title">Cart Total</h3><!-- End .summary-title -->
 
 	                				<table class="table table-summary">
 	                					<tbody>
 	                						<tr class="summary-subtotal">
 	                							<td>Subtotal:</td>
+												@if($commande)
 	                							<td>{{$commande->getTotal()}} DH</td>
+												@endif
 	                						</tr><!-- End .summary-subtotal -->
 	                						<tr class="summary-shipping">
 	                							<td>Shipping:</td>
@@ -152,7 +160,7 @@
 	                						<tr class="summary-shipping-row">
 	                							<td>
 	                								<div class="custom-control custom-radio">
-														<input type="radio" id="standart-shipping" name="shipping" class="custom-control-input">
+														<input type="radio" id="standart-shipping" name="standart" class="custom-control-input">
 														<label class="custom-control-label" for="standart-shipping">Standart:</label>
 													</div><!-- End .custom-control -->
 	                							</td>
@@ -162,7 +170,7 @@
 	                						<tr class="summary-shipping-row">
 	                							<td>
 	                								<div class="custom-control custom-radio">
-														<input type="radio" id="express-shipping" name="shipping" class="custom-control-input">
+														<input type="radio" id="express-shipping" name="express" class="custom-control-input">
 														<label class="custom-control-label" for="express-shipping">Express:</label>
 													</div><!-- End .custom-control -->
 	                							</td>
@@ -176,12 +184,15 @@
 
 	                						<tr class="summary-total">
 	                							<td>Total:</td>
-	                							<td>{{$commande->getTotal() + 200}} DH</td>
+												@if($commande)
+												<td id="">{{ $commande->getTotal() +20 }} DH</td>
+											@endif
+											
 	                						</tr><!-- End .summary-total -->
 	                					</tbody>
 	                				</table><!-- End .table table-summary -->
 
-	                				<button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</button>
+	                				<a a href="/user/checkout" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</a>
 	                			</div><!-- End .summary -->
 
 		            			<a href="category.html" class="btn btn-outline-dark-2 btn-block mb-3"><span>CONTINUE SHOPPING</span><i class="icon-refresh"></i></a>
@@ -207,6 +218,7 @@
     <!-- End .mobile-menu-container -->
     @include('guest/partials.signin_register')
 
+	
 
     <script src= "{{asset('assets/js/jquery.min.js')}}"></script>
 
