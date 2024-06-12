@@ -250,6 +250,9 @@ Route::get('/blogdetail/{id}', [BlogsController::class, 'blogdetails'])->name('b
 
 
 
+Route::get('/search', [GuestController::class, 'search'])->name('product.search');
+
+
 
 
 Route::get('/product/review',[ReviewProduct::class,'index'])->name('reviews');

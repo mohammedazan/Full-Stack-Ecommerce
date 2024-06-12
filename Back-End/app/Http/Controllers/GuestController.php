@@ -18,9 +18,45 @@ use App\Models\ProductImage;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+
 
 class GuestController extends Controller
-{
+{ 
+
+    public function search(Request $request)
+    {
+        try {
+            $query = $request->input('q');
+            if ($query) {
+                Log::info('Search query: ' . $query); // Debug message
+    
+                $products = Product::where('name', 'LIKE', '%' . $query . '%')
+                                   ->where('deleted', 0)
+                                   ->get();
+    
+                Log::info('Search results: ' . $products->toJson()); // Debug message
+    
+                if ($products->isEmpty()) {
+                    return '<ul class="list-unstyled"><li>No products found</li></ul>';
+                }
+    
+                $output = '<ul class="list-unstyled">';
+                foreach ($products as $product) {
+                    $output .= '<li><a href="javascript:void(0);" class="search-result-item" data-id="' . $product->id . '">' . $product->name . '</a></li>';
+                }
+                $output .= '</ul>';
+    
+                return $output;
+            } else {
+                return '<ul class="list-unstyled"><li>No query provided</li></ul>';
+            }
+        } catch (\Exception $e) {
+            Log::error('Search error: ' . $e->getMessage());
+            return response()->json(['error' => 'Internal Server Error'], 500);
+        }
+    }
+
     public function Home(Request $request){
 
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
@@ -104,6 +140,7 @@ class GuestController extends Controller
 
     public function productsubcategory(Request $request) {
         $brandList = Brand::get();
+        $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         // Get the subcategory_id from the request
         $subcategoryId = $request->id;
         // Query products based on the provided subcategory_id
@@ -118,7 +155,7 @@ class GuestController extends Controller
         if ($productList->isEmpty()) {
             return redirect()->back();
         }
-        return view('guest/pages.product')->with(compact('productList', 'category', 'brandList'));
+        return view('guest/pages.product')->with(compact('productList', 'productSubcategory','category', 'brandList'));
     }
     
 
