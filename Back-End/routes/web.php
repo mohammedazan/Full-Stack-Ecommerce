@@ -28,6 +28,7 @@ use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\ReviewProduct;
+use App\Http\Controllers\UserProfileController;
 use App\Models\Supplier;
 use Illuminate\Support\Facades\Route;
 
@@ -248,6 +249,12 @@ Route::get('/user/checkout', [CheckoutController::class, 'index'])->name('checko
 Route::post('/user/order/place', [CheckoutController::class, 'placeOrder'])->name('order.place');
 
 
+
+Route::get('/user/profile', [UserProfileController::class, 'UserProfile']);
+
+Route::post('/user/profile/update', [UserProfileController::class, 'updateProfile'])->name('user.profile.update');
+
+
 });
 
 
@@ -255,6 +262,8 @@ Route::post('/contact_mail', [ContactController::class, 'contact_mail_send']);
 Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
 Route::get('/about', [GuestController::class, 'about'])->name('about');
 Route::get('/forbest', [GuestController::class, 'Home'])->name('forbest');
+
+
 Route::get('forbest/product', [GuestController::class, 'product'])->name('product');
 Route::get('forbest/product/category', [GuestController::class, 'productcategory'])->name('product.category');
 Route::get('forbest/product/offer', [GuestController::class, 'productoffer'])->name('product.offer');
