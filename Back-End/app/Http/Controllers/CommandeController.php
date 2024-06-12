@@ -14,10 +14,12 @@ class CommandeController extends Controller
 {
 
     
-    // public function indexCommandes(){
-    //     $Commandes=Commande::all();
-    //     return view('Admin/Commande/commande')->with('commande',$Commandes);
-    // }
+    public function order_in_the_cart(){
+        $commande = Commande::all();
+
+
+        return view('adminPanel.Commande.order_in_the_cart')->with(compact('commande'));
+    }
 
     
     // public function indexLCommandes(){
@@ -81,10 +83,14 @@ class CommandeController extends Controller
 
     public function LigneCommandedestroy($id){
 
-        $lc=LigneCommande::find($id);
-        $lc->delete();
-        return redirect()->back()->with('success','Ligne de command supprimee');
+        $lc = LigneCommande::find($id);
 
+        if ($lc) {
+            // Delete the record
+            $lc->delete();
+            return redirect()->back()->with('success', 'Ligne de commande supprimée');
+        }
+            return redirect()->back()->with('error', 'Ligne de commande introuvable');
     }
 
 
@@ -93,7 +99,12 @@ class CommandeController extends Controller
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $commande = Commande::where('users_id', Auth::user()->id)->where('etat', 'en cours')->first();
         
-        return view('guest/pages.cart')->with(compact('productSubcategory','category','commande'));
+
+        // $shippingCost = 0; // Default shipping cost
+
+
+
+        return view('guest/pages.cart')->with(compact('productSubcategory','category','commande',));
     }
 
     // public function checkout(Request $request){
@@ -103,14 +114,13 @@ class CommandeController extends Controller
     //     $productList = Product::where('deleted', 0)->get();
     //     return view('guest/pages/checkout')->with(compact('productSubcategory', 'category', 'productdetail','productList'));
     // }
+    
 
     // public function checkoutsubmit(Request $request){
     //     $commande = Commande::first();
     //     return view('guest/pages.checkout')->with(compact('commande'));
     //     dd($request);
-    // }
+    //                                                                }
 
-
-  
 
 }

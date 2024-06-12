@@ -194,6 +194,12 @@ Route::group(['middleware' => 'authCheck'], function () {
       Route::get('/admin/blogs/{id}/delete', [BlogsController::class, 'removeBlogs']);
       Route::post('/admin/blogs/{id}/update', [BlogsController::class, 'update']);
 
+
+      Route::get('/admin/order_cart', [CommandeController::class, 'order_in_the_cart'])->name("order_in_the_cart");
+
+
+
+
 });
 
 

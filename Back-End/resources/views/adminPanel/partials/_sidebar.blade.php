@@ -311,7 +311,7 @@
         </li>
         @endif
 
-        @if(userCanAccess('m9'))
+ @if(userCanAccess('m9'))
 <li>
     <a href="javascript:;" class="has-arrow">
         <div class="parent-icon"><i class="lni lni-pencil"></i></div>
@@ -321,6 +321,23 @@
          @if(userCanAccess('m10'))
         <li>
             <a href="{{ route('blogs') }}"><i class="bx bx-right-arrow-alt"></i> Blog List </a>
+        </li>
+        @endif
+    </ul>
+</li>
+@endif
+
+
+@if(userCanAccess('m9'))
+<li>
+    <a href="javascript:;" class="has-arrow">
+        <div class="parent-icon"><i class="lni lni-pencil"></i></div>
+        <div class="menu-title">Order</div>
+    </a>
+    <ul>
+         @if(userCanAccess('m10'))
+        <li>
+            <a href="{{ route('order_in_the_cart') }}"><i class="bx bx-right-arrow-alt"></i> order </a>
         </li>
         @endif
     </ul>

@@ -74,6 +74,7 @@
 									</thead>
 
 									<tbody>
+										
 									@foreach($commande->lignecommande ?? [] as $lc)
 									<tr>
 											<td>
@@ -159,7 +160,7 @@
 	                						<tr class="summary-shipping-row">
 	                							<td>
 	                								<div class="custom-control custom-radio">
-														<input type="radio" id="standart-shipping" name="shipping" class="custom-control-input">
+														<input type="radio" id="standart-shipping" name="standart" class="custom-control-input">
 														<label class="custom-control-label" for="standart-shipping">Standart:</label>
 													</div><!-- End .custom-control -->
 	                							</td>
@@ -169,7 +170,7 @@
 	                						<tr class="summary-shipping-row">
 	                							<td>
 	                								<div class="custom-control custom-radio">
-														<input type="radio" id="express-shipping" name="shipping" class="custom-control-input">
+														<input type="radio" id="express-shipping" name="express" class="custom-control-input">
 														<label class="custom-control-label" for="express-shipping">Express:</label>
 													</div><!-- End .custom-control -->
 	                							</td>
@@ -184,8 +185,9 @@
 	                						<tr class="summary-total">
 	                							<td>Total:</td>
 												@if($commande)
-	                							<td>{{$commande->getTotal() + 200}} DH</td>
-												@endif
+												<td id="">{{ $commande->getTotal() +20 }} DH</td>
+											@endif
+											
 	                						</tr><!-- End .summary-total -->
 	                					</tbody>
 	                				</table><!-- End .table table-summary -->
@@ -216,6 +218,7 @@
     <!-- End .mobile-menu-container -->
     @include('guest/partials.signin_register')
 
+	
 
     <script src= "{{asset('assets/js/jquery.min.js')}}"></script>
 
