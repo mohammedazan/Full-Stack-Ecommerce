@@ -275,7 +275,6 @@ Route::get('/blogdetail/{id}', [BlogsController::class, 'blogdetails'])->name('b
 
 
 
-<<<<<<< HEAD
 Route::get('/search', [GuestController::class, 'search'])->name('product.search');
 
 
@@ -284,8 +283,6 @@ Route::get('/search', [GuestController::class, 'search'])->name('product.search'
 Route::get('/product/review',[ReviewProduct::class,'index'])->name('reviews');
 Route::post('/forbest/review/store', [ReviewProduct::class, 'addreview'])->name('forbest.review.store');
 
-=======
->>>>>>> a050235673caf609e52cd2148e31ca6c4e453c9d
 Route::get('/productdetail', [GuestController::class, 'productdetail'])->name('productdetail');
 
 
