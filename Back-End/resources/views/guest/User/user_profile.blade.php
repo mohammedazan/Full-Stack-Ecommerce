@@ -102,23 +102,48 @@
 								    	<p>No downloads available yet.</p>
 								    	<a href="category.html" class="btn btn-outline-primary-2"><span>GO SHOP</span><i class="icon-long-arrow-right"></i></a>
 								    </div><!-- .End .tab-pane -->
-
+									@if($commande)
 								    <div class="tab-pane fade" id="tab-address" role="tabpanel" aria-labelledby="tab-address-link">
 								    	<p>The following addresses will be used on the checkout page by default.</p>
 
+									
 								    	<div class="row">
 								    		<div class="col-lg-6">
 								    			<div class="card card-dashboard">
 								    				<div class="card-body">
 								    					<h3 class="card-title">Billing Address</h3><!-- End .card-title -->
-
-														<p>User Name<br>
-														User Company<br>
-														John str<br>
-														New York, NY 10001<br>
-														1-234-987-6543<br>
-														yourmail@mail.com<br>
-														<a href="#">Edit <i class="icon-edit"></i></a></p>
+													
+														<div class="table-responsive">
+															<table class="table">
+																<tbody>
+																	<tr>
+																		<th>First Name:</th>
+																		<td>{{ $commande->first_name }}</td>
+																	</tr>
+																	<tr>
+																		<th>Last Name:</th>
+																		<td>{{ $commande->last_name }}</td>
+																	</tr>
+																	<tr>
+																		<th>Company Name:</th>
+																		<td>{{ $commande->company_name ?: 'N/A' }}</td>
+																	</tr>
+																	<tr>
+																		<th>Country:</th>
+																		<td>{{ $commande->country }}</td>
+																	</tr>
+																	<tr>
+																		<th>Street Address:</th>
+																		<td>{{ $commande->street_address }}</td>
+																	</tr>
+																
+																
+																	<!-- Add more fields as needed -->
+																</tbody>
+															</table>
+														</div><!-- End .table-responsive -->
+														{{-- <a href="#">Edit <i class="icon-edit"></i></a></p> --}}
+													
 								    				</div><!-- End .card-body -->
 								    			</div><!-- End .card-dashboard -->
 								    		</div><!-- End .col-lg-6 -->
@@ -127,15 +152,45 @@
 								    			<div class="card card-dashboard">
 								    				<div class="card-body">
 								    					<h3 class="card-title">Shipping Address</h3><!-- End .card-title -->
+														<div class="table-responsive">
+														<table class="table">
+															<tbody>
+																<tr>
+													
+																	<tr>
+																		<th>Town / City:</th>
+																		<td>{{ $commande->town_city }}</td>
+																	</tr>
 
-														<p>You have not set up this type of address yet.<br>
-														<a href="#">Edit <i class="icon-edit"></i></a></p>
+																<tr>
+																	<th>State / County:</th>
+																	<td>{{ $commande->state_county }}</td>
+																</tr>
+																<tr>
+																	<th>Postcode / ZIP:</th>
+																	<td>{{ $commande->postcode }}</td>
+																</tr>
+																<tr>
+																	<th>Phone:</th>
+																	<td>{{ $commande->phone }}</td>
+																</tr>
+																<tr>
+																	<th>Email:</th>
+																	<td>{{ $commande->email }}</td>
+																</tr>
+																<!-- Add more fields as needed -->
+															</tbody>
+														</table>
+														</div>
+														
 								    				</div><!-- End .card-body -->
 								    			</div><!-- End .card-dashboard -->
 								    		</div><!-- End .col-lg-6 -->
 								    	</div><!-- End .row -->
-								    </div><!-- .End .tab-pane -->
-
+								    </div><!-- .End .tab-pane --> 
+									@else
+									<p>No ongoing order found.</p>
+								@endif
 								    <div class="tab-pane fade" id="tab-account" role="tabpanel" aria-labelledby="tab-account-link">
                                         <form action="{{ route('user.profile.update') }}" method="POST">
                                             @csrf

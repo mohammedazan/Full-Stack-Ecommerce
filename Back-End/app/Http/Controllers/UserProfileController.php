@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Commande;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -14,8 +15,8 @@ class UserProfileController extends Controller
 
     
     public function UserProfile(){        
-        
-        return view('guest/User/user_profile'); 
+        $commande = Commande::where('users_id', Auth::user()->id)->where('etat', 'payee')->first();
+        return view('guest/User/user_profile', compact('commande')); 
 
     }
 
