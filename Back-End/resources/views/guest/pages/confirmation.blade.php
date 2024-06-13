@@ -46,5 +46,6 @@
         <p>Thank you for your order! Your order has been successfully placed.</p>
         <p>Order ID: {{ $commande->id }}</p>
       </div>
+      @include('guest/partials.mobile-menu')
     </body>
 </html>

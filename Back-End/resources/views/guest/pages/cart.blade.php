@@ -220,6 +220,7 @@
     @include('guest/partials.register')
 
     @include('guest/partials.login')
+	@include('guest/partials.mobile-menu')
 
 	
 
