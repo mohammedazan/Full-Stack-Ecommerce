@@ -57,13 +57,11 @@
             <div class="page-content">
             	<div class="checkout">
 	                <div class="container">
-            			<div class="checkout-discount">
-						<form action="{{ route('order.place') }}" method="POST">
-                    @csrf
-        						<input type="text" class="form-control" required id="checkout-discount-input">
-            					<label for="checkout-discount-input" class="text-truncate">Have a coupon? <span>Click here to enter your code</span></label>
-            				</form>
-            			</div><!-- End .checkout-discount -->
+         
+						
+						<!-- End .checkout-discount -->
+
+						
             			<form action="{{ route('order.place') }}" method="POST">
                          @csrf
 						 <input type="hidden" name="commande" value="{{$commande->id}}">

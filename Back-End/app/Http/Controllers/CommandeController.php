@@ -97,13 +97,8 @@ class CommandeController extends Controller
     public function cart(){
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
-        $commande = Commande::where('users_id', Auth::user()->id)->where('etat', 'en cours')->first();
-        
-
+        $commande = Commande::where('users_id', Auth::user()->id)->where('etat', 'en cours')->first();  
         // $shippingCost = 0; // Default shipping cost
-
-
-
         return view('guest/pages.cart')->with(compact('productSubcategory','category','commande',));
     }
 

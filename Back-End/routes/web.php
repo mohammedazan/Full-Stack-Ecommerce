@@ -27,6 +27,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\ReviewProduct;
 use App\Http\Controllers\UserProfileController;
 use App\Models\Supplier;
@@ -248,11 +249,13 @@ Route::get('/user/checkout/confirmation', [CheckoutController::class, 'confirmat
 Route::get('/user/checkout', [CheckoutController::class, 'index'])->name('checkout');
 Route::post('/user/order/place', [CheckoutController::class, 'placeOrder'])->name('order.place');
 
-
-
 Route::get('/user/profile', [UserProfileController::class, 'UserProfile']);
-
 Route::post('/user/profile/update', [UserProfileController::class, 'updateProfile'])->name('user.profile.update');
+
+
+// Route::get('/payment', [PayPalController::class, 'payment'])->name('payment');
+// Route::get('/cancel', [PayPalController::class, 'cancel'])->name('payment.cancel');
+// Route::get('/payment/success', [PayPalController::class, 'success'])->name('payment.success');
 
 
 });
