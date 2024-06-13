@@ -35,19 +35,40 @@
     <link href="{{ asset('assets/css/demos/demo-13.css') }}" rel="stylesheet">
 
 
+        <!-- Toastr CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
+        <!-- Place your HTML content here -->
+
+        <!-- Toastr Initialization -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                // Toastr Initialization
+                @if(Session::has('success'))
+                    toastr.success("{{ Session::get('success') }}");
+                @endif
+
+                @if(Session::has('error'))
+                    toastr.error("{{ Session::get('error') }}");
+                @endif
+            });
+        </script>
 </head>
 
 
 <body>
+  
     <div class="page-wrapper">
 
     @include('guest/partials.header')
         <!-- End .header -->
 
         <main class="main">
+            <div class="alert-container">
 
-
+        
                <!-- start .slider -->
         @include('guest/partials.intro-slider-container')
                    <!-- End .slider -->
@@ -126,6 +147,8 @@
             <!-- End .container-Subscribe  -->
 
 
+            
+
 
         </main><!-- End .main -->
 
@@ -140,11 +163,22 @@
     @include('guest/partials.mobile-menu')
 
 
-    @include('guest/partials.signin_register')
+
+    @include('guest/partials.register')
+
+    @include('guest/partials.login')
+
+
+
+
+    
+
 
     {{--  @include('guest/partials.popup-container')--}}
 
 
+
+    
     <script src= "{{asset('assets/js/jquery.min.js')}}"></script>
 
     <script src= "{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>

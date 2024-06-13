@@ -23,20 +23,21 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'address' => 'required|string|max:255', // Add address validation
+            'password' => ['required', 'confirmed', 'min:8'],
+            'address' => 'required|string|max:255', // Address validation
         ]);
 
-        Auth::login($user = User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'address' => $request->address,
             // Add more fields as needed
-        ]));
+        ]);
 
         event(new Registered($user));
         
-        return redirect('/forbest');
+        return redirect('/forbest')->with('success', 'Account created successfully!');
+        
     }
 }

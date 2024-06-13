@@ -146,7 +146,7 @@
 		                					<label>Email address *</label>
 		        							<input name="email" value="{{auth()->user()->email}}" type="email" class="form-control" required>
 
-		            						<label>Current password (leave blank to leave unchanged)</label>
+		            						<label> Current password (leave blank to leave unchanged) </label>
                                             <input type="password" name="password" class="form-control">
 
 		            		

@@ -35,9 +35,10 @@
                         </li>
                         <li>
                             @guest
-                                <a class="nav-link" href="#" data-toggle="modal" data-target="#signin-modal">Login-user</a>
+                            <a class="nav-link" href="#" data-toggle="modal" data-target="#login-modal">Login</a>
+                            <a class="nav-link" href="#" data-toggle="modal" data-target="#register-modal">Register</a>
                                 <!-- Sign In / Register -->
-                                <a class="navbar-brand" href="{{ url('/') }}">Admin</a>
+                                {{-- <a class="navbar-brand" href="{{ url('/') }}">Admin</a> --}}
 
                             @else
                                 <div class="nav-item dropdown">
