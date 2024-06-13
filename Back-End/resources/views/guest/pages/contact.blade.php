@@ -144,6 +144,7 @@
     <!-- End .mobile-menu-container -->
 
     @include('guest/partials.signin_register')
+    @include('guest/partials.mobile-menu')
 
     
     <script src= "{{asset('assets/js/jquery.min.js')}}"></script>

@@ -95,7 +95,7 @@
                 								<rect x="6" y="6" width="10" height="4" />
                 							</svg>
                 						</a>
-{{--  
+
                 						<a href="category-2cols.html" class="btn-layout">
                 							<svg width="10" height="10">
                 								<rect x="0" y="0" width="4" height="4" />
@@ -128,7 +128,7 @@
                 								<rect x="18" y="6" width="4" height="4" />
                 							</svg>
                 						</a>
-										--}} 
+										
                 					</div>
 						<!-- End .toolbox-layout -->
                 				</div><!-- End .toolbox-right -->
@@ -471,6 +471,7 @@
     @include('guest/partials.register')
 
     @include('guest/partials.login')
+	@include('guest/partials.mobile-menu')
 
     <script src= "{{asset('assets/js/jquery.min.js')}}"></script>
     <script src= "{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>

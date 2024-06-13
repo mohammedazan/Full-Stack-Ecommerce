@@ -36,9 +36,6 @@
     <div class="page-wrapper">
     
     @include('guest/partials.header')
-
-
-    
     <main class="main">
         	<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
         		<div class="container">
@@ -162,6 +159,7 @@
 
         <!-- start .footer -->
         @include('guest/partials.footer')
+		@include('guest/partials.mobile-menu')
         <!-- End .footer -->
     </div>
     <!-- End .page-wrapper -->

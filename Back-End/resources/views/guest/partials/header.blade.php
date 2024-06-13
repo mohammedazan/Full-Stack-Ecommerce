@@ -77,21 +77,21 @@
                 <img src="{{asset('assets/adminPanel')}}/images/Forbest-Logo-01.png" alt="Molla Logo" width="150" height="25">
             </a>
         </div><!-- End .header-left -->
-
-        <div class="header-center">
+    <div class="header-center">
+        <div>
             <div class="header-search header-search-extended header-search-visible header-search-no-radius d-none d-lg-block">
                 <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
                 <form action="#" method="get" id="product-search-form">
                     <div class="header-search-wrapper search-wrapper-wide">
-                    <div class="select-custom">
-                        </div><!-- End .select-custom -->
                         <label for="q" class="sr-only">Search</label>
                         <input type="search" class="form-control" name="q" id="q" placeholder="Search product ..." required>
                         <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
                     </div><!-- End .header-search-wrapper -->
                 </form>
             </div><!-- End .header-search -->
+            <div id="search-results" class="search-results  header-search-extended " style="margin-top: -23px; overflow: hidden; "></div>
         </div><!-- End .header-center -->
+    </div>    
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <style>
           .search-results {
@@ -117,34 +117,6 @@
             background-color: #f0f0f0;
           }
         </style>
-        <div>
-          <div id="search-results" class="search-results"></div>
-        </div>
-          <style>
-          .search-results {
-            position: absolute;
-            background: white;
-            border: 1px solid #ccc;
-            width: 100%;
-            max-height: 200px;
-            overflow-y: auto;
-            z-index: 1000;
-            display: none; /* Start hidden */
-          }
-          
-          .search-results a {
-            display: block;
-            padding: 8px;
-            border-bottom: 1px solid #eee;
-            color: #333;
-            text-decoration: none;
-          }
-          
-          .search-results a:hover {
-            background-color: #f0f0f0;
-          }
-          </style>
-          
           <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
           <script>
           $(document).ready(function() {
@@ -178,9 +150,7 @@
               });
           });
           </script>
-          
-
-
+                  
         <div class="header-right">
             <div class="header-dropdown-link">
                 <div class="dropdown compare-dropdown">
@@ -609,6 +579,7 @@
         </div><!-- End .container -->
     </div><!-- End .header-bottom -->
     --}}
+    
     <div class="header-bottom sticky-header">
         <div class="container">
             <div class="header-left">

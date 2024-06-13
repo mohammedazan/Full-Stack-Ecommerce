@@ -269,6 +269,7 @@
     @include('guest/partials.register')
 
     @include('guest/partials.login')
+	@include('guest/partials.mobile-menu')
 	
     <script src= "{{asset('assets/js/jquery.min.js')}}"></script>
 
