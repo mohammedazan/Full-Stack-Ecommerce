@@ -101,7 +101,7 @@
                                         <a href="{{route('contact')}}">Contact</a>
                                     </li>
                                     <li><a href="login.html">Login</a></li>
-                                    <li><a href="faq.html">FAQs</a></li>
+                                    <li><a href="{{route('faqs')}}">FAQs</a></li>
                                 </ul>
                             </li>
                             <li>
