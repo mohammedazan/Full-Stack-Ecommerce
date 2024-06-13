@@ -267,8 +267,11 @@
     <!-- End .mobile-menu-container -->
 
     <!-- Sign in / Register Modal -->
-	@include('guest/partials.signin_register')
 
+    @include('guest/partials.register')
+
+    @include('guest/partials.login')
+	
     <script src= "{{asset('assets/js/jquery.min.js')}}"></script>
 
     <script src= "{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>

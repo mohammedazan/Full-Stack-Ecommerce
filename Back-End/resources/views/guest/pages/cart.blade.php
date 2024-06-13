@@ -216,7 +216,10 @@
     <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
 
     <!-- End .mobile-menu-container -->
-    @include('guest/partials.signin_register')
+   
+    @include('guest/partials.register')
+
+    @include('guest/partials.login')
 
 	
 
