@@ -44,7 +44,7 @@
                 <div class="container">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('forbest')}}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Shop</a></li>
+						<li class="breadcrumb-item"><a href="{{route('product')}}">All Products</a></li>
                     </ol>
                 </div><!-- End .container -->
             </nav><!-- End .breadcrumb-nav -->

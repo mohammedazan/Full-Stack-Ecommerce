@@ -277,6 +277,8 @@ Route::get('forbest/product', [GuestController::class, 'product'])->name('produc
 Route::get('forbest/product/category', [GuestController::class, 'productcategory'])->name('product.category');
 Route::get('forbest/product/offer', [GuestController::class, 'productoffer'])->name('product.offer');
 Route::get('forbest/product/brand', [GuestController::class, 'productbrand'])->name('product.brand');
+Route::get('forbest/faqs', [GuestController::class, 'faqView'])->name('faqs');
+
 
 Route::get('forbest/product/subcategory', [GuestController::class, 'productsubcategory'])->name('product.subcategory');
 Route::get('/blogall', [BlogsController::class, 'blogall'])->name('blogall');
@@ -285,9 +287,6 @@ Route::get('/blogdetail/{id}', [BlogsController::class, 'blogdetails'])->name('b
 
 
 Route::get('/search', [GuestController::class, 'search'])->name('product.search');
-
-
-
 
 Route::get('/product/review',[ReviewProduct::class,'index'])->name('reviews');
 Route::post('/forbest/review/store', [ReviewProduct::class, 'addreview'])->name('forbest.review.store');

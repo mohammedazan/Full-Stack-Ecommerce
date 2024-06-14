@@ -735,23 +735,13 @@
                             <ul>
                                 <li>
                                     <a href="{{ url('/about') }}"  class="sf-with-ul">About</a>
-<!-- 
-                                    <ul>
-                                        <li><a href="about.html">About 01</a></li>
-                                    </ul> -->
-
                                 </li>
                                 <li>
                                     <a href="{{ url('/contact') }}"  class="sf-with-ul">Contact</a>
-
-                                    <!-- <ul>
-                                        <li><a href="contact.html">Contact 01</a></li>
-                                    </ul> -->
                                 </li>
-                                <!-- <li><a href="login.html">Login</a></li>
-                                <li><a href="faq.html">FAQs</a></li>
-                                <li><a href="404.html">Error 404</a></li>
-                                <li><a href="coming-soon.html">Coming Soon</a></li> -->
+                                <li>
+                                    <a href="{{ url('/forbest/faqs') }}" class="sf-with-ul" >FAQs</a>
+                                </li>
                             </ul>
                         </li>
 

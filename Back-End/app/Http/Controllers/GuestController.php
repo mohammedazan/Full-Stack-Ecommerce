@@ -16,6 +16,7 @@ use App\Models\Product_review;
 use App\Models\ProductSubCategory;
 use App\Models\ProductImage;
 use App\Models\User;
+use App\Models\Faq;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -202,6 +203,15 @@ class GuestController extends Controller
         $brandList = Brand::get();
     
         return view('guest/pages.product')->with(compact('productList', 'category', 'brandList', 'productSubcategory'));
+    }
+
+    public function faqView(){
+        $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
+        $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
+        $productCategory = ProductCategory::where('deleted', 0)->where('status', 1)->get();
+        $faqList=Faq::get();
+        return view('guest/pages.faqs')->with(compact('category', 'productCategory', 'productSubcategory','faqList'));
+
     }
 
 
