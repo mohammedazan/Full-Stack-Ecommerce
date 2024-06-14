@@ -65,7 +65,7 @@
                 </ul>
             </li>
         @endif
-        @if(userCanAccess('invisible'))
+        {{-- @if(userCanAccess('invisible'))
             <li>
                 <a href="javascript:;" class="has-arrow">
                     <div class="parent-icon"><i class="lni lni-cart"></i>
@@ -93,7 +93,7 @@
 
                 </ul>
             </li>
-        @endif
+        @endif --}}
         @if(userCanAccess('h3'))
             <li>
                 <a href="javascript:;" class="has-arrow">
@@ -144,7 +144,8 @@
                 </ul>
             </li>
         @endif
-        @if(userCanAccess('h8'))
+        
+        {{-- @if(userCanAccess('h8'))
             <li>
                 <a href="javascript:;" class="has-arrow">
                     <div class="parent-icon"><i class="lni lni-producthunt"></i>
@@ -152,9 +153,9 @@
                     <div class="menu-title">Order</div>
                 </a>
                 <ul>
-                    {{--                <li>--}}
-                    {{--                    <a href="{{route('admin.order.all')}}"><i class="bx bx-right-arrow-alt"></i>All Order</a>--}}
-                    {{--                </li>--}}
+                                   <li>
+                                       <a href="{{route('admin.order.all')}}"><i class="bx bx-right-arrow-alt"></i>All Order</a>
+                                   </li>
                     @if(userCanAccess('15'))
                         <li>
                             <a href="{{route('admin.order.pending')}}"><i class="bx bx-right-arrow-alt"></i>Pending
@@ -197,7 +198,8 @@
                 </ul>
 
             </li>
-        @endif
+        @endif --}}
+
         @if(userCanAccess('h4'))
             <li>
                 <a href="javascript:;" class="has-arrow">

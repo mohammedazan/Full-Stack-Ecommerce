@@ -51,9 +51,13 @@
             <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
                 <div class="container">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Shop</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">My Account</li>
+                        <li class="breadcrumb-item"> 
+								<a class="navbar-brand" href="{{ url('/forbest') }}">Home</a>
+						</li>
+                        <li class="breadcrumb-item">
+							<a class="navbar-brand" href="{{ url('/forbest/product') }}">Shop</a>
+						</li>
+                        {{-- <li class="breadcrumb-item active" aria-current="page">My Account</li> --}}
                     </ol>
                 </div><!-- End .container -->
             </nav><!-- End .breadcrumb-nav -->
@@ -79,9 +83,9 @@
 								    <li class="nav-item">
 								        <a class="nav-link" id="tab-account-link" data-toggle="tab" href="#tab-account" role="tab" aria-controls="tab-account" aria-selected="false">Account Details</a>
 								    </li>
-								    <li class="nav-item">
+								    {{-- <li class="nav-item">
 								        <a class="nav-link" href="#">Sign Out</a>
-								    </li>
+								    </li> --}}
 								</ul>
 	                		</aside><!-- End .col-lg-3 -->
 
@@ -207,6 +211,7 @@
 		            		
 		                					<button type="submit" class="btn btn-outline-primary-2">
 			                					<span>SAVE CHANGES</span>
+												
 			            						<i class="icon-long-arrow-right"></i>
 			                				</button>
 			                			</form>

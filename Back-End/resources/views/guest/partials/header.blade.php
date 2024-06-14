@@ -35,8 +35,8 @@
                         </li>
                         <li>
                             @guest
-                            <a class="nav-link" href="#" data-toggle="modal" data-target="#login-modal">Login</a>
-                            <a class="nav-link" href="#" data-toggle="modal" data-target="#register-modal">Register</a>
+                            <a class="nav-link" href="#" data-toggle="modal" data-target="#login-modal">Sign In</a>
+                            <a class="nav-link" href="#" data-toggle="modal" data-target="#register-modal">/Sign Up</a>
                                 <!-- Sign In / Register -->
                                 {{-- <a class="navbar-brand" href="{{ url('/') }}">Admin</a> --}}
 

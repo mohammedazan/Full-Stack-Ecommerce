@@ -143,7 +143,10 @@
 
     <!-- End .mobile-menu-container -->
 
-    @include('guest/partials.signin_register')
+    @include('guest/partials.register')
+
+    @include('guest/partials.login')
+
     @include('guest/partials.mobile-menu')
 
     

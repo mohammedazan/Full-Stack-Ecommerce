@@ -48,9 +48,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+// Route::get('/' ,function(){
+//    return app()->getLocale();
+// });
+
 Route::get('/', [AdminController::class, 'loginView'])->name('login');
 
 Route::post('admin/login', array(AdminController::class, 'loginAdmin'))->name('admin.login');
+
+
 
 Route::group(['middleware' => 'authCheck'], function () {
     
