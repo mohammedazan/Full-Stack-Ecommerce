@@ -118,14 +118,14 @@
                                             </div><!-- End .ratings -->
                                             <span class="ratings-text">( 2 Reviews )</span>
                                         </div><!-- End .rating-container -->
-                                    {{-- <div class="product-nav product-nav-thumbs">
+                                    {{--     <div class="product-nav product-nav-thumbs">
                                             @foreach($product->productImage as $image)
                                             <a href="#" class="active">
                                                 <img src="{{ asset($image->image) }}"  alt="product desc">
                                             </a>
                                             @endforeach
                                         </div><!-- End .product-nav -->
-                                     --}}        
+                                     --}}    
                                     </div><!-- End .product-body -->
                                 </a>
                                 </div><!-- End .product -->

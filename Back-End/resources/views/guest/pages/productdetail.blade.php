@@ -54,10 +54,27 @@
                                 <li class="breadcrumb-item"><a href="{{route('product')}}">Products</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Default</li>
                             </ol>
+                            <nav class="product-pager ml-auto" aria-label="Product">
+                                @php
+                                // Check if the product list is not empty
+                                if (!$productList->isEmpty()) {
+                                    // Get a random product from the collection
+                                    $randomProduct = $productList->random();
+                                }
+                                @endphp
+                                @if(isset($randomProduct))
+                                    <a class="product-pager-link product-pager-next" href="{{ route('productdetail', ['id' => $randomProduct->id]) }}" aria-label="Next" tabindex="-1">
+                                        <span>Next</span>
+                                        <i class="icon-angle-right"></i>
+                                    </a>
+                                @endif
+                                
+                                
+                            </nav><!-- End .pager-nav -->
                         </div>
                     </nav>
                     <div class="container">
-                        <div class="product-gallery-carousel owl-carousel owl-full owl-nav-dark">
+                        <div class="product-gallery-carousel owl-carousel owl-full owl-nav-dark" >
                             <figure class="product-gallery-image">
                                 <img src="{{ asset($productdetail->image_path) }}" data-zoom-image="{{ asset($productdetail->image_path) }}" alt="product image">
                             </figure>

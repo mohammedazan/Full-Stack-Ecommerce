@@ -272,12 +272,24 @@ Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
 Route::get('/about', [GuestController::class, 'about'])->name('about');
 Route::get('/forbest', [GuestController::class, 'Home'])->name('forbest');
 
+Route::get('/testaffichage',function(){
+   return view('') ;
+} ) ;
+
 
 Route::get('forbest/product', [GuestController::class, 'product'])->name('product');
+Route::get('forbest/product_list', [GuestController::class, 'product_list'])->name('product_list');
 Route::get('forbest/product/category', [GuestController::class, 'productcategory'])->name('product.category');
+Route::get('forbest/product_list/category', [GuestController::class, 'product_list_category'])->name('product_list.category');
 Route::get('forbest/product/offer', [GuestController::class, 'productoffer'])->name('product.offer');
 Route::get('forbest/product/brand', [GuestController::class, 'productbrand'])->name('product.brand');
+Route::get('forbest/product_list/brand', [GuestController::class, 'product_list_brand'])->name('product_list.brand');
 Route::get('forbest/faqs', [GuestController::class, 'faqView'])->name('faqs');
+
+
+
+
+
 
 
 Route::get('forbest/product/subcategory', [GuestController::class, 'productsubcategory'])->name('product.subcategory');
