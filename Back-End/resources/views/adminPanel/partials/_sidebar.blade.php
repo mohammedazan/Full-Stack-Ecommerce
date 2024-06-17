@@ -257,6 +257,21 @@
                 </ul>
             </li>
         @endif
+        @if(userCanAccess('ne1'))
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="lni lni-pencil"></i></div>
+                <div class="menu-title">Newsletter</div>
+            </a>
+            <ul>
+                @if(userCanAccess('ne2'))
+                <li>
+                    <a href="{{ route('list.subscribe') }}"><i class="bx bx-right-arrow-alt"></i> List subscribers</a>
+                </li>
+                @endif
+            </ul>
+        </li>
+        @endif
         @if(userCanAccess('h6'))
             <li>
                 <a href="javascript:;" class="has-arrow">

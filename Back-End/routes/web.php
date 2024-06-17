@@ -32,7 +32,7 @@ use App\Http\Controllers\ReviewProduct;
 use App\Http\Controllers\UserProfileController;
 use App\Models\Supplier;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\NewsletterController;
 
 
 
@@ -285,6 +285,10 @@ Route::get('forbest/product/offer', [GuestController::class, 'productoffer'])->n
 Route::get('forbest/product/brand', [GuestController::class, 'productbrand'])->name('product.brand');
 Route::get('forbest/product_list/brand', [GuestController::class, 'product_list_brand'])->name('product_list.brand');
 Route::get('forbest/faqs', [GuestController::class, 'faqView'])->name('faqs');
+
+Route::post('/subscribe', [NewsletterController::class, 'subscribe'])->name('subscribe');
+Route::get('/list-subscribe', [NewsletterController::class, 'list_subscribe'])->name('list.subscribe');
+Route::get('/list_subscribe.delete', [NewsletterController::class, 'deleted_subscribe'])->name('list_subscribe.delete');
 
 
 
