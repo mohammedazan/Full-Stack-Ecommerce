@@ -32,12 +32,14 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'address' => $request->address,
-            // Add more fields as needed
         ]);
 
         event(new Registered($user));
         
-        return redirect('/forbest')->with('success', 'Account created successfully!');
+        session()->flash('success', 'Account created successfully!');
+
+
+        return redirect('/forbest');
         
     }
 }

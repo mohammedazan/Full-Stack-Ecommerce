@@ -1,6 +1,4 @@
 
-
-
 <!-- Sign in / Register Modal -->
 <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -25,7 +23,7 @@
                                     @csrf 
                                     <div class="form-group">
                                         <label for="singin-email">Email address *</label>
-                                        <input type="email" class="form-control" id="singin-email" name="email" value="" required autofocus>
+                                        <input type="email" class="form-control" id="singin-email" name="email" value=" " required autofocus>
                                         @error('email')
                                         <span class="text-danger">{{ $message }}</span>
                  

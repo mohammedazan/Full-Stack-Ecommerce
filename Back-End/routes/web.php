@@ -30,11 +30,10 @@ use App\Http\Controllers\GuestController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\ReviewProduct;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\WishlistController;
 use App\Models\Supplier;
 use Illuminate\Support\Facades\Route;
-
-
-
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------
@@ -207,7 +206,6 @@ Route::group(['middleware' => 'authCheck'], function () {
 
 
 
-
 });
 
 
@@ -240,7 +238,10 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name
 
 Route::group(['middleware' => 'AuthCheckUser'], function () {
 
-   Route::get('/wishlist', [GuestController::class, 'wishlist'])->name('wishlist');
+
+   Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
+   Route::delete('/wishlist/remove/{id}', [WishlistController::class, 'remove'])->name('wishlist.remove');   
+   Route::post('/wishlist/add', [WishlistController::class, 'add'])->name('wishlist.add');
 
    Route::get('/product/review',[ReviewProduct::class,'index'])->name('reviews');
    Route::post('/forbest/review/store', [ReviewProduct::class, 'addreview'])->name('forbest.review.store');

@@ -1,174 +1,102 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Laravel</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-    <style type="text/css">
-        .panel-title {
-        display: inline;
-        font-weight: bold;
-        }
-        .display-table {
-            display: table;
-        }
-        .display-tr {
-            display: table-row;
-        }
-        .display-td {
-            display: table-cell;
-            vertical-align: middle;
-            width: 61%;
-        }
-    </style>
-
-</head>
-<body>
-  
-<div class="container">
-  
-    
-  <br><br><br><br>
-    <div class="row">
-       
-        <div class="col-md-6 col-md-offset-3">
-            <div class="panel panel-default credit-card-box">
-              
-                <div class="panel-body">
-                     <h1>Stripe Payment Gateway  </h1>
-                       
-                    @if (Session::has('success'))
-                        <div class="alert alert-success text-center">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                            <p>{{ Session::get('success') }}</p>
-                        </div>
-                    @endif
-  
-                    <form 
-                            role="form" 
-                            action="" 
-                            method="post" 
-                            class="require-validation"
-                            data-cc-on-file="false"
-                            data-stripe-publishable-key="{{ env('') }}"
-                            id="payment-form">
-                        @csrf
-  
-                        
-
-                        <div class='form-row row'>
-                            <div class='col-xs-12 form-group required'>
-                                <label class='control-label'>Name on Card</label> <input
-                                    class='form-control' size='4' type='text'>
-                            </div>
-                        </div>
-  
-                        <div class='form-row row'>
-                            <div class='col-xs-12 form-group card required'>
-                                <label class='control-label'>Card Number</label> <input
-                                    autocomplete='off' class='form-control card-number' size='20'
-                                    type='text'>
-                            </div>
-                        </div>
-  
-                        <div class='form-row row'>
-                            <div class='col-xs-12 col-md-4 form-group cvc required'>
-                                <label class='control-label'>CVC</label> <input autocomplete='off'
-                                    class='form-control card-cvc' placeholder='ex. 311' size='4'
-                                    type='text'>
-                            </div>
-                            <div class='col-xs-12 col-md-4 form-group expiration required'>
-                                <label class='control-label'>Expiration Month</label> <input
-                                    class='form-control card-expiry-month' placeholder='MM' size='2'
-                                    type='text'>
-                            </div>
-                            <div class='col-xs-12 col-md-4 form-group expiration required'>
-                                <label class='control-label'>Expiration Year</label> <input
-                                    class='form-control card-expiry-year' placeholder='YYYY' size='4'
-                                    type='text'>
-                            </div>
-                        </div>
-  
-                      
-   
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <button class="btn btn-success btn-lg btn-block" type="submit">Price: ($100) </button><br>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <button class="btn btn-primary btn-lg btn-block" type="submit">Pay </button>
-                            </div>
-                        </div>
-                          
-                    </form>
-                </div>
-            </div>        
+<main class="main">
+    <div class="page-header text-center" style="background-image: url('{{ asset('assets/images/page-header-bg.jpg') }}')">
+        <div class="container">
+            <h1 class="page-title">Wishlist<span>Shop</span></h1>
         </div>
     </div>
-      
-</div>
-  
-</body>
-  
-<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-  
-<script type="text/javascript">
-$(function() {
-   
-    var $form = $(".require-validation");
-   
-    $('form.require-validation').bind('submit', function(e) {
-        var $form         = $(".require-validation"),
-        inputSelector = ['input[type=email]', 'input[type=password]',
-                         'input[type=text]', 'input[type=file]',
-                         'textarea'].join(', '),
-        $inputs       = $form.find('.required').find(inputSelector),
-        $errorMessage = $form.find('div.error'),
-        valid         = true;
-        $errorMessage.addClass('hide');
-  
-        $('.has-error').removeClass('has-error');
-        $inputs.each(function(i, el) {
-          var $input = $(el);
-          if ($input.val() === '') {
-            $input.parent().addClass('has-error');
-            $errorMessage.removeClass('hide');
-            e.preventDefault();
-          }
-        });
-   
-        if (!$form.data('cc-on-file')) {
-          e.preventDefault();
-          Stripe.setPublishableKey($form.data('stripe-publishable-key'));
-          Stripe.createToken({
-            number: $('.card-number').val(),
-            cvc: $('.card-cvc').val(),
-            exp_month: $('.card-expiry-month').val(),
-            exp_year: $('.card-expiry-year').val()
-          }, stripeResponseHandler);
-        }
-  
-  });
-  
-  function stripeResponseHandler(status, response) {
-        if (response.error) {
-            $('.error')
-                .removeClass('hide')
-                .find('.alert')
-                .text(response.error.message);
-        } else {
-            /* token contains id, last4, and card type */
-            var token = response['id'];
-               
-            $form.find('input[type=text]').empty();
-            $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
-            $form.get(0).submit();
-        }
-    }
-   
-});
-</script>
-</html>
+
+    <nav aria-label="breadcrumb" class="breadcrumb-nav">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Wishlist</li>
+            </ol>
+        </div>
+    </nav>
+
+    <div class="page-content">
+        <div class="container">
+            @if($wishlistItems->isEmpty())
+                <div class="alert alert-info text-center">
+                    Your wishlist is empty. <a href="{{ route('product') }}" class="btn btn-primary">Start Shopping</a>
+                </div>
+            @else
+                <table class="table table-wishlist">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Stock Status</th>
+                            <th>Actions</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($wishlistItems as $wishlistItem)
+                            <tr>
+                                <td class="product-col">
+                                    <div class="product">
+                                        <figure class="product-media">
+                                            <a href="{{ route('productdetail', ['id' => $wishlistItem->product->id]) }}">
+                                                <img src="{{ asset($wishlistItem->product->image_path) }}" alt="{{ $wishlistItem->product->name }}">
+                                            </a>
+                                        </figure>
+                                        <h3 class="product-title">
+                                            <a href="{{ route('productdetail', ['id' => $wishlistItem->product->id]) }}">{{ $wishlistItem->product->name }}</a>
+                                        </h3>
+                                    </div>
+                                </td>
+                                <td class="price-col">
+                                    @if ($wishlistItem->product->discount_type == 1)
+                                        <span class="new-price">${{ number_format($wishlistItem->product->current_sale_price * (1 - $wishlistItem->product->discount / 100), 2) }}</span>
+                                        <span class="old-price">${{ number_format($wishlistItem->product->current_sale_price, 2) }}</span>
+                                    @else
+                                        <span class="new-price">${{ number_format($wishlistItem->product->current_sale_price, 2) }}</span>
+                                    @endif
+                                </td>
+                                <td class="stock-col">
+                                    @if($wishlistItem->product->available_quantity > 0)
+                                        <span class="in-stock">In Stock</span>
+                                    @else
+                                        <span class="out-of-stock">Out of Stock</span>
+                                    @endif
+                                </td>
+                                <td class="action-col">
+                                    <a href="{{ route('productdetail', ['id' => $wishlistItem->product->id]) }}" class="btn btn-outline-primary-2">
+                                        <i class="icon-eye"></i> View Details
+                                    </a>
+                                    <form action="{{ route('wishlist.remove', ['id' => $wishlistItem->id]) }}" method="POST" style="display:inline-block;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-outline-danger btn-remove">
+                                            <i class="icon-close"></i> Remove
+                                        </button>
+                                    </form>
+                                </td>
+                                <td class="remove-col">
+                                    <form action="{{ route('wishlist.remove', ['id' => $wishlistItem->id]) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn-remove"><i class="icon-close"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
+                <div class="wishlist-share">
+                    <div class="social-icons social-icons-sm mb-2">
+                        <label class="social-label">Share on:</label>
+                        <a href="#" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
+                        <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+                        <a href="#" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
+                        <a href="#" class="social-icon" title="Youtube" target="_blank"><i class="icon-youtube"></i></a>
+                        <a href="#" class="social-icon" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a>
+                    </div>
+                </div>
+            @endif
+        </div>
+    </div>
+</main>

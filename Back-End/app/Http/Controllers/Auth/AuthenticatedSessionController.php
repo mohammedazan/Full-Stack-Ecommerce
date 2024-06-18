@@ -24,7 +24,10 @@ class AuthenticatedSessionController extends Controller
             'password' => 'required|string',
         ]);
 
+        
+
         // Attempt to authenticate the user using email and password
+        
         if (Auth::attempt($request->only('email', 'password'))) {
             $request->session()->regenerate();
 

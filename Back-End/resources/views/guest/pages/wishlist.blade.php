@@ -30,12 +30,28 @@
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/skins/skin-demo-13.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/demos/demo-13.css')}}" rel="stylesheet">
+
+
+	        <!-- Toastr Initialization -->
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+			<script>
+				$(document).ready(function(){
+					// Toastr Initialization
+					@if(Session::has('success'))
+						toastr.success("{{ Session::get('success') }}");
+					@endif
+	
+					@if(Session::has('error'))
+						toastr.error("{{ Session::get('error') }}");
+					@endif
+				});
+			</script>
 </head>
 
 <body>
     <div class="page-wrapper">
     
-    @include('guest/partials.header')
     <main class="main">
         	<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
         		<div class="container">
@@ -54,34 +70,53 @@
 
             <div class="page-content">
             	<div class="container">
+					@if($wishlistItems->isEmpty())
+					<div class="alert alert-info text-center">
+						Your wishlist is empty. <a href="{{ route('product') }}" class="btn btn-primary">Start Shopping</a>
+					</div>
+			       	@else
 					<table class="table table-wishlist table-mobile">
 						<thead>
 							<tr>
 								<th>Product</th>
 								<th>Price</th>
 								<th>Stock Status</th>
-								<th></th>
-								<th></th>
+								<th>Actions</th>
 							</tr>
 						</thead>
 
 						<tbody>
+							@foreach($wishlistItems as $wishlistItem)
 							<tr>
 								<td class="product-col">
 									<div class="product">
 										<figure class="product-media">
-											<a href="#">
-												<img src="assets/images/products/table/product-1.jpg" alt="Product image">
-											</a>
+											<a href="{{ route('productdetail', ['id' => $wishlistItem->product->id]) }}">
+                                                <img src="{{ asset($wishlistItem->product->image_path) }}" alt="{{ $wishlistItem->product->name }}">
+                                            </a>
 										</figure>
 
 										<h3 class="product-title">
-											<a href="#">Beige knitted elastic runner shoes</a>
+                                            <a href="{{ route('productdetail', ['id' => $wishlistItem->product->id]) }}">{{ $wishlistItem->product->name }}</a>
 										</h3><!-- End .product-title -->
 									</div><!-- End .product -->
 								</td>
-								<td class="price-col">$84.00</td>
-								<td class="stock-col"><span class="in-stock">In stock</span></td>
+								<td class="price-col">
+                                    @if ($wishlistItem->product->discount_type == 1)
+                                        <span class="new-price">${{ number_format($wishlistItem->product->current_sale_price * (1 - $wishlistItem->product->discount / 100), 2) }}</span>
+                                        <span class="old-price">${{ number_format($wishlistItem->product->current_sale_price, 2) }}</span>
+                                    @else
+                                        <span class="new-price">${{ number_format($wishlistItem->product->current_sale_price, 2) }}</span>
+                                    @endif
+                                </td>
+																
+								<td class="stock-col">
+									@if($wishlistItem->product->available_quantity > 0)
+									<span class="in-stock">In Stock</span>
+								@else
+									<span class="out-of-stock">Out of Stock</span>
+								@endif
+								</td>
 								<td class="action-col">
                                     <div class="dropdown">
 									<button class="btn btn-block btn-outline-primary-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -89,56 +124,25 @@
                                     </button>
 
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">First option</a>
-                                        <a class="dropdown-item" href="#">Another option</a>
-                                        <a class="dropdown-item" href="#">The best option</a>
+                                        <a href="{{ route('productdetail', ['id' => $wishlistItem->product->id]) }}"  class="dropdown-item" href="#">
+											Add to cart </a>
+											<a  href="{{ route('product') }}" class="dropdown-item" href="#">
+												Start Shopping </a>
+											
                                       </div>
                                     </div>
 								</td>
-								<td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
+								<td class="remove-col">
+									<form action="{{ route('wishlist.remove', ['id' => $wishlistItem->id]) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn-remove"><i class="icon-close"></i></button>
+                                    </form>
+								</td>
 							</tr>
-							<tr>
-								<td class="product-col">
-									<div class="product">
-										<figure class="product-media">
-											<a href="#">
-												<img src="assets/images/products/table/product-2.jpg" alt="Product image">
-											</a>
-										</figure>
+							@endforeach
 
-										<h3 class="product-title">
-											<a href="#">Blue utility pinafore denim dress</a>
-										</h3><!-- End .product-title -->
-									</div><!-- End .product -->
-								</td>
-								<td class="price-col">$76.00</td>
-								<td class="stock-col"><span class="in-stock">In stock</span></td>
-								<td class="action-col">
-									<button class="btn btn-block btn-outline-primary-2"><i class="icon-cart-plus"></i>Add to Cart</button>
-								</td>
-								<td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
-							</tr>
-							<tr>
-								<td class="product-col">
-									<div class="product">
-										<figure class="product-media">
-											<a href="#">
-												<img src="assets/images/products/table/product-3.jpg" alt="Product image">
-											</a>
-										</figure>
-
-										<h3 class="product-title">
-											<a href="#">Orange saddle lock front chain cross body bag</a>
-										</h3><!-- End .product-title -->
-									</div><!-- End .product -->
-								</td>
-								<td class="price-col">$52.00</td>
-								<td class="stock-col"><span class="out-of-stock">Out of stock</span></td>
-								<td class="action-col">
-									<button class="btn btn-block btn-outline-primary-2 disabled">Out of Stock</button>
-								</td>
-								<td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
-							</tr>
+						
 						</tbody>
 					</table><!-- End .table table-wishlist -->
 	            	<div class="wishlist-share">
@@ -151,6 +155,8 @@
 	    					<a href="#" class="social-icon" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a>
 	    				</div><!-- End .soial-icons -->
 	            	</div><!-- End .wishlist-share -->
+					@endif
+
             	</div><!-- End .container -->
             </div><!-- End .page-content -->
         </main><!-- End .main -->
@@ -159,7 +165,6 @@
 
         <!-- start .footer -->
         @include('guest/partials.footer')
-		@include('guest/partials.mobile-menu')
         <!-- End .footer -->
     </div>
     <!-- End .page-wrapper -->

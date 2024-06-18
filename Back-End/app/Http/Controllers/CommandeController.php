@@ -15,9 +15,7 @@ class CommandeController extends Controller
 
     
     public function order_in_the_cart(){
-        $commande = Commande::all();
-
-
+        $commande = Commande::with('lignecommande')->get(); 
         return view('adminPanel.Commande.order_in_the_cart')->with(compact('commande'));
     }
 

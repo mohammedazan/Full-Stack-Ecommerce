@@ -99,11 +99,8 @@ class GuestController extends Controller
     // }
 
 
-    public function wishlist(){
-        $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
-        $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
-        return view('guest/pages.wishlist')->with(compact('productSubcategory','category'));
-    }
+  
+    
 
  
     public function product(){

@@ -190,7 +190,12 @@
 												</a>
 							
 												<div class="product-action-vertical">
-													<a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+													<form action="{{ route('wishlist.add') }}" method="POST">
+														@csrf
+														<input type="hidden" name="product_id" value="{{ $product->id }}">
+														<button type="submit" class="btn-product-icon btn-wishlist btn-expandable"><span>Add to Wishlist</span></button>
+													</form>
+
 													<a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
 													<a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
 												</div><!-- End .product-action-vertical -->

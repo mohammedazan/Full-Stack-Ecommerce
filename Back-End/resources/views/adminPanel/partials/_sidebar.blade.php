@@ -1,6 +1,7 @@
 
 <!--sidebar wrapper -->
 <div class="sidebar-wrapper" data-simplebar="true">
+
     <div class="sidebar-header d-flex justify-content-center">
         <div>
             <img src="{{asset('assets/adminPanel')}}/images/Forbest-Logo-01.png" alt="Forbest "  class="logo-text" width="130px">
@@ -8,8 +9,10 @@
         <div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
         </div>
     </div>
+
     <!--navigation-->
     <ul class="metismenu" id="menu">
+        
        {{--  <li>
             <a href="{{route('admin.pos.view')}}">
 
@@ -65,6 +68,7 @@
                 </ul>
             </li>
         @endif
+
         {{-- @if(userCanAccess('invisible'))
             <li>
                 <a href="javascript:;" class="has-arrow">
@@ -99,7 +103,7 @@
                 <a href="javascript:;" class="has-arrow">
                     <div class="parent-icon"><i class="lni lni-producthunt"></i>
                     </div>
-                    <div class="menu-title">Product</div>
+                    <div class="menu-title">Product </div>
                 </a>
                 <ul>
                     @if(userCanAccess('8'))
@@ -107,6 +111,7 @@
                             <a href="{{route('admin.product.list')}}"><i class="bx bx-right-arrow-alt"></i>Products List</a>
                         </li>
                     @endif
+                    
                     @if(userCanAccess('5'))
                         <li><a href="{{route('admin.create.product')}}"><i class="bx bx-right-arrow-alt"></i>Add
 
