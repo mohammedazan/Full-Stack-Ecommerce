@@ -53,10 +53,10 @@
                 <div class="container">
                 	<div class="row">
                 		<div class="col-lg-9">
-                			<div class="toolbox">
+                			<div class="toolbox" style="background-color: #ffffff">
                 				<div class="toolbox-left">
                 					<div class="toolbox-info">
-										@php 
+                                    @php 
 										$number_f = 0;
 										$number_c = 0;
 									@endphp
@@ -67,7 +67,7 @@
 											if($number_f <= 12) {
 												$number_c = $number_f;
 											} else {
-												$number_c = 12;
+												$number_c = 6;
 											}
 										@endphp
 										@endforeach
@@ -86,8 +86,8 @@
 											</select>
 										</div>
                 					</div><!-- End .toolbox-sort -->
-                		      <div class="toolbox-layout">
-                						<a href="{{ route('product_list')}}"class="btn-layout">
+                					<div class="toolbox-layout">
+                						<a href="{{ route('product_list')}}" class="btn-layout active">
                 							<svg width="16" height="10">
                 								<rect x="0" y="0" width="4" height="4" />
                 								<rect x="6" y="0" width="10" height="4" />
@@ -96,53 +96,43 @@
                 							</svg>
                 						</a>
 
-
-                						<a href="{{ route('product')}}" class="btn-layout active">
-                							<svg width="16" height="10">
+                						<a href="{{ route('product')}}" class="btn-layout">
+                							<svg width="10" height="10">
                 								<rect x="0" y="0" width="4" height="4" />
                 								<rect x="6" y="0" width="4" height="4" />
-                								<rect x="12" y="0" width="4" height="4" />
                 								<rect x="0" y="6" width="4" height="4" />
                 								<rect x="6" y="6" width="4" height="4" />
-                								<rect x="12" y="6" width="4" height="4" />
                 							</svg>
                 						</a>
-
-										
-                					</div>
-						<!-- End .toolbox-layout -->
+                					</div><!-- End .toolbox-layout -->
                 				</div><!-- End .toolbox-right -->
                 			</div><!-- End .toolbox -->
 
-							<div class="products mb-3">
-								<div class="row justify-content-center">
-									@php
-									// Number of products per page
-									$productsPerPage = 12;
-								
-									// Get the current page from query parameters, default to 1
-									$currentPage = request()->get('page', 1);
-								
-									// Get the minimum and maximum price from query parameters
-									$minPrice = request()->get('min_price', 0);
-									$maxPrice = request()->get('max_price', PHP_INT_MAX);
-								
-									// Filter the products based on the price range
-									$filteredProducts = $productList->filter(function($product) use ($minPrice, $maxPrice) {
-										return $product->current_sale_price >= $minPrice && $product->current_sale_price <= $maxPrice;
-									});
-								
-									// Calculate the total number of pages
-									$totalPages = ceil($filteredProducts->count() / $productsPerPage);
-								
-									// Slice the product list to get the products for the current page
-									$currentProducts = $filteredProducts->forPage($currentPage, $productsPerPage);
-								@endphp
-								
-								
-							
-									@foreach($currentProducts as $key=>$product)
-									@php
+                            <div class="products mb-3">
+                                @php
+                                // Number of products per page
+                                $productsPerPage = 6;
+                            
+                                // Get the current page from query parameters, default to 1
+                                $currentPage = request()->get('page', 1);
+                            
+                                // Get the minimum and maximum price from query parameters
+                                $minPrice = request()->get('min_price', 0);
+                                $maxPrice = request()->get('max_price', PHP_INT_MAX);
+                            
+                                // Filter the products based on the price range
+                                $filteredProducts = $productList->filter(function($product) use ($minPrice, $maxPrice) {
+                                    return $product->current_sale_price >= $minPrice && $product->current_sale_price <= $maxPrice;
+                                });
+                            
+                                // Calculate the total number of pages
+                                $totalPages = ceil($filteredProducts->count() / $productsPerPage);
+                            
+                                // Slice the product list to get the products for the current page
+                                $currentProducts = $filteredProducts->forPage($currentPage, $productsPerPage);
+                                @endphp
+								@foreach($currentProducts as $key=>$product)
+								@php
 										// Initialize the original price
 										$originalPrice = $product->current_sale_price;
 							
@@ -158,64 +148,77 @@
 											$discountLabel = null;
 										}
 									@endphp
-							
-									<div class="col-6 col-md-4 col-lg-4">
-										<div class="product product-7 text-center">
-											<figure class="product-media">
+
+                                <div class="product product-list">
+                                    <div class="row">
+                                        <div class="col-6 col-lg-3">
+                                            <figure class="product-media">
 												@if($discountLabel)
 												<span class="product-label label-new">{{ $discountLabel }}</span>
 												@endif
-												<a href="{{ route('productdetail', ['id' => $product->id]) }}">
-													<img src="{{ asset($product->image_path) }}"  alt="Product image" class="product-image">
-												</a>
-							
-												<div class="product-action-vertical">
-													<form action="{{ route('wishlist.add') }}" method="POST">
-														@csrf
-														<input type="hidden" name="product_id" value="{{ $product->id }}">
-														<button type="submit" class="btn-product-icon btn-wishlist btn-expandable"><span>Add to Wishlist</span></button>
-													</form>
+                                                <a  href="{{ route('productdetail', ['id' => $product->id]) }}">
+                                                    <img src="{{ asset($product->image_path) }}"  alt="Product image" class="product-image">
+                                                </a>
+                                            </figure><!-- End .product-media -->
+                                        </div><!-- End .col-sm-6 col-lg-3 -->
 
-													<a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
-													<a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
-												</div><!-- End .product-action-vertical -->
-							
-												<div class="product-action">
-													<a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-												</div><!-- End .product-action -->
-											</figure><!-- End .product-media -->
-							
-											<div class="product-body">
-												@php
-												    $id = $product->productCategory->id
-												@endphp
-												<div class="product-cat">
-													<a href="{{ route('product.category', ['id' => $id]) }}">{{ $product->productCategory->name }}</a>
-												</div><!-- End .product-cat -->
-												<h3 class="product-title"><a href="{{ route('productdetail', ['id' => $product->id]) }}">{{ $product->name }}</a></h3><!-- End .product-title -->
-												<div class="product-price">
+                                        <div class="col-6 col-lg-3 order-lg-last">
+                                            <div class="product-list-action">
+                                                <div class="product-price">
 													@if ($discountedPrice != $originalPrice)
 													<span class="new-price">{{ number_format($discountedPrice, 2) }}</span>
 													<span class="old-price">Was {{ number_format($originalPrice, 2) }}  HD</span>
 													@else
 													<span class="old-price"> {{ number_format($originalPrice, 2) }}  HD</span>
 													@endif 
-												</div><!-- End .product-price -->
-												<div class="ratings-container">
-													<div class="ratings">
-														<div class="ratings-val" style="width: 20%;"></div><!-- End .ratings-val -->
-													</div><!-- End .ratings -->
-													<span class="ratings-text">( 2 Reviews )</span>
-												</div><!-- End .rating-container -->
-											</div><!-- End .product-body -->
-										</div><!-- End .product -->
-									</div><!-- End .col-sm-6 col-lg-4 -->
-									@endforeach
-								</div><!-- End .row -->
-							</div><!-- End .products -->
-							
-							<nav aria-label="Page navigation">
-								<ul class="pagination justify-content-center">
+                                                </div><!-- End .product-price -->
+                                                <div class="ratings-container">
+                                                    <div class="ratings">
+                                                        <div class="ratings-val" style="width: 20%;"></div><!-- End .ratings-val -->
+                                                    </div><!-- End .ratings -->
+                                                    <span class="ratings-text">( 2 Reviews )</span>
+                                                </div><!-- End .rating-container -->
+
+                                                <div class="product-action">
+                                                    <a href="popup/quickView.html" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a>
+                                                    <a href="#" class="btn-product btn-compare" title="Compare"><span>compare</span></a>
+                                                </div><!-- End .product-action -->
+
+                                                <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                            </div><!-- End .product-list-action -->
+                                        </div><!-- End .col-sm-6 col-lg-3 -->
+
+                                        <div class="col-lg-6">
+                                            <div class="product-body product-action-inner">
+                                                <a href="#" class="btn-product btn-wishlist" title="Add to wishlist"><span>add to wishlist</span></a>
+                                                <div class="product-cat">
+												@php
+												    $id = $product->productCategory->id
+												@endphp
+                                                    <a href="{{ route('product.category', ['id' => $id]) }}">{{ $product->productCategory->name }}</a>
+                                                </div><!-- End .product-cat -->
+                                                <h3 class="product-title"><a href="{{ route('productdetail', ['id' => $product->id]) }}">{{ $product->name }}</a></h3><!-- End .product-title -->
+
+                                                <div class="product-content">
+                                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque </p>
+                                                </div><!-- End .product-content -->
+                                                
+                                                <div class="product-nav product-nav-thumbs">
+													@foreach($product->productImage as $image)
+                                                    <a href="#" class="active">
+                                                        <img src="{{ asset($image->image) }}"  alt="product desc">
+                                                    </a>
+													@endforeach
+                                                </div><!-- End .product-nav -->
+                                            </div><!-- End .product-body -->
+                                        </div><!-- End .col-lg-6 -->
+                                    </div><!-- End .row -->
+                                </div><!-- End .product -->
+								@endforeach
+                            </div><!-- End .products -->
+
+                			<nav aria-label="Page navigation">
+							    <ul class="pagination">
 									@php
 										// Calculate the previous and next page numbers
 										$prevPage = max(1, $currentPage - 1);
@@ -239,9 +242,9 @@
 											Next <span aria-hidden="true"><i class="icon-long-arrow-right"></i></span>
 										</a>
 									</li>
-								</ul>
+							    </ul>
 							</nav>
-					 </div><!-- End .col-lg-9 -->
+                		</div><!-- End .col-lg-9 -->
                 		<aside class="col-lg-3 order-lg-first">
                 			<div class="sidebar sidebar-shop">
                 				<div class="widget widget-collapsible">
@@ -258,7 +261,7 @@
 												<div class="filter-item">
 													<ul>
 														<li>
-															<a href="{{ route('product.category', ['id' => $categorylist->id]) }}" >
+															<a href="{{ route('product_list.category', ['id' => $categorylist->id]) }}" >
 																{{ $categorylist->name }}
 															</a>
 														</li>
@@ -365,7 +368,7 @@
 												<div class="filter-item">
 													<ul>
 														<li>
-															<a href="{{ route('product.brand', ['id' => $brand->id]) }}">{{ $brand->name }}</a>
+															<a href="{{ route('product_list.brand', ['id' => $brand->id]) }}">{{ $brand->name }}</a>
 														</li>
 													</ul>
 												</div><!-- End .filter-item -->

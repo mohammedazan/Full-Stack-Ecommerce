@@ -110,6 +110,13 @@ class GuestController extends Controller
         $brandList=Brand::get();
         return view('guest/pages.product')->with(compact('productList','category','brandList','productSubcategory'));
     }
+    public function product_list(){
+        $productList = Product::where('deleted', 0)->get();
+        $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
+        $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
+        $brandList=Brand::get();
+        return view('guest/pages.product_list')->with(compact('productList','category','brandList','productSubcategory'));
+    }
 
     public function productcategory(Request $request) {
         $brandList = Brand::get();
@@ -127,6 +134,23 @@ class GuestController extends Controller
             return redirect()->back();
         }
         return view('guest/pages.product')->with(compact('productList','productSubcategory', 'category', 'brandList'));
+    }
+    public function product_list_category(Request $request) {
+        $brandList = Brand::get();
+        $categoryId = $request->id;
+        if ($categoryId) {
+            $productList = Product::where('category_id', $categoryId)
+                                  ->where('deleted', 0)
+                                  ->get();
+        } else {
+            $productList = Product::where('deleted', 0)->get();
+        }
+        $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
+        $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
+        if ($productList->isEmpty()) {
+            return redirect()->back();
+        }
+        return view('guest/pages.product_list')->with(compact('productList','productSubcategory', 'category', 'brandList'));
     }
 
     public function productsubcategory(Request $request) {
@@ -201,6 +225,27 @@ class GuestController extends Controller
     
         return view('guest/pages.product')->with(compact('productList', 'category', 'brandList', 'productSubcategory'));
     }
+
+    public function product_list_brand(Request $request){
+        $brandId = $request->id;
+    
+        if (!$brandId) {
+            return response()->json(['error' => 'Brand ID not provided'], 400);
+        }
+    
+        $productList = Product::where('brand_id', $brandId)->where('deleted', 0)->get();
+    
+        if ($productList->isEmpty()) {
+            return redirect()->back();
+        }
+    
+        $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
+        $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
+        $brandList = Brand::get();
+    
+        return view('guest/pages.product_list')->with(compact('productList', 'category', 'brandList', 'productSubcategory'));
+    }
+
 
     public function faqView(){
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
