@@ -33,13 +33,8 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\WishlistController;
 use App\Models\Supplier;
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-=======
 use App\Http\Controllers\NewsletterController;
-
-
->>>>>>> 97a9171b8608b8befb71e0604da6e67d0a6c11b2
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------
