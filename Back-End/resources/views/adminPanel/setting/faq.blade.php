@@ -42,7 +42,7 @@
 
                         <thead>
                         <tr class="t-trcolor">
-                            <th>SI</th>
+                            <th>ID</th>
                             <th>Title</th>
                             <th>Details</th>
                             <th class="text-center">Action</th>

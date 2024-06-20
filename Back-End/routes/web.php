@@ -33,15 +33,10 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\WishlistController;
 use App\Models\Supplier;
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
 
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\NewsletterController;
 
-=======
-use App\Http\Controllers\NewsletterController;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
->>>>>>> 2735a9edb3263d069fb62a4ced61304b1d045354
 
 /*
 |--------------------------------------------------------------------------
@@ -85,10 +80,10 @@ Route::group(['middleware' => 'authCheck'], function () {
     Route::get('/product/color/delete', [ProductController::class, 'ColordDelete'])->name('admin.delete.color');
 
    // _____________________ Route size_______________________________________ 
-    Route::get('/product/size', [ProductController::class, 'productSize'])->name('admin.product.size.show');
-    Route::post('/product/size/store', [ProductController::class, 'productSizeStore'])->name('admin.product.size.store');
-    Route::post('/product/size/update', [ProductController::class, 'productSizeUpdate'])->name('admin.product.size.update');
-    Route::get('/product/size/delete', [ProductController::class, 'SizedDelete'])->name('admin.delete.size');
+   //  Route::get('/product/size', [ProductController::class, 'productSize'])->name('admin.product.size.show');
+   //  Route::post('/product/size/store', [ProductController::class, 'productSizeStore'])->name('admin.product.size.store');
+   //  Route::post('/product/size/update', [ProductController::class, 'productSizeUpdate'])->name('admin.product.size.update');
+   //  Route::get('/product/size/delete', [ProductController::class, 'SizedDelete'])->name('admin.delete.size');
 
    // _____________________ Route category_______________________________________ 
     Route::get('/product/category', [ProductCategoryController::class, 'productCategory'])->name('admin.product.category');
@@ -126,8 +121,8 @@ Route::group(['middleware' => 'authCheck'], function () {
 
    // _____________________ Route Product _______________________________________ 
 
-    Route::get('/product/stock/view', [PurchaseController::class, 'purchaseProductView'])->name('admin.product.purchase');
-    Route::get('/product/purchase/list', [PurchaseController::class, 'purchaseList'])->name('admin.product.purchase.list');
+   //  Route::get('/product/stock/view', [PurchaseController::class, 'purchaseProductView'])->name('admin.product.purchase');
+   //  Route::get('/product/purchase/list', [PurchaseController::class, 'purchaseList'])->name('admin.product.purchase.list');
     Route::get('/purchase/supplier/store', [SupplierController::class, 'purchaseSupplierStore'])->name('admin.supplier.store.form.purchase');
     Route::get('/purchase/item/get', [SupplierController::class, 'purchaseItemGet'])->name('admin.pos.purchase.item.get');
     Route::post('/purchase/payment/store', [PurchaseController::class, 'purchasePaymentStore'])->name('purchase.payment.store');
@@ -140,7 +135,7 @@ Route::group(['middleware' => 'authCheck'], function () {
    // _____________________ Route offer _______________________________________ 
     Route::get('/post/offer/list', [offerController::class, 'offerList'])->name('offer.list');
     Route::post('admin/store/offer', [offerController::class, 'storeOffer'])->name('admin.store.offer');
-    Route::get('admin/set/offer/product', [offerController::class, 'setOfferProduct'])->name('admin.set.offer.product');
+   //  Route::get('admin/set/offer/product', [offerController::class, 'setOfferProduct'])->name('admin.set.offer.product');
     Route::get('admin/offer/product/list', [offerController::class, 'offerProductList'])->name('admin.offer.product.list');
     Route::post('admin/offer/product/store', [offerController::class, 'storeOfferProduct'])->name('admin.offer.product.store');
     Route::get('admin/product/offerProduct/delete', [offerController::class, 'offerProductDelete'])->name('admin.product.offerProduct.delete');
@@ -163,7 +158,7 @@ Route::group(['middleware' => 'authCheck'], function () {
 
     Route::get('admin/order/status/update', [OrderController::class, 'OrderStatusUpdate'])->name('admin.order.status.update');
     Route::get('admin/sell/order/details', [OrderController::class, 'SellOrderDetails']);
-    Route::get('admin/setting/shipping/rate', [SettingController::class, 'shippingRate'])->name('setting.shipping.rate');
+   //  Route::get('admin/setting/shipping/rate', [SettingController::class, 'shippingRate'])->name('setting.shipping.rate');
     Route::get('admin/report/product/sell', [ReportController::class, 'sellReport'])->name('admin.report.sell');
     Route::get('admin/report/product/sell/profit', [ReportController::class, 'sellProfitReport'])->name('admin.report.sell.profit');
     Route::get('admin/district/list/get', [SettingController::class, 'districtList']);

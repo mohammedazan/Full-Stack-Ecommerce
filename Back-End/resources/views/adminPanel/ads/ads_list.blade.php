@@ -41,7 +41,7 @@
 
                         <thead>
                         <tr class="t-trcolor">
-                            <th>SI</th>
+                            <th>ID</th>
                             <th>Ads Image</th>
                             <th>status</th>
                             <th>Create Date</th>

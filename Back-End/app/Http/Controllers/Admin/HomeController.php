@@ -3,11 +3,27 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
+use App\Models\Ads;
+use App\Models\BankAccount;
+use App\Models\Blogs;
+use App\Models\Brand;
+use App\Models\Commande;
+use App\Models\Faq;
+use App\Models\FeaturedLink;
+use App\Models\Newsletter;
+use App\Models\Offer;
 use App\Models\Product;
+use App\Models\Product_review;
+use App\Models\ProductCategory;
+use App\Models\ProductSubCategory;
+use App\Models\Role;
 use App\Models\Sell;
 use App\Models\Sell_details;
+use App\Models\Supplier;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Console\Command;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -38,9 +54,24 @@ class HomeController extends Controller
            $lastOrder=Sell_details::orderBy('id', 'DESC')->whereHas('sellInfo',function($q){return $q->where('sell_type',2);})->get()->take(5);
 
         $customer=User::count();
+        $ProductCategory=ProductCategory::count();
+        $ProductSubCategory=ProductSubCategory::count();
+        $ListRole=Role::count();
+        $Commande=Commande::count();
+        $Admin=Admin::count();
+        $Supplier=Supplier::count();
+        $Ads=Ads::count();
+        $Blogs=Blogs::count();
+        $Brand=Brand::count();
+        $Faq=Faq::count();
+        $FeaturedLink=FeaturedLink::count();
+        // $Newsletter=Newsletter::count();
+        $Offer=Offer::count();
+        $Bank=BankAccount::count();
+        $review=Product_review::count();
+        
 
-//        return $sell->sum('total_cost');
-
-        return view('adminPanel.index')->with(compact('totalOrder','sell','customer','sellProductList','lastOrder','productItem'));
+        return view('adminPanel.index')
+        ->with(compact('totalOrder','sell','customer','sellProductList','lastOrder','productItem','ProductCategory','ProductSubCategory','ListRole','Commande','Admin','Ads','Blogs','Brand','Faq','FeaturedLink','Offer','Bank','Supplier','review'));
     }
 }

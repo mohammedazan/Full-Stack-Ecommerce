@@ -42,7 +42,7 @@
 
                         <thead>
                         <tr class="t-trcolor">
-                            <th>SI</th>
+                            <th>ID</th>
                             <th>Brand Name</th>
                             <th>Image</th>
                             {{--                        <th>Status</th>--}}

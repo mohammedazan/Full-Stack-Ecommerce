@@ -32,7 +32,7 @@
         {{--        <li class="menu-label">UI Elements</li>--}}
         <li>
             <a href="{{route('home')}}">
-                <div class="parent-icon"><i class='bx bx-home-circle'></i>
+                <div class="parent-icon" style="color: #2ECC71;"><i class='bx bx-home-circle'></i>
                 </div>
                 <div class="menu-title">Home</div>
             </a>
@@ -40,10 +40,11 @@
         @if(userCanAccess('h1'))
             <li>
                 <a href="javascript:;" class="has-arrow">
-                    <div class="parent-icon"><i class="lni lni-cart"></i>
+                    <div class="parent-icon" style="color: #2ECC71;"><i class="lni lni-list"></i>
                     </div>
                     <div class="menu-title">Admin Role</div>
                 </a>
+                
                 <ul>
                     @if(userCanAccess('1'))
                         <li>
@@ -101,7 +102,7 @@
         @if(userCanAccess('h3'))
             <li>
                 <a href="javascript:;" class="has-arrow">
-                    <div class="parent-icon"><i class="lni lni-producthunt"></i>
+                    <div class="parent-icon" style="color: #2ECC71;"><i class="lni lni-producthunt"></i>
                     </div>
                     <div class="menu-title">Product </div>
                 </a>
@@ -134,12 +135,14 @@
                                 Color</a>
                         </li>
                     @endif
-                    @if(userCanAccess('m5'))
+
+                    {{-- @if(userCanAccess('m5'))
                         <li>
                             <a href="{{route('admin.product.size.show')}}"><i class="bx bx-right-arrow-alt"></i>Product
                                 Size</a>
                         </li>
-                    @endif    
+                    @endif     --}}
+
                     @if(userCanAccess('m6'))
                         <li>
                             <a href="{{route('admin.product.brand')}}"><i class="bx bx-right-arrow-alt"></i>Product
@@ -205,25 +208,41 @@
             </li>
         @endif --}}
 
+        @if(userCanAccess('m9'))
+<li>
+    <a href="javascript:;" class="has-arrow">
+        <div class="parent-icon" style="color: #2ECC71;"><i class="lni lni-cart"></i></div>
+        <div class="menu-title">Order</div>
+    </a>
+    <ul>
+         @if(userCanAccess('m10'))
+        <li>
+            <a href="{{ route('order_in_the_cart') }}"><i class="bx bx-right-arrow-alt"></i> order </a>
+        </li>
+        @endif
+    </ul>
+</li>
+@endif
+
         @if(userCanAccess('h4'))
             <li>
                 <a href="javascript:;" class="has-arrow">
-                    <div class="parent-icon"><i class="lni lni-package"></i>
+                    <div class="parent-icon" style="color: #2ECC71;"><i class="lni lni-package"></i>
                     </div>
                     <div class="menu-title">Stock Products</div>
                 </a>
                 <ul>
-                    @if(userCanAccess('9'))
+                    {{-- @if(userCanAccess('9'))
                         <li>
                             <a href="{{route('admin.product.purchase')}}"><i class="bx bx-right-arrow-alt"></i>Purchase
                                 Product</a>
                         </li>
-                    @endif
-                    <li>
+                    @endif --}}
+                    {{-- <li>
                         <a href="{{route('admin.product.purchase.list')}}"><i class="bx bx-right-arrow-alt"></i>Purchase
                             List
                         </a>
-                    </li>
+                    </li> --}}
 
 
                     {{--                @if(userCanAccess('9'))--}}
@@ -238,7 +257,7 @@
         @if(userCanAccess('h5'))
             <li>
                 <a href="javascript:;" class="has-arrow">
-                    <div class="parent-icon"><i class="lni lni-offer"></i>
+                    <div class="parent-icon" style="color: #2ECC71;"><i class="lni lni-offer"></i>
                     </div>
                     <div class="menu-title">Offer Setting</div>
                 </a>
@@ -248,9 +267,9 @@
                             <a href="{{route('offer.list')}}"><i class="bx bx-right-arrow-alt"></i>Create Offer</a>
                         </li>
                     @endif
-                <li>
+                {{-- <li>
                     <a href="{{route('admin.set.offer.product')}}"><i class="bx bx-right-arrow-alt"></i>Offer Product Select</a>
-                </li>
+                </li> --}}
                     @if(userCanAccess('11'))
                         <li>
                             <a href="{{route('admin.offer.product.list')}}"><i class="bx bx-right-arrow-alt"></i>Offer
@@ -265,7 +284,7 @@
         @if(userCanAccess('ne1'))
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="lni lni-pencil"></i></div>
+                <div class="parent-icon" style="color: #2ECC71;"><i class="lni lni-pencil"></i></div>
                 <div class="menu-title">Newsletter</div>
             </a>
             <ul>
@@ -280,8 +299,7 @@
         @if(userCanAccess('h6'))
             <li>
                 <a href="javascript:;" class="has-arrow">
-                    <div class="parent-icon"><i class="lni lni-offer"></i>
-                    </div>
+                    <div class="parent-icon" style="color: #2ECC71;"><i class="lni lni-cog" style="color: #2ECC71;"></i></div>
                     <div class="menu-title">Setting</div>
                 </a>
                 <ul>
@@ -291,12 +309,12 @@
                                 Details</a>
                         </li>
                     @endif
-                    @if(userCanAccess('12'))
+                    {{-- @if(userCanAccess('12'))
                         <li>
                             <a href="{{route('setting.shipping.rate')}}"><i class="bx bx-right-arrow-alt"></i>Shipping
                                 Rate Set</a>
                         </li>
-                    @endif
+                    @endif --}}
                     @if(userCanAccess('m7'))
                         <li>
                             <a href="{{route('faq.view')}}"><i class="bx bx-right-arrow-alt"></i>
@@ -318,8 +336,7 @@
         @if(userCanAccess('m9'))
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="lni lni-offer"></i>
-                </div>
+                <div class="parent-icon" style="color: #2ECC71;"><i class="lni lni-star"></i></div>
                 <div class="menu-title">Featured Link</div>
             </a>
             <ul>
@@ -336,7 +353,7 @@
  @if(userCanAccess('m9'))
 <li>
     <a href="javascript:;" class="has-arrow">
-        <div class="parent-icon"><i class="lni lni-pencil"></i></div>
+        <div class="parent-icon" style="color: #2ECC71;"><i class="lni lni-pencil"></i></div>
         <div class="menu-title">Blogs</div>
     </a>
     <ul>
@@ -350,26 +367,12 @@
 @endif
 
 
-@if(userCanAccess('m9'))
-<li>
-    <a href="javascript:;" class="has-arrow">
-        <div class="parent-icon"><i class="lni lni-pencil"></i></div>
-        <div class="menu-title">Order</div>
-    </a>
-    <ul>
-         @if(userCanAccess('m10'))
-        <li>
-            <a href="{{ route('order_in_the_cart') }}"><i class="bx bx-right-arrow-alt"></i> order </a>
-        </li>
-        @endif
-    </ul>
-</li>
-@endif
+
 
         @if(userCanAccess('m9'))
 <li>
     <a href="javascript:;" class="has-arrow">
-        <div class="parent-icon"><i class="lni lni-star-filled"></i></div>
+        <div class="parent-icon" style="color: #2ECC71;"><i class="lni lni-star-filled"></i></div>
         <div class="menu-title">Product Reviews</div>
     </a>
     <ul>
@@ -385,7 +388,7 @@
         @if(userCanAccess('h7'))
             <li>
                 <a href="javascript:;" class="has-arrow">
-                    <div class="parent-icon"><i class="lni lni-home"></i>
+                    <div class="parent-icon" style="color: #2ECC71;"><i class="lni lni-home"></i>
                     </div>
                     <div class="menu-title">Bank</div>
                 </a>
@@ -401,7 +404,7 @@
         @if(userCanAccess('h9'))
             <li>
                 <a href="javascript:;" class="has-arrow">
-                    <div class="parent-icon"><i class="lni lni-stats-up"></i>
+                    <div class="parent-icon" style="color: #2ECC71;"><i class="lni lni-stats-up"></i>
                     </div>
                     <div class="menu-title">Report</div>
                 </a>
