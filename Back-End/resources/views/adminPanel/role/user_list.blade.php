@@ -53,11 +53,11 @@
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                         <tr>
-                            <th>SI</th>
+                            <th>ID</th>
                             <th>User Name</th>
                             <th>User Email</th>
-                            <th>User Phone</th>
                             <th>Login date</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -65,7 +65,8 @@
                             <tr>
                                 <td>{{$key}}</td>
                                 <td>{{$user->name}}</td>
-                                <td id="user-email">{{$user->email}}                
+                                <td id="user-email">{{$user->email}}      
+                               
                                     <!-- <button class="copy-btn" onclick="copyEmail()">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
                                             <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z"/>
@@ -79,7 +80,7 @@
                                           </svg>
                                     </span> -->
                                 </td>
-                                <td>{{ $user->phone }}
+                              
                                   
                                     <!-- <span id="copy-message" class="message">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
@@ -90,7 +91,13 @@
                                  -->
                                 </td>
                                 <td>{{ $user->created_at }}</td>
-
+                                <td>
+                                    <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
+                                    </form>
+                                </td>       
                             </tr>
                         @endforeach
                         </tbody>

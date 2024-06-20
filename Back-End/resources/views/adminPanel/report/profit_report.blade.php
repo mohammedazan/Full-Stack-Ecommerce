@@ -42,7 +42,7 @@
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                         <tr>
-                            <th>SI</th>
+                            <th>ID</th>
                             <th>ID</th>
                             <th>Name</th>
                             <th>Sell Quantity</th>
