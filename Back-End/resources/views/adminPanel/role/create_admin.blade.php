@@ -43,8 +43,6 @@
                             <th>Admin Name</th>
                             <th>Email</th>
                             <th>Role</th>
-                            <th>Start</th>
-                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -56,16 +54,6 @@
                                 <td>{{$admindata->name}}</td>
                                 <td> {{$admindata->email}}</td>
                                 <td>{{ $admindata->role ? $admindata->role->name : 'No Role' }}</td>
-                                <td> {{$admindata->admin_type}}</td>
-
-                                @if(1==1)
-                                    <td><span class="badge bg-success">Active</span></td>
-                                @else
-                                    <td>
-                                        <span class="badge bg-danger">Inactive</span>
-                                    </td>
-                                @endif
-
                                 <td>
                                     <div class="dropdown d-flex justify-content-center">
                                         <button class="btn btn-primary dropdown-toggle dr-btn" type="button"

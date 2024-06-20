@@ -33,13 +33,10 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\WishlistController;
 use App\Models\Supplier;
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
+
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-=======
 use App\Http\Controllers\NewsletterController;
 
-
->>>>>>> 97a9171b8608b8befb71e0604da6e67d0a6c11b2
 
 /*
 |--------------------------------------------------------------------------
@@ -176,6 +173,8 @@ Route::group(['middleware' => 'authCheck'], function () {
     //Crete List Role 
     Route::get('admin/role/list', array(AdminController::class, 'listRole'))->name('admin.role.list');
     Route::get('admin/user/list', array(AdminController::class, 'listuser'))->name('admin.user.list');
+    Route::delete('/admin/users/{id}', [AdminController::class, 'destroy'])->name('admin.users.destroy');
+
     Route::get('admin/role/delete', array(AdminController::class, 'roleDelete'))->name('admin.role.delete');
 
     Route::post('admin/role/store', array(AdminController::class, 'adminRoleStore'))->name('admin.role.store');

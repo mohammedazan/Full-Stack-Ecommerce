@@ -120,4 +120,13 @@ class AdminController extends Controller
         return view('adminPanel.role.user_list', compact('listuser'));
     }
 
+    
+    // Delete the user
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id); 
+        $user->delete(); 
+
+        return redirect()->route('admin.user.list')->with('success', 'User deleted successfully.');
+    }
 }
