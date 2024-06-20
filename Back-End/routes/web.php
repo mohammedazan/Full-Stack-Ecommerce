@@ -33,10 +33,15 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\WishlistController;
 use App\Models\Supplier;
 use Illuminate\Support\Facades\Route;
+<<<<<<< HEAD
 
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\NewsletterController;
 
+=======
+use App\Http\Controllers\NewsletterController;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+>>>>>>> 2735a9edb3263d069fb62a4ced61304b1d045354
 
 /*
 |--------------------------------------------------------------------------
