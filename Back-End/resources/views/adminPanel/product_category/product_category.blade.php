@@ -44,8 +44,6 @@
                             <th>Category Name</th>
                             <th>Image</th>
                             <th>Description</th>
-                            <th>Is Popular</th>
-                            <th>Status</th>
                             <th>Create Date</th>
                             <th class="text-center">Action</th>
                         </tr>
@@ -60,18 +58,12 @@
                                        <img height="50px" width="50px" src="{{asset($categorylist->image)}}" alt="">
                                    </td>
                                    <td>{{$categorylist->note}}</td>
-
+{{-- 
                                    @if($categorylist->is_popular==1)
                                        <td><span class="badge bg-success">Popular</span></td>
                                    @else
                                        <td><span class="badge bg-danger">Not Popular</span></td>
-                                   @endif
-
-                                   @if($categorylist->status==1)
-                                       <td><span class="badge bg-success">Active</span></td>
-                                       @else
-                                       <td><span class="badge bg-danger">Inactive</span></td>
-                                   @endif
+                                   @endif --}}
                                    <td>{{ date('d-M-y',strtotime($categorylist->created_at)) }}</td>
                                    <td>
                                        <div class="dropdown d-flex justify-content-center">

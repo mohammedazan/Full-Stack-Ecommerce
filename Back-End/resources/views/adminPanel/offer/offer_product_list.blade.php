@@ -33,7 +33,6 @@
                             <th>Offer Discount</th>
                             <th>Start Date</th>
                             <th>End Date</th>
-                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -68,15 +67,6 @@
                                     <td>
                                         <span >{{$offerListdata->offerInfo->end_date}}</span>
                                     </td>
-
-                                @if($offerListdata->offerInfo->status==1)
-                                    <td><span class="badge bg-success">Active</span></td>
-                                @else
-                                    <td>
-                                        <span class="badge bg-danger">Inactive</span>
-                                    </td>
-                                @endif
-
                                 <td>
                                     <div class="dropdown d-flex justify-content-center">
                                         <button class="btn btn-primary dropdown-toggle dr-btn" type="button"

@@ -284,18 +284,24 @@
         @if(userCanAccess('ne1'))
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon" style="color: #2ECC71;"><i class="lni lni-pencil"></i></div>
+                <div class="parent-icon" style="color: #2ECC71;">
+                    <i class="lni lni-envelope"></i> <!-- Newsletter icon from LineIcons -->
+                </div>
                 <div class="menu-title">Newsletter</div>
             </a>
             <ul>
                 @if(userCanAccess('ne2'))
                 <li>
-                    <a href="{{ route('list.subscribe') }}"><i class="bx bx-right-arrow-alt"></i> List subscribers</a>
+                    <a href="{{ route('list.subscribe') }}">
+                        <i class="bx bx-right-arrow-alt"></i> <!-- Right arrow icon from Boxicons -->
+                        List subscribers
+                    </a>
                 </li>
                 @endif
             </ul>
         </li>
-        @endif
+    @endif
+    
         @if(userCanAccess('h6'))
             <li>
                 <a href="javascript:;" class="has-arrow">
@@ -372,7 +378,7 @@
         @if(userCanAccess('m9'))
 <li>
     <a href="javascript:;" class="has-arrow">
-        <div class="parent-icon" style="color: #2ECC71;"><i class="lni lni-star-filled"></i></div>
+        <div class="parent-icon" style="color: #2ECC71;"><i class="fas fa-comment"></i></div>
         <div class="menu-title">Product Reviews</div>
     </a>
     <ul>

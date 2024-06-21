@@ -36,7 +36,6 @@
                             <th>Sell Price</th>
                             <th>WholeSell Price</th>
                             <th>Available</th>
-                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -63,14 +62,7 @@
                                 <td>{{$product->current_sale_price}}</td>
                                 <td>{{$product->current_wholesale_price}}</td>
                                 <td>{{$product->available_quantity}}</td>
-                                @if($product->status==1)
-                                    <td><span class="badge bg-success">Active</span></td>
-                                @else
-                                    <td>
-                                        <span class="badge bg-danger">Inactive</span>
-                                    </td>
-                                @endif
-
+                             
                                 <td>
                                     <div class="dropdown d-flex justify-content-center">
                                         <button class="btn btn-primary dropdown-toggle dr-btn" type="button"

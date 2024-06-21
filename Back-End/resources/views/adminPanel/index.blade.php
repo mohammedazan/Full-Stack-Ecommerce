@@ -94,7 +94,7 @@
 								{{-- <p class="mb-0 font-13">Active Customer</p> --}}
 							</div>
 							<div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto">
-								<i class="lni lni-list"></i> <!-- New icon added here -->
+								<i class="lni lni-dashboard"></i> <!-- New icon added here -->
 							</div>
 						</div>
 					</div>
@@ -111,7 +111,13 @@
                     <h4 class="my-1 text-warning">{{$Ads}}</h4>
                 </div>
                 <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto">
-                    <i class="lni lni-stats-up"></i> <!-- Real icon: Stats Up from LineIcons -->
+                    {{-- <i class="lni lni-stats-up"></i> --}}
+					<i class="fas fa-bullhorn"></i> <!-- Bullhorn icon -->
+
+
+
+					
+					 <!-- Real icon: Stats Up from LineIcons -->
                 </div>
             </div>
         </div>
@@ -129,7 +135,11 @@
 									<h4 class="my-1 text-warning">{{$Blogs}}</h4>
 									{{-- <p class="mb-0 font-13">Active Customer</p> --}}
 								</div>
-								<div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i class='bx bxs-group'></i>
+								<div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto">
+									{{-- <i class='bx bxs-group'></i> --}}
+									<i class="lni lni-pencil"></i>
+
+
 								</div>
 							</div>
 						</div>
@@ -146,7 +156,8 @@
 									<h4 class="my-1 text-warning">{{$Brand}}</h4>
 									{{-- <p class="mb-0 font-13">Active Customer</p> --}}
 								</div>
-								<div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i class='bx bxs-group'></i>
+								<div class="widgets-icons-2 rounded-circle bg-gradient-custom text-custom ms-auto">
+									<i class="fas fa-globe"></i>
 								</div>
 							</div>
 						</div>
@@ -163,7 +174,8 @@
 										<h4 class="my-1 text-warning">{{$Faq}}</h4>
 										{{-- <p class="mb-0 font-13">Active Customer</p> --}}
 									</div>
-									<div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i class='bx bxs-group'></i>
+									<div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto">
+										<i class="fas fa-question-circle"></i>
 									</div>
 								</div>
 							</div>
@@ -181,7 +193,8 @@
 										<h4 class="my-1 text-warning">{{$FeaturedLink}}</h4>
 										{{-- <p class="mb-0 font-13">Active Customer</p> --}}
 									</div>
-									<div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i class='bx bxs-group'></i>
+									<div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto">
+										<i class="fas fa-star"></i> <!-- Star icon -->
 									</div>
 								</div>
 							</div>
@@ -198,7 +211,8 @@
 											<p class="mb-0 text-secondary">Total Offer</p>
 											<h4 class="my-1 text-warning">{{$Offer}}</h4>
 										</div>
-										<div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i class='bx bxs-group'></i>
+										<div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto">
+											<i class="fas fa-tag"></i> 
 										</div>
 									</div>
 								</div>
@@ -214,7 +228,8 @@
 												<p class="mb-0 text-secondary">Total Bank </p>
 												<h4 class="my-1 text-warning">{{$Bank  }}</h4>
 											</div>
-											<div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i class='bx bxs-group'></i>
+											<div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto">
+												<i class="fas fa-building"></i> 
 											</div>
 										</div>
 									</div>
@@ -231,7 +246,9 @@
 														<p class="mb-0 text-secondary">Total Supplier </p>
 														<h4 class="my-1 text-warning">{{$Supplier  }}</h4>
 													</div>
-													<div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i class='bx bxs-group'></i>
+													<div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto">
+														<i class="fas fa-industry"></i> <!-- Industry icon often used for factories -->
+
 													</div>
 												</div>
 											</div>
@@ -248,7 +265,8 @@
 															<p class="mb-0 text-secondary">Total Review </p>
 															<h4 class="my-1 text-warning">{{$review  }}</h4>
 														</div>
-														<div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i class='bx bxs-group'></i>
+														<div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto">
+															<i class="fas fa-comment"></i>
 														</div>
 													</div>
 												</div>

@@ -27,7 +27,6 @@
                             <th>Category Name</th>
                             <th>Subcategory Name</th>
                             <th>Description</th>
-                            <th>Status</th>
                             <th class="text-center">Action</th>
                         </tr>
                         </thead>
@@ -39,13 +38,7 @@
                                 <td>{{$subcategoryList->category->name}}</td>
                                 <td>{{$subcategoryList->name}}</td>
                                 <td>{{$subcategoryList->note}}</td>
-                                @if($subcategoryList->status==1)
-                                    <td><span class="badge bg-success">Active</span></td>
-                                @else
-                                    <td>
-                                        <span class="badge bg-danger">Inactive</span>
-                                    </td>
-                                @endif
+
                                 {{--                                <td>{{ date('d-M-y',strtotime($subcategoryList->created_at)) }}</td>--}}
                                 <td>
                                     <div class="dropdown d-flex justify-content-center">
@@ -123,14 +116,14 @@
                                 </div>
                             </div>
 
-                            <div class="mb-2 row">
+                            {{-- <div class="mb-2 row">
                                 <label for="inputPasswordww" class="col-sm-12  pr-0 col-form-label">Subcategory
                                     Image</label>
                                 <div class="col-sm-12">
                                     <input type="file" class="form-control" name="img" id="inputPasswordww"
                                            placeholder="Category Name">
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="mb-2 row">
                                 <label for="description" class="col-sm-12  pr-0 col-form-label">Description</label>

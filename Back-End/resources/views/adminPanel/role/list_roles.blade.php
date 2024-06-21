@@ -43,7 +43,6 @@
                         <th>ID</th>
                             <th>Role Name</th>
                             <th>Date created</th>
-                            <th>Start</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -54,14 +53,6 @@
                                 <td>{{$key}}</td>
                                 <td>{{$role->name}}</td>
                                 <td> {{$role->created_at}}</td>
-                                @if(1==1)
-                                    <td><span class="badge bg-success">Active</span></td>
-                                @else
-                                    <td>
-                                        <span class="badge bg-danger">Inactive</span>
-                                    </td>
-                                @endif
-
                                 <td>
                                     <div class="dropdown d-flex justify-content-center">
                                         <button class="btn btn-primary dropdown-toggle dr-btn" type="button"

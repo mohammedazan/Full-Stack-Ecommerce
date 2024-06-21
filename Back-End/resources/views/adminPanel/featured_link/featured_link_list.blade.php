@@ -46,7 +46,6 @@
                             <th>Title</th>
                             <th>Link</th>
                             <th>Feature Image</th>
-                            <th>Status</th>
                             <th>Create Date</th>
                             <th class="text-center">Action</th>
                         </tr>
@@ -59,11 +58,7 @@
                                 <td>{{$feature->title}}</td>
                                 <td>{{$feature->link}}</td>
                                 <td class="d-flex justify-content-center"><img src="{{ asset($feature->image)}}" height="60px" width="60px" alt=""></td>
-                                                                @if($feature->is_active==1)
-                                                                    <td><span class="badge bg-success">Active</span></td>
-                                                                @else
-                                                                    <td><span class="badge bg-danger">Inactive</span></td>
-                                                                @endif
+
                                 <td>{{ date('d-M-y',strtotime($feature->created_at)) }}</td>
                                 <td>
                                     <div class="dropdown d-flex justify-content-center">

@@ -43,7 +43,6 @@
                         <tr class="t-trcolor">
                             <th>ID</th>
                             <th>Ads Image</th>
-                            <th>status</th>
                             <th>Create Date</th>
                             <th class="text-center">Action</th>
                         </tr>
@@ -57,11 +56,7 @@
                                     <img height="50px" width="50px" src="{{asset($adsData->img)}}" alt="">
                                 </td>
 
-                                @if($adsData->position>0)
-                                    <td><span class="badge bg-success">Active</span></td>
-                                @else
-                                    <td><span class="badge bg-danger">Inactive</span></td>
-                                @endif
+                               
                                 <td>{{ date('d-M-y',strtotime($adsData->created_at)) }}</td>
                                 <td>
                                     <div class="dropdown d-flex justify-content-center">
