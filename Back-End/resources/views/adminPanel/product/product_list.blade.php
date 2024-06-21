@@ -29,8 +29,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
-                            <th>Code</th>
-                            {{--<th>Category</th>--}}
+                            <th>Reference</th>
                             {{--<th>Subcategory</th>--}}
                             <th>Photo</th>
                             <th>Sell Price</th>
@@ -48,7 +47,7 @@
                                     {{$product->name}}
                                 </td>
                                 <td>
-                                    {{$product->code}}
+                                    {{$product->reference}}
                                 </td>
                                 {{--<td>--}}
                                 {{--{{$product->productCategory->name}}--}}
