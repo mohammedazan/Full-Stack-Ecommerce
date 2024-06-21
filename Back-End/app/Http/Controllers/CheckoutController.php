@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Commande;
+use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,8 +13,9 @@ class CheckoutController extends Controller
     {
         // Fetch the ongoing order for the authenticated user
         $commande = Commande::where('users_id', Auth::user()->id)->where('etat', 'en cours')->first();
+        $category = ProductCategory ::where('status', 1)->where('deleted', 0)->get();
         
-        return view('guest/pages.checkout', compact('commande'));
+        return view('guest/pages.checkout', compact('commande','category'));
     }
 
     public function placeOrder(Request $request)
