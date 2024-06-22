@@ -232,6 +232,18 @@ class ProductController extends Controller
         $size=ProductSize::get();
         return view('adminPanel.product._edit_product')->with(compact('productInfo', 'supplierList', 'productCategory', 'productSubcategory', 'supplierList','brand','color','size'))->render();
     }
+    public function productDetailInfo(Request $request)
+    {
+        $productInfo = Product::find($request->product_id);
+        $productCategory = ProductCategory::where('status', 1)->where('deleted', 0)->get();
+        $productSubcategory = ProductSubCategory::where('category_id', $productInfo->category_id)->where('status', 1)->where('deleted', 0)->get();
+        $supplierList = Supplier::where('status', 1)->where('deleted', 0)->get();
+        $brand = Brand::get();
+        $color = ProductColor::get();
+        $size = ProductSize::get();
+        return view('adminPanel.product._detail_product')->with(compact('productInfo', 'supplierList', 'productCategory', 'productSubcategory', 'brand', 'color', 'size'));
+    }
+
 
     public function imageDelete(Request $request)
     {
