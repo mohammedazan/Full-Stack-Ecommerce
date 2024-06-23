@@ -29,8 +29,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
-                            <th>Code</th>
-                            {{--<th>Category</th>--}}
+                            <th>Reference</th>
                             {{--<th>Subcategory</th>--}}
                             <th>Photo</th>
                             <th>Sell Price</th>
@@ -48,7 +47,7 @@
                                     {{$product->name}}
                                 </td>
                                 <td>
-                                    {{$product->code}}
+                                    {{$product->reference}}
                                 </td>
                                 {{--<td>--}}
                                 {{--{{$product->productCategory->name}}--}}
@@ -69,7 +68,7 @@
                                                 data-bs-toggle="dropdown" aria-expanded="false">Settings
                                         </button>
                                         <ul class="dropdown-menu" style="">
-                                            <li onclick="editCustomerInfo({{$product}})"><a
+                                            <li onclick="productdetail({{ $product->id }})"><a
                                                     class="dropdown-item"
                                                     href="#">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -337,6 +336,10 @@
         $(document).ready(function () {
             $('#example').DataTable({});
         });
+        function productdetail(product_id) {
+        var url_link = "{{ route('product.detail.info') }}";
+        window.location.href = url_link + "?product_id=" + product_id;
+    }
     </script>
     <script>
         $('#myInput').tagsinput();

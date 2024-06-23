@@ -116,19 +116,19 @@
                                                     placeholder="Enter Reference Name" required data-role="tagsinput" >
                                                 </div>
                                         </div>
-                                        <div class="col-sm-6">
+                                    {{--     <div class="col-sm-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Size</label>
                                                 <select class="js-example-basic-multiple form-control form-control-color w-100"   name="size[]" multiple="multiple">
 
-                                                    {{--'brand','color','size'--}}
+
                                                     @foreach($size as $dataSize)
                                                         <option value="{{$dataSize->size}}">{{$dataSize->size}}</option>
                                                     @endforeach
 
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                     </div>
 
