@@ -1,50 +1,47 @@
-    <html>
-  <head>
-    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
-  </head>
-    <style>
-      body {
-        text-align: center;
-        padding: 40px 0;
-        background: #EBF0F5;
-      }
-        h1 {
-          color: #88B04B;
-          font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
-          font-weight: 900;
-          font-size: 40px;
-          margin-bottom: 10px;
-        }
-        p {
-          color: #404F5E;
-          font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
-          font-size:20px;
-          margin: 0;
-        }
-      i {
-        color: #9ABC66;
-        font-size: 100px;
-        line-height: 200px;
-        margin-left:-15px;
-      }
-      .card {
-        background: white;
-        padding: 60px;
-        border-radius: 4px;
-        box-shadow: 0 2px 3px #C8D0D8;
-        display: inline-block;
-        margin: 0 auto;
-      }
-    </style>
-    <body>
-    <div class="card">
-      <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
-        <i class="checkmark">✓</i>
-      </div>
-      <a href="{{ route('forbest') }}"><i class="bx bx-right-arrow-alt"></i> Home </a>
-        <h1>Success</h1> 
-        <p>Thank you for your order! Your order has been successfully placed.</p>
-        <p>Order ID: {{ $commande->id }}</p>
-      </div>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <!-- Include your CSS files or styles here -->
+</head>
+<body>
+    <div>
+        <h1>Order Confirmation</h1>
+        <p>Thank you for your order!</p>
+        
+        <h2>Order Details</h2>
+        <p><strong>Order ID:</strong> {{ $commande->id }}</p>
+        <p><strong>Customer Name:</strong> {{ $commande->first_name }} {{ $commande->last_name }}</p>
+        <p><strong>Email:</strong> {{ $commande->email }}</p>
+        <p><strong>Address:</strong> {{ $commande->street_address }}, {{ $commande->town_city }}, {{ $commande->state_county }}, {{ $commande->postcode }}, {{ $commande->country }}</p>
+        
+        <h3>Ordered Items</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($commande->lignecommande as $ligne)
+                    <tr>
+                        <td>{{ $ligne->product->name }}</td>
+                        <td>{{ $ligne->product->price }}</td>
+                        <td>{{ $ligne->qte }}</td>
+                        <td>{{ $ligne->product->price * $ligne->qte }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+       
+        
+        <!-- You can add more details or formatting as per your requirements -->
+    </div>
+    <!-- Include your JavaScript files or scripts here -->
+</body>
 </html>

@@ -30,7 +30,6 @@
                             <th>Branch Name</th>
                             <th>Phone</th>
                             <th>Available Balance</th>
-                            <th>Status</th>
                             <th class="text-center">Action</th>
                         </tr>
                         </thead>
@@ -44,11 +43,6 @@
                                 <td>{{$back->branch_name}}</td>
                                 <td>{{$back->phone}}</td>
                                 <td>{{$back->available_balance}}</td>
-                                @if($back->status==1)
-                                    <td><span class="badge bg-success">Active</span></td>
-                                @else
-                                    <td><span class="badge bg-danger">Inactive</span></td>
-                                @endif
                                 <td>
                                     <div class="dropdown d-flex justify-content-center">
                                         <button class="btn btn-primary dropdown-toggle dr-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">Setting</button>

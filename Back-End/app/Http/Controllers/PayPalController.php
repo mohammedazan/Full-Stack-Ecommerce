@@ -14,9 +14,8 @@ class PayPalController extends Controller
     {
         $commande = Commande::where('users_id', Auth::user()->id)->where('etat', 'en cours')->first();
         if (!$commande) {
-            return redirect()->route('user.cart')->with('error', 'No active order found.');
+            return redirect()->route('cart')->with('error', 'No active order found.');
         }
-        
         // Calculate total price based on items in the cart
         $totalPrice = $this->calculateTotalPrice($commande);
 
