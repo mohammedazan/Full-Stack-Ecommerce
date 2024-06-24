@@ -179,7 +179,21 @@ class GuestController extends Controller
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $productdetail = Product::find($request->id);
         $productList = Product::where('deleted', 0)->get();
-        return view('guest/pages/productdetail')->with(compact('productSubcategory', 'category', 'productdetail','productList'));
+
+                // Initialize average rating
+                $avgRating = 0;
+
+                // Calculate average rating if there are reviews
+                if ($productdetail && $productdetail->reviews->isNotEmpty()) {
+                    $totalRating = 0;
+                    foreach ($productdetail->reviews as $review) {
+                        $totalRating += $review->rate;
+                    }
+                    $avgRating = $totalRating / $productdetail->reviews->count();
+                }
+
+
+        return view('guest/pages/productdetail')->with(compact('productSubcategory', 'category', 'productdetail','productList', 'avgRating'));
     }
 
     public function productoffer(Request $request){

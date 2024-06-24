@@ -92,11 +92,22 @@
                             <div class="col-md-6">
                                 <h1 class="product-title">{{ $productdetail->name }}</h1>
                                 <div class="ratings-container">
-                                    <div class="ratings">
-                                        <div class="ratings-val" style="width: 80%;"></div>
-                                    </div>
-                                    <a class="ratings-text" href="#product-review-link" id="review-link">( 2 Reviews )</a>
-                                </div>
+                                    <div class="">
+                                        @php
+                                            $fullStars = floor($avgRating); // Number of full stars (whole number part)
+                                            $halfStar = ceil($avgRating - $fullStars); // Whether to display a half star
+                                        @endphp
+                                        @for ($i = 0; $i < $fullStars; $i++)
+                                            <i class="fas fa-star" style="color: #ffc107;"></i>
+                                        @endfor
+                                
+                                        @if ($halfStar)
+                                            <i class="fas fa-star-half-alt" style="color: #ffc107;"></i>
+                                        @endif
+                                    </div><!-- End .ratings -->
+                                    <span class="ratings-text">({{ count($productdetail->reviews) }} Reviews)</span>
+                                </div><!-- End .rating-container -->
+                                
                                 <div class="product-price">
                                     @php
                                     $originalPrice = $productdetail->current_sale_price;
@@ -321,12 +332,23 @@
                             @endif 
                         </div><!-- End .product-price -->
                         <div class="ratings-container">
-                            <div class="ratings">
-                                <div class="ratings-val" style="width: 20%;"></div><!-- End .ratings-val -->
+                            <div class="">
+                                @php
+                                    $fullStars = floor($avgRating); // Number of full stars (whole number part)
+                                    $halfStar = ceil($avgRating - $fullStars); // Whether to display a half star
+                                @endphp
+                                @for ($i = 0; $i < $fullStars; $i++)
+                                    <i class="fas fa-star" style="color: #ffc107;"></i>
+                                @endfor
+                        
+                                @if ($halfStar)
+                                    <i class="fas fa-star-half-alt" style="color: #ffc107;"></i>
+                                @endif
                             </div><!-- End .ratings -->
-                            <span class="ratings-text">( 2 Reviews )</span>
+                            <span class="ratings-text">({{ count($productdetail->reviews) }} Reviews)</span>
                         </div><!-- End .rating-container -->
-    
+                        
+                        
                         <div class="product-nav product-nav-thumbs">
                             @foreach($product->productImage as $image)
                             <a href="#" class="active">
