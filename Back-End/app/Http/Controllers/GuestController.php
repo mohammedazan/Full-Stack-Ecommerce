@@ -80,8 +80,24 @@ class GuestController extends Controller
         if ($productList->isEmpty()) {
             return redirect()->back();
         }
+
+
+          // Calculate average rating and reviews count for each product
+    foreach ($productList as $product) {
+        $reviews = $product->reviews;
+        if ($reviews->count() > 0) {
+            $totalRating = $reviews->sum('rate');
+            $product->avgRating = $totalRating / $reviews->count();
+            $product->reviewsCount = $reviews->count();
+        } else {
+            $product->avgRating = 0;
+            $product->reviewsCount = 0;
+        }
+    }
+
         return view('guest/home')->with(compact('productSubcategory','productList','category','productCategory','offer','featuredImage','brandList','Blogs'));
     }
+
 
 
     public function about(){
@@ -110,13 +126,32 @@ class GuestController extends Controller
         $brandList=Brand::get();
         return view('guest/pages.product')->with(compact('productList','category','brandList','productSubcategory'));
     }
-    public function product_list(){
+
+
+    public function product_list(Request $request){
         $productList = Product::where('deleted', 0)->get();
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $brandList=Brand::get();
+      
+    // Calculate average rating and reviews count for each product
+    foreach ($productList as $product) {
+        $reviews = $product->reviews;
+        if ($reviews->count() > 0) {
+            $totalRating = $reviews->sum('rate');
+            $product->avgRating = $totalRating / $reviews->count();
+            $product->reviewsCount = $reviews->count();
+        } else {
+            $product->avgRating = 0;
+            $product->reviewsCount = 0;
+        }
+    }
+
         return view('guest/pages.product_list')->with(compact('productList','category','brandList','productSubcategory'));
     }
+
+
+
 
     public function productcategory(Request $request) {
         $brandList = Brand::get();
@@ -180,6 +215,8 @@ class GuestController extends Controller
         $productdetail = Product::find($request->id);
         $productList = Product::where('deleted', 0)->get();
 
+
+        $productdetail = Product::find($request->id);
                 // Initialize average rating
                 $avgRating = 0;
 
@@ -195,6 +232,7 @@ class GuestController extends Controller
 
         return view('guest/pages/productdetail')->with(compact('productSubcategory', 'category', 'productdetail','productList', 'avgRating'));
     }
+
 
     public function productoffer(Request $request){
         $offerId = $request->id;

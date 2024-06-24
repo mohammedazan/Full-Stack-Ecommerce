@@ -97,6 +97,7 @@
                                             $fullStars = floor($avgRating); // Number of full stars (whole number part)
                                             $halfStar = ceil($avgRating - $fullStars); // Whether to display a half star
                                         @endphp
+                                
                                         @for ($i = 0; $i < $fullStars; $i++)
                                             <i class="fas fa-star" style="color: #ffc107;"></i>
                                         @endfor
@@ -105,7 +106,7 @@
                                             <i class="fas fa-star-half-alt" style="color: #ffc107;"></i>
                                         @endif
                                     </div><!-- End .ratings -->
-                                    <span class="ratings-text">({{ count($productdetail->reviews) }} Reviews)</span>
+                                    <span class="ratings-text">({{ $productdetail->reviews->count() }} Reviews)</span>
                                 </div><!-- End .rating-container -->
                                 
                                 <div class="product-price">
@@ -331,22 +332,27 @@
                             <span class="old-price"> {{ number_format($originalPrice, 2) }}  HD</span>
                             @endif 
                         </div><!-- End .product-price -->
-                        <div class="ratings-container">
-                            <div class="">
+                        @if ($product->reviews->isNotEmpty())
                                 @php
-                                    $fullStars = floor($avgRating); // Number of full stars (whole number part)
+                                    $avgRating = $product->reviews->avg('rate'); // Calculate average rating
+                                    $fullStars = floor($avgRating); // Number of full stars
                                     $halfStar = ceil($avgRating - $fullStars); // Whether to display a half star
                                 @endphp
-                                @for ($i = 0; $i < $fullStars; $i++)
-                                    <i class="fas fa-star" style="color: #ffc107;"></i>
-                                @endfor
-                        
-                                @if ($halfStar)
-                                    <i class="fas fa-star-half-alt" style="color: #ffc107;"></i>
+
+                                <div class="ratings-container">
+                                    <div class="">
+                                        @for ($i = 0; $i < $fullStars; $i++)
+                                            <i class="fas fa-star" style="color: #ffc107;"></i>
+                                        @endfor
+                                        @if ($halfStar)
+                                            <i class="fas fa-star-half-alt" style="color: #ffc107;"></i>
+                                        @endif
+                                    </div>
+                                    <span class="ratings-text">({{ $product->reviews->count() }} Reviews)</span>
+                                </div><!-- End .ratings-container -->
+                                @else
+                                <p>No reviews yet.</p>
                                 @endif
-                            </div><!-- End .ratings -->
-                            <span class="ratings-text">({{ count($productdetail->reviews) }} Reviews)</span>
-                        </div><!-- End .rating-container -->
                         
                         
                         <div class="product-nav product-nav-thumbs">

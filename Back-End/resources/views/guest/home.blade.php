@@ -34,7 +34,6 @@
     <link href="{{ asset('assets/css/skins/skin-demo-13.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/demos/demo-13.css') }}" rel="stylesheet">
 
-
         <!-- Toastr CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
