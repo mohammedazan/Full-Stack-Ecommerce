@@ -16,6 +16,7 @@ class PayPalController extends Controller
         if (!$commande) {
             return redirect()->route('cart')->with('error', 'No active order found.');
         }
+        
         // Calculate total price based on items in the cart
         $totalPrice = $this->calculateTotalPrice($commande);
 

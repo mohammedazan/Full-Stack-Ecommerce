@@ -73,8 +73,7 @@ Route::group(['middleware' => 'authCheck'], function () {
     
    // _____________________ Route color_______________________________________ 
     Route::get('/product/edit/info', [ProductController::class, 'productEditDetails'])->name('product.edit.info');
-    Route::get('/product/view/details', [ProductController::class, 'productViewDetails'])->name('product.view.details');
-
+    Route::get('/product/detail/info', [ProductController::class, 'productDetailInfo'])->name('product.detail.info');
     Route::get('/product/image/delete', [ProductController::class, 'imageDelete'])->name('product.image.delete');
     Route::get('/product/color', [ProductController::class, 'productColor'])->name('admin.product.color.show');
     Route::post('/product/color/store', [ProductController::class, 'productColorStore'])->name('admin.product.color.store');
@@ -259,14 +258,14 @@ Route::group(['middleware' => 'AuthCheckUser'], function () {
    Route::get('/user/lc/{idlc}/destroy', [CommandeController::class, 'LigneCommandedestroy']);
 
 
-
 Route::get('/checkout/confirmation', [CheckoutController::class, 'confirmation'])->name('checkout.confirmation');
-
 Route::get('/user/checkout', [CheckoutController::class, 'index'])->name('checkout');
 Route::post('/user/order/place', [CheckoutController::class, 'placeOrder'])->name('order.place');
 
 Route::get('/user/profile', [UserProfileController::class, 'UserProfile']);
 Route::post('/user/profile/update', [UserProfileController::class, 'updateProfile'])->name('user.profile.update');
+
+
 
 
 Route::get('/payment', [PayPalController::class, 'payment'])->name('payment');
@@ -281,6 +280,7 @@ Route::post('/contact_mail', [ContactController::class, 'contact_mail_send']);
 Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
 Route::get('/about', [GuestController::class, 'about'])->name('about');
 Route::get('/forbest', [GuestController::class, 'Home'])->name('forbest');
+
 
 Route::get('/testaffichage',function(){
    return view('') ;

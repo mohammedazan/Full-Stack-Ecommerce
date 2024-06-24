@@ -47,7 +47,7 @@ return new class extends Migration {
             $table->unsignedInteger('deleted_by')->nullable()->default(null);
         });
     }
-
+ 
     /**
      * Reverse the migrations.
      *
