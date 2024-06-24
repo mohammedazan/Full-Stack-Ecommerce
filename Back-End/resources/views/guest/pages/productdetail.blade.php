@@ -388,6 +388,8 @@
     @include('guest/partials.login')
     @include('guest/partials.mobile-menu')
 
+
+    
     <script src= "{{asset('assets/js/jquery.min.js')}}"></script>
     <script src= "{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
     <script src= "{{asset('assets/js/jquery.hoverIntent.min.js')}}"></script>
