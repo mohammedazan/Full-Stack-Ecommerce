@@ -214,6 +214,7 @@ class GuestController extends Controller
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $productdetail = Product::find($request->id);
         $productList = Product::where('deleted', 0)->get();
+<<<<<<< HEAD
 
 
         $productdetail = Product::find($request->id);
@@ -231,6 +232,9 @@ class GuestController extends Controller
 
 
         return view('guest/pages/productdetail')->with(compact('productSubcategory', 'category', 'productdetail','productList', 'avgRating'));
+=======
+        return view('guest/pages/productdetail')->with(compact('productSubcategory', 'category', 'productdetail','productList'));
+>>>>>>> bbc0597ccaa28a2862faa17c3744b8f66d1f29f1
     }
 
 

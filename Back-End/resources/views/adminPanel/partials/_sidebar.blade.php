@@ -229,7 +229,7 @@
                 <a href="javascript:;" class="has-arrow">
                     <div class="parent-icon" style="color: #2ECC71;"><i class="lni lni-package"></i>
                     </div>
-                    <div class="menu-title">Stock Products</div>
+                    <div class="menu-title">Supplier</div>
                 </a>
                 <ul>
                     {{-- @if(userCanAccess('9'))

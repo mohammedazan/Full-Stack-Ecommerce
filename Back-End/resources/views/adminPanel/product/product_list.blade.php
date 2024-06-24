@@ -68,20 +68,16 @@
                                                 data-bs-toggle="dropdown" aria-expanded="false">Settings
                                         </button>
                                         <ul class="dropdown-menu" style="">
-                                            <li onclick="productdetail({{ $product->id }})"><a
-                                                    class="dropdown-item"
-                                                    href="#">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                         class="feather feather-edit text-primary">
-                                                        <path
-                                                            d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                                        <path
-                                                            d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                            <li onclick="viewProductDetails({{$product->id}})">
+                                                <a class="dropdown-item" href="#">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye text-primary">
+                                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"></path>
+                                                        <circle cx="12" cy="12" r="3"></circle>
                                                     </svg>
-                                                    View</a>
+                                                    View
+                                                </a>
                                             </li>
+                                            
                                             <li onclick="barcodePrint( {{$product->id}})" style="cursor: pointer">
                                                 <span
                                                     class="dropdown-item"
@@ -228,6 +224,20 @@
                 </div>
             </div>
         </form>
+        <div class="modal fade" id="product_view" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">View Product</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="viewProduct">
+                        <!-- Product details will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
 
         {{--        modal--}}
 
@@ -336,10 +346,28 @@
         $(document).ready(function () {
             $('#example').DataTable({});
         });
-        function productdetail(product_id) {
-        var url_link = "{{ route('product.detail.info') }}";
-        window.location.href = url_link + "?product_id=" + product_id;
-    }
+                function viewProductDetails(product_id) {
+            var url_link = "{{route('product.view.details')}}";
+            $.ajax({
+                url: url_link,
+                type: "get",
+                data: {
+                    product_id: product_id,
+                },
+                success: function (response) {
+                    $('#viewProduct').html(response);
+                    $('#myInput').tagsinput('refresh');
+                    $('.js-example-basic-multiple').select2();
+                },
+                error: function (xhr) {
+                    // Handle error
+                }
+            });
+
+            $('#product_view').modal('show');
+            $('#myInput').tagsinput();
+        }
+
     </script>
     <script>
         $('#myInput').tagsinput();
@@ -365,11 +393,6 @@
             // $("#taglist").tagsinput('items')
 
             $('#myInput').tagsinput();
-
-
-
-
-
         }
 
         // function tagreset(){

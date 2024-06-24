@@ -19,8 +19,6 @@ class ReviewProduct extends Controller
         return view('adminPanel/Reviews/review')->with('review',$review);
     }
 
-
-
     
     public function addreview(Request $request){
         // dd($request);
@@ -32,6 +30,10 @@ class ReviewProduct extends Controller
         $review->save();
         return redirect()->back()->with('success', 'Review submitted successfully.');
     }
+
+
+
+    
 
 
 }
