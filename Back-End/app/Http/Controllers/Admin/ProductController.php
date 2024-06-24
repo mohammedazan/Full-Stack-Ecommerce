@@ -232,7 +232,7 @@ class ProductController extends Controller
         $size=ProductSize::get();
         return view('adminPanel.product._edit_product')->with(compact('productInfo', 'supplierList', 'productCategory', 'productSubcategory', 'supplierList','brand','color','size'))->render();
     }
-    public function productDetailInfo(Request $request)
+    public function productViewDetails(Request $request)
     {
         $productInfo = Product::find($request->product_id);
         $productCategory = ProductCategory::where('status', 1)->where('deleted', 0)->get();
@@ -241,8 +241,9 @@ class ProductController extends Controller
         $brand = Brand::get();
         $color = ProductColor::get();
         $size = ProductSize::get();
-        return view('adminPanel.product._detail_product')->with(compact('productInfo', 'supplierList', 'productCategory', 'productSubcategory', 'brand', 'color', 'size'));
+        return view('adminPanel.product._view_product')->with(compact('productInfo', 'supplierList', 'productCategory', 'productSubcategory', 'supplierList', 'brand', 'color', 'size'))->render();
     }
+    
 
 
     public function imageDelete(Request $request)
@@ -265,6 +266,7 @@ class ProductController extends Controller
         $product->brand_id = $request->brand_id;
         $product->color = implode(",", $request->product_color);
         $product->size = $request->size;
+        $product->reference = $request->reference;
         $product->supplier_id = $request->supplier_id;
         $product->current_purchase_cost = $request->current_purchase_cost;
         $product->current_sale_price = $request->current_sale_price;

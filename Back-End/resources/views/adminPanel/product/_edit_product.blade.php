@@ -81,6 +81,13 @@
                                value="{{$productInfo->size}}">
                     </div>
                 </div>
+                <div class="col-sm-6">
+                    <div class="mb-3">
+                        <label class="form-label">Reference</label>
+                        <input type="text" id="myInput" name="reference" class="form-control" data-role="tagsinput"
+                               value="{{$productInfo->reference}}">
+                    </div>
+                </div>
 
                 <div class="col-sm-12">
                     <div class="mb-3">
