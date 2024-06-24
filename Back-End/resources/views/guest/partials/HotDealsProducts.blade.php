@@ -1,4 +1,9 @@
    <!-- start .HotDealsProducts -->
+   <head>
+    	<!-- Add Font Awesome for stars -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+   </head>
    <div class="bg-light pt-3 pb-5">
                 <div class="container">
                     <div class="heading heading-flex heading-border mb-3">
@@ -72,6 +77,17 @@
                                         $discountedPrice = $originalPrice;
                                         $discountLabel = null;
                                     }
+                                    									  // Get average rating and reviews count
+									  $avgRating = $product->avgRating;
+            $reviewsCount = $product->reviewsCount;
+            
+            // Calculate full stars and half star
+            $fullStars = floor($avgRating); // Number of full stars (whole number part)
+            $halfStar = ceil($avgRating - $fullStars); // Whether to display a half star
+            
+            // Calculate full stars and half star
+            $fullStars = floor($avgRating); // Number of full stars (whole number part)
+            $halfStar = ceil($avgRating - $fullStars); // Whether to display a half star
                                 @endphp
                             
                                 <div class="product">
@@ -116,12 +132,30 @@
                                             <span class="old-price"> {{ number_format($originalPrice, 2) }}  HD</span>
                                             @endif 
                                         </div><!-- End .product-price -->
+                                        @if ($product->reviews->isNotEmpty())
+                                        @php
+                                            $avgRating = $product->reviews->avg('rate'); // Calculate average rating
+                                            $fullStars = floor($avgRating); // Number of full stars
+                                            $halfStar = ceil($avgRating - $fullStars); // Whether to display a half star
+                                        @endphp
+        
                                         <div class="ratings-container">
-                                            <div class="ratings">
-                                                <div class="ratings-val" style="width: 100%;"></div><!-- End .ratings-val -->
-                                            </div><!-- End .ratings -->
-                                            <span class="ratings-text">( 2 Reviews )</span>
-                                        </div><!-- End .rating-container -->
+                                            <div class="">
+                                                @for ($i = 0; $i < $fullStars; $i++)
+                                                    <i class="fas fa-star" style="color: #ffc107;"></i>
+                                                @endfor
+                                                @if ($halfStar)
+                                                    <i class="fas fa-star-half-alt" style="color: #ffc107;"></i>
+                                                
+                                                @endif
+                                            
+                                            </div>
+                                            <span class="ratings-text">({{ $reviewsCount}} Reviews)</span>
+                                        </div><!-- End .ratings-container -->
+                                        @else
+                                        <p>No reviews yet.</p>
+                                        @endif
+
                                     {{--     <div class="product-nav product-nav-thumbs">
                                             @foreach($product->productImage as $image)
                                             <a href="#" class="active">

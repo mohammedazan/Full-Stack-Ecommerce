@@ -64,7 +64,6 @@ class Product extends Model
     public function reviews()
     {
         return $this->hasMany(Product_review::class, 'product_id', 'id');
-        
     }
 
  
