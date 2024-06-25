@@ -26,20 +26,21 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', 'min:8'],
             'address' => 'required|string|max:255', // Address validation
         ]);
-
+    
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'address' => $request->address,
         ]);
-
+    
         event(new Registered($user));
+
         
         session()->flash('success', 'Account created successfully!');
-
-
-        return redirect('/forbest');
-        
+    
+        // Redirect to the sign-in modal on the /forbest page
+        return redirect('/forbest#login-modal'); 
     }
+    
 }

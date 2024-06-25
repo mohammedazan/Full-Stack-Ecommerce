@@ -204,8 +204,8 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="product-review-tab" role="tabpanel" aria-labelledby="product-review-link">
-                            <h6>Reviews ({{ count($productdetail->reviews) }})</h6>
-                            @foreach($productdetail->reviews as $r)
+                            {{-- <h6>Reviews ({{ count($productdetail->reviews) }})</h6> --}}
+                            {{-- @foreach($productdetail->reviews as $r)
                             <div class="review">
                                 <div class="row no-gutters">
                                     <div class="col-auto">
@@ -223,7 +223,43 @@
                                     </div>
                                 </div>
                             </div>
-                            @endforeach
+                            @endforeach --}}
+                            
+                            {{-- <h2 class="title text-center mb-3">Customer Photo <span class="title-separator">/</span> Centered Align</h2> --}}
+                            <h2 class="title text-center mb-3">Reviews</h2><!-- End .title text-center -->
+
+                            <div class="owl-carousel owl-theme owl-testimonials-photo" data-toggle="owl" 
+                                data-owl-options='{
+                                    "nav": false, 
+                                    "dots": true,
+                                    "margin": 20,
+                                    "loop": false,
+                                    "responsive": {
+                                        "1200": {
+                                            "nav": true
+                                        }
+                                    }
+                                }'>
+                                @foreach($productdetail->reviews as $r)
+
+                                <blockquote class="testimonial text-center">
+                                    @for ($i = 0; $i < $r->rate; $i++)
+                                    <i class="fas fa-star" style="color: #ffc107;"></i>
+                                @endfor 
+                                <p>“ {{$r->content }} ”</p>
+                            
+                                    <cite>
+                                       by :
+                                        <span>{{ $r->user->name }}</span>
+                                    </cite>
+                                    <span class="review-date">{{ $r->created_at->diffForHumans() }}</span>
+
+                                </blockquote><!-- End .testimonial -->
+                                @endforeach
+
+                            
+                            </div><!-- End .testimonials-slider owl-carousel -->
+                            
                             <div class="review-form">
                                 <h4>Add Your Review</h4>
                                 <form action="{{ route('forbest.review.store') }}" method="POST">
@@ -246,10 +282,12 @@
                                     <button type="submit" class="btn btn-primary">Submit Review</button>
                                 </form>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
             </div>
+
         <div class="container">
             <h2 class="title text-center mb-4">You May Also Like</h2><!-- End .title text-center -->
 
