@@ -162,7 +162,7 @@
 									<div class="col-6 col-md-4 col-lg-4">
 										<div class="product product-7 text-center">
 											<figure class="product-media">
-												@if($discountLabel)
+												@if($discountLabel  >= 1 )
 												<span class="product-label label-new">{{ $discountLabel }}</span>
 												@endif
 												<a href="{{ route('productdetail', ['id' => $product->id]) }}">

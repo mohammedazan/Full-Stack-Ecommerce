@@ -67,7 +67,7 @@ class GuestController extends Controller
         $featuredImage=FeaturedLink::get();
         $Blogs=Blogs::all();
         $brandList=Brand::get();
-
+        $CompanyInfo=CompanyInfo::get();
 
         $categoryId = $request->id;
         if ($categoryId) {
@@ -95,7 +95,7 @@ class GuestController extends Controller
         }
     }
 
-        return view('guest/home')->with(compact('productSubcategory','productList','category','productCategory','offer','featuredImage','brandList','Blogs'));
+        return view('guest/home')->with(compact('productSubcategory','productList','category','productCategory','offer','featuredImage','brandList','Blogs','CompanyInfo'));
     }
 
 
@@ -104,7 +104,8 @@ class GuestController extends Controller
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $company = CompanyInfo::first();
-        return view('guest/pages.about')->with(compact('productSubcategory','category','company'));
+        $CompanyInfo=CompanyInfo::get();
+        return view('guest/pages.about')->with(compact('productSubcategory','category','company','CompanyInfo'));
 
     }
 
@@ -124,7 +125,8 @@ class GuestController extends Controller
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $brandList=Brand::get();
-        return view('guest/pages.product')->with(compact('productList','category','brandList','productSubcategory'));
+        $CompanyInfo=CompanyInfo::get();
+        return view('guest/pages.product')->with(compact('productList','category','brandList','productSubcategory','CompanyInfo'));
     }
 
 
@@ -155,6 +157,7 @@ class GuestController extends Controller
 
     public function productcategory(Request $request) {
         $brandList = Brand::get();
+        $CompanyInfo=CompanyInfo::get();
         $categoryId = $request->id;
         if ($categoryId) {
             $productList = Product::where('category_id', $categoryId)
@@ -168,10 +171,11 @@ class GuestController extends Controller
         if ($productList->isEmpty()) {
             return redirect()->back();
         }
-        return view('guest/pages.product')->with(compact('productList','productSubcategory', 'category', 'brandList'));
+        return view('guest/pages.product')->with(compact('productList','productSubcategory', 'category', 'brandList','CompanyInfo'));
     }
     public function product_list_category(Request $request) {
         $brandList = Brand::get();
+        $CompanyInfo=CompanyInfo::get();
         $categoryId = $request->id;
         if ($categoryId) {
             $productList = Product::where('category_id', $categoryId)
@@ -185,11 +189,12 @@ class GuestController extends Controller
         if ($productList->isEmpty()) {
             return redirect()->back();
         }
-        return view('guest/pages.product_list')->with(compact('productList','productSubcategory', 'category', 'brandList'));
+        return view('guest/pages.product_list')->with(compact('productList','productSubcategory', 'category', 'brandList','CompanyInfo'));
     }
 
     public function productsubcategory(Request $request) {
         $brandList = Brand::get();
+        $CompanyInfo=CompanyInfo::get();
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         // Get the subcategory_id from the request
         $subcategoryId = $request->id;
@@ -205,7 +210,7 @@ class GuestController extends Controller
         if ($productList->isEmpty()) {
             return redirect()->back();
         }
-        return view('guest/pages.product')->with(compact('productList', 'productSubcategory','category', 'brandList'));
+        return view('guest/pages.product')->with(compact('productList', 'productSubcategory','category', 'brandList','CompanyInfo'));
     }
     
 
@@ -213,6 +218,7 @@ class GuestController extends Controller
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $productdetail = Product::find($request->id);
+        $CompanyInfo=CompanyInfo::get();
         $productList = Product::where('deleted', 0)->get();
 
         $productdetail = Product::find($request->id);
@@ -227,7 +233,9 @@ class GuestController extends Controller
                     }
                     $avgRating = $totalRating / $productdetail->reviews->count();
                 }
-        return view('guest/pages/productdetail')->with(compact('productSubcategory', 'category', 'productdetail','productList','avgRating'));
+
+
+        return view('guest/pages/productdetail')->with(compact('productSubcategory', 'category', 'productdetail','productList', 'avgRating','CompanyInfo'));
     }
 
     public function productoffer(Request $request){
@@ -250,12 +258,14 @@ class GuestController extends Controller
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $brandList = Brand::get();
+        $CompanyInfo=CompanyInfo::get();
     
-        return view('guest/pages.product')->with(compact('productList', 'category', 'brandList', 'productSubcategory'));
+        return view('guest/pages.product')->with(compact('productList', 'category', 'brandList', 'productSubcategory','CompanyInfo'));
     }
 
     public function productbrand(Request $request){
         $brandId = $request->id;
+        $CompanyInfo=CompanyInfo::get();
     
         if (!$brandId) {
             return response()->json(['error' => 'Brand ID not provided'], 400);
@@ -271,11 +281,12 @@ class GuestController extends Controller
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $brandList = Brand::get();
     
-        return view('guest/pages.product')->with(compact('productList', 'category', 'brandList', 'productSubcategory'));
+        return view('guest/pages.product')->with(compact('productList', 'category', 'brandList', 'productSubcategory','CompanyInfo'));
     }
 
     public function product_list_brand(Request $request){
         $brandId = $request->id;
+        $CompanyInfo=CompanyInfo::get();
     
         if (!$brandId) {
             return response()->json(['error' => 'Brand ID not provided'], 400);
@@ -291,7 +302,7 @@ class GuestController extends Controller
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $brandList = Brand::get();
     
-        return view('guest/pages.product_list')->with(compact('productList', 'category', 'brandList', 'productSubcategory'));
+        return view('guest/pages.product_list')->with(compact('productList', 'category', 'brandList', 'productSubcategory','CompanyInfo'));
     }
 
 
@@ -299,8 +310,9 @@ class GuestController extends Controller
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $productCategory = ProductCategory::where('deleted', 0)->where('status', 1)->get();
+        $CompanyInfo=CompanyInfo::get();
         $faqList=Faq::get();
-        return view('guest/pages.faqs')->with(compact('category', 'productCategory', 'productSubcategory','faqList'));
+        return view('guest/pages.faqs')->with(compact('category', 'productCategory', 'productSubcategory','faqList','CompanyInfo'));
 
     }
 
