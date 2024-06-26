@@ -25,7 +25,7 @@
                     <div class="d-flex gap-3 mt-3">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal">
-                            <i class="lni lni-circle-plus"></i> Add Offer
+                            <i class="lni lni-circle-plus"></i> Ajouter une offre
                         </button>
                         {{--                        <a href="#" class="btn btn-primary"><i class="lni lni-circle-plus"></i> Add Category</a>--}}
                     </div>
@@ -40,10 +40,10 @@
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Offer Name</th>
-                            <th>Banner</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
+                            <th>Nom de l'offre</th>
+                            <th>Bannière</th>
+                            <th>Date de début</th>
+                            <th>Date de fin</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -63,7 +63,7 @@
                                 <td>
                                     <div class="dropdown d-flex justify-content-center">
                                         <button class="btn btn-primary dropdown-toggle dr-btn" type="button"
-                                                data-bs-toggle="dropdown" aria-expanded="false">Settings
+                                                data-bs-toggle="dropdown" aria-expanded="false">Paramètres
                                         </button>
                                         <ul class="dropdown-menu" style="">
                                             <li onclick="editSupplierInfo({{$offerList}},'{{asset($offerList->banner_image)}}')">
@@ -79,7 +79,7 @@
                                                         <path
                                                             d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                                                     </svg>
-                                                    Edit</a>
+                                                    Modifier</a>
                                             </li>
                                             <li>
 
@@ -103,7 +103,7 @@
                                                         <path
                                                             d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                                                     </svg>
-                                                    Delete</a>
+                                                    Supprimer</a>
                                             </li>
 
                                         </ul>
@@ -133,7 +133,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Create Offer</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Créer une Offre</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -141,41 +141,41 @@
                                 <div class="col-sm-12" style="border-right:1px solid #dfdada">
                                     <div class="mb-2 row">
                                         <div class="col-sm-12">
-                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Offer Name
+                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Nom de l'Offre
                                                 <stong class="text-danger">*</stong>
                                             </label>
                                             <div class="col-sm-12">
                                                 <input type="text" id="inputname" class="form-control"
                                                        name="offer_name"
-                                                       placeholder="Offer Name" required>
+                                                       placeholder="Nom de l'Offre" required>
                                             </div>
                                         </div>
-
+        
                                         <div class="col-sm-6 mt-2">
-                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Start Date
+                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Date de Début
                                             </label>
                                             <div class="col-sm-12">
                                                 <input type="date" id="inputname" class="form-control"
                                                        name="start_date"
-                                                       placeholder="Start Date" required>
+                                                       placeholder="Date de Début" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-6 mt-2">
-                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">End Date
+                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Date de Fin
                                             </label>
                                             <div class="col-sm-12">
                                                 <input type="date" id="inputname" class="form-control"
                                                        name="end_date"
-                                                       placeholder="End Date" required>
+                                                       placeholder="Date de Fin" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-12 mt-2">
-                                            <label for="inputProductDescription" class="form-label">Banner Photo</label>
+                                            <label for="inputProductDescription" class="form-label">Photo de Bannière</label>
                                             <input style="display:none" type="file" name="image" class="image">
                                             <div class="row" id="productImglist">
                                                 <div class="col-sm-12 mb-2" style="position:relative" id="222"
                                                      onclick="selectImage('222')">
-                                                    <span class="text-center mainphototxt">Main Photo</span>
+                                                    <span class="text-center mainphototxt">Photo Principale</span>
                                                     <input type="hidden" name="banner_img" class="222input">
                                                     <div
                                                         class="imgaddcard d-flex justify-content-center align-items-center 222view ">
@@ -191,23 +191,22 @@
                                                     </div>
                                                 </div>
                                             </div>
-
+        
                                             <div class="modal fade modalimage" id="modal" tabindex="-1" role="dialog"
                                                  aria-labelledby="modalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-lg" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="modalLabel">Crop image</h5>
+                                                            <h5 class="modal-title" id="modalLabel">Rogner l'image</h5>
                                                             <button type="button" class="close" data-dismiss="modal"
                                                                     aria-label="Close">
-                                                                <span aria-hidden="true">�</span>
+                                                                <span aria-hidden="true">×</span>
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
                                                             <div class="img-container">
                                                                 <div class="row">
                                                                     <div class="col-md-8">
-                                                                        <!--  default image where we will set the src via jquery-->
                                                                         <img id="image">
                                                                     </div>
                                                                     <div class="col-md-4">
@@ -218,39 +217,39 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">Cancel
+                                                                    data-dismiss="modal">Annuler
                                                             </button>
-                                                            <button type="button" class="btn btn-primary" id="crop">Crop
+                                                            <button type="button" class="btn btn-primary" id="crop">Rogner
                                                             </button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
+        
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="d-flex justify-content-end p-3">
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="submit" class="btn btn-primary">Enregistrer</button>
                         </div>
                     </div>
-
+        
                 </div>
             </div>
         </form>
-
+        
         {{--Edit --}}
-        <form action="{{route('admin.update.offer')}}" method="post">
+        <form action="{{ route('admin.update.offer') }}" method="post">
             @csrf
             <div class="modal fade" id="supplier_edit" tabindex="-1" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog modal-md">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Edit Offer</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <h5 class="modal-title" id="exampleModalLabel">Modifier l'Offre</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
                         </div>
                         <div class="modal-body">
                             <div class="row">
@@ -258,70 +257,77 @@
                                     <div class="mb-2 row">
                                         <div class="col-sm-12">
                                             <input type="hidden" name="offer_id" id="offer_id">
-                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Offer Name
-                                                <stong class="text-danger">*</stong>
+                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Nom de l'Offre
+                                                <strong class="text-danger">*</strong>
                                             </label>
                                             <div class="col-sm-12">
                                                 <input type="text" id="offer_name" class="form-control"
                                                        name="offer_name"
-                                                       placeholder="Offer Name" required>
+                                                       placeholder="Nom de l'Offre" required>
                                             </div>
                                         </div>
-
+        
                                         <div class="col-sm-6 mt-2">
-                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Start Date
+                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Date de Début
                                             </label>
                                             <div class="col-sm-12">
                                                 <input type="date" id="startdate" class="form-control"
                                                        name="start_date"
-                                                       placeholder="Start Date" required>
+                                                       placeholder="Date de Début" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-6 mt-2">
-                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">End Date
+                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Date de Fin
                                             </label>
                                             <div class="col-sm-12">
                                                 <input type="date" id="enddate" class="form-control"
                                                        name="end_date"
-                                                       placeholder="End Date" required>
+                                                       placeholder="Date de Fin" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-12 mt-2">
                                             <div class="mb-2 mt-2 row d-flex justify-content-center"
                                                  style="position: relative">
-
+        
                                                 <div class="d-flex justify-content-center">
-                                     <span onclick="changeBrand()">
-                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round" class="feather feather-edit text-primary"><path
-                                            d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path
-                                            d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-                                     </span>
+                                                    <span onclick="changeBrand()">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                             viewBox="0 0 24 24"
+                                                             fill="none" stroke="currentColor" stroke-width="2"
+                                                             stroke-linecap="round"
+                                                             stroke-linejoin="round"
+                                                             class="feather feather-edit text-primary">
+                                                            <path
+                                                                d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                                            <path
+                                                                d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                                        </svg>
+                                                    </span>
                                                     <img id="updateimg" style="height: 160px;width: 340px;border: 1px solid #e5e2e2;border-radius: 20px;padding: 0px;" src="" alt="">
                                                 </div>
-
-
+        
+        
                                             </div>
-
-
+        
+        
                                             <div class="row d-flex justify-content-center" id="productImglist">
                                                 <input style="display: none" id="inp" type="file">
                                                 <input style="display: none" id="inp2" name="updateImage" type="text">
                                             </div>
                                         </div>
-
+        
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="d-flex justify-content-end p-3">
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-primary">Mettre à jour</button>
                         </div>
                     </div>
                 </div>
             </div>
         </form>
+        
 
         {{--        modal--}}
     </div>

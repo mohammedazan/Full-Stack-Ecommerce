@@ -12,9 +12,9 @@
                     <div class="d-flex gap-3 mt-3">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal">
-                            <i class="lni lni-circle-plus"></i> Add Offer Product
+                            <i class="lni lni-circle-plus"></i> Ajouter un produit d'offre
                         </button>
-                        {{--                        <a href="#" class="btn btn-primary"><i class="lni lni-circle-plus"></i> Add Category</a>--}}
+                        {{--                        <a href="#" class="btn btn-primary"><i class="lni lni-circle-plus"></i> Ajouter une catégorie</a>--}}
                     </div>
                 </div>
             </div>
@@ -27,12 +27,12 @@
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Offer Name</th>
-                            <th>Product Name</th>
-                            <th>Offer Type</th>
-                            <th>Offer Discount</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
+                            <th>Nom de l'offre</th>
+                            <th>Nom du produit</th>
+                            <th>Type d'offre</th>
+                            <th>Remise sur l'offre</th>
+                            <th>Date de début</th>
+                            <th>Date de fin</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -48,10 +48,10 @@
                                     {{$offerListdata->productInfo->name}}
                                 </td>
                                 @if($offerListdata->offer_type==0)
-                                    <td><span class="badge bg-success">Fixed</span></td>
+                                    <td><span class="badge bg-success">Fixe</span></td>
                                 @else
                                     <td>
-                                        <span class="badge bg-info">Percentage</span>
+                                        <span class="badge bg-info">Pourcentage</span>
                                     </td>
                                 @endif
 
@@ -70,7 +70,7 @@
                                 <td>
                                     <div class="dropdown d-flex justify-content-center">
                                         <button class="btn btn-primary dropdown-toggle dr-btn" type="button"
-                                                data-bs-toggle="dropdown" aria-expanded="false">Settings
+                                                data-bs-toggle="dropdown" aria-expanded="false">Paramètres
                                         </button>
                                         <ul class="dropdown-menu" style="">
 {{--                                            <li onclick="editSupplierInfo({{$offerListdata->id}})"><a--}}
@@ -85,10 +85,10 @@
 {{--                                                        <path--}}
 {{--                                                            d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>--}}
 {{--                                                    </svg>--}}
-{{--                                                    Edit</a>--}}
+{{--                                                    Modifier</a>--}}
 {{--                                            </li>--}}
                                             <li class="align-items-center"
-                                                onclick="return confirm('Are you sure you want to delete this item?');">
+                                                onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet article ?');">
                                                 <a
                                                     class="dropdown-item"
                                                     href="{{route('admin.product.offerProduct.delete',['id'=>$offerListdata->id])}}">
@@ -100,7 +100,7 @@
                                                         <path
                                                             d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                                                     </svg>
-                                                    Delete</a>
+                                                    Supprimer</a>
                                             </li>
 
                                         </ul>
@@ -114,7 +114,7 @@
                         <tfoot>
                         {{--                        <tr>--}}
                         {{--                            <th colspan="6"></th>--}}
-                        {{--                            <th>Salary</th>--}}
+                        {{--                            <th>Salaire</th>--}}
                         {{--                        </tr>--}}
                         </tfoot>
                     </table>
@@ -130,7 +130,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Create Offer</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Créer une offre</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -138,11 +138,11 @@
                                 <div class="col-sm-12" style="border-right:1px solid #dfdada">
                                     <div class="mb-2 row">
                                         <div class="col-sm-12">
-                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Offer
+                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Offre
                                                 <stong class="text-danger">*</stong>
                                             </label>
                                             <div class="col-sm-12">
-                                                <select name="offer_id" id="" class="form-select" placeholder="choose offer" required>
+                                                <select name="offer_id" id="" class="form-select" placeholder="choisir l'offre" required>
                                                     @foreach($offerList as $offer)
                                                         <option value="{{$offer->id}}">{{$offer->offer_name}}</option>
                                                     @endforeach
@@ -150,10 +150,10 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-12">
-                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Select Product
+                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Sélectionner le produit
                                                 <stong class="text-danger">*</stong>
                                             </label>
-                                            <select class="form-select" name="offer_product_list[]" id="multiple-select-field" data-placeholder="Choose Products" multiple required>
+                                            <select class="form-select" name="offer_product_list[]" id="multiple-select-field" data-placeholder="Choisir des produits" multiple required>
                                                 @foreach($productList as $product)
                                                     <option value="{{$product->id}}">{{$product->name}}</option>
                                                 @endforeach
@@ -161,22 +161,22 @@
                                         </div>
 
                                         <div class="col-sm-6 mt-2">
-                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Offer Type
+                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Type d'offre
                                             </label>
                                             <div class="col-sm-12">
                                                 <select class="form-select" onchange="offerTypeSet(this)" name="offer_type" required>
-                                                        <option value="0">Fixed</option>
-                                                        <option value="1">Percentage (%) </option>
+                                                        <option value="0">Fixe</option>
+                                                        <option value="1">Pourcentage (%) </option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-sm-6 mt-2">
-                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Amount
+                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Montant
                                             </label>
                                             <div class="col-sm-12">
                                                 <input type="number" id="offerAmount" class="form-control"
                                                        name="amount"
-                                                       placeholder="Offer Amount" required>
+                                                       placeholder="Montant de l'offre" required>
                                             </div>
                                         </div>
                                     </div>
@@ -184,7 +184,7 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-end p-3">
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="submit" class="btn btn-primary">Sauvegarder</button>
                         </div>
                     </div>
 
@@ -192,7 +192,7 @@
             </div>
         </form>
 
-        {{--Edit --}}
+        {{--Modifier --}}
         <form action="{{route('admin.update.supplier')}}" method="post">
             @csrf
             <div class="modal fade" id="supplier_edit" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -200,14 +200,14 @@
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Edit Supplier</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Modifier le fournisseur</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body" id="updateinfo">
 
                         </div>
                         <div class="d-flex justify-content-end p-3">
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-primary">Mettre à jour</button>
                         </div>
                     </div>
                 </div>
@@ -218,6 +218,7 @@
     </div>
     <!--end page wrapper -->
 @endsection
+
 @section('css_plugins')
     {{--    select2--}}
     <link rel="stylesheet" href="{{asset('assets/adminPanel/plugins')}}/cdn.jsdelivr.net/npm/select2%404.1.0-rc.0/dist/css/select2.min.css"/>

@@ -54,9 +54,9 @@
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>User Name</th>
-                            <th>User Email</th>
-                            <th>Login date</th>
+                            <th>Nom d'utilisateur</th>
+                            <th>Email d'utilisateur</th>
+                            <th>Date de connexion</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -95,7 +95,7 @@
                                     <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(' Êtes-vous sûr de vouloir supprimer cet élément ?')">supprimer</button>
                                     </form>
                                 </td>       
                             </tr>
