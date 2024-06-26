@@ -25,167 +25,120 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="headst__set">
-                            <h4>Company Info</h4>
+                            <h4>Informations sur l'entreprise</h4>
                         </div>
-                            <div class="row">
-                                <div class="col-sm-9">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="mb-3">
-                                                <label for="exampleInputPassword1" class="form-label">Name
-                                                </label>
-                                                <input type="text" name="name"
-                                                       value="{{$companyInfo->name}}" class="form-control"
-                                                       id="exampleInputPassword1">
-                                            </div>
+                        <div class="row">
+                            <div class="col-sm-9">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="mb-3">
+                                            <label for="exampleInputPassword1" class="form-label">Nom</label>
+                                            <input type="text" name="name" value="{{$companyInfo->name}}" class="form-control" id="exampleInputPassword1">
                                         </div>
-                                        <div class="col-sm-6">
-                                            <div class="mb-3">
-                                                <label for="exampleInputPassword1" class="form-label">Phone
-                                                </label>
-                                                <input type="text" name="phone"
-                                                       value="{{$companyInfo->phone}}" class="form-control"
-                                                       id="exampleInputPassword1">
-                                            </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="mb-3">
+                                            <label for="exampleInputPassword1" class="form-label">Téléphone</label>
+                                            <input type="text" name="phone" value="{{$companyInfo->phone}}" class="form-control" id="exampleInputPassword1">
                                         </div>
-                                        <div class="col-sm-6">
-                                            <div class="mb-3">
-                                                <label for="exampleInputPassword1" class="form-label">Email
-                                                </label>
-                                                <input type="text" name="email"
-                                                       value="{{$companyInfo->email}}" class="form-control"
-                                                       id="exampleInputPassword1">
-                                            </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="mb-3">
+                                            <label for="exampleInputPassword1" class="form-label">Email</label>
+                                            <input type="text" name="email" value="{{$companyInfo->email}}" class="form-control" id="exampleInputPassword1">
                                         </div>
-                                        <div class="col-sm-6">
-                                            <div class="mb-3">
-                                                <label for="exampleInputPassword1" class="form-label">FaceBook Link
-                                                </label>
-                                                <input type="text" name="facebook_link"
-                                                       value="{{$companyInfo->facebook_link}}" class="form-control"
-                                                       id="exampleInputPassword1">
-                                            </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="mb-3">
+                                            <label for="exampleInputPassword1" class="form-label">Lien Facebook</label>
+                                            <input type="text" name="facebook_link" value="{{$companyInfo->facebook_link}}" class="form-control" id="exampleInputPassword1">
                                         </div>
-                                        <div class="col-sm-6">
-                                            <div class="mb-3">
-                                                <label for="exampleInputPassword1" class="form-label">YouTube Link
-                                                </label>
-                                                <input type="text" name="youtube_link"
-                                                       value="{{$companyInfo->youtube_link}}" class="form-control"
-                                                       id="exampleInputPassword1">
-                                            </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="mb-3">
+                                            <label for="exampleInputPassword1" class="form-label">Lien YouTube</label>
+                                            <input type="text" name="youtube_link" value="{{$companyInfo->youtube_link}}" class="form-control" id="exampleInputPassword1">
                                         </div>
-                                        <div class="col-sm-6">
-                                            <div class="mb-3">
-                                                <label for="exampleInputPassword1" class="form-label">Twitter
-                                                </label>
-                                                <input type="text" name="twitter_link"
-                                                       value="{{$companyInfo->twitter_link}}" class="form-control"
-                                                       id="exampleInputPassword1">
-                                            </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="mb-3">
+                                            <label for="exampleInputPassword1" class="form-label">Twitter</label>
+                                            <input type="text" name="twitter_link" value="{{$companyInfo->twitter_link}}" class="form-control" id="exampleInputPassword1">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-3">
-                                    <div class="mb-2 row">
-                                        <div class="col-sm-12 mt-2">
-                                            <input style="display:none" type="file" name="image" class="image">
-                                            <div class="row d-flex " id="productImglist">
-                                                <div class="imgmaindiv imgmaindiv" style="position:relative" id="222"
-                                                     onclick="selectImage('222')">
-                                                    <span
-                                                        class=" d-flex  justify-content-center text-center mainphototxtlogo text-info">Logo</span>
-                                                    <input type="hidden" name="company_logo"
-                                                           value="{{$companyInfo->company_logo}}" class="222input">
-                                                    <div
-                                                        class="imgaddcardinfopg d-flex justify-content-center align-items-center 222view ">
-                                                        @if($companyInfo->company_logo)
-                                                            <img class="imgaddborder"
-                                                                 src="{{asset($companyInfo->company_logo)}}" alt=""
-                                                                 width="100%" height="100%">
-                                                        @else
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="70"
-                                                                 height="70"
-                                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                                 stroke-width="2" stroke-linecap="round"
-                                                                 stroke-linejoin="round"
-                                                                 class="feather feather-camera text-primary imgsvg">
-                                                                <path
-                                                                    d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-                                                                <circle cx="12" cy="13" r="4"></circle>
-                                                            </svg>
-
-                                                        @endif
-                                                    </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="mb-2 row">
+                                    <div class="col-sm-12 mt-2">
+                                        <input style="display:none" type="file" name="image" class="image">
+                                        <div class="row d-flex " id="productImglist">
+                                            <div class="imgmaindiv imgmaindiv" style="position:relative" id="222" onclick="selectImage('222')">
+                                                <span class=" d-flex justify-content-center text-center mainphototxtlogo text-info">Logo</span>
+                                                <input type="hidden" name="company_logo" value="{{$companyInfo->company_logo}}" class="222input">
+                                                <div class="imgaddcardinfopg d-flex justify-content-center align-items-center 222view ">
+                                                    @if($companyInfo->company_logo)
+                                                        <img class="imgaddborder" src="{{asset($companyInfo->company_logo)}}" alt="" width="100%" height="100%">
+                                                    @else
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-camera text-primary imgsvg">
+                                                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                                                            <circle cx="12" cy="13" r="4"></circle>
+                                                        </svg>
+                                                    @endif
                                                 </div>
                                             </div>
-
-                                            <div class="modal fade modalimage" id="modal" tabindex="-1" role="dialog"
-                                                 aria-labelledby="modalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-lg" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="modalLabel">Crop image</h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
-                                                                <span aria-hidden="true">�</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="img-container">
-                                                                <div class="row">
-                                                                    <div class="col-md-8">
-                                                                        <!--  default image where we will set the src via jquery-->
-                                                                        <img id="image">
-                                                                    </div>
-                                                                    <div class="col-md-4">
-                                                                        <div class="preview"></div>
-                                                                    </div>
+                                        </div>
+                                        <div class="modal fade modalimage" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="modalLabel">Recadrer l'image</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">�</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="img-container">
+                                                            <div class="row">
+                                                                <div class="col-md-8">
+                                                                    <!--  default image where we will set the src via jquery-->
+                                                                    <img id="image">
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="preview"></div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">Cancel
-                                                            </button>
-                                                            <button type="button" class="btn btn-primary" id="crop">Crop
-                                                            </button>
-                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                        <button type="button" class="btn btn-primary" id="crop">Recadrer</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
-                            <div class="row">
-
-
-                                <div class="col-sm-12">
-                                    <div class="mb-3">
-                                        <label for="exampleInputPassword1" class="form-label">Address
-                                        </label>
-                                        <textarea class="form-control" name="company_address" id="" cols="30" rows="3">{{$companyInfo->company_address}}</textarea>
-
-                                    </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">Adresse</label>
+                                    <textarea class="form-control" name="company_address" id="" cols="30" rows="3">{{$companyInfo->company_address}}</textarea>
                                 </div>
-
-                                <div class="col-sm-12">
-                                    <div class="mb-3">
-                                        <label for="exampleInputPassword1" class="form-label">About Us
-                                        </label>
-                                        <textarea class="form-control" name="about_us" id="" cols="30" rows="3">{{$companyInfo->about_us}}</textarea>
-
-                                    </div>
-                                </div>
-
                             </div>
-
-
+                            <div class="col-sm-12">
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">À propos de nous</label>
+                                    <textarea class="form-control" name="about_us" id="" cols="30" rows="3">{{$companyInfo->about_us}}</textarea>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            
             <div class="col-sm-9">
                 <div class="card">
                     <div class="card-body">
@@ -233,7 +186,7 @@
 
                             </div>
 
-                            <button type="submit" class="btn btn-primary w-100">Save</button>
+                            <button type="submit" class="btn btn-primary w-100">Enregistrer</button>
 
 
                     </div>

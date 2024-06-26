@@ -106,7 +106,7 @@ Route::group(['middleware' => 'authCheck'], function () {
     Route::post('/product/subcategory/update', [ProductSubcategoryController::class, 'productSubCategoryUpdate'])->name('admin.update.subcategory');
     Route::get('/product/subcategory/delete', [ProductSubcategoryController::class, 'productSubCategoryDelete'])->name('admin.delete.subcategory');
     Route::get('/product/subcategory/list/get', [ProductSubcategoryController::class, 'subcategoryListGet'])->name('subcategory.list.get');
-
+    Route::get('/product/view/details', [ProductController::class, 'productViewDetails'])->name('product.view.details');
 
        // _____________________ Route supplier_______________________________________ 
     Route::get('/supplier/list', [SupplierController::class, 'supplierList'])->name('admin.supplier.list');

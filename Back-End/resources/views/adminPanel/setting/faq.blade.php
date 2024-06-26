@@ -15,11 +15,9 @@
     }
 </style>
 @section('main_content')
-    <!--start page wrapper -->
+    <!-- Début du contenu de la page -->
     <div class="page-content">
-        <!--breadcrumb-->
-
-        <!--end breadcrumb-->
+        <!-- Carte principale -->
         <div class="card">
             <input type="hidden" id="selectimgdiv">
             <div class="card-body">
@@ -30,92 +28,72 @@
                             <div class="d-flex gap-3 mt-3">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal">
-                                    <i class="lni lni-circle-plus"></i> Add Faq
+                                    <i class="lni lni-circle-plus"></i> Ajouter FAQ
                                 </button>
-                                {{--                        <a href="#" class="btn btn-primary"><i class="lni lni-circle-plus"></i> Add Category</a>--}}
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="table-responsive">
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
-
                         <thead>
-                        <tr class="t-trcolor">
-                            <th>ID</th>
-                            <th>Title</th>
-                            <th>Details</th>
-                            <th class="text-center">Action</th>
-                        </tr>
+                            <tr class="t-trcolor">
+                                <th>ID</th>
+                                <th>Titre</th>
+                                <th>Détails</th>
+                                <th class="text-center">Action</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                        @foreach($faqList as $key=>$faq)
-                            <tr>
-                                <td>{{$key+1}}</td>
-                                <td>{{$faq->title}}</td>
-                                <td>{{$faq->details}}</td>
-
-                                <td>
-                                    <div class="dropdown d-flex justify-content-center">
-                                        <button class="btn btn-primary dropdown-toggle dr-btn" type="button"
-                                                data-bs-toggle="dropdown" aria-expanded="false">Action
-                                        </button>
-                                        <ul class="dropdown-menu" style="">
-                                            <li onclick="editCategoryData({{$faq}},'')"><a class="dropdown-item"
-                                                                                           href="#">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                         class="feather feather-edit text-primary">
-                                                        <path
-                                                            d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                                        <path
-                                                            d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                                                    </svg>
-                                                    Edit</a>
-                                            </li>
-                                            <li class="align-items-center"
-                                                onclick="return confirm('Are you sure you want to delete this item?');">
-                                                <a class="dropdown-item"
-                                                   href="{{route('faq.delete',['id'=>$faq->id])}}">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                         class="feather feather-trash text-primary">
-                                                        <polyline points="3 6 5 6 21 6"></polyline>
-                                                        <path
-                                                            d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                                    </svg>
-                                                    Delete</a>
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-
+                            @foreach($faqList as $key=>$faq)
+                                <tr>
+                                    <td>{{$key+1}}</td>
+                                    <td>{{$faq->title}}</td>
+                                    <td>{{$faq->details}}</td>
+                                    <td>
+                                        <div class="dropdown d-flex justify-content-center">
+                                            <button class="btn btn-primary dropdown-toggle dr-btn" type="button"
+                                                    data-bs-toggle="dropdown" aria-expanded="false">Paramètres
+                                            </button>
+                                            <ul class="dropdown-menu" style="">
+                                                <li onclick="editCategoryData({{$faq}},'')"><a class="dropdown-item"
+                                                                                               href="#">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                             class="feather feather-edit text-primary">
+                                                            <path
+                                                                d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                                            <path
+                                                                d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                                        </svg>
+                                                        Modifier</a>
+                                                </li>
+                                                <li class="align-items-center"
+                                                    onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');">
+                                                    <a class="dropdown-item"
+                                                       href="{{route('faq.delete',['id'=>$faq->id])}}">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                             class="feather feather-trash text-primary">
+                                                            <polyline points="3 6 5 6 21 6"></polyline>
+                                                            <path
+                                                                d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                        </svg>
+                                                        Supprimer</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
                             @endforeach
-
-                            </tr>
-
-
                         </tbody>
-                        {{--                        <tfoot>--}}
-                        {{--                        <tr>--}}
-                        {{--                            <th>1</th>--}}
-                        {{--                            <th>Position</th>--}}
-                        {{--                            <th>Office</th>--}}
-                        {{--                            <th>Age</th>--}}
-                        {{--                            <th>Start date</th>--}}
-                        {{--                        </tr>--}}
-                        {{--                        </tfoot>--}}
                     </table>
                 </div>
             </div>
         </div>
-        {{--        modal--}}
-        <!-- Modal -->
+        <!-- Modal d'ajout -->
         <form action="{{route('faq.store')}}" method="post">
             @csrf
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -123,17 +101,17 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Create FAQ</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Créer FAQ</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="mb-2 row">
-                                <label for="inputname" class="col-sm-12  pr-0 col-form-label">Title
+                                <label for="inputname" class="col-sm-12  pr-0 col-form-label">Titre
                                     <stong class="text-danger">*</stong>
                                 </label>
                                 <div class="col-sm-12">
                                     <input type="text" id="inputname" class="form-control" name="title"
-                                           placeholder="Title" required>
+                                           placeholder="Titre" required>
                                 </div>
                             </div>
                             <div class="mb-2 row">
@@ -143,18 +121,16 @@
                                               rows="3" placeholder="Description" required></textarea>
                                 </div>
                             </div>
-
                         </div>
                         <div class="d-flex justify-content-end p-3">
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="submit" class="btn btn-primary">Enregistrer</button>
                         </div>
                     </div>
                 </div>
             </div>
         </form>
-
-        {{--Edit --}}
-
+        
+        <!-- Modal d'édition -->
         <form action="{{route('faq.edit')}}" method="post">
             @csrf
             <div class="modal fade" id="category_edit" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -162,22 +138,20 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Update Faq</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Modifier FAQ</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="mb-2 row">
                                 <input type="hidden" name="id" id="category_id">
-                                <label for="inputname" class="col-sm-12  pr-0 col-form-label">title
+                                <label for="inputname" class="col-sm-12  pr-0 col-form-label">Titre
                                     <stong class="text-danger">*</stong>
                                 </label>
                                 <div class="col-sm-12">
                                     <input type="text" id="ed_name" class="form-control" name="title"
-                                           placeholder="Category Name" required>
+                                           placeholder="Nom de la catégorie" required>
                                 </div>
                             </div>
-
-
                             <div class="mb-2 row">
                                 <label for="ed_description" class="col-sm-12  pr-0 col-form-label">Description</label>
                                 <div class="col-sm-12">
@@ -185,20 +159,19 @@
                                               required></textarea>
                                 </div>
                             </div>
-
                         </div>
                         <div class="d-flex justify-content-end p-3">
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-primary">Mettre à jour</button>
                         </div>
                     </div>
                 </div>
             </div>
         </form>
-
-        {{--        modal--}}
+        
     </div>
-    <!--end page wrapper -->
+    <!-- Fin du contenu de la page -->
 @endsection
+
 @section('css_plugins')
     <link href="{{asset('assets/adminPanel')}}/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet"/>
     {{--    crop--}}
