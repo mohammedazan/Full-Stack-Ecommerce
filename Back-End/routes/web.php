@@ -276,6 +276,10 @@ Route::get('/payment/success', [PayPalController::class, 'success'])->name('paym
 });
 
 
+Route::get('/paypal/test',function(){
+   return view('guest/pages/PayPal') ;
+} ) ;
+
 Route::post('/contact_mail', [ContactController::class, 'contact_mail_send']);
 Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
 Route::get('/about', [GuestController::class, 'about'])->name('about');

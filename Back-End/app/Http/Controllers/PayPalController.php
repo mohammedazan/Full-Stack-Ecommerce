@@ -91,6 +91,7 @@ class PayPalController extends Controller
             return redirect()->route('checkout.confirmation')->with('success', 'Your payment was successful.');
         }
 
+        
         return redirect()->route('checkout')->with('error', 'Please try again later.');
     }
 }
