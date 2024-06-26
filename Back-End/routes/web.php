@@ -316,6 +316,7 @@ Route::get('forbest/product/subcategory', [GuestController::class, 'productsubca
 Route::get('/blogall', [BlogsController::class, 'blogall'])->name('blogall');
 Route::get('/blogdetail/{id}', [BlogsController::class, 'blogdetails'])->name('blogdetail');
 
+Route::get('/product/view/details', [ProductController::class, 'productViewDetails'])->name('product.view.details');
 
 
 Route::get('/search', [GuestController::class, 'search'])->name('product.search');
