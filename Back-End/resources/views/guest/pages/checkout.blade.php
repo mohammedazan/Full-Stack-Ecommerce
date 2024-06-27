@@ -165,7 +165,7 @@
 											<label for="payment_method">Select Payment Method:</label>
 											<select name="payment_method" id="payment_method" class="form-control">
 												<option value="paypal">PayPal</option>
-												<option value="visa">Visa Card</option>
+												{{-- <option value="visa">Visa Card</option> --}}
 											</select>
 										</div>
 
