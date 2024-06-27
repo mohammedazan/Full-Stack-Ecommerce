@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CompanyInfo;
 use Illuminate\Http\Request;
 use App\Models\Wishlist;
 use App\Models\Product;
@@ -20,13 +21,14 @@ class WishlistController extends Controller
     {
         // Fetch wishlist items associated with the authenticated user
         $wishlistItems = Wishlist::where('user_id', Auth::id())->with('product')->get();
-        
+        $CompanyInfo=CompanyInfo::get();
+
         // Fetch additional data if needed, like product categories or subcategories
         $productSubcategories = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $categories = ProductCategory::where('status', 1)->where('deleted', 0)->get();
 
         // Return the wishlist view with the wishlist items and other necessary data
-        return view('guest.pages.wishlist', compact('wishlistItems', 'productSubcategories', 'categories'));
+        return view('guest.pages.wishlist', compact('wishlistItems', 'productSubcategories', 'categories','CompanyInfo'));
     }
 
     /**

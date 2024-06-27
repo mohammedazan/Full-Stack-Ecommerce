@@ -135,6 +135,8 @@ class GuestController extends Controller
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $brandList=Brand::get();
+        $CompanyInfo=CompanyInfo::get();
+
       
     // Calculate average rating and reviews count for each product
     foreach ($productList as $product) {
@@ -149,7 +151,7 @@ class GuestController extends Controller
         }
     }
 
-        return view('guest/pages.product_list')->with(compact('productList','category','brandList','productSubcategory'));
+        return view('guest/pages.product_list')->with(compact('productList','category','brandList','productSubcategory','CompanyInfo'));
     }
 
 
