@@ -130,7 +130,8 @@
 													</div><!-- End .custom-control -->
 												</td>
 												<td>$0.00</td>
-											</tr><!-- End .summary-shipping-row -->
+											</tr>
+											<!-- End .summary-shipping-row -->
 											<tr class="summary-shipping-row">
 												<td>
 													<div class="custom-control custom-radio">
@@ -139,7 +140,8 @@
 													</div><!-- End .custom-control -->
 												</td>
 												<td>$10.00</td>
-											</tr><!-- End .summary-shipping-row -->
+											</tr>
+											<!-- End .summary-shipping-row -->
 											<tr class="summary-shipping-row">
 												<td>
 													<div class="custom-control custom-radio">
@@ -148,11 +150,13 @@
 													</div><!-- End .custom-control -->
 												</td>
 												<td>$20.00</td>
-											</tr><!-- End .summary-shipping-row -->
-											<tr class="summary-shipping-estimate">
+											</tr>
+											<!-- End .summary-shipping-row -->
+											{{-- <tr class="summary-shipping-estimate">
 												<td>Estimate for Your Country<br> <a href="dashboard.html">Change address</a></td>
 												<td>&nbsp;</td>
-											</tr><!-- End .summary-shipping-estimate -->
+											</tr> --}}
+											<!-- End .summary-shipping-estimate -->
 											<tr class="summary-total">
 												<td>Total:</td>
 												@if($commande)

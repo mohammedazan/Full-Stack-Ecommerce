@@ -12,10 +12,11 @@
                                 <th>ID</th>
                                 <th>Name User</th>
                                 <th>Name Product</th>
-                                <th>QTY</th>
+                                {{-- <th>QTY</th> --}}
                                 <th>Order Status</th>
                                 <th>Total Payable</th>
                                 <th>Created At</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -25,12 +26,12 @@
                                 <td>{{ $c->users->name }}</td>
                                     <td>
                                         @foreach($c->lignecommande as $lc)
-                                            {{ $lc->product->name }} <br>
+                                            {{ $lc->product->name}} ({{ $lc->qte }}) <br>
                                         @endforeach
                                     </td>
-                                    <td>
+                                    {{-- <td>
                                         {{ $lc->qte }}
-                                    </td>
+                                    </td> --}}
                                     
                                 @if($c->etat === "payee")
                                     <td><span class="badge bg-success">
@@ -46,6 +47,36 @@
 
                                 <td>{{ $c->getTotal()}}DH</td>
                                 <td>{{ $c->created_at }}</td>
+
+                                <td>
+                                    <div class="dropdown d-flex justify-content-center">
+                                        <button class="btn btn-primary dropdown-toggle dr-btn" type="button" data-bs-toggle="dropdown"
+                                            aria-expanded="false">Paramètres</button>
+                                        <ul class="dropdown-menu" style="">
+                                       
+                                            <li class="align-items-center"
+                                                onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette commande ?');">
+                                                <form action="{{ route('commande.delete', $c->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="dropdown-item" style="border: none; background: none; cursor: pointer;">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round" class="feather feather-trash text-primary">
+                                                            <polyline points="3 6 5 6 21 6"></polyline>
+                                                            <path
+                                                                d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                                            </path>
+                                                        </svg>
+                                                        Supprimer
+                                                    </button>
+                                                </form>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                                
+                                
                                 
 
                             </tr>

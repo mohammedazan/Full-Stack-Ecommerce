@@ -81,6 +81,16 @@ class CommandeController extends Controller
     }
 
 
+    public function destroy($id)
+    {
+        $commande = Commande::findOrFail($id); // Récupère la commande ou renvoie une erreur 404 si non trouvée
+
+        $commande->delete();
+
+        return redirect()->back()->with('success', 'Commande supprimée avec succès.');
+    }
+
+
     public function LigneCommandedestroy($id){
 
         $lc = LigneCommande::find($id);
@@ -99,7 +109,8 @@ class CommandeController extends Controller
             'quantities' => 'required|array',
             'quantities.*' => 'required|integer|min:1',
         ]);
-    
+
+        
         $commande = Commande::where('users_id', Auth::user()->id)->where('etat', 'en cours')->first();
     
         if ($commande) {
