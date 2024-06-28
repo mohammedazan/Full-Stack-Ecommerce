@@ -254,7 +254,11 @@ Route::group(['middleware' => 'AuthCheckUser'], function () {
 
 
    Route::post('/user/order/store',[CommandeController::class,'store']);
+   Route::delete('/user/order/delete/{id}', [CommandeController::class, 'destroy'])->name('commande.delete');
+
    Route::get('/user/cart', [CommandeController::class, 'cart'])->name('cart');
+   
+   Route::post('/user/updatecart', [CommandeController::class, 'updateCart'])->name('updatecart');
    Route::get('/user/lc/{idlc}/destroy', [CommandeController::class, 'LigneCommandedestroy']);
 
 
@@ -264,9 +268,6 @@ Route::post('/user/order/place', [CheckoutController::class, 'placeOrder'])->nam
 
 Route::get('/user/profile', [UserProfileController::class, 'UserProfile']);
 Route::post('/user/profile/update', [UserProfileController::class, 'updateProfile'])->name('user.profile.update');
-
-
-Route::post('/user/updatecart', [CommandeController::class, 'updateCart'])->name('updatecart');
 
 
 
