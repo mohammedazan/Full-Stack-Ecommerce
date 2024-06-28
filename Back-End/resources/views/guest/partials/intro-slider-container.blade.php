@@ -13,7 +13,7 @@
                             <div class="row">
                                 <div class="col-auto offset-lg-3 intro-col">
                                     <h3 class="intro-subtitle">Trade-In Offer</h3><!-- End .h3 intro-subtitle -->
-                                    <h1 class="intro-title">{{$offerList->offer_name}} 
+                                    <h1 class="intro-title" style="color: #0d4377">{{$offerList->offer_name}} 
                                     </h1><!-- End .intro-title -->
                                     @php 
                                        $id = $offerList->id

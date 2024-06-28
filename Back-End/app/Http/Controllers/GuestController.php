@@ -54,7 +54,7 @@ class GuestController extends Controller
             }
         } catch (\Exception $e) {
             Log::error('Search error: ' . $e->getMessage());
-            return response()->json(['error' => 'Internal Server Error'], 500);
+            return redirect()->back();
         }
     }
 
@@ -243,7 +243,7 @@ class GuestController extends Controller
     public function productoffer(Request $request){
         $offerId = $request->id;
         if (!$offerId) {
-            return response()->json(['error' => 'Offer ID not provided'], 400);
+            return redirect()->back();
         }
         $offerProductLists = Offer_product_list::where('offer_id', $offerId)->get();
     
@@ -270,7 +270,7 @@ class GuestController extends Controller
         $CompanyInfo=CompanyInfo::get();
     
         if (!$brandId) {
-            return response()->json(['error' => 'Brand ID not provided'], 400);
+            return redirect()->back();
         }
     
         $productList = Product::where('brand_id', $brandId)->where('deleted', 0)->get();
@@ -291,7 +291,7 @@ class GuestController extends Controller
         $CompanyInfo=CompanyInfo::get();
     
         if (!$brandId) {
-            return response()->json(['error' => 'Brand ID not provided'], 400);
+            return redirect()->back();
         }
     
         $productList = Product::where('brand_id', $brandId)->where('deleted', 0)->get();

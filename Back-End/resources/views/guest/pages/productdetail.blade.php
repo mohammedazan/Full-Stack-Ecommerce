@@ -131,25 +131,16 @@
                                     @endif
                                 </div>
                                 <div class="product-content">
-                                    <p>Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero.</p>
+                                    <p>{{ $productdetail->productCategory->note }}</p>
                                 </div>
                                 <div class="details-filter-row details-row-size">
                                     <label>Color:</label>
+                                    {{-- {{ {{ $productdetail->color->color_code }} }} --}}
                                     <div class="product-nav product-nav-dots">
                                         <a href="#" class="active" style="background: #cc9966;"><span class="sr-only">Color name</span></a>
-                                        <a href="#" style="background: #7fc5ed;"><span class="sr-only">Color name</span></a>
+                                        <a href="#" style="background: re***#e8c97a;"><span class="sr-only">Color name</span></a>
                                         <a href="#" style="background: #e8c97a;"><span class="sr-only">Color name</span></a>
                                     </div>
-                                </div>
-                                <div class="details-filter-row details-row-size mb-md-1">
-                                    <label>Size:</label>
-                                    <div class="product-size">
-                                        <a href="#" title="Small">S</a>
-                                        <a href="#" title="Medium" class="active">M</a>
-                                        <a href="#" title="Large" class="disabled">L</a>
-                                        <a href="#" title="Extra Large">XL</a>
-                                    </div>
-                                    <a href="#" class="size-guide"><i class="icon-th-list"></i>size guide</a>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -164,8 +155,7 @@
                                             <button class="btn-product btn-cart" type="submit"><span>add to cart</span></button>
                                         </div>
                                         <div class="details-action-wrapper">
-                                            <a href="#" class="btn-product btn-wishlist" title="Wishlist"><span>Add to Wishlist</span></a>
-                                            <a href="#" class="btn-product btn-compare" title="Compare"><span>Add to Compare</span></a>
+                                            <a href="#" class="btn-product btn-cart" title="Wishlist"><span>Add to Wishlist</span></a>
                                         </div>
                                     </div>
                                 </form>
@@ -176,10 +166,14 @@
                                     </div>
                                     <div class="social-icons social-icons-sm">
                                         <span class="social-label">Share:</span>
-                                        <a href="#" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
-                                        <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
-                                        <a href="#" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
-                                        <a href="#" class="social-icon" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a>
+                                        @php
+                                        $ver = $CompanyInfo->shuffle()->take(1);
+                                        @endphp
+                                        @foreach ($ver as $key =>$Company )
+                                        <a href="{{$Company->facebook_link}}"class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
+                                        <a href="{{$Company->twitter_link}}" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+                                        <a href="{{$Company->youtube_link}}" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>

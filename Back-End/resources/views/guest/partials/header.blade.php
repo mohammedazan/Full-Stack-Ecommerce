@@ -647,13 +647,13 @@
                     @endphp
                     @foreach ($ver as $key =>$Company )
                     <a href="{{$Company->facebook_link}}" class="social-icon social-facebook" title="Facebook" target="_blank">
-                        <i class="fab fa-facebook-f"></i>
+                        <i class="fab fa-facebook-f" style="color: #ffffff"></i>
                     </a>
-                    <a href="{{$Company->twitter_link}}" class="social-icon social-twitter" title="X" target="_blank">
-                        <i class="fab fa-twitter"></i>
+                    <a href="{{$Company->twitter_link}}" class="social-icon social-twitter" title="X" target="_blank" >
+                        <i class="fab fa-twitter" style="color: #ffffff"></i>
                     </a>
                     <a href="{{$Company->youtube_link}}" class="social-icon social-instagram" title="Instagram" target="_blank">
-                        <i class="fab fa-instagram"></i>
+                        <i class="fab fa-instagram" style="color: #ffffff"></i>
                     </a>
                     @endforeach
                 </div><!-- End .social-icons -->
