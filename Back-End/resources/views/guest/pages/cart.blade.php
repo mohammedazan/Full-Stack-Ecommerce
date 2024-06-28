@@ -39,44 +39,43 @@
 
 
 
-
-    <main class="main">
-            <nav aria-label="breadcrumb" class="breadcrumb-nav">
-                <div class="container">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Shop</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
-                    </ol>
-                </div><!-- End .container -->
-            </nav><!-- End .breadcrumb-nav -->
-
-            <div class="page-content">
-            	<div class="cart">
-	                <div class="container">
-	                	<div class="row">
-	                		<div class="col-lg-9">
-	                			<table class="table table-cart table-mobile">
+	<main class="main">
+		<nav aria-label="breadcrumb" class="breadcrumb-nav">
+			<div class="container">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+					<li class="breadcrumb-item"><a href="#">Shop</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
+				</ol>
+			</div><!-- End .container -->
+		</nav><!-- End .breadcrumb-nav -->
+	
+		<div class="page-content">
+			<div class="cart">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-9">
+							<form action="{{ route('updatecart') }}" method="POST">
+								@csrf
+								<table class="table table-cart table-mobile">
 									<thead>
 										<tr>
-										<th>Name Product </th>
-											<th>Product Img </th>
+											<th>Name Product</th>
+											<th>Product Img</th>
 											<th>Price</th>
 											<th>Quantity</th>
 											<th>Total</th>
 											<th></th>
 										</tr>
 									</thead>
-
 									<tbody>
-										
-									@foreach($commande->lignecommande ?? [] as $lc)
-									<tr>
+										@foreach($commande->lignecommande ?? [] as $lc)
+										<tr>
 											<td>
 												<h3 class="product-title">
-													<span>{{$lc->product->name}}</span>
-													</h3><!-- End .product-title -->
-														</td>
+													<span>{{ $lc->product->name }}</span>
+												</h3><!-- End .product-title -->
+											</td>
 											<td class="product-col">
 												<div class="product">
 													<figure class="product-media">
@@ -84,121 +83,94 @@
 															<img src="{{ asset($lc->product->image_path) }}" alt="Product image">
 														</a>
 													</figure>
-
-													<h3 class="product-title">
-														<a href="#"></a>
-													</h3><!-- End .product-title -->
 												</div><!-- End .product -->
 											</td>
-											<td class="price-col">{{$lc->product->current_sale_price}} DH</td>
+											<td class="price-col">{{ $lc->product->current_sale_price }} DH</td>
 											<td class="quantity-col">
-                                                <div class="cart-product-quantity">
-													<p>{{$lc->qte}}</p>                                                
-								</div><!-- End .cart-product-quantity -->
-                                            </td>
-											<td class="total-col">{{$lc->product->current_sale_price *$lc->qte}} DH</td>
-											<td class="remove-col"><a href="/user/lc/{{$lc->id}}/destroy" class="btn-remove"><i class="icon-close"></i></a></td>
+												<div class="cart-product-quantity">
+													<input type="number" name="quantities[{{ $lc->id }}]" value="{{ $lc->qte }}" min="1" class="form-control">
+												</div><!-- End .cart-product-quantity -->
+											</td>
+											<td class="total-col">{{ $lc->product->current_sale_price * $lc->qte }} DH</td>
+											<td class="remove-col"><a href="/user/lc/{{ $lc->id }}/destroy" class="btn-remove"><i class="icon-close"></i></a></td>
 										</tr>
-								@endforeach
+										@endforeach
 									</tbody>
 								</table><!-- End .table table-wishlist -->
-
-	                			<div class="cart-bottom">
-			            			<div class="cart-discount">
-			            				<form action="#">
-			            					<div class="input-group">
-				        						<input type="text" class="form-control" required placeholder="coupon code">
-				        						<div class="input-group-append">
-													<button class="btn btn-outline-primary-2" type="submit"><i class="icon-long-arrow-right"></i></button>
-												</div><!-- .End .input-group-append -->
-			        						</div><!-- End .input-group -->
-			            				</form>
-			            			</div><!-- End .cart-discount -->
-
-			            			<a href="#" class="btn btn-outline-dark-2"><span>UPDATE CART</span><i class="icon-refresh"></i></a>
-		            			</div><!-- End .cart-bottom -->
-	                		</div><!-- End .col-lg-9 -->
-	                		<aside class="col-lg-3">
-								<form action="" method="">
-									@csrf
-			@if($commande)
-    <input type="hidden" name="commande" value="{{$commande->id}}">
-@endif	                			
-<div class="summary summary-cart">
-	                				<h3 class="summary-title">Cart Total</h3><!-- End .summary-title -->
-
-	                				<table class="table table-summary">
-	                					<tbody>
-	                						<tr class="summary-subtotal">
-	                							<td>Subtotal:</td>
+								<div class="cart-bottom">
+									<a href="#" class="btn btn-outline-dark-2" onclick="this.closest('form').submit(); return false;"><span>UPDATE CART</span><i class="icon-refresh"></i></a>
+								</div><!-- End .cart-bottom -->
+							</form>
+						</div><!-- End .col-lg-9 -->
+						<aside class="col-lg-3">
+							<form action="" method="">
+								@csrf
+								@if($commande)
+								<input type="hidden" name="commande" value="{{ $commande->id }}">
+								@endif
+								<div class="summary summary-cart">
+									<h3 class="summary-title">Cart Total</h3><!-- End .summary-title -->
+									<table class="table table-summary">
+										<tbody>
+											<tr class="summary-subtotal">
+												<td>Subtotal:</td>
 												@if($commande)
-	                							<td>{{$commande->getTotal()}} DH</td>
+												<td>{{ $commande->getTotal() }} DH</td>
 												@endif
-	                						</tr><!-- End .summary-subtotal -->
-	                						<tr class="summary-shipping">
-	                							<td>Shipping:</td>
-	                							<td>&nbsp;</td>
-	                						</tr>
-
-	                						<tr class="summary-shipping-row">
-	                							<td>
+											</tr><!-- End .summary-subtotal -->
+											<tr class="summary-shipping">
+												<td>Shipping:</td>
+												<td>&nbsp;</td>
+											</tr>
+											<tr class="summary-shipping-row">
+												<td>
 													<div class="custom-control custom-radio">
 														<input type="radio" id="free-shipping" name="shipping" class="custom-control-input">
 														<label class="custom-control-label" for="free-shipping">Free Shipping</label>
 													</div><!-- End .custom-control -->
-	                							</td>
-	                							<td>$0.00</td>
-	                						</tr>
-											
-											<!-- End .summary-shipping-row -->
-
-	                						<tr class="summary-shipping-row">
-	                							<td>
-	                								<div class="custom-control custom-radio">
+												</td>
+												<td>$0.00</td>
+											</tr><!-- End .summary-shipping-row -->
+											<tr class="summary-shipping-row">
+												<td>
+													<div class="custom-control custom-radio">
 														<input type="radio" id="standart-shipping" name="standart" class="custom-control-input">
 														<label class="custom-control-label" for="standart-shipping">Standart:</label>
 													</div><!-- End .custom-control -->
-	                							</td>
-	                							<td>$10.00</td>
-	                						</tr><!-- End .summary-shipping-row -->
-
-	                						<tr class="summary-shipping-row">
-	                							<td>
-	                								<div class="custom-control custom-radio">
+												</td>
+												<td>$10.00</td>
+											</tr><!-- End .summary-shipping-row -->
+											<tr class="summary-shipping-row">
+												<td>
+													<div class="custom-control custom-radio">
 														<input type="radio" id="express-shipping" name="express" class="custom-control-input">
 														<label class="custom-control-label" for="express-shipping">Express:</label>
 													</div><!-- End .custom-control -->
-	                							</td>
-	                							<td>$20.00</td>
-	                						</tr><!-- End .summary-shipping-row -->
-
-	                						<tr class="summary-shipping-estimate">
-	                							<td>Estimate for Your Country<br> <a href="dashboard.html">Change address</a></td>
-	                							<td>&nbsp;</td>
-	                						</tr>End .summary-shipping-estimate
-
-	                						<tr class="summary-total">
-	                							<td>Total:</td>
+												</td>
+												<td>$20.00</td>
+											</tr><!-- End .summary-shipping-row -->
+											<tr class="summary-shipping-estimate">
+												<td>Estimate for Your Country<br> <a href="dashboard.html">Change address</a></td>
+												<td>&nbsp;</td>
+											</tr><!-- End .summary-shipping-estimate -->
+											<tr class="summary-total">
+												<td>Total:</td>
 												@if($commande)
-												<td id="">{{ $commande->getTotal() +20 }} DH</td>
-											@endif
-											
-	                						</tr><!-- End .summary-total -->
-	                					</tbody>
-	                				</table><!-- End .table table-summary -->
-
-	                				<a a href="/user/checkout" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</a>
-	                			</div><!-- End .summary -->
-
-		            			<a href="category.html" class="btn btn-outline-dark-2 btn-block mb-3"><span>CONTINUE SHOPPING</span><i class="icon-refresh"></i></a>
-
-								</form>
-	                		</aside><!-- End .col-lg-3 -->
-	                	</div><!-- End .row -->
-	                </div><!-- End .container -->
-                </div><!-- End .cart -->
-            </div><!-- End .page-content -->
-        </main><!-- End .main -->
+												<td id="">{{ $commande->getTotal() + 20 }} DH</td>
+												@endif
+											</tr><!-- End .summary-total -->
+										</tbody>
+									</table><!-- End .table table-summary -->
+									<a href="/user/checkout" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</a>
+								</div><!-- End .summary -->
+								<a href="category.html" class="btn btn-outline-dark-2 btn-block mb-3"><span>CONTINUE SHOPPING</span><i class="icon-refresh"></i></a>
+							</form>
+						</aside><!-- End .col-lg-3 -->
+					</div><!-- End .row -->
+				</div><!-- End .container -->
+			</div><!-- End .cart -->
+		</div><!-- End .page-content -->
+	</main><!-- End .main -->
 
     
    

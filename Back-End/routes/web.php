@@ -266,11 +266,17 @@ Route::get('/user/profile', [UserProfileController::class, 'UserProfile']);
 Route::post('/user/profile/update', [UserProfileController::class, 'updateProfile'])->name('user.profile.update');
 
 
+Route::post('/user/updatecart', [CommandeController::class, 'updateCart'])->name('updatecart');
 
 
-Route::get('/payment', [PayPalController::class, 'payment'])->name('payment');
-Route::get('/cancel', [PayPalController::class, 'cancel'])->name('payment.cancel');
-Route::get('/payment/success', [PayPalController::class, 'success'])->name('payment.success');
+
+// Route::get('/payment', [PayPalController::class, 'payment'])->name('payment');
+// Route::get('/cancel', [PayPalController::class, 'cancel'])->name('payment.cancel');
+// Route::get('/payment/success', [PayPalController::class, 'success'])->name('payment.success');
+
+Route::get('payment',[CheckoutController::class, 'placeOrder'])->name('payment');
+Route::get('cancel',[CheckoutController::class, 'cancel'])->name('payment.cancel');
+Route::get('payment/success', [CheckoutController::class, 'success'])->name('payment.success');
 
 
 });

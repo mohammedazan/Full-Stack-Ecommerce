@@ -97,15 +97,54 @@
 								    	From your account dashboard you can view your <a href="#tab-orders" class="tab-trigger-link link-underline">recent orders</a>, manage your <a href="#tab-address" class="tab-trigger-link">shipping and billing addresses</a>, and <a href="#tab-account" class="tab-trigger-link">edit your password and account details</a>.</p>
 								    </div><!-- .End .tab-pane -->
 
-								    <div class="tab-pane fade" id="tab-orders" role="tabpanel" aria-labelledby="tab-orders-link">
-								    	<p>No order has been made yet.</p>
-								    	<a href="category.html" class="btn btn-outline-primary-2"><span>GO SHOP</span><i class="icon-long-arrow-right"></i></a>
-								    </div><!-- .End .tab-pane -->
+									<div class="tab-pane fade" id="tab-orders" role="tabpanel" aria-labelledby="tab-orders-link">
+										<table class="table">
+											<thead>
+												<tr>
+													<th style="color: #333;">Order ID</th>
+													<th style="color: #333;">Product Name</th>
+													<th style="color: #333;">Total Price</th>
+													<th style="color: #333;">Order Date</th>
+													{{-- <th style="color: #333;">Order Date</th>
+													<th style="color: #333;">Status</th>
+													<th style="color: #333;">Action</th>	 --}}
+												</tr>
+											</thead>
+											@foreach($commandeall as $orderUser)
+											<tbody>
+												<!-- Example order rows (replace with actual data from your application) -->
+												<tr>
+													<td>{{$orderUser->id}}</td>
+													<td>
+														@foreach($orderUser->lignecommande as $lc)
+													{{ $lc->product->name }} <br>
+												@endforeach
+													</td>
+													<td>{{$orderUser->getTotal()}}DH</td>
+													<td>{{ $orderUser->created_at }}</td>
+													{{-- <td>
+														<span class="badge badge-success">Delivered</span>
+													</td>
+
+													<td>
+														<a href="#" class="btn btn-primary btn-sm">View</a>
+													</td> --}}
+												</tr>
+											
+												<!-- End of example rows -->
+											</tbody>
+											@endforeach
+=										</table>
+										<p>No order has been made yet.</p>
+										<a href="category.html" class="btn btn-outline-primary-2"><span>GO SHOP</span><i class="icon-long-arrow-right"></i></a>
+									</div><!-- .End .tab-pane -->
+									
 
 								    <div class="tab-pane fade" id="tab-downloads" role="tabpanel" aria-labelledby="tab-downloads-link">
 								    	<p>No downloads available yet.</p>
 								    	<a href="category.html" class="btn btn-outline-primary-2"><span>GO SHOP</span><i class="icon-long-arrow-right"></i></a>
 								    </div><!-- .End .tab-pane -->
+									
 									@if($commande)
 								    <div class="tab-pane fade" id="tab-address" role="tabpanel" aria-labelledby="tab-address-link">
 								    	<p>The following addresses will be used on the checkout page by default.</p>

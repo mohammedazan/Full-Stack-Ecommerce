@@ -150,7 +150,8 @@
           </script>
                   
         <div class="header-right">
-            <div class="header-dropdown-link">                <a href="{{route('wishlist')}}" class="wishlist-link">
+            <div class="header-dropdown-link">                
+                <a href="{{route('wishlist')}}" class="wishlist-link">
                     <i class="icon-heart-o"></i>
                     <span class="wishlist-count">3</span>
                     <span class="wishlist-txt">
@@ -158,13 +159,13 @@
                 </a>
 
                 <div class="dropdown cart-dropdown">
-                    <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                    <a href="{{ route('cart') }}" class="dropdown-toggle" >
                         <i class="icon-shopping-cart"></i>
                         <span class="cart-count">2</span>
                         <span class="cart-txt">Cart</span>
                     </a>
 
-                    <div class="dropdown-menu dropdown-menu-right">
+                    {{-- <div class="dropdown-menu dropdown-menu-right">
                         <div class="dropdown-cart-products">
                             <div class="product">
                                 <div class="product-cart-details">
@@ -217,7 +218,8 @@
                             <a href="cart.html" class="btn btn-primary">View Cart</a>
                             <a href="checkout.html" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
                         </div><!-- End .dropdown-cart-total -->
-                    </div><!-- End .dropdown-menu -->
+                    </div> --}}
+                    <!-- End .dropdown-menu -->
                 </div><!-- End .cart-dropdown -->
             </div>
         </div><!-- End .header-right -->

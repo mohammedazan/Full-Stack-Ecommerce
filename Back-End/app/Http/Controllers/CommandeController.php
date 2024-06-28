@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Commande;
+use App\Models\CompanyInfo;
 use App\Models\LigneCommande;
 use App\Models\Product;
 use App\Models\ProductCategory;
@@ -16,7 +17,8 @@ class CommandeController extends Controller
     
     public function order_in_the_cart(){
         $commande = Commande::with('lignecommande')->get(); 
-        return view('adminPanel.Commande.order_in_the_cart')->with(compact('commande'));
+        $CompanyInfo=CompanyInfo::get();
+        return view('adminPanel.Commande.order_in_the_cart')->with(compact('commande','CompanyInfo'));
     }
 
     
@@ -92,12 +94,37 @@ class CommandeController extends Controller
     }
 
 
+    public function updateCart(Request $request) {
+        $request->validate([
+            'quantities' => 'required|array',
+            'quantities.*' => 'required|integer|min:1',
+        ]);
+    
+        $commande = Commande::where('users_id', Auth::user()->id)->where('etat', 'en cours')->first();
+    
+        if ($commande) {
+            foreach ($request->quantities as $ligneCommandeId => $quantity) {
+                $ligneCommande = LigneCommande::find($ligneCommandeId);
+                if ($ligneCommande && $ligneCommande->commande_id == $commande->id) {
+                    $ligneCommande->qte = $quantity;
+                    $ligneCommande->save();
+                }
+            }
+            return redirect('/user/cart')->with('success', 'Cart updated successfully.');
+        } else {
+            return redirect()->back()->with('error', 'No active order found.');
+        }
+    }
+
+    
+
     public function cart(){
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $commande = Commande::where('users_id', Auth::user()->id)->where('etat', 'en cours')->first();  
         // $shippingCost = 0; // Default shipping cost
-        return view('guest/pages.cart')->with(compact('productSubcategory','category','commande',));
+        $CompanyInfo=CompanyInfo::get();
+        return view('guest/pages.cart')->with(compact('productSubcategory','category','commande','CompanyInfo'));
     }
 
     // public function checkout(Request $request){

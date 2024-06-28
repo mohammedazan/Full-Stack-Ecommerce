@@ -12,6 +12,7 @@
                                 <th>ID</th>
                                 <th>Name User</th>
                                 <th>Name Product</th>
+                                <th>QTY</th>
                                 <th>Order Status</th>
                                 <th>Total Payable</th>
                                 <th>Created At</th>
@@ -22,9 +23,15 @@
                             <tr>
                                 <td>{{ $c->id }}</td>
                                 <td>{{ $c->users->name }}</td>
-                                <td>
+                                    <td>
+                                        @foreach($c->lignecommande as $lc)
+                                            {{ $lc->product->name }} <br>
+                                        @endforeach
+                                    </td>
+                                    <td>
+                                        {{ $lc->qte }}
+                                    </td>
                                     
-                                </td>
                                 @if($c->etat === "payee")
                                     <td><span class="badge bg-success">
                                         {{$c->etat}}

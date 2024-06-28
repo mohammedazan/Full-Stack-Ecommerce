@@ -1,75 +1,41 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Models\Commande;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Srmklive\PayPal\Services\ExpressCheckout ;
+use Srmklive\PayPal\Services\ExpressCheckout;
+
 class PayPalController extends Controller
 {
-    
- 
     public function payment()
     {
-        $commande = Commande::where('users_id', Auth::user()->id)->where('etat', 'en cours')->first();
-        if (!$commande) {
-            return redirect()->route('cart')->with('error', 'No active order found.');
-        }
-        
-        // Calculate total price based on items in the cart
-        $totalPrice = $this->calculateTotalPrice($commande);
-
-        // Prepare payment data
         $data = [];
-        $data['items'] = $this->getItemsForPaypal($commande); // Get items in the cart
-        $data['invoice_id'] = $commande->id;
+        $data['items'] = [
+            [
+                'name' => 'Apple',
+                'price' => 100,
+                'desc'  => 'Macbook pro 14 inch',
+                'qty' => 1
+            ]
+        ];
+
+        $data['invoice_id'] = 1;
         $data['invoice_description'] = "Order #{$data['invoice_id']} Invoice";
         $data['return_url'] = route('payment.success');
         $data['cancel_url'] = route('payment.cancel');
-        $data['total'] = $totalPrice;
+        $data['total'] = 100;
 
-        // Initialize PayPal provider
         $provider = new ExpressCheckout;
 
-        // Set express checkout with the prepared data
         $response = $provider->setExpressCheckout($data);
 
-        // Redirect to PayPal payment page
+        $response = $provider->setExpressCheckout($data, true);
+
         return redirect($response['paypal_link']);
-    }
-
-    // Calculate total price of items in the cart
-    protected function calculateTotalPrice($commande)
-    {
-        $totalPrice = 0;
-        foreach ($commande->lignecommande as $ligne) {
-            // Assuming each product has a 'price' attribute
-            $totalPrice += $ligne->product->price * $ligne->qte;
-        }
-        // Add shipping cost or any additional charges if applicable
-        // $totalPrice += $shippingCost;
-        return $totalPrice;
-    }
-
-    // Prepare items for PayPal payment
-    protected function getItemsForPaypal($commande)
-    {
-        $items = [];
-        foreach ($commande->lignecommande as $ligne) {
-            $items[] = [
-                'name' => $ligne->product->name,
-                'price' => $ligne->product->price,
-                'description' => $ligne->product->description,
-                'qte' => $ligne->qte
-            ];
-        }
-        return $items;
     }
 
     public function cancel()
     {
-        return redirect()->route('checkout')->with('error', 'Your payment is canceled.');
+        return redirect()->route('cart')->with('error', 'Your payment is canceled.');
     }
 
     public function success(Request $request)
@@ -78,20 +44,29 @@ class PayPalController extends Controller
         $response = $provider->getExpressCheckoutDetails($request->token);
 
         if (in_array(strtoupper($response['ACK']), ['SUCCESS', 'SUCCESSWITHWARNING'])) {
-            // Find the order by invoice ID
-            $commandeId = $response['INVNUM'];
-            $commande = Commande::find($commandeId);
-            
-            if ($commande) {
-                // Update the order status to 'payee'
-                $commande->etat = 'payee';
-                $commande->save();
-            }
+            // Now make the payment
+            $payment_status = $provider->doExpressCheckoutPayment([
+                'items' => [
+                    [
+                        'name' => 'Apple',
+                        'price' => 100,
+                        'desc'  => 'Macbook pro 14 inch',
+                        'qty' => 1
+                    ]
+                ],
+                'invoice_id' => 1,
+                'invoice_description' => "Order #1 Invoice",
+                'total' => 100,
+            ], $response['TOKEN'], $response['PAYERID']);
 
-            return redirect()->route('checkout.confirmation')->with('success', 'Your payment was successful.');
+            // Check if the payment was successful
+            if ($payment_status['PAYMENTINFO_0_PAYMENTSTATUS'] === 'Completed') {
+                return redirect()->route('checkout.confirmation')->with('success', 'Your payment was successful.');
+            } else {
+                return redirect()->route('cart')->with('error', 'Payment was not successful. Please try again.');
+            }
         }
 
-        
-        return redirect()->route('checkout')->with('error', 'Please try again later.');
+        return redirect()->route('cart')->with('error', 'Please try again later.');
     }
 }
