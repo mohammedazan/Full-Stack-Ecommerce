@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactMail;
+use App\Models\CompanyInfo;
 use App\Models\ProductSubCategory;
 use App\Models\ProductCategory;
 
@@ -25,6 +26,8 @@ class ContactController extends Controller
     {
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
-        return view('guest.pages.contact')->with(compact('productSubcategory', 'category'));
+        $CompanyInfo=CompanyInfo::get();
+        return view('guest.pages.contact')->with(compact('productSubcategory', 'category','CompanyInfo'));
+
     }
 }
