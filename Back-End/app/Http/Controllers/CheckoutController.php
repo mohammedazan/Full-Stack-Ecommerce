@@ -175,4 +175,5 @@ class CheckoutController extends Controller
         // Pass the command data to the view
         return view('guest/pages.confirmation', compact('commande'));
     }
+
 }

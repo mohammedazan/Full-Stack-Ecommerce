@@ -94,6 +94,30 @@ class CommandeController extends Controller
     }
 
 
+    public function updateCart(Request $request) {
+        $request->validate([
+            'quantities' => 'required|array',
+            'quantities.*' => 'required|integer|min:1',
+        ]);
+    
+        $commande = Commande::where('users_id', Auth::user()->id)->where('etat', 'en cours')->first();
+    
+        if ($commande) {
+            foreach ($request->quantities as $ligneCommandeId => $quantity) {
+                $ligneCommande = LigneCommande::find($ligneCommandeId);
+                if ($ligneCommande && $ligneCommande->commande_id == $commande->id) {
+                    $ligneCommande->qte = $quantity;
+                    $ligneCommande->save();
+                }
+            }
+            return redirect('/user/cart')->with('success', 'Cart updated successfully.');
+        } else {
+            return redirect()->back()->with('error', 'No active order found.');
+        }
+    }
+
+    
+
     public function cart(){
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();

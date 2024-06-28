@@ -75,4 +75,7 @@ class Product extends Model
         return $this->hasMany(LigneCommande::class, 'product_id', 'id');
     }
 
+
+
+
 }
