@@ -65,10 +65,6 @@ class Product extends Model
     {
         return $this->hasMany(Product_review::class, 'product_id', 'id');
     }
-
- 
-    
-
 // products 
     public function lignecommande()
     {

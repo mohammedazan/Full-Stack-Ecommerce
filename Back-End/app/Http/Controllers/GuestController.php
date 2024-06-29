@@ -17,6 +17,7 @@ use App\Models\ProductSubCategory;
 use App\Models\ProductImage;
 use App\Models\User;
 use App\Models\Faq;
+use App\Models\ProductColor;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -219,6 +220,8 @@ class GuestController extends Controller
     public function productdetail(Request $request){
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
+        $color = ProductColor::get();
+
         $productdetail = Product::find($request->id);
         $CompanyInfo=CompanyInfo::get();
         $productList = Product::where('deleted', 0)->get();
@@ -237,7 +240,7 @@ class GuestController extends Controller
                 }
 
 
-        return view('guest/pages/productdetail')->with(compact('productSubcategory', 'category', 'productdetail','productList', 'avgRating','CompanyInfo'));
+        return view('guest/pages/productdetail')->with(compact('productSubcategory', 'category', 'productdetail','productList', 'avgRating','CompanyInfo','color'));
     }
 
     public function productoffer(Request $request){
