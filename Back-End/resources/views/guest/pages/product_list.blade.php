@@ -100,16 +100,6 @@
                 				</div><!-- End .toolbox-left -->
 
                 				<div class="toolbox-right">
-                					<div class="toolbox-sort">
-                						<label for="sortby">Sort by:</label>
-                						<div class="select-custom">
-											<select name="sortby" id="sortby" class="form-control">
-												<option value="popularity" selected="selected">Most Popular</option>
-												<option value="rating">Most Rated</option>
-												<option value="date">Date</option>
-											</select>
-										</div>
-                					</div><!-- End .toolbox-sort -->
                 					<div class="toolbox-layout">
                 						<a href="{{ route('product_list')}}" class="btn-layout active">
                 							<svg width="16" height="10">
@@ -203,9 +193,9 @@
                                                 <div class="product-price">
 													@if ($discountedPrice != $originalPrice)
 													<span class="new-price">{{ number_format($discountedPrice, 2) }}</span>
-													<span class="old-price">Was {{ number_format($originalPrice, 2) }}  HD</span>
+													<span class="old-price">Was {{ number_format($originalPrice, 2) }}  DH</span>
 													@else
-													<span class="old-price"> {{ number_format($originalPrice, 2) }}  HD</span>
+													<span class="old-price"> {{ number_format($originalPrice, 2) }}  DH</span>
 													@endif 
                                                 </div><!-- End .product-price -->
 												@if ($product->reviews->isNotEmpty())
@@ -263,7 +253,7 @@
                                                 <h3 class="product-title"><a href="{{ route('productdetail', ['id' => $product->id]) }}">{{ $product->name }}</a></h3><!-- End .product-title -->
 
                                                 <div class="product-content">
-                                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque </p>
+                                                    <p> {{ $product->productCategory->note }}</p>
                                                 </div><!-- End .product-content -->
                                                 
                                                 <div class="product-nav product-nav-thumbs">
