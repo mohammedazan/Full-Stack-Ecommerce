@@ -105,8 +105,8 @@
                                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                                                 <button type="submit" class="btn-product-icon btn-wishlist btn-expandable"><span>Add to Wishlist</span></button>
                                             </form>
-                                                                                        <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
-                                            <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
+                                              {{-- <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a> --}}
+                                            {{-- <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a> --}}
                                         </div><!-- End .product-action-vertical -->
                             
                                         <div class="product-action">
@@ -153,7 +153,9 @@
                                             <span class="ratings-text">({{ $reviewsCount}} Reviews)</span>
                                         </div><!-- End .ratings-container -->
                                         @else
-                                        <p>No reviews yet.</p>
+                                        <p class="ratings">
+
+                                        </p>
                                         @endif
 
                                     {{--     <div class="product-nav product-nav-thumbs">

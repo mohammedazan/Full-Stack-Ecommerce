@@ -55,7 +55,7 @@
                                     </div>
                                 </div>
                             </div>
-
+{{-- 
                             <div class="row mb-2 roldiv">
                                 <div class="col-sm-12 role_head">
                                     <h6><p>Sell Access <input class="form-check-input" type="checkbox" value="h2"  name="role_id[]" id="flexCheckDefault" checked style="margin-left: 20px"></p></h6>
@@ -76,7 +76,7 @@
                                         </label>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="row mb-2 roldiv">
                                 <div class="col-sm-12 role_head">

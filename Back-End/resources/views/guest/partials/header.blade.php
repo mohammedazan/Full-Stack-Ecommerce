@@ -606,7 +606,7 @@
             <div class="header-center">
                 <nav class="main-nav">
                     <ul class="menu sf-arrows">
-                        <li class="megamenu-container active">        
+                        <li class="megamenu-container ">        
                             <a href="{{ url('/forbest') }}"  class="sf-with">Home</a>
                         </li>
                         <li>
@@ -621,7 +621,15 @@
                         <li>
                             <a href="{{ url('/forbest/faqs') }}" class="sf-with">FAQs</a>
                         </li>
+
                         <li>
+                             <a href="{{ url('/contact') }}"  class="sf-with">Contact</a>
+                        </li>
+
+
+
+                        
+                        {{-- <li>
                             <a href="#" class="sf-with-ul">Pages</a>
                             <ul>
                                 <li>
@@ -634,7 +642,7 @@
                                     <a href="{{ url('/forbest/faqs') }}" class="sf-with-ul" >FAQs</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> --}}
                     </ul><!-- End .menu -->
                 </nav><!-- End .main-nav -->
             </div><!-- End .col-lg-9 -->

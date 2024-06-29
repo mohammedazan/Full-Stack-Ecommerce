@@ -32,21 +32,24 @@
     <link href="{{asset('assets/css/demos/demo-13.css')}}" rel="stylesheet">
 
 
-	        <!-- Toastr Initialization -->
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-			<script>
-				$(document).ready(function(){
-					// Toastr Initialization
-					@if(Session::has('success'))
-						toastr.success("{{ Session::get('success') }}");
-					@endif
-	
-					@if(Session::has('error'))
-						toastr.error("{{ Session::get('error') }}");
-					@endif
-				});
-			</script>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+<!-- Include jQuery and Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script>
+    $(document).ready(function(){
+        // Toastr Initialization
+        @if(Session::has('success'))
+            toastr.success("{{ Session::get('success') }}");
+        @endif
+
+        @if(Session::has('error'))
+            toastr.error("{{ Session::get('error') }}");
+        @endif
+    });
+</script>
 </head>
 
 <body>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Commande;
 use App\Models\CompanyInfo;
+use App\Models\ProductCategory;
+use App\Models\ProductSubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -21,7 +23,10 @@ class UserProfileController extends Controller
         $commandeall = Commande::where('users_id', Auth::user()->id)
         ->with('lignecommande')
         ->get(); 
-         return view('guest/User/user_profile', compact('commande','CompanyInfo','commandeall')); 
+        $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
+        $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
+        
+         return view('guest/User/user_profile', compact('commande','CompanyInfo','commandeall','productSubcategory','category')); 
     }
 
 
