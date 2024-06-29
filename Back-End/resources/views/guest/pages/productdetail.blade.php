@@ -32,7 +32,27 @@
     <link href="{{asset('assets/css/demos/demo-13.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('assets/css/plugins/nouislider/nouislider.css')}}">
 
-    
+ 
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+<!-- Include jQuery and Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script>
+    $(document).ready(function(){
+        // Toastr Initialization
+        @if(Session::has('success'))
+            toastr.success("{{ Session::get('success') }}");
+        @endif
+
+        @if(Session::has('error'))
+            toastr.error("{{ Session::get('error') }}");
+        @endif
+    });
+</script>
+
+   
 
 <!-- Add Font Awesome for stars -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
@@ -155,6 +175,7 @@
                                             <button class="btn-product btn-cart" type="submit"><span>add to cart</span></button>
                                         </div>
                                         <div class="details-action-wrapper">
+                                    
                                             <a href="#" class="btn-product btn-cart" title="Wishlist"><span>Add to Wishlist</span></a>
                                         </div>
                                     </div>
@@ -338,9 +359,15 @@
                         </a>
     
                         <div class="product-action-vertical">
-                            <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                            <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
-                            <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
+                            
+                            <form action="{{ route('wishlist.add') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                <button type="submit" class="btn-product-icon btn-wishlist btn-expandable"><span>Add to Wishlist</span></button>
+                            </form>
+                            {{-- <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a> --}}
+                            {{-- <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
+                            <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a> --}}
                         </div><!-- End .product-action-vertical -->
     
                         <div class="product-action">
@@ -383,7 +410,9 @@
                                     <span class="ratings-text">({{ $product->reviews->count() }} Reviews)</span>
                                 </div><!-- End .ratings-container -->
                                 @else
-                                <p>No reviews yet.</p>
+                                <p class="ratings">
+                                            
+                                </p>
                                 @endif
                         
                         

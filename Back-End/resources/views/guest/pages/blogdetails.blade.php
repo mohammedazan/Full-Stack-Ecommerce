@@ -53,7 +53,8 @@
 
             <div class="page-content">
                 <figure class="entry-media">
-                    <img src="{{ asset('uploads_blogs/blogs/' . $blogs->img) }}" alt="mage desc"   >
+                    <img src="{{ asset('uploads_blogs/blogs/' . $blogs->img) }}" alt="mage desc"  style="height: 390px "  >
+                    
 
                 </figure><!-- End .entry-media -->
                 <div class="container">

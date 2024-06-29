@@ -27,9 +27,9 @@
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Nom</th>
+                                {{-- <th>ID</th> --}}
                                 <th>Référence</th>
+                                <th>Nom</th>
                                 {{--<th>Sous-catégorie</th>--}}
                                 <th>Photo</th>
                                 <th>Prix de vente</th>
@@ -41,9 +41,9 @@
                         <tbody>
                             @foreach($productList as $key=>$product)
                             <tr>
-                                <td>{{$key+1}}</td>
-                                <td>{{$product->name}}</td>
+                                {{-- <td>{{$key+1}}</td> --}}
                                 <td>{{$product->reference}}</td>
+                                <td>{{$product->name}}</td>
                                 {{--<td>--}}
                                 {{--{{$product->productCategory->name}}--}}
                                 {{--</td>--}}
