@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\Commande;
 use App\Models\CompanyInfo;
+use App\Models\Country;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,8 +22,24 @@ class CheckoutController extends Controller
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $CompanyInfo=CompanyInfo::get();
 
-        return view('guest/pages.checkout', compact('commande', 'category','CompanyInfo'));
+        $countries = Country::all();
+        $cities = City::all();
+
+
+
+        return view('guest/pages.checkout', compact('commande', 'category','CompanyInfo','countries','cities'));
     }
+
+
+
+
+
+
+
+
+
+
+
     public function placeOrder(Request $request)
     {
         // Validate the incoming request data
