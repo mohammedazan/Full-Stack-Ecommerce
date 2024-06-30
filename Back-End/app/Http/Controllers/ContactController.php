@@ -39,7 +39,6 @@ class ContactController extends Controller
     foreach ($commandes as $commande) {
         $CartCount += $commande->lignecommande->count();
     }
-
         return view('guest.pages.contact')->with(compact('productSubcategory', 'category','CompanyInfo','CartCount','wishlistCount'));
     }
 }

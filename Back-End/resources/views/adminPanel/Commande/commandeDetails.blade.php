@@ -3,7 +3,7 @@
 @section('main_content')
     <div class="page-content">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body">Add commandeDetails and add en_courses table
                 <div class="table-responsive">
                     @if($commande)
                         <div class="row">

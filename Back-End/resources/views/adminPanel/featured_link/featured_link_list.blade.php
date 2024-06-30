@@ -78,6 +78,20 @@
                                                     </svg>
                                                     Modifier</a>
                                             </li>
+                                            <li class="align-items-center"
+                                            onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');">
+                                            <a class="dropdown-item"
+                                               href="{{route('feature.delete',['id'=>$feature->id])}}">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                     class="feather feather-trash text-primary">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path
+                                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                </svg>
+                                                Supprimer</a>
+                                        </li>
                                             {{-- Suppression --}}
                                             {{-- <li class="align-items-center"
                                                 onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');">

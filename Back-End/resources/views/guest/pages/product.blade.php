@@ -131,29 +131,27 @@
 									@php
 									// Number of products per page
 									$productsPerPage = 12;
-								
+							
 									// Get the current page from query parameters, default to 1
 									$currentPage = request()->get('page', 1);
-								
+							
 									// Get the minimum and maximum price from query parameters
 									$minPrice = request()->get('min_price', 0);
 									$maxPrice = request()->get('max_price', PHP_INT_MAX);
-								
+							
 									// Filter the products based on the price range
 									$filteredProducts = $productList->filter(function($product) use ($minPrice, $maxPrice) {
 										return $product->current_sale_price >= $minPrice && $product->current_sale_price <= $maxPrice;
 									});
-								
+							
 									// Calculate the total number of pages
 									$totalPages = ceil($filteredProducts->count() / $productsPerPage);
-								
+							
 									// Slice the product list to get the products for the current page
 									$currentProducts = $filteredProducts->forPage($currentPage, $productsPerPage);
-								@endphp
-								
-								
+									@endphp
 							
-									@foreach($currentProducts as $key=>$product)
+									@foreach($currentProducts as $key => $product)
 									@php
 										// Initialize the original price
 										$originalPrice = $product->current_sale_price;
@@ -174,11 +172,11 @@
 									<div class="col-6 col-md-4 col-lg-4">
 										<div class="product product-7 text-center">
 											<figure class="product-media">
-												@if($discountLabel  >= 1 )
+												@if($discountLabel)
 												<span class="product-label label-new">{{ $discountLabel }}</span>
 												@endif
 												<a href="{{ route('productdetail', ['id' => $product->id]) }}">
-													<img src="{{ asset($product->image_path) }}"  alt="Product image" class="product-image">
+													<img src="{{ asset($product->image_path) }}" alt="Product image" class="product-image">
 												</a>
 							
 												<div class="product-action-vertical">
@@ -187,22 +185,14 @@
 														<input type="hidden" name="product_id" value="{{ $product->id }}">
 														<button type="submit" class="btn-product-icon btn-wishlist btn-expandable"><span>Add to Wishlist</span></button>
 													</form>	
-
 												</div>
 												<!-- End .product-action-vertical -->
-							
-												<div class="product-action">
-													<form class="product-action" action="/user/order/store" method="post">
-														@csrf
-														<input type="hidden" name="idproduct" id="idproduct" class="form-control" value="{{$product->id}}">
-														<input type="hidden" name="qte" id="qte" class="form-control" value="1" required>
-														<button class="btn-product btn-cart" title="Add to cart" type="submit"><span>add to cart</span></button>
-													</form> 
-												
-
-													{{-- <a href="#" class="btn-product btn-cart"><span>add to cart</span></a> --}}
-												</div><!-- End .product-action -->
-											
+												<form action="/user/order/store" method="post">
+													@csrf
+													<input type="hidden" name="idproduct" id="idproduct" class="form-control" value="{{ $product->id }}">
+													<input type="hidden" name="qte" id="qte" class="form-control" value="1" required>
+													<div class="product-action"><button class="btn-product btn-cart" title="Add to cart" type="submit"><span>Add to Cart</span></button></div>
+												</form> 
 											</figure><!-- End .product-media -->
 							
 											<div class="product-body">
@@ -218,9 +208,9 @@
 												<div class="product-price">
 													@if ($discountedPrice != $originalPrice)
 														<span class="new-price">{{ number_format($discountedPrice, 2) }}</span>
-														<span class="old-price">Was {{ number_format($originalPrice, 2) }}  HD</span>
+														<small class="old-price">Was {{ number_format($originalPrice, 2) }} DH</small>
 													@else
-														<span class="old-price">{{ number_format($originalPrice, 2) }}  HD</span>
+														<span class="old-price">{{ number_format($originalPrice, 2) }} DH</span>
 													@endif
 												</div><!-- End .product-price -->
 												@if (isset($product->reviewsCount) && $product->reviewsCount > 0)
@@ -241,11 +231,9 @@
 														<span class="ratings-text">({{ $product->reviewsCount }} Reviews)</span>
 													</div><!-- End .ratings-container -->
 												@else
-													<p class="ratings">No reviews yet.</p>
+													<p class="ratings"></p>
 												@endif
 											</div><!-- End .product-body -->
-											
-											<!-- End .product-body -->
 										</div><!-- End .product -->
 									</div><!-- End .col-sm-6 col-lg-4 -->
 									@endforeach

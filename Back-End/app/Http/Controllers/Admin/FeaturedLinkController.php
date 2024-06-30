@@ -28,6 +28,10 @@ class FeaturedLinkController extends Controller
         return redirect()->back()->with('success', 'Featured link  successfully created');
 
     }
+    public function featureDelete(Request $request){
+        $feature=FeaturedLink::where('id',$request->id)->delete();
+        return redirect()->back()->with('success', "Successfully deleted faq");
+    }
 
     public function featuredLinkUpdate(Request $request){
         $feature=FeaturedLink::find($request->id);
