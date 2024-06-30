@@ -253,7 +253,7 @@ Route::group(['middleware' => 'AuthCheckUser'], function () {
    Route::post('/forbest/review/store', [ReviewProduct::class, 'addreview'])->name('forbest.review.store');
 
 
-   Route::post('/user/order/store',[CommandeController::class,'store']);
+   Route::post('/user/order/store',[CommandeController::class,'store'])->name('cart.add');
    Route::post('/user/order/store/product_list',[GuestController::class,'product_list']);
 
    Route::delete('/user/order/delete/{id}', [CommandeController::class, 'destroy'])->name('commande.delete');

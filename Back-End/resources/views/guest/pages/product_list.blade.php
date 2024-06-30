@@ -249,7 +249,8 @@
 														@csrf
 														<input type="hidden" name="product_id" value="{{ $product->id }}">
 														<button type="submit" class="btn-product-icon btn-wishlist btn-expandable"><span>Add to Wishlist</span></button>
-													</form>												<div class="product-cat">
+													</form>												
+													<div class="product-cat">
 												@php
 												    $id = $product->productCategory->id
 												@endphp
