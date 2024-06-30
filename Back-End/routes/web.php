@@ -187,6 +187,8 @@ Route::group(['middleware' => 'authCheck'], function () {
     Route::get('admin/featured/link/list', [FeaturedLinkController::class, 'featuredLinkList'])->name('admin.featured.link.list');
     Route::post('admin/featured/store', [FeaturedLinkController::class, 'featuredLinkStore'])->name('admin.featured.store');
     Route::post('admin/featured/update', [FeaturedLinkController::class, 'featuredLinkUpdate'])->name('admin.featured.update');
+    Route::get('admin/feature/deleted', [FeaturedLinkController::class, 'featureDelete'])->name('feature.delete');
+
 
     Route::get('admin/faq', [SettingController::class, 'faqView'])->name('faq.view');
     Route::post('admin/faq/store', [SettingController::class, 'faqStore'])->name('faq.store');
