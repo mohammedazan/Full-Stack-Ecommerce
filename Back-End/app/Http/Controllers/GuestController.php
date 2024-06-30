@@ -133,6 +133,22 @@ class GuestController extends Controller
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $brandList=Brand::get();
         $CompanyInfo=CompanyInfo::get();
+
+        if ($productList->isEmpty()) {
+            return redirect()->back();
+        }
+        
+        foreach ($productList as $product) {
+            $reviews = $product->reviews;
+            if ($reviews->count() > 0) {
+                $totalRating = $reviews->sum('rate');
+                $product->avgRating = $totalRating / $reviews->count();
+                $product->reviewsCount = $reviews->count();
+            } else {
+                $product->avgRating = 0;
+                $product->reviewsCount = 0;
+            }
+        }
         return view('guest/pages.product')->with(compact('productList','category','brandList','productSubcategory','CompanyInfo'));
     }
 
