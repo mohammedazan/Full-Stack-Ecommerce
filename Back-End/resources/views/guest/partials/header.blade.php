@@ -3,12 +3,9 @@
     <div class="container">
         <div class="header-left">
             <a href="tel:#"><i class="icon-phone"></i>Call:
-                @php
-                    $ver = $CompanyInfo->shuffle()->take(1);
-                @endphp
-                @foreach ($ver as $key =>$Company )
+                @foreach ($CompanyInfo as $key =>$Company )
                 {{$Company->phone}}
-            @endforeach</a>
+                @endforeach</a>
         </div><!-- End .header-left -->
 
         <div class="header-right">
@@ -120,7 +117,7 @@
           $(document).ready(function() {
               $('#q').on('keyup', function() {
                   var query = $(this).val();
-                  if (query.length > 2) {
+                  if (query.length > 1 ) {
                       console.log('Sending AJAX request with query:', query);
                       $.ajax({
                           url: "{{ route('product.search') }}",

@@ -95,14 +95,13 @@ class GuestController extends Controller
             $product->reviewsCount = 0;
         }
     }
-    $cartCount = Commande::where('users_id', Auth::user()->id)->where('etat', 'en cours')->count();  
 
 
     // Calculate the count of wishlist items
     
 
 
-        return view('guest/home')->with(compact('productSubcategory','productList','category','productCategory','offer','featuredImage','brandList','Blogs','CompanyInfo','cartCount'));
+        return view('guest/home')->with(compact('productSubcategory','productList','category','productCategory','offer','featuredImage','brandList','Blogs','CompanyInfo'));
     }
 
 
