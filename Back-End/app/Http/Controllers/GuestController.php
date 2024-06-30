@@ -18,6 +18,7 @@ use App\Models\ProductImage;
 use App\Models\User;
 use App\Models\Faq;
 use App\Models\ProductColor;
+use App\Models\Wishlist;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -100,8 +101,9 @@ class GuestController extends Controller
     // Calculate the count of wishlist items
     
 
+    $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
 
-        return view('guest/home')->with(compact('productSubcategory','productList','category','productCategory','offer','featuredImage','brandList','Blogs','CompanyInfo'));
+        return view('guest/home')->with(compact('productSubcategory','productList','category','productCategory','offer','featuredImage','brandList','Blogs','CompanyInfo','wishlistCount'));
     }
 
 

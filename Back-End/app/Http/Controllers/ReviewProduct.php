@@ -35,4 +35,12 @@ class ReviewProduct extends Controller
     }
 
 
+    public function delete($id){
+        $review = Product_review::find($id);
+        if ($review) {
+            $review->delete();
+            return redirect()->back()->with('success', 'Review deleted successfully.');
+        }
+        return redirect()->back()->with('error', 'Review not found.');
+    }
 }

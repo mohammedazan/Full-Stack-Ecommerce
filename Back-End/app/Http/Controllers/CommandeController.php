@@ -137,8 +137,10 @@ class CommandeController extends Controller
         // $shippingCost = 0; // Default shipping cost
         // $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
         $CompanyInfo=CompanyInfo::get();
+        $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
 
-        return view('guest/pages.cart')->with(compact('productSubcategory','category','commande','CompanyInfo' ));
+
+        return view('guest/pages.cart')->with(compact('productSubcategory','category','commande','CompanyInfo','wishlistCount' ));
     }
 
     // public function checkout(Request $request){

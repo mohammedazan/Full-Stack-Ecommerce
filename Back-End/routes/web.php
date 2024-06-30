@@ -336,6 +336,8 @@ Route::get('/search', [GuestController::class, 'search'])->name('product.search'
 
 Route::get('/product/review',[ReviewProduct::class,'index'])->name('reviews');
 Route::post('/forbest/review/store', [ReviewProduct::class, 'addreview'])->name('forbest.review.store');
+Route::delete('adminPanel/Reviews/{id}', [ReviewProduct::class, 'delete'])->name('reviews.delete');
+
 
 Route::get('/productdetail', [GuestController::class, 'productdetail'])->name('productdetail');
 
