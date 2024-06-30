@@ -67,7 +67,7 @@
                                 <figure class="entry-media">
                                     <a href="#">
                                         <!-- <img src="assets/images/blog/grid/3cols/post-1.jpg" alt="image desc"> -->
-                                        <img src="{{ asset('uploads_blogs/blogs/' . $all_blog->img) }}" alt="mage desc" style=" height: 150px;"  >
+                                        <img src="{{ asset('uploads_blogs/blogs/' . $all_blog->img) }}" alt="mage desc" >
 
                                     </a>
                                 </figure><!-- End .entry-media -->

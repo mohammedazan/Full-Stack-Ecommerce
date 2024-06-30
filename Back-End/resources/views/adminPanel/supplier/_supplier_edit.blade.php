@@ -97,7 +97,7 @@
                            placeholder="Company Email">
                 </div>
             </div>
-            <div class="col-sm-6">
+           {{-- <div class="col-sm-6">
                 <label for="due" class="col-sm-12  pr-0 col-form-label">Previous Due Balance
                 </label>
                 <div class="col-sm-12">
@@ -105,7 +105,7 @@
                            value="{{$supplierInfo->previous_due}}"
                            placeholder="Due Balance" step="any" min="0">
                 </div>
-            </div>
+            </div> --}} 
             <div class="col-sm-12">
                 <label for="company_address" class="col-sm-12  pr-0 col-form-label">Company
                     Address

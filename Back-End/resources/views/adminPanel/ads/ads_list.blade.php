@@ -178,14 +178,14 @@
                                     </div>
                                 </div>
 
-                                <div class="mb-2  m-lg-1 row">
+                               {{--   <div class="mb-2  m-lg-1 row">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="is_popular" value="1" id="activecheck" checked>
                                         <label class="form-check-label" for="defaultCheck1">
                                             Is Popular
                                         </label>
                                     </div>
-                                </div>
+                                </div>--}}
                             </div>
                         </div>
                         <div class="d-flex justify-content-end p-3">

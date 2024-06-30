@@ -18,22 +18,6 @@
     <div class="page-content">
         <!-- Fil d'Ariane -->
         {{-- $role = Role::where('status', 1)->get(); --}}
-        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title"></div>
-            <input type="hidden" id="selectimgdiv">
-            <div class="ms-auto">
-                <div class="btn-group">
-                    <div class="d-flex gap-3 mt-3">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                            <i class="lni lni-circle-plus"></i> Ajouter un utilisateur
-                        </button>
-                        {{-- <a href="#" class="btn btn-primary"><i class="lni lni-circle-plus"></i> Ajouter une catégorie</a> --}}
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">

@@ -209,14 +209,14 @@
                                                        placeholder="Email de la société">
                                             </div>
                                         </div>
-                                        <div class="col-sm-6">
+                                       {{-- <div class="col-sm-6">
                                             <label for="due" class="col-sm-12  pr-0 col-form-label">Solde dû précédent
                                             </label>
                                             <div class="col-sm-12">
                                                 <input type="number" id="due" class="form-control" name="previous_due"
                                                        placeholder="Solde dû" step="any" min="0">
                                             </div>
-                                        </div>
+                                        </div> --}} 
                                         <div class="col-sm-12">
                                             <label for="company_address" class="col-sm-12  pr-0 col-form-label">Adresse de la société
                                             </label>

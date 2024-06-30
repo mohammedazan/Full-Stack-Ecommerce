@@ -32,7 +32,7 @@
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/skins/skin-demo-13.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/demos/demo-13.css')}}" rel="stylesheet">
-    
+	
 </head>
 
 <body>

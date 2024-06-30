@@ -137,7 +137,7 @@
                                 </div>
                             </div>
         
-                            <div class="mb-2 row">
+                         {{-- <div class="mb-2 row">
                                 <div class="col-sm-12">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="is_active" value="1" id="defaultCheck1">
@@ -146,7 +146,7 @@
                                         </label>
                                     </div>
                                 </div>
-                            </div>
+                            </div>  --}}   
         
                             <div class="mb-2 row">
                                 <div class="col-sm-12 mt-2">
@@ -239,7 +239,7 @@
                                     </div>
                                 </div>
         
-                                <div class="mb-2 row">
+                                {{--   <div class="mb-2 row">
                                     <div class="col-sm-12">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" name="is_active" value="1"
@@ -249,7 +249,7 @@
                                             </label>
                                         </div>
                                     </div>
-                                </div>
+                                </div>--}} 
         
                                 <div class="mb-2 mt-2 row d-flex justify-content-center" style="position: relative">
         

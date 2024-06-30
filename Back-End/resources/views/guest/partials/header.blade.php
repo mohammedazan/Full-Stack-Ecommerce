@@ -650,10 +650,7 @@
             <div class="header-right">
                 <div class="social-icons social-icons-color">
                     <span class="social-label">Social Media</span>
-                    @php
-                    $ver = $CompanyInfo->shuffle()->take(1);
-                    @endphp
-                    @foreach ($ver as $key =>$Company )
+                    @foreach ($CompanyInfo as $key =>$Company )
                     <a href="{{$Company->facebook_link}}" class="social-icon social-facebook" title="Facebook" target="_blank">
                         <i class="fab fa-facebook-f" style="color: #ffffff"></i>
                     </a>
