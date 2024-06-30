@@ -90,6 +90,8 @@
                                         </label>
                                     </div>
                                 </div>
+
+
                                 <div class="col-sm-3">
                                     <div class="form-check ">
                                         <input class="form-check-input" type="checkbox" value="6"  name="role_id[]" id="flexCheckDefault" checked>
@@ -154,6 +156,20 @@
                                     </div>
                                 </div>
                             </div> --}}  
+
+                            <div class="row mb-2 roldiv">
+                                <div class="col-sm-12 role_head">
+                                    <h6><p>Commande<input class="form-check-input" type="checkbox" value="Co1"  name="role_id[]" id="flexCheckDefault" checked style="margin-left: 20px"></p></h6>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-check ">
+                                        <input class="form-check-input" type="checkbox" value="Co2"  name="role_id[]" id="flexCheckDefault" checked>
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Order
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="row mb-2 roldiv">
                                 <div class="col-sm-12 role_head">
@@ -256,7 +272,9 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-2 roldiv">
+                      
+
+                            {{-- <div class="row mb-2 roldiv">
                                 <div class="col-sm-12 role_head">
                                     <h6><p>Order Access <input class="form-check-input" type="checkbox" value="h8"  name="role_id[]" id="flexCheckDefault" checked style="margin-left: 20px"></p></h6>
                                 </div>
@@ -326,7 +344,7 @@
                                         </label>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                          {{--    <div class="row mb-2 roldiv">
                                 <div class="col-sm-12 role_head">

@@ -95,8 +95,14 @@ class GuestController extends Controller
             $product->reviewsCount = 0;
         }
     }
+    $cartCount = Commande::where('users_id', Auth::user()->id)->where('etat', 'en cours')->count();  
 
-        return view('guest/home')->with(compact('productSubcategory','productList','category','productCategory','offer','featuredImage','brandList','Blogs','CompanyInfo'));
+
+    // Calculate the count of wishlist items
+    
+
+
+        return view('guest/home')->with(compact('productSubcategory','productList','category','productCategory','offer','featuredImage','brandList','Blogs','CompanyInfo','cartCount'));
     }
 
 
@@ -137,6 +143,7 @@ class GuestController extends Controller
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $brandList=Brand::get();
         $CompanyInfo=CompanyInfo::get();
+        $productdetail = Product::find($request->id);
 
       
     // Calculate average rating and reviews count for each product
@@ -151,8 +158,9 @@ class GuestController extends Controller
             $product->reviewsCount = 0;
         }
     }
+    
 
-        return view('guest/pages.product_list')->with(compact('productList','category','brandList','productSubcategory','CompanyInfo'));
+        return view('guest/pages.product_list')->with(compact('productList','category','brandList','productSubcategory','CompanyInfo','productdetail'));
     }
 
 

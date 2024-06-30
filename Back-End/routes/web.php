@@ -254,6 +254,8 @@ Route::group(['middleware' => 'AuthCheckUser'], function () {
 
 
    Route::post('/user/order/store',[CommandeController::class,'store']);
+   Route::post('/user/order/store/product_list',[GuestController::class,'product_list']);
+
    Route::delete('/user/order/delete/{id}', [CommandeController::class, 'destroy'])->name('commande.delete');
 
    Route::get('/user/cart', [CommandeController::class, 'cart'])->name('cart');

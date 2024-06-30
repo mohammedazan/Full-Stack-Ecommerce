@@ -21,9 +21,9 @@
                             <th>Propriétaire du Blog</th>
                             <th>Titre Court</th>
                             <th>Titre</th>
-                            <th>Contenu</th>
+                            {{-- <th>Contenu</th> --}}
                             <th>Logo</th>
-                            <th>Slug</th>
+                            {{-- <th>Slug</th> --}}
                             <th>Date</th>
                             <th>Action</th>
                         </tr>
@@ -35,11 +35,11 @@
                             <td>{{ $blog->blogowner }}</td>
                             <td>{{ $blog->Shorttitle }}</td>
                             <td>{{ $blog->title }}</td>
-                            <td>{{ $blog->content }}</td>
+                            {{-- <td>{{ $blog->content }}</td> --}}
                             <td>
                                 <img src="{{ asset('uploads_blogs/blogs/' . $blog->img) }}" alt="Image du Post" style="width: 70px; height: auto;">
                             </td>
-                            <td>{{ $blog->slug }}</td>
+                            {{-- <td>{{ $blog->slug }}</td> --}}
                             <td>{{ $blog->created_at }}</td>
                             <td>
                                 <div class="dropdown">
@@ -95,10 +95,10 @@
                         <input type="text" name="Shorttitle" class="form-control" required>
                     </div>
 
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label for="slug" class="form-label">Slug</label>
                         <input type="text" name="slug" class="form-control" required>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Enregistrer</button>
@@ -141,10 +141,10 @@
                         <label for="edit_Shorttitle" class="form-label">Titre Court</label>
                         <input id="edit_Shorttitle" type="text" name="Shorttitle" class="form-control" required>
                     </div>
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label for="edit_slug" class="form-label">Slug</label>
                         <input type="text" name="slug" class="form-control" id="edit_slug" required>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Enregistrer</button>

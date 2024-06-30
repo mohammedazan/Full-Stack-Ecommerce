@@ -20,7 +20,7 @@ class BlogsController extends Controller
             'title' => 'required|string',
             'blogowner' => 'required|string',
             'Shorttitle' => 'required|string',
-            'slug' => 'required|string',
+            // 'slug' => 'required|string',
             'img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         $blogs=new Blogs();
@@ -28,7 +28,7 @@ class BlogsController extends Controller
         $blogs->blogowner=$request->blogowner;
         $blogs->title=$request->title;
         $blogs->Shorttitle=$request->Shorttitle;
-        $blogs->slug=$request->slug;
+        // $blogs->slug=$request->slug;
         $blogs->slug=uniqid();
         if ($request->hasFile('img')) {
             $file = $request->file('img');
@@ -36,7 +36,7 @@ class BlogsController extends Controller
             $fillename=time() . '.' .$extension;
             $file->move('uploads_blogs/blogs', $fillename);
             $blogs->img=$fillename;
-        }else {
+        }else{
             return $request;
             $blogs->img=" "; // or set a default image
         }
@@ -52,7 +52,7 @@ class BlogsController extends Controller
             'title' => 'required|string',
             'blogowner' => 'required|string',
             'Shorttitle' => 'required|string',
-            'slug' => 'required|string',
+            // 'slug' => 'required|string',
             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
     
@@ -62,7 +62,7 @@ class BlogsController extends Controller
         $blogs->blogowner=$request->blogowner;
         $blogs->title = $request->title;
         $blogs->Shorttitle=$request->Shorttitle;
-        $blogs->slug = $request->slug;
+        // $blogs->slug = $request->slug;
     
         if ($request->hasFile('img')) {
             $file = $request->file('img');

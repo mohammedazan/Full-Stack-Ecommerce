@@ -74,13 +74,17 @@
 
                 </div>
 
-                <div class="col-sm-6">
+
+                
+                {{-- <div class="col-sm-6">
                     <div class="mb-3">
                         <label class="form-label">Size</label>
                         <input type="text" id="myInput" name="size" class="form-control" data-role="tagsinput"
                                value="{{$productInfo->size}}">
                     </div>
-                </div>
+                </div> --}}
+
+                
                 <div class="col-sm-6">
                     <div class="mb-3">
                         <label class="form-label">Reference</label>
@@ -228,7 +232,7 @@
                 @endif
 
 
-                <div class="col-md-6">
+                {{-- <div class="col-md-6">
                     <div class="form-check">
                         <input class="form-check-input" name="is_trending"
                                type="checkbox"
@@ -239,7 +243,10 @@
                         </label>
                     </div>
                 </div>
-                <div class="col-md-6">
+                 --}}
+
+                 
+                {{-- <div class="col-md-6">
                     <div class="form-check">
                         <input class="form-check-input" name="is_popular"
                                type="checkbox"
@@ -248,7 +255,9 @@
                             Is Popular
                         </label>
                     </div>
-                </div>
+                </div> --}}
+
+
                 <div class="col-12">
                     <div class="d-grid">
                         <button type="submit" class="btn btn-primary">Update Product

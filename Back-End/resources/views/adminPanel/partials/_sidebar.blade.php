@@ -194,14 +194,14 @@
             </li>
         @endif --}}
 
-        @if(userCanAccess('m9'))
+        @if(userCanAccess('Co1'))
 <li>
     <a href="javascript:;" class="has-arrow">
         <div class="parent-icon" style="color: #2ECC71;"><i class="lni lni-cart"></i></div>
         <div class="menu-title">Commande</div>
     </a>
     <ul>
-         @if(userCanAccess('m10'))
+         @if(userCanAccess('Co2'))
         <li>
             <a href="{{ route('order_in_the_cart') }}"><i class="bx bx-right-arrow-alt"></i> commande </a>
         </li>
@@ -369,7 +369,7 @@
 </li>
 @endif
 
-        @if(userCanAccess('h7'))
+        {{-- @if(userCanAccess('h7'))
             <li>
                 <a href="javascript:;" class="has-arrow">
                     <div class="parent-icon" style="color: #2ECC71;"><i class="lni lni-home"></i>
@@ -406,7 +406,7 @@
 
                 </ul>
             </li>
-        @endif
+        @endif --}}
 
     </ul>
     <!-- Fin de la navigation -->
