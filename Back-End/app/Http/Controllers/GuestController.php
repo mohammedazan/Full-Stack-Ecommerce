@@ -17,7 +17,9 @@ use App\Models\ProductSubCategory;
 use App\Models\ProductImage;
 use App\Models\User;
 use App\Models\Faq;
+use App\Models\LigneCommande;
 use App\Models\ProductColor;
+use App\Models\Wishlist;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -100,13 +102,26 @@ class GuestController extends Controller
     // Calculate the count of wishlist items
     
 
+    $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
 
-        return view('guest/home')->with(compact('productSubcategory','productList','category','productCategory','offer','featuredImage','brandList','Blogs','CompanyInfo'));
+    // Calculate total quantity of items in all commandes
+    $commandes = Commande::where('users_id', Auth::id())->get();
+
+    $CartCount = 0;
+
+    // Loop through each Commande and count the total number of items
+    foreach ($commandes as $commande) {
+        $CartCount += $commande->lignecommande->count();
     }
+
+        return view('guest/home')->with(compact('productSubcategory','productList','category','productCategory','offer','featuredImage','brandList','Blogs','CompanyInfo','wishlistCount','CartCount'));
+    }
+    
 
 
 
     public function about(){
+        
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $company = CompanyInfo::first();
@@ -132,7 +147,33 @@ class GuestController extends Controller
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $brandList=Brand::get();
         $CompanyInfo=CompanyInfo::get();
-        return view('guest/pages.product')->with(compact('productList','category','brandList','productSubcategory','CompanyInfo'));
+
+        $CartCount = 0;
+        $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
+        $commandes = Commande::where('users_id', Auth::id())->get();
+
+    // Loop through each Commande and count the total number of items
+    foreach ($commandes as $commande) {
+        $CartCount += $commande->lignecommande->count();
+    }
+
+
+        if ($productList->isEmpty()) {
+            return redirect()->back();
+        }
+        
+        foreach ($productList as $product) {
+            $reviews = $product->reviews;
+            if ($reviews->count() > 0) {
+                $totalRating = $reviews->sum('rate');
+                $product->avgRating = $totalRating / $reviews->count();
+                $product->reviewsCount = $reviews->count();
+            } else {
+                $product->avgRating = 0;
+                $product->reviewsCount = 0;
+            }
+        }
+        return view('guest/pages.product')->with(compact('productList','category','brandList','productSubcategory','CompanyInfo','CartCount','wishlistCount'));
     }
 
 
@@ -143,6 +184,16 @@ class GuestController extends Controller
         $brandList=Brand::get();
         $CompanyInfo=CompanyInfo::get();
         $productdetail = Product::find($request->id);
+
+
+        $CartCount = 0;
+        $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
+        $commandes = Commande::where('users_id', Auth::id())->get();
+
+    // Loop through each Commande and count the total number of items
+    foreach ($commandes as $commande) {
+        $CartCount += $commande->lignecommande->count();
+    }
 
       
     // Calculate average rating and reviews count for each product
@@ -159,7 +210,7 @@ class GuestController extends Controller
     }
     
 
-        return view('guest/pages.product_list')->with(compact('productList','category','brandList','productSubcategory','CompanyInfo','productdetail'));
+        return view('guest/pages.product_list')->with(compact('productList','category','brandList','productSubcategory','CompanyInfo','productdetail','CartCount','wishlistCount'));
     }
 
 
@@ -181,6 +232,8 @@ class GuestController extends Controller
         if ($productList->isEmpty()) {
             return redirect()->back();
         }
+
+        
         return view('guest/pages.product')->with(compact('productList','productSubcategory', 'category', 'brandList','CompanyInfo'));
     }
     public function product_list_category(Request $request) {
@@ -247,7 +300,22 @@ class GuestController extends Controller
                 }
 
 
-        return view('guest/pages/productdetail')->with(compact('productSubcategory', 'category', 'productdetail','productList', 'avgRating','CompanyInfo','color'));
+        $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
+        $commandes = Commande::where('users_id', Auth::id())->get();
+
+        $CartCount = 0;
+    
+        // Loop through each Commande and count the total number of items
+        foreach ($commandes as $commande) {
+            $CartCount += $commande->lignecommande->count();
+        }
+    
+       
+        // Count the number of unique product IDs
+
+
+
+        return view('guest/pages/productdetail')->with(compact('productSubcategory', 'category', 'productdetail','productList', 'avgRating','CompanyInfo','color','wishlistCount','CartCount'));
     }
 
     public function productoffer(Request $request){
@@ -324,7 +392,17 @@ class GuestController extends Controller
         $productCategory = ProductCategory::where('deleted', 0)->where('status', 1)->get();
         $CompanyInfo=CompanyInfo::get();
         $faqList=Faq::get();
-        return view('guest/pages.faqs')->with(compact('category', 'productCategory', 'productSubcategory','faqList','CompanyInfo'));
+
+        $CartCount = 0;
+        $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
+        $commandes = Commande::where('users_id', Auth::id())->get();
+
+    // Loop through each Commande and count the total number of items
+    foreach ($commandes as $commande) {
+        $CartCount += $commande->lignecommande->count();
+    }
+
+        return view('guest/pages.faqs')->with(compact('category', 'productCategory', 'productSubcategory','faqList','CompanyInfo','CartCount','wishlistCount'));
 
     }
 

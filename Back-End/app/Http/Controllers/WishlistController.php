@@ -27,6 +27,7 @@ class WishlistController extends Controller
         $productSubcategories = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $categories = ProductCategory::where('status', 1)->where('deleted', 0)->get();
 
+        
         // Return the wishlist view with the wishlist items and other necessary data
         return view('guest.pages.wishlist', compact('wishlistItems', 'productSubcategories', 'categories','CompanyInfo'));
     }

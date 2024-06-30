@@ -104,6 +104,8 @@
                 				</div><!-- End .toolbox-right -->
                 			</div><!-- End .toolbox -->
 
+
+							
 							<div class="products mb-3">
 								<div class="row justify-content-center">
 									@php
@@ -164,12 +166,23 @@
 														@csrf
 														<input type="hidden" name="product_id" value="{{ $product->id }}">
 														<button type="submit" class="btn-product-icon btn-wishlist btn-expandable"><span>Add to Wishlist</span></button>
-													</form>
-												</div><!-- End .product-action-vertical -->
+													</form>	
+
+												</div>
+												<!-- End .product-action-vertical -->
 							
 												<div class="product-action">
-													<a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+													<form class="product-action" action="/user/order/store" method="post">
+														@csrf
+														<input type="hidden" name="idproduct" id="idproduct" class="form-control" value="{{$product->id}}">
+														<input type="hidden" name="qte" id="qte" class="form-control" value="1" required>
+														<button class="btn-product btn-cart" title="Add to cart" type="submit"><span>add to cart</span></button>
+													</form> 
+												
+
+													{{-- <a href="#" class="btn-product btn-cart"><span>add to cart</span></a> --}}
 												</div><!-- End .product-action -->
+											
 											</figure><!-- End .product-media -->
 							
 											<div class="product-body">

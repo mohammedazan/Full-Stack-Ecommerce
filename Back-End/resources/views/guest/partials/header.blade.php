@@ -150,9 +150,9 @@
             <div class="header-dropdown-link">                
                 <a href="{{route('wishlist')}}" class="wishlist-link">
                     <i class="icon-heart-o"></i>
-                    {{-- <span class="wishlist-count">
+                    <span class="wishlist-count">
                         {{$wishlistCount}}
-                    </span> --}}
+                    </span>
                     <span class="wishlist-txt">
                         Wishlist</span>
                 </a>
@@ -160,7 +160,7 @@
                 <div class="dropdown cart-dropdown">
                     <a href="{{ route('cart') }}" class="dropdown-toggle" >
                         <i class="icon-shopping-cart"></i>
-                        {{-- <span class="cart-count">{{$cartCount}}</span> --}}
+                        <span class="cart-count">{{$CartCount}}</span>
                         <span class="cart-txt">Cart</span>
                     </a>
 
