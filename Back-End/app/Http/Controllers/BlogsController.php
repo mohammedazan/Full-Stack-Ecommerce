@@ -46,6 +46,7 @@ class BlogsController extends Controller
             return $request;
             $blogs->img=" "; // or set a default image
         }
+        
         $blogs->save();
         return redirect()->back()->with('success', 'blogs added successfully');
     }
@@ -81,6 +82,7 @@ class BlogsController extends Controller
         $blogs->save();
     
         return redirect()->back()->with('success', 'Blog updated successfully');
+        
     }
     
     

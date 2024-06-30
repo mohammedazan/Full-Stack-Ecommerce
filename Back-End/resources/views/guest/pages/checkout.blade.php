@@ -78,23 +78,41 @@
 	            						<label>Company Name (Optional)</label>
 	            						<input name="company_name" type="text" class="form-control">
 
-	            						<label>Country *</label>
-	            						<input name="country" type="text" class="form-control" required>
+										<label>Country *</label>
+										<select name="country" class="form-control" required>
+											<option value="">Select Country</option>
+											@foreach($countries as $country)
+												<option value="{{ $country->id }}">{{ $country->name }}</option>
+											@endforeach
+										</select>
+
+										
+										<label>Town / City *</label>
+										<select name="town_city" class="form-control" required>
+											<option value="">Select City</option>
+											@foreach($cities as $c)
+												<option value="{{ $c->id }}">{{ $c->name }}</option>
+											@endforeach
+										</select>
+
+										<label>State / County *</label>
+		                						<input name="state_county" type="text" class="form-control" required>
+										
 
 	            						<label>Street address *</label>
 	            						<input name="street_address" type="text" class="form-control" placeholder="House number and Street name" required>
 
-	            						<div class="row">
+
+										
+	            						{{-- <div class="row">
 		                					<div class="col-sm-6">
 		                						<label>Town / City *</label>
 		                						<input name="town_city" type="text" class="form-control" required>
-		                					</div><!-- End .col-sm-6 -->
+		                					</div><!-- End .col-sm-6 --> --}}
 
-		                					<div class="col-sm-6">
-		                						<label>State / County *</label>
-		                						<input name="state_county" type="text" class="form-control" required>
-		                					</div><!-- End .col-sm-6 -->
-		                				</div><!-- End .row -->
+
+											
+
 
 		                				<div class="row">
 		                					<div class="col-sm-6">

@@ -205,6 +205,17 @@
         <li>
             <a href="{{ route('order_in_the_cart') }}"><i class="bx bx-right-arrow-alt"></i> commande </a>
         </li>
+
+    
+        @endif
+
+
+        @if(userCanAccess('Co3'))
+        <li>
+            <a href="{{ route('en_cours') }}"><i class="bx bx-right-arrow-alt"></i> commande en cours </a>
+        </li>
+
+    
         @endif
     </ul>
 </li>

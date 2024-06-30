@@ -165,7 +165,16 @@
                                     <div class="form-check ">
                                         <input class="form-check-input" type="checkbox" value="Co2"  name="role_id[]" id="flexCheckDefault" checked>
                                         <label class="form-check-label" for="flexCheckDefault">
-                                            Order
+                                          List  Order
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="form-check ">
+                                        <input class="form-check-input" type="checkbox" value="Co3"  name="role_id[]" id="flexCheckDefault" checked>
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Order en cours
                                         </label>
                                     </div>
                                 </div>

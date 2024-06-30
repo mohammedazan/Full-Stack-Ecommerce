@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\Commande;
 use App\Models\CompanyInfo;
 use App\Models\LigneCommande;
@@ -17,11 +18,44 @@ class CommandeController extends Controller
 
     
     public function order_in_the_cart(){
-        $commande = Commande::with('lignecommande')->get(); 
+        $commande = Commande::with('lignecommande')
+        ->where('etat', 'payee')
+        ->get(); 
         $CompanyInfo=CompanyInfo::get();
         return view('adminPanel.Commande.order_in_the_cart')->with(compact('commande','CompanyInfo'));
     }
 
+    public function en_cours(){
+        $commande = Commande::with('lignecommande')
+        ->where('etat', 'en cours')
+        ->get(); 
+        $CompanyInfo=CompanyInfo::get();
+        return view('adminPanel.Commande.en_cours')->with(compact('commande','CompanyInfo'));
+    }
+
+
+
+
+
+    public function showDetails($id)
+    {
+
+        $commande = Commande::with('lignecommande','country','city')
+                            ->where('id', $id)
+                            ->where('etat', 'payee') // Assuming 'payee' indicates a paid order status
+                            ->first();
+        if (!$commande) {
+            return redirect()->back()->with('success', 'There is no information in this order');
+
+        }
+
+
+
+        // Assign variables for country and city
+        $city = $commande->city;
+    
+        return view('adminPanel.Commande.commandeDetails', compact('commande','city'));
+    }
     
     // public function indexLCommandes(){
     //     $LigneCommande=LigneCommande::all();
@@ -91,34 +125,19 @@ class CommandeController extends Controller
         return redirect()->back()->with('success', 'Commande supprimée avec succès.');
     }
 
-    public function LigneCommandedestroy($id)
-    {
+
+    public function LigneCommandedestroy($id){
+
         $lc = LigneCommande::find($id);
-    
+
         if ($lc) {
-            // Retrieve the associated Commande
-            $commande = $lc->commande;
-    
-            if ($commande) {
-                // Delete the LigneCommande
-                $lc->delete();
-    
-                // Delete the Commande if it has no more related LigneCommande
-                if ($commande->lignecommande()->count() === 0) {
-                    $commande->delete();
-                }
-    
-                // Clear or update session/cart here if applicable
-    
-                return redirect()->back()->with('success', 'Ligne de commande supprimée avec la commande associée');
-            }
-    
-            return redirect()->back()->with('error', 'Commande associée introuvable');
+            // Delete the record
+            $lc->delete();
+            return redirect()->back()->with('success', 'Ligne de commande supprimée');
         }
-    
-        return redirect()->back()->with('error', 'Ligne de commande introuvable');
+            return redirect()->back()->with('error', 'Ligne de commande introuvable');
     }
-    
+
 
     public function updateCart(Request $request) {
         $request->validate([
@@ -154,17 +173,8 @@ class CommandeController extends Controller
         $CompanyInfo=CompanyInfo::get();
 
         $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
-        
-             $CartCount = 0;
-            $commandes = Commande::where('users_id', Auth::id())->get();
 
-        // Loop through each Commande and count the total number of items
-        foreach ($commandes as $commande) {
-            $CartCount += $commande->lignecommande->count();
-        }
-
-
-        return view('guest/pages.cart')->with(compact('productSubcategory','category','commande','CompanyInfo','wishlistCount','CartCount'));
+        return view('guest/pages.cart')->with(compact('productSubcategory','category','commande','CompanyInfo','wishlistCount' ));
     }
 
     // public function checkout(Request $request){

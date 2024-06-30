@@ -8,10 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Commande extends Model
 {
     protected $fillable = [
-        'etat', 'users_id', 'first_name', 'last_name', 'country', 'street_address', 'town_city', 'state_county', 'postcode', 'phone', 'email', 'company_name'
+        'etat', 'users_id', 'first_name', 'last_name', 'country_id', 'street_address', 'town_city', 'state_county', 'postcode', 'phone', 'email', 'company_name'
     ];
 
-    
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id');
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'town_city');
+    }
+
 
     public function lignecommande()
     {
@@ -36,4 +45,9 @@ class Commande extends Model
         }
         return $total;
     }  
+
+
+
+
+    
 }

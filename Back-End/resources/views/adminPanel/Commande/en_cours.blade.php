@@ -14,7 +14,7 @@
                                 <th>Name Product</th>
                                 {{-- <th>QTY</th> --}}
                                 <th>Order Status</th>
-                                <th>Total </th>
+                                {{-- <th>Total </th> --}}
                                 {{-- <th>Created At</th> --}}
                                 <th>Action</th>
                             </tr>
@@ -32,20 +32,16 @@
                                     {{-- <td>
                                         {{ $lc->qte }}
                                     </td> --}}
-                                    
-                                @if($c->etat === "payee")
-                                    <td><span class="badge bg-success">
-                                        {{$c->etat}}
-                                    </span></td>
-                                @else
+                
+                                @if($c->etat === "en cours")
                                     <td>
                                         <span class="badge bg-danger">
-                                        {{$c->etat}}
-                                        </span>
-                                    </td>
+                                            {{$c->etat}}
+                                    </span>
+                                </td>
                                 @endif
+                                
 
-                                <td>{{ $c->getTotal()}}DH</td>
 
                                 <td>
                                     <div class="dropdown d-flex justify-content-center">
@@ -53,18 +49,6 @@
                                             aria-expanded="false">Paramètres</button>
                                         <ul class="dropdown-menu" style="">
                                        
-                                               <li>
-                                                <a href="{{ route('commande.details', $c->id) }}" class="dropdown-item">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round" class="feather feather-eye text-primary">
-                                                        <circle cx="12" cy="12" r="10"></circle>
-                                                        <line x1="12" y1="8" x2="12" y2="12"></line>
-                                                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                                                    </svg>
-                                                    Voir les détails
-                                                </a>
-                                            </li>
                                             <li class="align-items-center"
                                                 onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette commande ?');">
                                                 <form action="{{ route('commande.delete', $c->id) }}" method="POST">

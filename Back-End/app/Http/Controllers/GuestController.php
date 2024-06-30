@@ -107,14 +107,9 @@ class GuestController extends Controller
     // Calculate total quantity of items in all commandes
     $commandes = Commande::where('users_id', Auth::id())->get();
 
-    $CartCount = 0;
 
-    // Loop through each Commande and count the total number of items
-    foreach ($commandes as $commande) {
-        $CartCount += $commande->lignecommande->count();
-    }
 
-        return view('guest/home')->with(compact('productSubcategory','productList','category','productCategory','offer','featuredImage','brandList','Blogs','CompanyInfo','wishlistCount','CartCount'));
+        return view('guest/home')->with(compact('productSubcategory','productList','category','productCategory','offer','featuredImage','brandList','Blogs','CompanyInfo','wishlistCount'));
     }
     
 

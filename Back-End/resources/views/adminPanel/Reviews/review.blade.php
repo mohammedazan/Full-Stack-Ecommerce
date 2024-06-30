@@ -15,7 +15,7 @@
                             <th>Nom du produit</th>
                             <th>Date</th>
                             <th>Contenu</th>
-                            {{-- <td>Action</td> --}}
+                            <td>Action</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,7 +33,7 @@
                             <td>{{ $r->created_at }}</td>
                             <td>{{ $r->content }}</td>
 
-                            {{-- <td>
+                            <td>
                                 <div class="dropdown d-flex justify-content-center">
                                     <button class="btn btn-primary dropdown-toggle dr-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Action
@@ -54,7 +54,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </td> --}}
+                            </td>
 
                         </tr>
                         @endforeach
