@@ -163,23 +163,23 @@
 										}
 
 									  // Get average rating and reviews count
-									  $avgRating = $product->avgRating;
-            $reviewsCount = $product->reviewsCount;
-            
-            // Calculate full stars and half star
-            $fullStars = floor($avgRating); // Number of full stars (whole number part)
-            $halfStar = ceil($avgRating - $fullStars); // Whether to display a half star
-            
-            // Calculate full stars and half star
-            $fullStars = floor($avgRating); // Number of full stars (whole number part)
-            $halfStar = ceil($avgRating - $fullStars); // Whether to display a half star
+									$avgRating = $product->avgRating;
+									$reviewsCount = $product->reviewsCount;
+									
+									// Calculate full stars and half star
+									$fullStars = floor($avgRating); // Number of full stars (whole number part)
+									$halfStar = ceil($avgRating - $fullStars); // Whether to display a half star
+									
+									// Calculate full stars and half star
+									$fullStars = floor($avgRating); // Number of full stars (whole number part)
+									$halfStar = ceil($avgRating - $fullStars); // Whether to display a half star
 									@endphp
 
                                 <div class="product product-list">
                                     <div class="row">
                                         <div class="col-6 col-lg-3">
                                             <figure class="product-media">
-												@if($discountLabel)
+												@if($discountLabel >= 1)
 												<span class="product-label label-new">{{ $discountLabel }}</span>
 												@endif
                                                 <a  href="{{ route('productdetail', ['id' => $product->id]) }}">
@@ -229,10 +229,6 @@
                                                     <a href="popup/quickView.html" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a>
 													<a href="#" class="btn-product btn-wishlist" title="Add to wishlist"><span>add to wishlist</span></a>
                                                 </div> --}}
-												
-
-
-
 												<!-- End .product-action -->
 
 												
