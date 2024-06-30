@@ -91,19 +91,34 @@ class CommandeController extends Controller
         return redirect()->back()->with('success', 'Commande supprimée avec succès.');
     }
 
-
-    public function LigneCommandedestroy($id){
-
+    public function LigneCommandedestroy($id)
+    {
         $lc = LigneCommande::find($id);
-
+    
         if ($lc) {
-            // Delete the record
-            $lc->delete();
-            return redirect()->back()->with('success', 'Ligne de commande supprimée');
+            // Retrieve the associated Commande
+            $commande = $lc->commande;
+    
+            if ($commande) {
+                // Delete the LigneCommande
+                $lc->delete();
+    
+                // Delete the Commande if it has no more related LigneCommande
+                if ($commande->lignecommande()->count() === 0) {
+                    $commande->delete();
+                }
+    
+                // Clear or update session/cart here if applicable
+    
+                return redirect()->back()->with('success', 'Ligne de commande supprimée avec la commande associée');
+            }
+    
+            return redirect()->back()->with('error', 'Commande associée introuvable');
         }
-            return redirect()->back()->with('error', 'Ligne de commande introuvable');
+    
+        return redirect()->back()->with('error', 'Ligne de commande introuvable');
     }
-
+    
 
     public function updateCart(Request $request) {
         $request->validate([
@@ -137,10 +152,19 @@ class CommandeController extends Controller
         // $shippingCost = 0; // Default shipping cost
         // $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
         $CompanyInfo=CompanyInfo::get();
+
         $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
+        
+             $CartCount = 0;
+            $commandes = Commande::where('users_id', Auth::id())->get();
+
+        // Loop through each Commande and count the total number of items
+        foreach ($commandes as $commande) {
+            $CartCount += $commande->lignecommande->count();
+        }
 
 
-        return view('guest/pages.cart')->with(compact('productSubcategory','category','commande','CompanyInfo','wishlistCount' ));
+        return view('guest/pages.cart')->with(compact('productSubcategory','category','commande','CompanyInfo','wishlistCount','CartCount'));
     }
 
     // public function checkout(Request $request){

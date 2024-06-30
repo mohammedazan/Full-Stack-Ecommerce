@@ -6,6 +6,7 @@ use App\Models\Commande;
 use App\Models\CompanyInfo;
 use App\Models\ProductCategory;
 use App\Models\ProductSubCategory;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -26,7 +27,16 @@ class UserProfileController extends Controller
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         
-         return view('guest/User/user_profile', compact('commande','CompanyInfo','commandeall','productSubcategory','category')); 
+        $CartCount = 0;
+        $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
+        $commandes = Commande::where('users_id', Auth::id())->get();
+
+    // Loop through each Commande and count the total number of items
+    foreach ($commandes as $commande) {
+        $CartCount += $commande->lignecommande->count();
+    }
+
+         return view('guest/User/user_profile', compact('commande','CompanyInfo','commandeall','productSubcategory','category','CartCount','wishlistCount')); 
     }
 
 
