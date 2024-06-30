@@ -231,11 +231,11 @@
                     </li> --}}
 
 
-                    {{--                @if(userCanAccess('9'))--}}
+                    @if(userCanAccess('9'))
                     <li>
                         <a href="{{route('admin.supplier.list')}}"><i class="bx bx-right-arrow-alt"></i>Liste des fournisseurs</a>
                     </li>
-                    {{--                @endif--}}
+                     @endif
                 </ul>
             </li>
         @endif
