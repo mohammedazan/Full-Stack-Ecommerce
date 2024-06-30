@@ -40,7 +40,7 @@
                     {!! $generator->getBarcode($product->code, $generator::TYPE_CODE_128) !!}
                     <span class="productname">Price:{{$product->current_sale_price}}</span>
                 </td>
-                <td class="tdst">
+                {{-- <td class="tdst">
                     <span class="productname">{{$product->name}}</span>
                     {!! $generator->getBarcode($product->code, $generator::TYPE_CODE_128) !!}
                     <span class="productname">Price:{{$product->current_sale_price}}</span>
@@ -54,11 +54,11 @@
                     <span class="productname">{{$product->name}}</span>
                     {!! $generator->getBarcode($product->code, $generator::TYPE_CODE_128) !!}
                     <span class="productname">Price:{{$product->current_sale_price}}</span>
-                </td>
+                </td> --}}
             </tr>
 
 
-                <?php $i+=4 ?>
+                <?php $i+=1 ?>
 
         @endwhile
 

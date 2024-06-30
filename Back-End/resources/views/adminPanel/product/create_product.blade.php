@@ -192,7 +192,7 @@
                                                    id="wholesalepricce" placeholder="00.00">
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="inputStarPoints" class="form-label">Quantité minimale de gros</label>
+                                            <label for="inputStarPoints" class="form-label">Quantité</label>
                                             <input type="number" name="wholesale_minimum_qty" class="form-control"
                                                    id="inputStarPoints" placeholder="00.00">
                                         </div>
@@ -209,7 +209,7 @@
                                             <input type="number" name="discount" class="form-control"
                                                    placeholder="Montant">
                                         </div>
-                                        <div class="col-md-6">
+                                        {{-- <div class="col-md-6">
                                             <div class="form-check">
                                                 <input class="form-check-input" name="is_trending" type="checkbox"
                                                        value="1">
@@ -218,6 +218,7 @@
                                                 </label>
                                             </div>
                                         </div>
+
                                         <div class="col-md-6">
                                             <div class="form-check">
                                                 <input class="form-check-input" name="is_popular" type="checkbox"
@@ -226,7 +227,8 @@
                                                     Populaire
                                                 </label>
                                             </div>
-                                        </div>
+                                        </div> --}}
+                                        
                                         <div class="col-12">
                                             <div class="d-grid">
                                                 <button type="submit" class="btn btn-primary">Enregistrer le produit</button>

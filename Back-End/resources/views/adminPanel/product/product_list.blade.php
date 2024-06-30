@@ -27,7 +27,7 @@
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
-                                {{-- <th>ID</th> --}}
+                                <th>ID</th>
                                 <th>Référence</th>
                                 <th>Nom</th>
                                 {{--<th>Sous-catégorie</th>--}}
@@ -41,7 +41,7 @@
                         <tbody>
                             @foreach($productList as $key=>$product)
                             <tr>
-                                {{-- <td>{{$key+1}}</td> --}}
+                                <td>{{$key+1}}</td>
                                 <td>{{$product->reference}}</td>
                                 <td>{{$product->name}}</td>
                                 {{--<td>--}}
@@ -61,7 +61,9 @@
                                         <button class="btn btn-primary dropdown-toggle dr-btn" type="button" data-bs-toggle="dropdown"
                                             aria-expanded="false">Paramètres</button>
                                         <ul class="dropdown-menu" style="">
-                                            <li onclick="viewProductDetails({{$product->id}})">
+
+
+                                            {{-- <li onclick="viewProductDetails({{$product->id}})">
                                                 <a class="dropdown-item" href="#">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -69,10 +71,14 @@
                                                         <path
                                                             d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"></path>
                                                         <circle cx="12" cy="12" r="3"></circle>
+                                                                                                            <td>{{$product->name}}</td>
+
                                                     </svg>
+
                                                     Voir
                                                 </a>
-                                            </li>
+                                            </li> --}}
+                                            
                                             <li onclick="barcodePrint( {{$product->id}})" style="cursor: pointer">
                                                 <span class="dropdown-item" href="">
                                                     <i class="lni lni-printer"
@@ -109,6 +115,7 @@
                                                 </a>
                                             </li>
                                         </ul>
+
                                     </div>
                                 </td>
                             </tr>

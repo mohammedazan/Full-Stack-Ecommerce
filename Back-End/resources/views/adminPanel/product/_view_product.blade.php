@@ -6,6 +6,7 @@
                     <div class="mb-3">
                         <label for="inputProductTitle" class="form-label">Product Name</label>
                         <p>{{$productInfo->name}}</p>
+                        
                     </div>
                 </div>
                 <div class="col-sm-6">

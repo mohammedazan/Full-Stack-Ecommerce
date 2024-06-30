@@ -176,7 +176,7 @@
                                         </div>
                                         <div class="details-action-wrapper">
                                     
-                                            <a href="#" class="btn-product btn-cart" title="Wishlist"><span>Add to Wishlist</span></a>
+                                            {{-- <a href="#" class="btn-product btn-cart" title="Wishlist"><span>Add to Wishlist</span></a> --}}
                                         </div>
                                     </div>
                                 </form>

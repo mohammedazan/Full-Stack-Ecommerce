@@ -68,6 +68,7 @@ class Product extends Model
 
  
     
+    
 
 // products 
     public function lignecommande()

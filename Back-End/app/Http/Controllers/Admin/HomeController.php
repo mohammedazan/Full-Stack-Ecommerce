@@ -65,6 +65,7 @@ class HomeController extends Controller
         $Brand=Brand::count();
         $Faq=Faq::count();
         $FeaturedLink=FeaturedLink::count();
+        
         // $Newsletter=Newsletter::count();
         $Offer=Offer::count();
         $Bank=BankAccount::count();

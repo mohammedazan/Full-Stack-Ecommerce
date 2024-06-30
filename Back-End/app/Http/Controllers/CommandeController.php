@@ -8,6 +8,7 @@ use App\Models\LigneCommande;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProductSubCategory;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -134,8 +135,10 @@ class CommandeController extends Controller
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $commande = Commande::where('users_id', Auth::user()->id)->where('etat', 'en cours')->first();  
         // $shippingCost = 0; // Default shipping cost
+        // $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
         $CompanyInfo=CompanyInfo::get();
-        return view('guest/pages.cart')->with(compact('productSubcategory','category','commande','CompanyInfo'));
+
+        return view('guest/pages.cart')->with(compact('productSubcategory','category','commande','CompanyInfo' ));
     }
 
     // public function checkout(Request $request){
