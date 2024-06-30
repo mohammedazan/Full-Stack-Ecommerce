@@ -143,19 +143,19 @@
 
                             </div>
 
-                          {{-- <div class="row mb-2 roldiv">
+                           <div class="row mb-2 roldiv">
                                 <div class="col-sm-12 role_head">
-                                    <h6><p>Product Stock <input class="form-check-input" type="checkbox" value="h4"  name="role_id[]" id="flexCheckDefault" checked style="margin-left: 20px"></p></h6>
+                                    <h6><p>Fournisseur <input class="form-check-input" type="checkbox" value="h4"  name="role_id[]" id="flexCheckDefault" checked style="margin-left: 20px"></p></h6>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-check ">
                                         <input class="form-check-input" type="checkbox" value="9"  name="role_id[]" id="flexCheckDefault" checked>
                                         <label class="form-check-label" for="flexCheckDefault">
-                                            Purchase Product
+                                            Liste des fournisseurs
                                         </label>
                                     </div>
                                 </div>
-                            </div> --}}  
+                            </div> 
 
                             <div class="row mb-2 roldiv">
                                 <div class="col-sm-12 role_head">
