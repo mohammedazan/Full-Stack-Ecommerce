@@ -217,7 +217,9 @@
 													
 													</div>
 													<span class="ratings-text">({{ $reviewsCount}} Reviews)</span>
-												</div><!-- End .ratings-container -->
+												</div>
+												
+												<!-- End .ratings-container -->
 												@else
 												<p class="ratings">
                                             

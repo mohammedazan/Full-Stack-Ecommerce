@@ -158,21 +158,18 @@ class GuestController extends Controller
     }
 
 
-        if ($productList->isEmpty()) {
-            return redirect()->back();
+    foreach ($productList as $product) {
+        $reviews = $product->reviews;
+        if ($reviews->count() > 0) {
+            $totalRating = $reviews->sum('rate');
+            $product->avgRating = $totalRating / $reviews->count();
+            $product->reviewsCount = $reviews->count();
+        } else {
+            $product->avgRating = 0;
+            $product->reviewsCount = 0;
         }
-        
-        foreach ($productList as $product) {
-            $reviews = $product->reviews;
-            if ($reviews->count() > 0) {
-                $totalRating = $reviews->sum('rate');
-                $product->avgRating = $totalRating / $reviews->count();
-                $product->reviewsCount = $reviews->count();
-            } else {
-                $product->avgRating = 0;
-                $product->reviewsCount = 0;
-            }
-        }
+    }
+
         return view('guest/pages.product')->with(compact('productList','category','brandList','productSubcategory','CompanyInfo','CartCount','wishlistCount'));
     }
 
@@ -209,7 +206,6 @@ class GuestController extends Controller
         }
     }
     
-
         return view('guest/pages.product_list')->with(compact('productList','category','brandList','productSubcategory','CompanyInfo','productdetail','CartCount','wishlistCount'));
     }
 
