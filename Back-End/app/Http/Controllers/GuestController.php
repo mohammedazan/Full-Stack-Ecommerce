@@ -61,6 +61,8 @@ class GuestController extends Controller
         }
     }
 
+
+
     public function Home(Request $request){
 
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
@@ -84,40 +86,28 @@ class GuestController extends Controller
             return redirect()->back();
         }
 
-
-          // Calculate average rating and reviews count for each product
-    foreach ($productList as $product) {
-        $reviews = $product->reviews;
-        if ($reviews->count() > 0) {
-            $totalRating = $reviews->sum('rate');
-            $product->avgRating = $totalRating / $reviews->count();
-            $product->reviewsCount = $reviews->count();
-        } else {
-            $product->avgRating = 0;
-            $product->reviewsCount = 0;
+        // Calculate average rating and reviews count for each product
+        foreach ($productList as $product) {
+            $reviews = $product->reviews;
+            if ($reviews->count() > 0) {
+                $totalRating = $reviews->sum('rate');
+                $product->avgRating = $totalRating / $reviews->count();
+                $product->reviewsCount = $reviews->count();
+            } else {
+                $product->avgRating = 0;
+                $product->reviewsCount = 0;
+            }
         }
-    }
 
-
-    // Calculate the count of wishlist items
-    
-
-    $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
-
-    // Calculate total quantity of items in all commandes
-    $commandes = Commande::where('users_id', Auth::id())->get();
-
-    $CartCount = 0;
-
-    // Loop through each Commande and count the total number of items
-    foreach ($commandes as $commande) {
-        $CartCount += $commande->lignecommande->count();
-    }
-
+        $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
+        $commandes = Commande::where('users_id', Auth::id())->get();
+        $CartCount = 0;
+        foreach ($commandes as $commande) {
+            $CartCount += $commande->lignecommande->count();
+        }
         return view('guest/home')->with(compact('productSubcategory','productList','category','productCategory','offer','featuredImage','brandList','Blogs','CompanyInfo','wishlistCount','CartCount'));
     }
     
-
 
 
     public function about(){
@@ -126,7 +116,14 @@ class GuestController extends Controller
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $company = CompanyInfo::first();
         $CompanyInfo=CompanyInfo::get();
-        return view('guest/pages.about')->with(compact('productSubcategory','category','company','CompanyInfo'));
+        $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
+        $commandes = Commande::where('users_id', Auth::id())->get();
+        $CartCount = 0;
+        foreach ($commandes as $commande) {
+            $CartCount += $commande->lignecommande->count();
+        }
+
+        return view('guest/pages.about')->with(compact('productSubcategory','category','company','CompanyInfo','wishlistCount','CartCount'));
 
     }
 
@@ -136,11 +133,6 @@ class GuestController extends Controller
     //     return view('guest/pages.contact')->with(compact('productSubcategory','category'));
     // }
 
-
-  
-    
-
- 
     public function product(){
         $productList = Product::where('deleted', 0)->get();
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
@@ -152,23 +144,22 @@ class GuestController extends Controller
         $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
         $commandes = Commande::where('users_id', Auth::id())->get();
 
-    // Loop through each Commande and count the total number of items
-    foreach ($commandes as $commande) {
-        $CartCount += $commande->lignecommande->count();
-    }
-
-
-    foreach ($productList as $product) {
-        $reviews = $product->reviews;
-        if ($reviews->count() > 0) {
-            $totalRating = $reviews->sum('rate');
-            $product->avgRating = $totalRating / $reviews->count();
-            $product->reviewsCount = $reviews->count();
-        } else {
-            $product->avgRating = 0;
-            $product->reviewsCount = 0;
+        // Loop through each Commande and count the total number of items
+        foreach ($commandes as $commande) {
+            $CartCount += $commande->lignecommande->count();
         }
-    }
+
+        foreach ($productList as $product) {
+            $reviews = $product->reviews;
+            if ($reviews->count() > 0) {
+                $totalRating = $reviews->sum('rate');
+                $product->avgRating = $totalRating / $reviews->count();
+                $product->reviewsCount = $reviews->count();
+            } else {
+                $product->avgRating = 0;
+                $product->reviewsCount = 0;
+            }
+        }
 
         return view('guest/pages.product')->with(compact('productList','category','brandList','productSubcategory','CompanyInfo','CartCount','wishlistCount'));
     }
@@ -187,25 +178,25 @@ class GuestController extends Controller
         $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
         $commandes = Commande::where('users_id', Auth::id())->get();
 
-    // Loop through each Commande and count the total number of items
-    foreach ($commandes as $commande) {
-        $CartCount += $commande->lignecommande->count();
-    }
-
-      
-    // Calculate average rating and reviews count for each product
-    foreach ($productList as $product) {
-        $reviews = $product->reviews;
-        if ($reviews->count() > 0) {
-            $totalRating = $reviews->sum('rate');
-            $product->avgRating = $totalRating / $reviews->count();
-            $product->reviewsCount = $reviews->count();
-        } else {
-            $product->avgRating = 0;
-            $product->reviewsCount = 0;
+        // Loop through each Commande and count the total number of items
+        foreach ($commandes as $commande) {
+            $CartCount += $commande->lignecommande->count();
         }
-    }
-    
+
+        
+        // Calculate average rating and reviews count for each product
+        foreach ($productList as $product) {
+            $reviews = $product->reviews;
+            if ($reviews->count() > 0) {
+                $totalRating = $reviews->sum('rate');
+                $product->avgRating = $totalRating / $reviews->count();
+                $product->reviewsCount = $reviews->count();
+            } else {
+                $product->avgRating = 0;
+                $product->reviewsCount = 0;
+            }
+        }
+
         return view('guest/pages.product_list')->with(compact('productList','category','brandList','productSubcategory','CompanyInfo','productdetail','CartCount','wishlistCount'));
     }
 
@@ -215,6 +206,7 @@ class GuestController extends Controller
     public function productcategory(Request $request) {
         $brandList = Brand::get();
         $CompanyInfo=CompanyInfo::get();
+        $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
         $categoryId = $request->id;
         if ($categoryId) {
             $productList = Product::where('category_id', $categoryId)
@@ -225,16 +217,29 @@ class GuestController extends Controller
         }
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
+
         if ($productList->isEmpty()) {
             return redirect()->back();
+        }
+        $commandes = Commande::where('users_id', Auth::id())->get();
+        $CartCount = 0;
+        foreach ($commandes as $commande) {
+            $CartCount += $commande->lignecommande->count();
         }
 
         
-        return view('guest/pages.product')->with(compact('productList','productSubcategory', 'category', 'brandList','CompanyInfo'));
+        return view('guest/pages.product')->with(compact('productList','productSubcategory', 'category', 'brandList','CompanyInfo','wishlistCount','CartCount'));
     }
+
+  
+
+
+
     public function product_list_category(Request $request) {
         $brandList = Brand::get();
         $CompanyInfo=CompanyInfo::get();
+        $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
+
         $categoryId = $request->id;
         if ($categoryId) {
             $productList = Product::where('category_id', $categoryId)
@@ -248,13 +253,22 @@ class GuestController extends Controller
         if ($productList->isEmpty()) {
             return redirect()->back();
         }
-        return view('guest/pages.product_list')->with(compact('productList','productSubcategory', 'category', 'brandList','CompanyInfo'));
+        $commandes = Commande::where('users_id', Auth::id())->get();
+        $CartCount = 0;
+        foreach ($commandes as $commande) {
+            $CartCount += $commande->lignecommande->count();
+        }
+        return view('guest/pages.product_list')->with(compact('productList','productSubcategory', 'category', 'brandList','CompanyInfo','wishlistCount','CartCount'));
     }
+
+
 
     public function productsubcategory(Request $request) {
         $brandList = Brand::get();
         $CompanyInfo=CompanyInfo::get();
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
+        $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
+
         // Get the subcategory_id from the request
         $subcategoryId = $request->id;
         // Query products based on the provided subcategory_id
@@ -269,7 +283,12 @@ class GuestController extends Controller
         if ($productList->isEmpty()) {
             return redirect()->back();
         }
-        return view('guest/pages.product')->with(compact('productList', 'productSubcategory','category', 'brandList','CompanyInfo'));
+        $commandes = Commande::where('users_id', Auth::id())->get();
+        $CartCount = 0;
+        foreach ($commandes as $commande) {
+            $CartCount += $commande->lignecommande->count();
+        }
+        return view('guest/pages.product')->with(compact('productList', 'productSubcategory','category', 'brandList','CompanyInfo','wishlistCount','CartCount'));
     }
     
 
@@ -314,31 +333,53 @@ class GuestController extends Controller
         return view('guest/pages/productdetail')->with(compact('productSubcategory', 'category', 'productdetail','productList', 'avgRating','CompanyInfo','color','wishlistCount','CartCount'));
     }
 
+
     public function productoffer(Request $request){
         $offerId = $request->id;
+        $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
+
         if (!$offerId) {
             return redirect()->back();
         }
+    
         $offerProductLists = Offer_product_list::where('offer_id', $offerId)->get();
     
         if ($offerProductLists->isEmpty()) {
-            return  redirect()->back();
+            return redirect()->back();
         }
+    
         $productList = $offerProductLists->map(function($offerProductList) {
-            return $offerProductList->productInfo;
-        })->filter(); 
+            $product = $offerProductList->productInfo;
+            if ($product) {
+                // Apply the discount
+                if ($offerProductList->offer_type == 1) { // Percentage discount
+                    $product->discount = $offerProductList->offer_amount;
+                    $product->discount_type = 1;
+                } else if ($offerProductList->offer_type == 0) { // Fixed discount
+                    $product->discount = $offerProductList->offer_amount;
+                    $product->discount_type = 0;
+                }
+            }
+            return $product;
+        })->filter();
     
         if ($productList->isEmpty()) {
             return redirect()->back();
         }
+    
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $brandList = Brand::get();
-        $CompanyInfo=CompanyInfo::get();
+        $CompanyInfo = CompanyInfo::get();
+        $commandes = Commande::where('users_id', Auth::id())->get();
+        $CartCount = 0;
+        foreach ($commandes as $commande) {
+            $CartCount += $commande->lignecommande->count();
+        }
     
-        return view('guest/pages.product')->with(compact('productList', 'category', 'brandList', 'productSubcategory','CompanyInfo'));
+        return view('guest/pages.product')->with(compact('productList', 'category', 'brandList', 'productSubcategory', 'CompanyInfo','wishlistCount','CartCount'));
     }
-
+    
     public function productbrand(Request $request){
         $brandId = $request->id;
         $CompanyInfo=CompanyInfo::get();
@@ -356,13 +397,20 @@ class GuestController extends Controller
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $brandList = Brand::get();
+        $commandes = Commande::where('users_id', Auth::id())->get();
+        $CartCount = 0;
+        foreach ($commandes as $commande) {
+            $CartCount += $commande->lignecommande->count();
+        }
     
-        return view('guest/pages.product')->with(compact('productList', 'category', 'brandList', 'productSubcategory','CompanyInfo'));
+        return view('guest/pages.product')->with(compact('productList', 'category', 'brandList', 'productSubcategory','CompanyInfo','CartCount'));
     }
 
     public function product_list_brand(Request $request){
         $brandId = $request->id;
         $CompanyInfo=CompanyInfo::get();
+        $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
+
     
         if (!$brandId) {
             return redirect()->back();
@@ -377,8 +425,13 @@ class GuestController extends Controller
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $brandList = Brand::get();
+        $commandes = Commande::where('users_id', Auth::id())->get();
+        $CartCount = 0;
+        foreach ($commandes as $commande) {
+            $CartCount += $commande->lignecommande->count();
+        }
     
-        return view('guest/pages.product_list')->with(compact('productList', 'category', 'brandList', 'productSubcategory','CompanyInfo'));
+        return view('guest/pages.product_list')->with(compact('productList', 'category', 'brandList', 'productSubcategory','CompanyInfo','wishlistCount','CartCount'));
     }
 
 
