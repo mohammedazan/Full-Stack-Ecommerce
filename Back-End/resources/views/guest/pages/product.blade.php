@@ -33,6 +33,26 @@
     <link href="{{asset('assets/css/skins/skin-demo-13.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/demos/demo-13.css')}}" rel="stylesheet">
 	
+
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+	<!-- Include jQuery and Toastr JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			// Toastr Initialization
+			@if(Session::has('success'))
+				toastr.success("{{ Session::get('success') }}");
+			@endif
+	
+			@if(Session::has('error'))
+				toastr.error("{{ Session::get('error') }}");
+			@endif
+		});
+	</script>
+
+
 </head>
 
 <body>
@@ -187,27 +207,45 @@
 							
 											<div class="product-body">
 												@php
-												    $id = $product->productCategory->id
+													$id = $product->productCategory->id;
 												@endphp
 												<div class="product-cat">
 													<a href="{{ route('product.category', ['id' => $id]) }}">{{ $product->productCategory->name }}</a>
 												</div><!-- End .product-cat -->
-												<h3 class="product-title"><a href="{{ route('productdetail', ['id' => $product->id]) }}">{{ $product->name }}</a></h3><!-- End .product-title -->
+												<h3 class="product-title">
+													<a href="{{ route('productdetail', ['id' => $product->id]) }}">{{ $product->name }}</a>
+												</h3><!-- End .product-title -->
 												<div class="product-price">
 													@if ($discountedPrice != $originalPrice)
-													<span class="new-price">{{ number_format($discountedPrice, 2) }}</span>
-													<span class="old-price">Was {{ number_format($originalPrice, 2) }}  HD</span>
+														<span class="new-price">{{ number_format($discountedPrice, 2) }}</span>
+														<span class="old-price">Was {{ number_format($originalPrice, 2) }}  HD</span>
 													@else
-													<span class="old-price"> {{ number_format($originalPrice, 2) }}  HD</span>
-													@endif 
+														<span class="old-price">{{ number_format($originalPrice, 2) }}  HD</span>
+													@endif
 												</div><!-- End .product-price -->
-												<div class="ratings-container">
-													<div class="ratings">
-														<div class="ratings-val" style="width: 20%;"></div><!-- End .ratings-val -->
-													</div><!-- End .ratings -->
-													<span class="ratings-text">( 2 Reviews )</span>
-												</div><!-- End .rating-container -->
+												@if (isset($product->reviewsCount) && $product->reviewsCount > 0)
+													<div class="ratings-container">
+														<div>
+															@for ($i = 0; $i < $product->avgRating; $i++)
+																@if ($i < floor($product->avgRating))
+																	<i class="fas fa-star" style="color: #ffc107;"></i>
+																@else
+																	@if ($product->avgRating - $i > 0.5)
+																		<i class="fas fa-star-half-alt" style="color: #ffc107;"></i>
+																	@else
+																		<i class="far fa-star" style="color: #ffc107;"></i>
+																	@endif
+																@endif
+															@endfor
+														</div>
+														<span class="ratings-text">({{ $product->reviewsCount }} Reviews)</span>
+													</div><!-- End .ratings-container -->
+												@else
+													<p class="ratings">No reviews yet.</p>
+												@endif
 											</div><!-- End .product-body -->
+											
+											<!-- End .product-body -->
 										</div><!-- End .product -->
 									</div><!-- End .col-sm-6 col-lg-4 -->
 									@endforeach
