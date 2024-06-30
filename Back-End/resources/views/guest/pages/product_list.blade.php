@@ -237,7 +237,9 @@
 													<input type="hidden" name="idproduct" id="idproduct" class="form-control" value="{{$product->id}}">
 													<input type="hidden" name="qte" id="qte" class="form-control" value="1" required>
 													<button class="btn-product btn-cart" type="submit"><span>add to cart</span></button>
-												</form>                                            </div><!-- End .product-list-action -->
+												</form>  
+												{{-- <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>  --}}                                         
+											</div><!-- End .product-list-action -->
                                         </div><!-- End .col-sm-6 col-lg-3 -->
 
                                         <div class="col-lg-6">
