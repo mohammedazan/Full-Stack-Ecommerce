@@ -65,6 +65,7 @@
                                                     Voir les détails
                                                 </a>
                                             </li>
+                                            
                                             <li class="align-items-center"
                                                 onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette commande ?');">
                                                 <form action="{{ route('commande.delete', $c->id) }}" method="POST">

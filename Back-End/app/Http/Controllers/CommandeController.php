@@ -124,19 +124,32 @@ class CommandeController extends Controller
 
         return redirect()->back()->with('success', 'Commande supprimée avec succès.');
     }
+    
 
 
-    public function LigneCommandedestroy($id){
-
-        $lc = LigneCommande::find($id);
-
+    
+    public function LigneCommandedestroy($id)
+    {
+        // Find the commande associated with the current user that is 'en cours'
+        $commande = Commande::where('users_id', Auth::user()->id)
+                            ->where('etat', 'en cours')
+                            ->first();
+            $lc = LigneCommande::find($id);
+    
         if ($lc) {
-            // Delete the record
             $lc->delete();
+    
+            if ($commande && $commande->lignecommande->isEmpty()) {
+                // If no more lignecommandes, delete the commande
+                $commande->delete();
+            }
+    
             return redirect()->back()->with('success', 'Ligne de commande supprimée');
         }
-            return redirect()->back()->with('error', 'Ligne de commande introuvable');
+    
+        return redirect()->back()->with('error', 'Ligne de commande introuvable');
     }
+    
 
 
     public function updateCart(Request $request) {
