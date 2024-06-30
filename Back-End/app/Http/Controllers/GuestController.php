@@ -98,22 +98,6 @@ class GuestController extends Controller
                 $product->reviewsCount = 0;
             }
         }
-<<<<<<< HEAD
-    }
-
-
-    // Calculate the count of wishlist items
-    
-
-    $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
-
-    // Calculate total quantity of items in all commandes
-    $commandes = Commande::where('users_id', Auth::id())->get();
-
-
-
-        return view('guest/home')->with(compact('productSubcategory','productList','category','productCategory','offer','featuredImage','brandList','Blogs','CompanyInfo','wishlistCount'));
-=======
 
         $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
         $commandes = Commande::where('users_id', Auth::id())->get();
@@ -122,7 +106,6 @@ class GuestController extends Controller
             $CartCount += $commande->lignecommande->count();
         }
         return view('guest/home')->with(compact('productSubcategory','productList','category','productCategory','offer','featuredImage','brandList','Blogs','CompanyInfo','wishlistCount','CartCount'));
->>>>>>> 82a930b8691e23fcafe9948ae8b9c3fe4e758ec2
     }
     
 
