@@ -76,16 +76,6 @@
                 				</div><!-- End .toolbox-left -->
 
                 				<div class="toolbox-right">
-                					<div class="toolbox-sort">
-                						<label for="sortby">Sort by:</label>
-                						<div class="select-custom">
-											<select name="sortby" id="sortby" class="form-control">
-												<option value="popularity" selected="selected">Most Popular</option>
-												<option value="rating">Most Rated</option>
-												<option value="date">Date</option>
-											</select>
-										</div>
-                					</div><!-- End .toolbox-sort -->
                 		      <div class="toolbox-layout">
                 						<a href="{{ route('product_list')}}"class="btn-layout">
                 							<svg width="16" height="10">
@@ -175,9 +165,6 @@
 														<input type="hidden" name="product_id" value="{{ $product->id }}">
 														<button type="submit" class="btn-product-icon btn-wishlist btn-expandable"><span>Add to Wishlist</span></button>
 													</form>
-
-													<a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
-													<a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
 												</div><!-- End .product-action-vertical -->
 							
 												<div class="product-action">

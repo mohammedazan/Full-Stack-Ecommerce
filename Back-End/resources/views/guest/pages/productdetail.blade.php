@@ -153,15 +153,16 @@
                                 <div class="product-content">
                                     <p>{{ $productdetail->productCategory->note }}</p>
                                 </div>
-                                <div class="details-filter-row details-row-size">
+                                @if($productdetail->color)
+                                    <div class="details-filter-row details-row-size">
                                     <label>Color:</label>
                                     {{-- {{ {{ $productdetail->color->color_code }} }} --}}
                                     <div class="product-nav product-nav-dots">
-                                        <a href="#" class="active" style="background: #cc9966;"><span class="sr-only">Color name</span></a>
-                                        <a href="#" style="background: re***#e8c97a;"><span class="sr-only">Color name</span></a>
-                                        <a href="#" style="background: #e8c97a;"><span class="sr-only">Color name</span></a>
+                                        <a href="#" class="active" style="background:{{$productdetail->color}};"><span class="sr-only">Color name</span></a>
                                     </div>
-                                </div>
+                                     </div>
+                                @endif
+
                             </div>
                             <div class="col-md-6">
                                 <form action="/user/order/store" method="post">
