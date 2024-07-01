@@ -278,6 +278,8 @@ Route::get('/user/profile', [UserProfileController::class, 'UserProfile']);
 Route::post('/user/profile/update', [UserProfileController::class, 'updateProfile'])->name('user.profile.update');
 
 
+Route::get('/invoice/{commandeId}', [CheckoutController::class, 'generateInvoice'])->name('invoice.download');
+
 
 // Route::get('/payment', [PayPalController::class, 'payment'])->name('payment');
 // Route::get('/cancel', [PayPalController::class, 'cancel'])->name('payment.cancel');

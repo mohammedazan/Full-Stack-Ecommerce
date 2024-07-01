@@ -33,6 +33,9 @@
 </head>
 
 <body>
+
+	@include('guest/partials.header')
+
     <div class="page-wrapper">
     
 
@@ -129,53 +132,41 @@
 	                					<label>Email address *</label>
 	        							<input name="email" type="email" class="form-control" required>
 
-	        							<div class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input" id="checkout-create-acc">
-											<label class="custom-control-label" for="checkout-create-acc">Create an account?</label>
-										</div><!-- End .custom-checkbox -->
-
-										<div class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input" id="checkout-diff-address">
-											<label class="custom-control-label" for="checkout-diff-address">Ship to a different address?</label>
-										</div><!-- End .custom-checkbox -->
-
-	                					<label>Order notes (optional)</label>
-	        							<textarea class="form-control" cols="30" rows="4" placeholder="Notes about your order, e.g. special notes for delivery"></textarea>
+	        			
 		                		</div><!-- End .col-lg-9 -->
 		                		<aside class="col-lg-3">
 		                			<div class="summary">
 		                				<h3 class="summary-title">Your Order</h3><!-- End .summary-title -->
-
+										
 		                				<table class="table table-summary">
+											
 		                					<thead>
 		                						<tr>
-		                							<th>Product</th>
-		                							<th>Total</th>
+		                							<th>Name</th>
+		                							{{-- <th>Qte</th> --}}
+		                							<th>price</th>
 		                						</tr>
 		                					</thead>
-
+											@foreach($Product as  $p)
 		                					<tbody>
-		                						<tr>
-		                							<td><a href="#">Beige knitted elastic runner shoes</a></td>
-		                							<td>$84.00</td>
-		                						</tr>
-
-		                						<tr>
-		                							<td><a href="#">Blue utility pinafore denimdress</a></td>
-		                							<td>$76,00</td>
-		                						</tr>
 		                						<tr class="summary-subtotal">
-		                							<td>Subtotal:</td>
-		                							<td>$160.00</td>
-		                						</tr><!-- End .summary-subtotal -->
+
+													<td>{{$p->name}}</td>
+													{{-- <td>{{$p->name}}</td> --}}
+													<td>{{$p->current_purchase_cost}}</td>
+													</tr>
+												
+												<!-- End .summary-subtotal -->
 		                						{{-- <tr>
 		                							<td>Shipping:</td>
 		                							<td>Free shipping</td>
 		                						</tr> --}}
-		                						<tr class="summary-total">
+		                						{{-- <tr class="summary-total">
 		                							<td>Total:</td>
 		                							<td>$160.00</td>
-		                						</tr><!-- End .summary-total -->
+		                						</tr><!-- End .summary-total --> --}}
+												@endforeach
+
 		                					</tbody>
 		                				</table><!-- End .table table-summary -->
 

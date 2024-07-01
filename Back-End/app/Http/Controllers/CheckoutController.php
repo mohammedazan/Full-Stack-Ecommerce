@@ -6,28 +6,44 @@ use App\Models\City;
 use App\Models\Commande;
 use App\Models\CompanyInfo;
 use App\Models\Country;
+use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\ProductSubCategory;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Srmklive\PayPal\Services\ExpressCheckout;
 use Stripe\Charge;
 use Stripe\Stripe;
 
+
+
 class CheckoutController extends Controller
 {
     public function index()
     {
-        // Fetch the ongoing order for the authenticated user
+
+        $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
+        $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
+        $commandesEnCours = Commande::where('users_id', Auth::id())
+        ->where('etat', 'en cours')
+        ->get();
+            $CartCountEnCours = 0;
+            foreach ($commandesEnCours as $commande) {
+            $CartCountEnCours += $commande->lignecommande->count();
+            }  
         $commande = Commande::where('users_id', Auth::user()->id)->where('etat', 'en cours')->first();
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
+        $Product = Product::where('status', 1)->where('deleted', 0)->get();
         $CompanyInfo=CompanyInfo::get();
 
         $countries = Country::all();
         $cities = City::all();
+        
+        $commandes = Commande::latest()->first();
 
 
-
-        return view('guest/pages.checkout', compact('commande', 'category','CompanyInfo','countries','cities'));
+        return view('guest/pages.checkout', compact('productSubcategory','commande', 'category','CompanyInfo','countries','cities','CartCountEnCours','wishlistCount','Product'));
     }
 
 
@@ -178,20 +194,54 @@ class CheckoutController extends Controller
                 $commande->save();
             }
 
-            return redirect()->route('checkout.confirmation')->with('success', 'Your payment was successful.');
+            return redirect()->route('forbest')->with('success', 'Your payment was successful.');
+            
+            // return redirect()->back()>with('success', 'Thank you for your order!');
+
         }
 
-        return redirect()->route('checkout')->with('error', 'Please try again later.');
+        return redirect()->route('forbest')->with('error', 'Please try again later.');
     }
 
     public function confirmation()
     {
-        // You can fetch the latest order here or pass it from the session if you are storing it there
-        // For example:
-        $commande = Commande::latest()->first();
 
-        // Pass the command data to the view
-        return view('guest/pages.confirmation', compact('commande'));
+        
+        $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
+
+        $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
+
+        $commandesEnCours = Commande::where('users_id', Auth::id())
+
+        ->where('etat', 'en cours')
+        ->get();
+
+            $CartCountEnCours = 0;
+            foreach ($commandesEnCours as $commande) {
+
+            $CartCountEnCours += $commande->lignecommande->count();
+
+            }  
+
+        $commande = Commande::where('users_id', Auth::user()->id)->where('etat', 'en cours')->first();
+        $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
+        $Product = Product::where('status', 1)->where('deleted', 0)->get();
+        $CompanyInfo=CompanyInfo::get();
+        $commande = Commande::latest()->first();
+        return view('guest/pages.confirmation', compact('commande','productSubcategory','commande', 'category','CompanyInfo','CartCountEnCours','wishlistCount','Product'));
+
     }
+
+
+    // public function generateInvoice($commandeId)
+    // {
+    //     $commande = Commande::findOrFail($commandeId);
+
+    //     // Generate PDF from invoice.blade.php view
+    //     $pdf = PDF::loadView('invoices.invoice', compact('commande'));
+
+    //     // Download the PDF file with a specific name
+    //     return $pdf->download('invoice.pdf');
+    // }
 
 }

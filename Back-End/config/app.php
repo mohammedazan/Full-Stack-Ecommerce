@@ -183,6 +183,9 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Srmklive\PayPal\Providers\PayPalServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
+
+
         
 
 
@@ -198,7 +201,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
         'Intervention\Image\ImageServiceProvider',
         Barryvdh\DomPDF\ServiceProvider::class,
 
@@ -215,9 +217,10 @@ return [
     |
     */
     'aliases' => Facade::defaultAliases()->merge([
+            'PDF' => Barryvdh\DomPDF\Facade::class,
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Image' => 'Intervention\Image\Facades\Image',
-        'PDF' => Barryvdh\DomPDF\Facade::class,
+        
     ])->toArray(),
 
 ];
