@@ -100,12 +100,22 @@ class GuestController extends Controller
         }
 
         $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
-        $commandes = Commande::where('users_id', Auth::id())->get();
-        $CartCount = 0;
-        foreach ($commandes as $commande) {
-            $CartCount += $commande->lignecommande->count();
-        }
-        return view('guest/home')->with(compact('productSubcategory','productList','category','productCategory','offer','featuredImage','brandList','Blogs','CompanyInfo','wishlistCount','CartCount'));
+
+
+
+        $commandesEnCours = Commande::where('users_id', Auth::id())
+        ->where('etat', 'en cours')
+        ->get();
+            $CartCountEnCours = 0;
+            foreach ($commandesEnCours as $commande) {
+            $CartCountEnCours += $commande->lignecommande->count();
+            }
+
+
+
+
+
+        return view('guest/home')->with(compact('productSubcategory','productList','category','productCategory','offer','featuredImage','brandList','Blogs','CompanyInfo','wishlistCount','CartCountEnCours'));
     }
     
 
@@ -117,13 +127,16 @@ class GuestController extends Controller
         $company = CompanyInfo::first();
         $CompanyInfo=CompanyInfo::get();
         $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
-        $commandes = Commande::where('users_id', Auth::id())->get();
-        $CartCount = 0;
-        foreach ($commandes as $commande) {
-            $CartCount += $commande->lignecommande->count();
-        }
+   
+        $commandesEnCours = Commande::where('users_id', Auth::id())
+        ->where('etat', 'en cours')
+        ->get();
+            $CartCountEnCours = 0;
+            foreach ($commandesEnCours as $commande) {
+            $CartCountEnCours += $commande->lignecommande->count();
+            }  
 
-        return view('guest/pages.about')->with(compact('productSubcategory','category','company','CompanyInfo','wishlistCount','CartCount'));
+        return view('guest/pages.about')->with(compact('productSubcategory','category','company','CompanyInfo','wishlistCount','CartCountEnCours'));
 
     }
 
@@ -140,14 +153,10 @@ class GuestController extends Controller
         $brandList=Brand::get();
         $CompanyInfo=CompanyInfo::get();
 
-        $CartCount = 0;
         $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
-        $commandes = Commande::where('users_id', Auth::id())->get();
 
-        // Loop through each Commande and count the total number of items
-        foreach ($commandes as $commande) {
-            $CartCount += $commande->lignecommande->count();
-        }
+    
+
 
         foreach ($productList as $product) {
             $reviews = $product->reviews;
@@ -161,7 +170,16 @@ class GuestController extends Controller
             }
         }
 
-        return view('guest/pages.product')->with(compact('productList','category','brandList','productSubcategory','CompanyInfo','CartCount','wishlistCount'));
+
+        $commandesEnCours = Commande::where('users_id', Auth::id())
+        ->where('etat', 'en cours')
+        ->get();
+            $CartCountEnCours = 0;
+            foreach ($commandesEnCours as $commande) {
+            $CartCountEnCours += $commande->lignecommande->count();
+            }  
+
+        return view('guest/pages.product')->with(compact('productList','category','brandList','productSubcategory','CompanyInfo','wishlistCount','CartCountEnCours'));
     }
 
 
@@ -174,16 +192,7 @@ class GuestController extends Controller
         $productdetail = Product::find($request->id);
 
 
-        $CartCount = 0;
         $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
-        $commandes = Commande::where('users_id', Auth::id())->get();
-
-        // Loop through each Commande and count the total number of items
-        foreach ($commandes as $commande) {
-            $CartCount += $commande->lignecommande->count();
-        }
-
-        
         // Calculate average rating and reviews count for each product
         foreach ($productList as $product) {
             $reviews = $product->reviews;
@@ -197,7 +206,16 @@ class GuestController extends Controller
             }
         }
 
-        return view('guest/pages.product_list')->with(compact('productList','category','brandList','productSubcategory','CompanyInfo','productdetail','CartCount','wishlistCount'));
+        $commandesEnCours = Commande::where('users_id', Auth::id())
+        ->where('etat', 'en cours')
+        ->get();
+            $CartCountEnCours = 0;
+            foreach ($commandesEnCours as $commande) {
+            $CartCountEnCours += $commande->lignecommande->count();
+            }
+
+
+        return view('guest/pages.product_list')->with(compact('productList','category','brandList','productSubcategory','CompanyInfo','productdetail','commandesEnCours','wishlistCount'));
     }
 
 
@@ -441,17 +459,19 @@ class GuestController extends Controller
         $productCategory = ProductCategory::where('deleted', 0)->where('status', 1)->get();
         $CompanyInfo=CompanyInfo::get();
         $faqList=Faq::get();
-
-        $CartCount = 0;
         $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
-        $commandes = Commande::where('users_id', Auth::id())->get();
 
-    // Loop through each Commande and count the total number of items
-    foreach ($commandes as $commande) {
-        $CartCount += $commande->lignecommande->count();
-    }
+        
 
-        return view('guest/pages.faqs')->with(compact('category', 'productCategory', 'productSubcategory','faqList','CompanyInfo','CartCount','wishlistCount'));
+        $commandesEnCours = Commande::where('users_id', Auth::id())
+        ->where('etat', 'en cours')
+        ->get();
+            $CartCountEnCours = 0;
+            foreach ($commandesEnCours as $commande) {
+            $CartCountEnCours += $commande->lignecommande->count();
+            }  
+
+        return view('guest/pages.faqs')->with(compact('category', 'productCategory', 'productSubcategory','faqList','CompanyInfo','wishlistCount','CartCountEnCours'));
 
     }
 

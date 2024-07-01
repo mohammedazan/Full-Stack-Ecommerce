@@ -31,14 +31,16 @@ class ContactController extends Controller
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $CompanyInfo=CompanyInfo::get();
 
-        $CartCount = 0;
         $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
-        $commandes = Commande::where('users_id', Auth::id())->get();
 
-    // Loop through each Commande and count the total number of items
-    foreach ($commandes as $commande) {
-        $CartCount += $commande->lignecommande->count();
-    }
-        return view('guest.pages.contact')->with(compact('productSubcategory', 'category','CompanyInfo','CartCount','wishlistCount'));
+        $commandesEnCours = Commande::where('users_id', Auth::id())
+        ->where('etat', 'en cours')
+        ->get();
+            $CartCountEnCours = 0;
+            foreach ($commandesEnCours as $commande) {
+            $CartCountEnCours += $commande->lignecommande->count();
+            }  
+            
+        return view('guest.pages.contact')->with(compact('productSubcategory', 'category','CompanyInfo','CartCountEnCours','wishlistCount'));
     }
 }

@@ -146,7 +146,6 @@ class CommandeController extends Controller
     
             return redirect()->back()->with('success', 'Ligne de commande supprimée');
         }
-    
         return redirect()->back()->with('error', 'Ligne de commande introuvable');
     }
     
@@ -187,7 +186,18 @@ class CommandeController extends Controller
 
         $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
 
-        return view('guest/pages.cart')->with(compact('productSubcategory','category','commande','CompanyInfo','wishlistCount' ));
+
+        
+        $commandesEnCours = Commande::where('users_id', Auth::id())
+        ->where('etat', 'en cours')
+        ->get();
+            $CartCountEnCours = 0;
+            foreach ($commandesEnCours as $commande) {
+            $CartCountEnCours += $commande->lignecommande->count();
+            }
+
+            
+        return view('guest/pages.cart')->with(compact('productSubcategory','category','commande','CompanyInfo','wishlistCount','CartCountEnCours' ));
     }
 
     // public function checkout(Request $request){
