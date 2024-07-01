@@ -76,7 +76,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-9">
-							<form action="{{ route('updatecart') }}" method="POST">
+							<form action="{{ route('updatecart') }}" method="POST" id="cart-form">
 								@csrf
 								<table class="table table-cart table-mobile">
 									<thead>
@@ -91,16 +91,16 @@
 									</thead>
 									<tbody>
 										@foreach($commande->lignecommande ?? [] as $lc)
-										<tr>
+										<tr data-product-id="{{ $lc->id }}">
 											<td>
 												<h3 class="product-title">
-													<span>{{ $lc->product->name }}</span>
+													<a href="{{ route('productdetail', ['id' => $lc->product->id]) }}"><span>{{ $lc->product->name }}</span></a>
 												</h3><!-- End .product-title -->
 											</td>
 											<td class="product-col">
 												<div class="product">
 													<figure class="product-media">
-														<a href="#">
+														<a href="{{ route('productdetail', ['id' => $lc->product->id]) }}">
 															<img src="{{ asset($lc->product->image_path) }}" alt="Product image">
 														</a>
 													</figure>
@@ -109,7 +109,7 @@
 											<td class="price-col">{{ $lc->product->current_sale_price }} DH</td>
 											<td class="quantity-col">
 												<div class="cart-product-quantity">
-													<input type="number" name="quantities[{{ $lc->id }}]" value="{{ $lc->qte }}" min="1" class="form-control">
+													<input type="number" name="quantities[{{ $lc->id }}]" value="{{ $lc->qte }}" min="1" class="form-control quantity-input" data-price="{{ $lc->product->current_sale_price }}">
 												</div><!-- End .cart-product-quantity -->
 											</td>
 											<td class="total-col">{{ $lc->product->current_sale_price * $lc->qte }} DH</td>
@@ -118,11 +118,68 @@
 										@endforeach
 									</tbody>
 								</table><!-- End .table table-wishlist -->
-								<div class="cart-bottom">
-									<a href="#" class="btn btn-outline-dark-2" onclick="this.closest('form').submit(); return false;"><span>UPDATE CART</span><i class="icon-refresh"></i></a>
-								</div><!-- End .cart-bottom -->
 							</form>
+					
+							<script>
+								document.addEventListener('DOMContentLoaded', function() {
+									const quantityInputs = document.querySelectorAll('.quantity-input');
+									const shippingInputs = document.querySelectorAll('input[name="shipping"]');
+					
+									quantityInputs.forEach(input => {
+										input.addEventListener('input', function() {
+											const productRow = this.closest('tr');
+											const price = parseFloat(this.getAttribute('data-price'));
+											const quantity = parseInt(this.value);
+											const totalCol = productRow.querySelector('.total-col');
+											
+											// Update total for the current product
+											const total = price * quantity;
+											totalCol.textContent = total + ' DH';
+					
+											// Update the overall cart subtotal and total
+											updateCartTotal();
+										});
+									});
+					
+									shippingInputs.forEach(input => {
+										input.addEventListener('change', function() {
+											updateCartTotal();
+										});
+									});
+					
+									function updateCartTotal() {
+										let cartSubtotal = 0;
+										const totalCols = document.querySelectorAll('.total-col');
+										totalCols.forEach(totalCol => {
+											const total = parseFloat(totalCol.textContent.replace(' DH', ''));
+											cartSubtotal += total;
+										});
+					
+										document.getElementById('subtotal').textContent = cartSubtotal + ' DH';
+					
+										// Update the overall total including shipping
+										updateTotal();
+									}
+					
+									function updateTotal() {
+										const subtotal = parseFloat(document.getElementById('subtotal').textContent.replace(' DH', ''));
+										let shipping = 0;
+					
+										const selectedShipping = document.querySelector('input[name="shipping"]:checked');
+										if (selectedShipping) {
+											shipping = parseFloat(selectedShipping.value);
+										}
+					
+										const total = subtotal + shipping;
+										document.getElementById('total').textContent = total + ' DH';
+									}
+					
+									// Call updateCartTotal on page load to ensure correct initial values
+									updateCartTotal();
+								});
+							</script>
 						</div><!-- End .col-lg-9 -->
+					
 						<aside class="col-lg-3">
 							<form action="" method="">
 								@csrf
@@ -136,7 +193,7 @@
 											<tr class="summary-subtotal">
 												<td>Subtotal:</td>
 												@if($commande)
-												<td>{{ $commande->getTotal() }} DH</td>
+												<td id="subtotal">{{ $commande->getTotal() }} DH</td>
 												@endif
 											</tr><!-- End .summary-subtotal -->
 											<tr class="summary-shipping">
@@ -146,7 +203,7 @@
 											<tr class="summary-shipping-row">
 												<td>
 													<div class="custom-control custom-radio">
-														<input type="radio" id="free-shipping" name="shipping" class="custom-control-input">
+														<input type="radio" id="free-shipping" name="shipping" class="custom-control-input" value="0.00" onclick="updateTotal()">
 														<label class="custom-control-label" for="free-shipping">Free Shipping</label>
 													</div><!-- End .custom-control -->
 												</td>
@@ -156,8 +213,8 @@
 											<tr class="summary-shipping-row">
 												<td>
 													<div class="custom-control custom-radio">
-														<input type="radio" id="standart-shipping" name="standart" class="custom-control-input">
-														<label class="custom-control-label" for="standart-shipping">Standart:</label>
+														<input type="radio" id="standard-shipping" name="shipping" class="custom-control-input" value="10.00" onclick="updateTotal()">
+														<label class="custom-control-label" for="standard-shipping">Standard</label>
 													</div><!-- End .custom-control -->
 												</td>
 												<td>$10.00</td>
@@ -166,8 +223,8 @@
 											<tr class="summary-shipping-row">
 												<td>
 													<div class="custom-control custom-radio">
-														<input type="radio" id="express-shipping" name="express" class="custom-control-input">
-														<label class="custom-control-label" for="express-shipping">Express:</label>
+														<input type="radio" id="express-shipping" name="shipping" class="custom-control-input" value="20.00" onclick="updateTotal()">
+														<label class="custom-control-label" for="express-shipping">Express</label>
 													</div><!-- End .custom-control -->
 												</td>
 												<td>$20.00</td>
@@ -181,17 +238,17 @@
 											<tr class="summary-total">
 												<td>Total:</td>
 												@if($commande)
-												<td id="">{{ $commande->getTotal() + 20 }} DH</td>
+												<td id="total">{{ $commande->getTotal()}} DH</td>
 												@endif
 											</tr><!-- End .summary-total -->
 										</tbody>
 									</table><!-- End .table table-summary -->
 									<a href="/user/checkout" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</a>
 								</div><!-- End .summary -->
-								<a href="category.html" class="btn btn-outline-dark-2 btn-block mb-3"><span>CONTINUE SHOPPING</span><i class="icon-refresh"></i></a>
+								<a href="{{ route('product_list')}}" class="btn btn-outline-dark-2 btn-block mb-3"><span>CONTINUE SHOPPING</span><i class="icon-refresh"></i></a>
 							</form>
 						</aside><!-- End .col-lg-3 -->
-					</div><!-- End .row -->
+					</div>
 				</div><!-- End .container -->
 			</div><!-- End .cart -->
 		</div><!-- End .page-content -->
