@@ -215,7 +215,7 @@ class GuestController extends Controller
             }
 
 
-        return view('guest/pages.product_list')->with(compact('productList','category','brandList','productSubcategory','CompanyInfo','productdetail','commandesEnCours','wishlistCount'));
+        return view('guest/pages.product_list')->with(compact('productList','category','brandList','productSubcategory','CompanyInfo','productdetail','CartCountEnCours','wishlistCount'));
     }
 
 
@@ -239,14 +239,18 @@ class GuestController extends Controller
         if ($productList->isEmpty()) {
             return redirect()->back();
         }
-        $commandes = Commande::where('users_id', Auth::id())->get();
-        $CartCount = 0;
-        foreach ($commandes as $commande) {
-            $CartCount += $commande->lignecommande->count();
-        }
+
+        $commandesEnCours = Commande::where('users_id', Auth::id())
+        ->where('etat', 'en cours')
+        ->get();
+            $CartCountEnCours = 0;
+            foreach ($commandesEnCours as $commande) {
+            $CartCountEnCours += $commande->lignecommande->count();
+            }
+ 
 
         
-        return view('guest/pages.product')->with(compact('productList','productSubcategory', 'category', 'brandList','CompanyInfo','wishlistCount','CartCount'));
+        return view('guest/pages.product')->with(compact('productList','productSubcategory', 'category', 'brandList','CompanyInfo','wishlistCount','CartCountEnCours'));
     }
 
   
@@ -272,11 +276,16 @@ class GuestController extends Controller
             return redirect()->back();
         }
         $commandes = Commande::where('users_id', Auth::id())->get();
-        $CartCount = 0;
-        foreach ($commandes as $commande) {
-            $CartCount += $commande->lignecommande->count();
-        }
-        return view('guest/pages.product_list')->with(compact('productList','productSubcategory', 'category', 'brandList','CompanyInfo','wishlistCount','CartCount'));
+ 
+        $commandesEnCours = Commande::where('users_id', Auth::id())
+        ->where('etat', 'en cours')
+        ->get();
+            $CartCountEnCours = 0;
+            foreach ($commandesEnCours as $commande) {
+            $CartCountEnCours += $commande->lignecommande->count();
+            }
+ 
+        return view('guest/pages.product_list')->with(compact('productList','productSubcategory', 'category', 'brandList','CompanyInfo','wishlistCount','CartCountEnCours'));
     }
 
 
@@ -301,12 +310,16 @@ class GuestController extends Controller
         if ($productList->isEmpty()) {
             return redirect()->back();
         }
-        $commandes = Commande::where('users_id', Auth::id())->get();
-        $CartCount = 0;
-        foreach ($commandes as $commande) {
-            $CartCount += $commande->lignecommande->count();
-        }
-        return view('guest/pages.product')->with(compact('productList', 'productSubcategory','category', 'brandList','CompanyInfo','wishlistCount','CartCount'));
+
+        $commandesEnCours = Commande::where('users_id', Auth::id())
+        ->where('etat', 'en cours')
+        ->get();
+            $CartCountEnCours = 0;
+            foreach ($commandesEnCours as $commande) {
+            $CartCountEnCours += $commande->lignecommande->count();
+            }
+ 
+        return view('guest/pages.product')->with(compact('productList', 'productSubcategory','category', 'brandList','CompanyInfo','wishlistCount','CartCountEnCours'));
     }
     
 
@@ -334,21 +347,22 @@ class GuestController extends Controller
 
 
         $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
-        $commandes = Commande::where('users_id', Auth::id())->get();
 
-        $CartCount = 0;
-    
-        // Loop through each Commande and count the total number of items
-        foreach ($commandes as $commande) {
-            $CartCount += $commande->lignecommande->count();
-        }
+        $commandesEnCours = Commande::where('users_id', Auth::id())
+        ->where('etat', 'en cours')
+        ->get();
+            $CartCountEnCours = 0;
+            foreach ($commandesEnCours as $commande) {
+            $CartCountEnCours += $commande->lignecommande->count();
+            }
+ 
     
        
         // Count the number of unique product IDs
 
 
 
-        return view('guest/pages/productdetail')->with(compact('productSubcategory', 'category', 'productdetail','productList', 'avgRating','CompanyInfo','color','wishlistCount','CartCount'));
+        return view('guest/pages/productdetail')->with(compact('productSubcategory', 'category', 'productdetail','productList', 'avgRating','CompanyInfo','color','wishlistCount','CartCountEnCours'));
     }
 
 
@@ -390,12 +404,17 @@ class GuestController extends Controller
         $brandList = Brand::get();
         $CompanyInfo = CompanyInfo::get();
         $commandes = Commande::where('users_id', Auth::id())->get();
-        $CartCount = 0;
-        foreach ($commandes as $commande) {
-            $CartCount += $commande->lignecommande->count();
-        }
     
-        return view('guest/pages.product')->with(compact('productList', 'category', 'brandList', 'productSubcategory', 'CompanyInfo','wishlistCount','CartCount'));
+        $commandesEnCours = Commande::where('users_id', Auth::id())
+        ->where('etat', 'en cours')
+        ->get();
+            $CartCountEnCours = 0;
+            foreach ($commandesEnCours as $commande) {
+            $CartCountEnCours += $commande->lignecommande->count();
+            }
+ 
+    
+        return view('guest/pages.product')->with(compact('productList', 'category', 'brandList', 'productSubcategory', 'CompanyInfo','wishlistCount','CartCountEnCours'));
     }
     
     public function productbrand(Request $request){
@@ -415,13 +434,19 @@ class GuestController extends Controller
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $brandList = Brand::get();
-        $commandes = Commande::where('users_id', Auth::id())->get();
-        $CartCount = 0;
-        foreach ($commandes as $commande) {
-            $CartCount += $commande->lignecommande->count();
-        }
+
+        $commandesEnCours = Commande::where('users_id', Auth::id())
+        ->where('etat', 'en cours')
+        ->get();
+            $CartCountEnCours = 0;
+            foreach ($commandesEnCours as $commande) {
+            $CartCountEnCours += $commande->lignecommande->count();
+            }
+            $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
+
+        
     
-        return view('guest/pages.product')->with(compact('productList', 'category', 'brandList', 'productSubcategory','CompanyInfo','CartCount'));
+        return view('guest/pages.product')->with(compact('productList', 'category', 'brandList', 'productSubcategory','CompanyInfo','CartCountEnCours','wishlistCount'));
     }
 
     public function product_list_brand(Request $request){
@@ -443,13 +468,17 @@ class GuestController extends Controller
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $brandList = Brand::get();
-        $commandes = Commande::where('users_id', Auth::id())->get();
-        $CartCount = 0;
-        foreach ($commandes as $commande) {
-            $CartCount += $commande->lignecommande->count();
-        }
+
+        $commandesEnCours = Commande::where('users_id', Auth::id())
+        ->where('etat', 'en cours')
+        ->get();
+            $CartCountEnCours = 0;
+            foreach ($commandesEnCours as $commande) {
+            $CartCountEnCours += $commande->lignecommande->count();
+            }
+ 
     
-        return view('guest/pages.product_list')->with(compact('productList', 'category', 'brandList', 'productSubcategory','CompanyInfo','wishlistCount','CartCount'));
+        return view('guest/pages.product_list')->with(compact('productList', 'category', 'brandList', 'productSubcategory','CompanyInfo','wishlistCount','CartCountEnCours'));
     }
 
 
@@ -461,7 +490,7 @@ class GuestController extends Controller
         $faqList=Faq::get();
         $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
 
-        
+
 
         $commandesEnCours = Commande::where('users_id', Auth::id())
         ->where('etat', 'en cours')
