@@ -112,7 +112,7 @@ class offerController extends Controller
                 mkdir($filePath, 666, true);
             }
 
-            $logo_image = Image::make(file_get_contents($image))->resize(700, 400);
+            $logo_image = Image::make(file_get_contents($image));
             $logo_image->brightness(8);
             $logo_image->contrast(11);
             $logo_image->sharpen(5);
