@@ -363,176 +363,128 @@
     <script src="{{asset('assets/adminPanel')}}/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
 @endsection
 @section('js')
-    <script>
-        $(document).ready(function () {
-            $('#example').DataTable({});
-        });
-    </script>
-    <script>
-        function editSupplierInfo(offerList, image) {
-            // console.log(offerList);
-            // alert(offerList.offer_name)
-            // offerList.offer_name
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable({});
+    });
 
-            $('#offer_id').val(offerList.id)
-            $('#offer_name').val(offerList.offer_name)
-            $('#startdate').val(offerList.start_date)
-            $('#enddate').val(offerList.end_date)
-            console.log(image)
-            $('#updateimg').attr("src", image);
+    function editSupplierInfo(offerList, image) {
+        $('#offer_id').val(offerList.id);
+        $('#offer_name').val(offerList.offer_name);
+        $('#startdate').val(offerList.start_date);
+        $('#enddate').val(offerList.end_date);
+        $('#updateimg').attr("src", image);
+        $('#supplier_edit').modal('show');
+    }
 
-            $('#supplier_edit').modal('show')
-
-
-        }
-
-        $(document).ready(function () {
-            var table = $('#example2').DataTable({
-                lengthChange: false,
-                buttons: ['copy', 'excel', 'pdf', 'print']
-            });
-
-            table.buttons().container()
-                .appendTo('#example2_wrapper .col-md-6:eq(0)');
+    $(document).ready(function () {
+        var table = $('#example2').DataTable({
+            lengthChange: false,
+            buttons: ['copy', 'excel', 'pdf', 'print']
         });
 
-        $('.discountType').on('change', function () {
-            var selectval = $(this).val();
-            if (selectval == 0) {
-                $('#discountAmount').attr('placeholder', 'Total Discount');
-            }
-            if (selectval == 1) {
-                $('#discountAmount').attr('placeholder', 'Discount (%)');
-            }
-        })
-    </script>
+        table.buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');
+    });
 
+    var bs_modal = $('#modal');
+    var image = document.getElementById('image');
+    var cropper, reader, file;
 
-    <script>
+    $("body").on("change", ".image", function (e) {
+        var files = e.target.files;
+        var done = function (url) {
+            image.src = url;
+            bs_modal.modal('show');
+        };
 
-        var bs_modal = $('#modal');
-        var image = document.getElementById('image');
-        var cropper, reader, file;
+        if (files && files.length > 0) {
+            file = files[0];
 
-
-        $("body").on("change", ".image", function (e) {
-            var files = e.target.files;
-            var done = function (url) {
-                image.src = url;
-                bs_modal.modal('show');
-            };
-
-            if (files && files.length > 0) {
-                file = files[0];
-
-                if (URL) {
-                    done(URL.createObjectURL(file));
-                } else if (FileReader) {
-                    reader = new FileReader();
-                    reader.onload = function (e) {
-                        done(reader.result);
-                    };
-                    reader.readAsDataURL(file);
-                }
-            }
-        });
-        bs_modal.on('shown.bs.modal', function () {
-            cropper = new Cropper(image, {
-                aspectRatio: 2,
-                viewMode: 3,
-                preview: '.preview'
-            });
-        }).on('hidden.bs.modal', function () {
-            cropper.destroy();
-            cropper = null;
-        });
-
-        $("#crop").click(function () {
-            canvas = cropper.getCroppedCanvas({
-                width: 500,
-                height: 400,
-            });
-
-            canvas.toBlob(function (blob) {
-                var reader = new FileReader();
-                reader.readAsDataURL(blob);
-                reader.onloadend = function () {
-                    var base64data = reader.result;
-
-                    let inputvaluocation = $('#selectimgdiv').val() + 'input';
-                    let viewlocation = $('#selectimgdiv').val() + 'view';
-                    var uniqnumber = new Date().valueOf();
-
-                    $('.' + inputvaluocation).val(base64data)
-                    $('.' + viewlocation).html(`  <img class="imgaddborder" src="${base64data}" height="100%" width="100%" alt="">`);
-                    // $('#productImglist').append(`
-                    //   <div class="col-sm-3 mb-2" style="position:relative" id="${uniqnumber}" >
-                    //    <div class="remocespen" onclick="removeImage(${uniqnumber})" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle imgsvg removebtn"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg></div>
-                    //    <div onclick="selectImage(${uniqnumber})">
-                    //    <input type="hidden" name="product_img[]" class="${uniqnumber}input">
-                    //        <div class="imgaddcard d-flex justify-content-center align-items-center ${uniqnumber}view " >
-                    //            <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#171e243d" class="feather feather-camera imgsvg"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-                    //        </div>
-                    //     </div>
-                    //     </div>
-                    // `)
-                    $(".modalimage").modal('hide');
-
-
+            if (URL) {
+                done(URL.createObjectURL(file));
+            } else if (FileReader) {
+                reader = new FileReader();
+                reader.onload = function (e) {
+                    done(reader.result);
                 };
-            });
+                reader.readAsDataURL(file);
+            }
+        }
+    });
+
+    bs_modal.on('shown.bs.modal', function () {
+        cropper = new Cropper(image, {
+            aspectRatio: NaN, // Allowing freely selectable aspect ratio
+            viewMode: 3,
+            preview: '.preview'
+        });
+    }).on('hidden.bs.modal', function () {
+        cropper.destroy();
+        cropper = null;
+    });
+
+    $("#crop").click(function () {
+        canvas = cropper.getCroppedCanvas();
+
+        canvas.toBlob(function (blob) {
+            var reader = new FileReader();
+            reader.readAsDataURL(blob);
+            reader.onloadend = function () {
+                var base64data = reader.result;
+
+                let inputvaluocation = $('#selectimgdiv').val() + 'input';
+                let viewlocation = $('#selectimgdiv').val() + 'view';
+
+                $('.' + inputvaluocation).val(base64data);
+                $('.' + viewlocation).html(`<img class="imgaddborder" src="${base64data}" height="100%" width="100%" alt="">`);
+                $(".modalimage").modal('hide');
+            };
+        });
+    });
+
+    function selectImage(data) {
+        $('#selectimgdiv').val(data);
+        $('.image').click();
+    }
+
+    function removeImage(id) {
+        $('#' + id).html(`<div class="remocespen" onclick="removeImage(${id})"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle imgsvg removebtn"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg></div>
+            <div onclick="selectImage(${id})">
+                <input type="hidden" name="product_img[]" class="${id}input">
+                <div class="imgaddcard d-flex justify-content-center align-items-center ${id}view">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#171e243d" class="feather feather-camera imgsvg"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                </div>
+            </div>`);
+    }
+
+    function discountType(data) {
+        if ($(data).val() == 0) {
+            $('#discount').html(`<label for="inputStarPoints" class="form-label">Discount Amount</label><input type="number" name="discount" class="form-control" placeholder="Amount">`);
+        }
+        if ($(data).val() == 1) {
+            $('#discount').html(`<label for="inputStarPoints" class="form-label">Discount (%)</label>
+                <input type="number" name="discount" class="form-control" placeholder="Percentage (%)" required>`);
+        }
+    }
+
+    function readFile() {
+        if (!this.files || !this.files[0]) return;
+
+        const FR = new FileReader();
+
+        FR.addEventListener("load", function (evt) {
+            document.querySelector("#updateimg").src = evt.target.result;
+            $('#inp2').val(evt.target.result);
         });
 
+        FR.readAsDataURL(this.files[0]);
+    }
 
-        function selectImage(data) {
-            $('#selectimgdiv').val(data);
-            $('.image').click();
-        }
+    document.querySelector("#inp").addEventListener("change", readFile);
 
-        function removeImage(id) {
-            $('#' + id).html(`<div class="remocespen" onclick="removeImage(${id})" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle imgsvg removebtn"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg></div>
-                       <div onclick="selectImage(${id})">
-                       <input type="hidden" name="product_img[]" class="${id}input">
-                           <div class="imgaddcard d-flex justify-content-center align-items-center ${id}view " >
-                               <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#171e243d" class="feather feather-camera imgsvg"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-                           </div>
-                        </div>`);
-        }
-
-        function discountType(data) {
-            if ($(data).val() == 0) {
-                $('#discount').html(`<label for="inputStarPoints" class="form-label">Discount Amount</label><input type="number" name="discount" class="form-control" placeholder="Amount">`)
-            }
-            if ($(data).val() == 1) {
-                $('#discount').html(`  <label for="inputStarPoints" class="form-label">Discount (%)</label>
-                                            <input type="number" name="discount" class="form-control" placeholder="Percentage (%)" required>`)
-            }
-        }
-
-
-        function readFile() {
-
-            if (!this.files || !this.files[0]) return;
-
-            const FR = new FileReader();
-
-            FR.addEventListener("load", function (evt) {
-                document.querySelector("#updateimg").src = evt.target.result;
-                // document.querySelector("#inp2").val = evt.target.result;
-                $('#inp2').val(evt.target.result);
-            });
-
-            FR.readAsDataURL(this.files[0]);
-
-        }
-
-        document.querySelector("#inp").addEventListener("change", readFile);
-
-        function changeBrand() {
-            $('#inp').click();
-        }
-
-
-    </script>
+    function changeBrand() {
+        $('#inp').click();
+    }
+</script>
 
 @endsection
