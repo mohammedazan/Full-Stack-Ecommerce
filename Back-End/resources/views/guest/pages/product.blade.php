@@ -149,7 +149,7 @@
 								
 									// Slice the product list to get the products for the current page
 									$currentProducts = $filteredProducts->forPage($currentPage, $productsPerPage);
-								@endphp
+								   @endphp
 								
 								
 							
@@ -210,11 +210,11 @@
 													<a href="{{ route('productdetail', ['id' => $product->id]) }}">{{ $product->name }}</a>
 												</h3><!-- End .product-title -->
 												<div class="product-price">
-													@if ($discountedPrice != $originalPrice)
-														<span class="new-price">{{ number_format($discountedPrice, 2) }}</span>
-														<sm class="old-price">Was {{ number_format($originalPrice, 2) }}  DH</sm>
+													@if ($product->previous_wholesale_price != $product->current_sale_price)
+														<span class="new-price">{{ $product->current_sale_price }}</span>
+														<sm class="old-price">Was {{ $product->previous_wholesale_price  }}  DH</sm>
 													@else
-														<span class="old-price">{{ number_format($originalPrice, 2) }}  DH</span>
+														<span class="old-price">{{ $product->current_sale_price }}  DH</span>
 													@endif
 												</div><!-- End .product-price -->
 												@if (isset($product->reviewsCount) && $product->reviewsCount > 0)

@@ -79,15 +79,15 @@
                                     }
                                     									  // Get average rating and reviews count
 									  $avgRating = $product->avgRating;
-            $reviewsCount = $product->reviewsCount;
-            
-            // Calculate full stars and half star
-            $fullStars = floor($avgRating); // Number of full stars (whole number part)
-            $halfStar = ceil($avgRating - $fullStars); // Whether to display a half star
-            
-            // Calculate full stars and half star
-            $fullStars = floor($avgRating); // Number of full stars (whole number part)
-            $halfStar = ceil($avgRating - $fullStars); // Whether to display a half star
+                                    $reviewsCount = $product->reviewsCount;
+                                    
+                                    // Calculate full stars and half star
+                                    $fullStars = floor($avgRating); // Number of full stars (whole number part)
+                                    $halfStar = ceil($avgRating - $fullStars); // Whether to display a half star
+                                    
+                                    // Calculate full stars and half star
+                                    $fullStars = floor($avgRating); // Number of full stars (whole number part)
+                                    $halfStar = ceil($avgRating - $fullStars); // Whether to display a half star
                                 @endphp
                             
                                 <div class="product">
@@ -129,12 +129,12 @@
                                         <h3 class="product-title"><a href="{{ route('productdetail', ['id' => $product->id]) }}">{{ $product->name }}</a></h3><!-- End .product-title -->
 
                                         <div class="product-price">
-                                            @if ($discountedPrice != $originalPrice)
-                                            <span class="new-price">{{ number_format($discountedPrice, 2) }}</span>
-                                            <span class="old-price">Was {{ number_format($originalPrice, 2) }}  HD</span>
+                                            @if ($product->previous_wholesale_price != $product->current_sale_price)
+                                            <span class="new-price">{{ $product->current_sale_price }}</span>
+                                            <sm class="old-price">Was {{ $product->previous_wholesale_price  }}  DH</sm>
                                             @else
-                                            <span class="old-price"> {{ number_format($originalPrice, 2) }}  HD</span>
-                                            @endif 
+                                            <span class="old-price">{{ $product->current_sale_price }}  DH</span>
+                                            @endif
                                         </div><!-- End .product-price -->
                                         @if ($product->reviews->isNotEmpty())
                                         @php
