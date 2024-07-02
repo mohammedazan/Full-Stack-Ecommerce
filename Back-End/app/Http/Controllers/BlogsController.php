@@ -10,13 +10,16 @@ use App\Models\ProductSubCategory;
 use App\Models\Wishlist;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\Array_;
 use Illuminate\Support\Facades\Auth;
 
 class BlogsController extends Controller
 {
     public function index(){
-        $Blogs=Blogs::all();
-        return view('adminPanel/Blogs/blogs')->with(compact('blogs'));
+        $blogs =Blogs::all();
+        $common_data = new Array_();
+        $common_data->title = 'List Blog';
+        return view('adminPanel/Blogs/blogs', compact('blogs','common_data'));
 
     }
 
@@ -105,16 +108,16 @@ class BlogsController extends Controller
         $blogget=Blogs::where('id','!=',$id)->get();
         $Blogs=Blogs::all();
         $CompanyInfo=CompanyInfo::get();
-        $CartCount = 0;
-        $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
-        $commandes = Commande::where('users_id', Auth::id())->get();
+        $commandesEnCours = Commande::where('users_id', Auth::id())
+        ->where('etat', 'en cours')
+        ->get();
+            $CartCountEnCours = 0;
+            foreach ($commandesEnCours as $commande) {
+            $CartCountEnCours += $commande->lignecommande->count();
+            }    
+                $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
 
-    // Loop through each Commande and count the total number of items
-    foreach ($commandes as $commande) {
-        $CartCount += $commande->lignecommande->count();
-    }
-
-        return view('guest.pages.blogdetails', compact('productSubcategory', 'category','blogs','blogget','Blogs','CompanyInfo','CartCount','wishlistCount'));
+        return view('guest.pages.blogdetails', compact('productSubcategory', 'category','blogs','blogget','Blogs','CompanyInfo','CartCountEnCours','wishlistCount'));
     }
 
     public function blogall(){
@@ -122,15 +125,16 @@ class BlogsController extends Controller
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $Blogall=Blogs::all();
         $CompanyInfo=CompanyInfo::get();
-        $CartCount = 0;
         $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
-        $commandes = Commande::where('users_id', Auth::id())->get();
-    // Loop through each Commande and count the total number of items
-        foreach ($commandes as $commande) {
-            $CartCount += $commande->lignecommande->count();
-        }
-
-        return view('guest.pages.blogall', compact('productSubcategory', 'category','Blogall','CompanyInfo','CartCount','wishlistCount'));
+ 
+        $commandesEnCours = Commande::where('users_id', Auth::id())
+        ->where('etat', 'en cours')
+        ->get();
+            $CartCountEnCours = 0;
+            foreach ($commandesEnCours as $commande) {
+            $CartCountEnCours += $commande->lignecommande->count();
+            }
+        return view('guest.pages.blogall', compact('productSubcategory', 'category','Blogall','CompanyInfo','CartCountEnCours','wishlistCount'));
     }
     
 

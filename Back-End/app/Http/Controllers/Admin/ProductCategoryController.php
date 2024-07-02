@@ -34,7 +34,6 @@ class ProductCategoryController extends Controller
 
     public function productCategoryUpdate(Request $request)
     {
-
         $subcategory = ProductCategory::find($request->category_id);
         $subcategory->name = $request->name;
         $subcategory->note = $request->note;
