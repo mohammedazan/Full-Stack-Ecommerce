@@ -166,61 +166,68 @@ class ProductController extends Controller
    
 
 
-
-    public function storeProduct(Request $request)
-    {
-
-        $image = $request->product_img[0];
-        $product = new Product();
-        $product->name = $request->name;
-        $product->category_id = $request->category_id;
-        $product->subcategory_id = $request->subcategory_id;
-        $product->image_path = $request->image_path;
-        $product->color = $request->color ? implode(",", $request->color) : '';
-        $product->size = $request->size ? implode(",", $request->size) : '';
-        $product->reference = $request->reference;
-        $product->brand_id = $request->brand_id;
-        $product->supplier_id = $request->supplier_id;
-        $product->current_purchase_cost = $request->current_purchase_cost ?  $request->current_purchase_cost : '' ;
-        $product->current_sale_price = $request->current_sale_price;
-        $product->current_wholesale_price = $request->current_wholesale_price;
-        $product->wholesale_minimum_qty = $request->wholesale_minimum_qty;
-        $product->discount_type = $request->discount_type;
-        $product->discount = $request->discount;
-        $product->unit_type = $request->unit_type;
-        $product->description = $request->description;
-        if ($request->is_popular) {
-            $product->is_popular = 1;
-        }
-        if ($request->is_trending) {
-            $product->is_trending = 1;
-        }
-
-        if (isset($image)) {
-            $product->image_path = $this->productImageSave($image);
-        }
-
-        $product->created_at = Carbon::now();
-        $product->save();
-        $lastProductId = Product::orderBy('id', 'desc')->first()->id;
-        $product->code = 1000 + $lastProductId;
-        $product->save();
-
-
-        foreach ($request->product_img as $key => $imagedata) {
-            if ($key != 0) {
-                $productImage = new ProductImage();
-                $productImage->product_id = $product->id;
-                $image = $imagedata;
-                if (isset($image)) {
-                    $productImage->image = $this->productImageSave($image);
-                    $productImage->save();
-                }
-            }
-        }
-        return redirect()->back()->with('success', 'Product Successfully Created');
-    }
-
+       public function storeProduct(Request $request)
+       {
+           $image = $request->product_img[0];
+           $product = new Product();
+           $product->name = $request->name;
+           $product->category_id = $request->category_id;
+           $product->subcategory_id = $request->subcategory_id;
+           $product->image_path = $request->image_path;
+           $product->color = $request->color ? implode(",", $request->color) : '';
+           $product->size = $request->size ? implode(",", $request->size) : '';
+           $product->reference = $request->reference;
+           $product->brand_id = $request->brand_id;
+           $product->supplier_id = $request->supplier_id;
+           $product->current_purchase_cost = $request->current_purchase_cost ?  $request->current_purchase_cost : '' ;
+           $product->previous_wholesale_price = $request->previous_wholesale_price;
+           $product->current_wholesale_price = $request->current_wholesale_price;
+           $product->wholesale_minimum_qty = $request->wholesale_minimum_qty;
+           $product->discount_type = $request->discount_type;
+           $product->discount = $request->discount;
+           $product->unit_type = $request->unit_type;
+           $product->description = $request->description;
+           if ($request->is_popular) {
+               $product->is_popular = 1;
+           }
+           if ($request->is_trending) {
+               $product->is_trending = 1;
+           }
+       
+           // Apply discount logic
+           if ($request->discount_type == 1) { // Percentage discount
+               $discountedPrice = $product->previous_wholesale_price * (1 - $request->discount / 100);
+           } else if ($request->discount_type == 0) { // Fixed discount
+               $discountedPrice = $product->previous_wholesale_price - $request->discount;
+           } else {
+               $discountedPrice = $product->previous_wholesale_price;
+           }
+           $product->current_sale_price = $discountedPrice;
+       
+           if (isset($image)) {
+               $product->image_path = $this->productImageSave($image);
+           }
+       
+           $product->created_at = Carbon::now();
+           $product->save();
+           $lastProductId = Product::orderBy('id', 'desc')->first()->id;
+           $product->code = 1000 + $lastProductId;
+           $product->save();
+       
+           foreach ($request->product_img as $key => $imagedata) {
+               if ($key != 0) {
+                   $productImage = new ProductImage();
+                   $productImage->product_id = $product->id;
+                   $image = $imagedata;
+                   if (isset($image)) {
+                       $productImage->image = $this->productImageSave($image);
+                       $productImage->save();
+                   }
+               }
+           }
+           return redirect()->back()->with('success', 'Product Successfully Created');
+       }
+       
     public function productEditDetails(Request $request)
     {
         $productInfo = Product::find($request->product_id);

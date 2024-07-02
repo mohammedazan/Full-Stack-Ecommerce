@@ -181,16 +181,16 @@
                                         <div class="col-md-6">
                                             <label for="inputPrice" class="form-label">Prix de vente <small>Prix_V_TTC</small> <strong
                                                     class="text-danger">*</strong> </label>
-                                            <input type="number" name="current_sale_price"
-                                                   value="{{old('current_sale_price')}}" class="form-control"
+                                            <input type="number" name="previous_wholesale_price"
+                                                   value="{{old('previous_wholesale_price')}}" class="form-control"
                                                    id="inputPrice" placeholder="00.00" required>
                                         </div>
-                                        <div class="col-md-6">
+                                        {{-- <div class="col-md-6">
                                             <label for="inputCompareatprice" class="form-label">Prix de gros</label>
                                             <input type="number" name="current_wholesale_price"
                                                    value="{{old('current_wholesale_price')}}" class="form-control"
                                                    id="wholesalepricce" placeholder="00.00">
-                                        </div>
+                                        </div> --}}  
                                         <div class="col-md-6">
                                             <label for="inputStarPoints" class="form-label">Quantité</label>
                                             <input type="number" name="wholesale_minimum_qty" class="form-control"

@@ -179,9 +179,7 @@
                                     <div class="row">
                                         <div class="col-6 col-lg-3">
                                             <figure class="product-media">
-												@if($discountLabel >= 1)
-												<span class="product-label label-new">{{ $discountLabel }}</span>
-												@endif
+
                                                 <a  href="{{ route('productdetail', ['id' => $product->id]) }}">
                                                     <img src="{{ asset($product->image_path) }}"  alt="Product image" class="product-image">
                                                 </a>
@@ -191,12 +189,12 @@
                                         <div class="col-6 col-lg-3 order-lg-last">
                                             <div class="product-list-action">
                                                 <div class="product-price">
-													@if ($discountedPrice != $originalPrice)
-													<span class="new-price">{{ number_format($discountedPrice, 2) }}</span>
-													<span class="old-price">Was {{ number_format($originalPrice, 2) }}  DH</span>
+													@if ($product->previous_wholesale_price != $product->current_sale_price)
+														<span class="new-price">{{ $product->current_sale_price }}</span>
+														<sm class="old-price">Was {{ $product->previous_wholesale_price  }}  DH</sm>
 													@else
-													<span class="old-price"> {{ number_format($originalPrice, 2) }}  DH</span>
-													@endif 
+														<span class="old-price">{{ $product->current_sale_price }}  DH</span>
+													@endif
                                                 </div><!-- End .product-price -->
 												@if ($product->reviews->isNotEmpty())
 												@php
