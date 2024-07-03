@@ -78,29 +78,20 @@
 		                					</div><!-- End .col-sm-6 -->
 		                				</div><!-- End .row -->
 
-	            						<label>Company Name (Optional)</label>
-	            						<input name="company_name" type="text" class="form-control">
-
 										<label>Country *</label>
-										<select name="country" class="form-control" required>
+										<select name="country" id="country" class="form-control" required>
 											<option value="">Select Country</option>
-											@foreach($countries as $country)
-												<option value="{{ $country->id }}">{{ $country->name }}</option>
-											@endforeach
 										</select>
-
-										
+							
 										<label>Town / City *</label>
-										<select name="town_city" class="form-control" required>
+										<select name="town_city" id="town_city" class="form-control" required>
 											<option value="">Select City</option>
-											@foreach($cities as $c)
-												<option value="{{ $c->id }}">{{ $c->name }}</option>
-											@endforeach
 										</select>
-
+							
 										<label>State / County *</label>
-		                						<input name="state_county" type="text" class="form-control" required>
-										
+										<select name="state_county" id="state_county" class="form-control" required>
+											<option value="">Select Province</option>
+										</select>
 
 	            						<label>Street address *</label>
 	            						<input name="street_address" type="text" class="form-control" placeholder="House number and Street name" required>
@@ -147,13 +138,13 @@
 		                							<th>price</th>
 		                						</tr>
 		                					</thead>
-											@foreach($Product as  $p)
-		                					<tbody>
+											@foreach($commande->lignecommande ?? [] as $lc)
+		                					<tbody data-product-id="{{ $lc->id }}">
 		                						<tr class="summary-subtotal">
 
-													<td>{{$p->name}}</td>
+													<td><a href="{{ route('productdetail', ['id' => $lc->product->id]) }}">{{ $lc->product->name }}</a></td>
 													{{-- <td>{{$p->name}}</td> --}}
-													<td>{{$p->current_purchase_cost}}</td>
+													<td>{{ $lc->product->current_sale_price }} DH</td>
 													</tr>
 												
 												<!-- End .summary-subtotal -->
@@ -190,7 +181,61 @@
                 </div><!-- End .checkout -->
             </div><!-- End .page-content -->
         </main><!-- End .main -->
-
+		<script>
+			// Array of African countries
+			const africanCountries = [
+				"Morocco", "Algeria", "Angola", "Benin", "Botswana", "Burkina Faso", 
+				"Burundi", "Cabo Verde", "Cameroon", "Central African Republic", 
+				"Chad", "Comoros", "Congo", "Djibouti", "Egypt", "Equatorial Guinea", 
+				"Eritrea", "Eswatini", "Ethiopia", "Gabon", "Gambia", "Ghana", 
+				"Guinea", "Guinea-Bissau", "Ivory Coast", "Kenya", "Lesotho", "Liberia", 
+				"Libya", "Madagascar", "Malawi", "Mali", "Mauritania", "Mauritius", 
+				"Mozambique", "Namibia", "Niger", "Nigeria", "Rwanda", "Sao Tome and Principe", 
+				"Senegal", "Seychelles", "Sierra Leone", "Somalia", "South Africa", 
+				"South Sudan", "Sudan", "Tanzania", "Togo", "Tunisia", "Uganda", "Zambia", "Zimbabwe"
+			];
+	
+			// Array of Moroccan cities
+			const moroccanCities = [
+				"Casablanca", "Fez", "Tangier", "Marrakesh", "Salé", "Meknes", "Rabat",
+				"Oujda", "Kenitra", "Agadir", "Tetouan", "Safi", "Mohammedia", "Khouribga",
+				"El Jadida", "Beni Mellal", "Ait Melloul", "Nador", "Dar Bouazza", "Taza",
+				"Settat", "Larache", "Ksar El Kebir", "Khemisset", "Guelmim", "Berrechid",
+				"Oued Zem", "Inezgane", "Taroudant", "Fquih Ben Salah", "Taourirt", "Berkane",
+				"Sidi Slimane", "Errachidia", "Guercif", "Youssoufia", "Sidi Kacem", "Khenifra",
+				"Benslimane", "Al Hoceima", "Tifelt", "Dakhla", "Tan-Tan", "Sidi Ifni",
+				"Zagora", "Essaouira", "Ouarzazate", "Alnif", "Azrou", "Midelt", "Tiznit",
+				"Boudnib", "Figuig", "Mhamid El Ghizlane", "Rissani", "Asilah"
+			];
+	
+			// Array of Moroccan provinces
+			const moroccanProvinces = [
+				"Chaouia-Ouardigha", "Doukkala-Abda", "Fès-Boulemane", "Gharb-Chrarda-Béni Hssen",
+				"Grand Casablanca", "Guelmim-Es Semara", "Laâyoune-Boujdour-Sakia El Hamra",
+				"Marrakech-Tensift-Al Haouz", "Meknès-Tafilalet", "Oriental", "Rabat-Salé-Zemmour-Zaer",
+				"Souss-Massa-Drâa", "Tadla-Azilal", "Tanger-Tétouan", "Taza-Al Hoceima-Taounate"
+			];
+	
+			// Function to populate a select element with an array of options
+			function populateSelect(elementId, optionsArray) {
+				const selectElement = document.getElementById(elementId);
+				optionsArray.forEach(option => {
+					const opt = document.createElement('option');
+					opt.value = option;
+					opt.textContent = option;
+					selectElement.appendChild(opt);
+				});
+			}
+	
+			// Populate the country select with African countries
+			populateSelect('country', africanCountries);
+	
+			// Populate the city select with Moroccan cities
+			populateSelect('town_city', moroccanCities);
+	
+			// Populate the province select with Moroccan provinces
+			populateSelect('state_county', moroccanProvinces);
+		</script>
         <!-- start .footer -->
         @include('guest/partials.footer')
         <!-- End .footer -->

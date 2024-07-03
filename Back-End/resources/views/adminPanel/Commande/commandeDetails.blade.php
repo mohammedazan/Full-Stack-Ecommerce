@@ -25,11 +25,9 @@
                                     <p><strong>Company Name:</strong> {{ $commande->company_name }}</p>
 
 
-                                    @if($commande->city->country)
-                                    <p><strong>Country:</strong> {{ $commande->city->country->name }}</p>
+                                    @if($commande->country)
+                                    <p><strong>Country:</strong> {{ $commande->country}}</p>
                                 @endif
-
-      
 
                                 </div>
                             </div>
