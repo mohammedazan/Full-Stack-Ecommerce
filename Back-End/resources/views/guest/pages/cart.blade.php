@@ -119,12 +119,12 @@
 									</tbody>
 								</table><!-- End .table table-wishlist -->
 							</form>
-					
+							
 							<script>
 								document.addEventListener('DOMContentLoaded', function() {
 									const quantityInputs = document.querySelectorAll('.quantity-input');
 									const shippingInputs = document.querySelectorAll('input[name="shipping"]');
-					
+									
 									quantityInputs.forEach(input => {
 										input.addEventListener('input', function() {
 											const productRow = this.closest('tr');
@@ -135,18 +135,24 @@
 											// Update total for the current product
 											const total = price * quantity;
 											totalCol.textContent = total + ' DH';
-					
+											
 											// Update the overall cart subtotal and total
 											updateCartTotal();
+											
+											// Automatically submit the form
+											saveCartUpdates();
 										});
 									});
-					
+									
 									shippingInputs.forEach(input => {
 										input.addEventListener('change', function() {
 											updateCartTotal();
+											
+											// Automatically submit the form
+											saveCartUpdates();
 										});
 									});
-					
+									
 									function updateCartTotal() {
 										let cartSubtotal = 0;
 										const totalCols = document.querySelectorAll('.total-col');
@@ -154,32 +160,37 @@
 											const total = parseFloat(totalCol.textContent.replace(' DH', ''));
 											cartSubtotal += total;
 										});
-					
+										
 										document.getElementById('subtotal').textContent = cartSubtotal + ' DH';
-					
+										
 										// Update the overall total including shipping
 										updateTotal();
 									}
-					
+									
 									function updateTotal() {
 										const subtotal = parseFloat(document.getElementById('subtotal').textContent.replace(' DH', ''));
 										let shipping = 0;
-					
+										
 										const selectedShipping = document.querySelector('input[name="shipping"]:checked');
 										if (selectedShipping) {
 											shipping = parseFloat(selectedShipping.value);
 										}
-					
+										
 										const total = subtotal + shipping;
 										document.getElementById('total').textContent = total + ' DH';
 									}
-					
+									
+									function saveCartUpdates() {
+										const form = document.getElementById('cart-form');
+										form.submit();
+									}
+									
 									// Call updateCartTotal on page load to ensure correct initial values
 									updateCartTotal();
 								});
 							</script>
 						</div><!-- End .col-lg-9 -->
-					
+						
 						<aside class="col-lg-3">
 							<form action="" method="">
 								@csrf
@@ -238,7 +249,7 @@
 											<tr class="summary-total">
 												<td>Total:</td>
 												@if($commande)
-												<td id="total">{{ $commande->getTotal()}} DH</td>
+												<td id="total">{{ $commande->getTotal() + 0 }} DH</td> <!-- Initial total without shipping -->
 												@endif
 											</tr><!-- End .summary-total -->
 										</tbody>
@@ -249,6 +260,8 @@
 							</form>
 						</aside><!-- End .col-lg-3 -->
 					</div>
+					
+					
 				</div><!-- End .container -->
 			</div><!-- End .cart -->
 		</div><!-- End .page-content -->
