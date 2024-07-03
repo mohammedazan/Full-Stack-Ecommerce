@@ -30,18 +30,18 @@
 
                         <article class="entry">
                             <figure class="entry-media">
-                                <a href="#">
+                                <a href="/blogdetail/{{$b->id}}">
                                     <img src="{{ asset('uploads_blogs/blogs/' . $b->img) }}" alt="mage desc"   style=" height: 200px;">
                                 </a>
                             </figure><!-- End .entry-media -->
 
                             <div class="entry-body">
                                 <div class="entry-meta">
-                                    <a href="#">{{$b->created_at}}</a>
+                                    <a href="/blogdetail/{{$b->id}}">{{$b->created_at}}</a>
                                 </div><!-- End .entry-meta -->
 
                                 <h3 class="entry-title">
-                                    <a href="single.html">{{$b->Shorttitle}}</a>
+                                    <a href="/blogdetail/{{$b->id}}">{{$b->Shorttitle}}</a>
                                 </h3><!-- End .entry-title -->
 
                                 <div class="entry-content">
