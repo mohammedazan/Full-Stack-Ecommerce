@@ -127,6 +127,7 @@ class GuestController extends Controller
         $company = CompanyInfo::first();
         $CompanyInfo=CompanyInfo::get();
         $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
+        $brandList=Brand::get();
    
         $commandesEnCours = Commande::where('users_id', Auth::id())
         ->where('etat', 'en cours')
@@ -136,7 +137,7 @@ class GuestController extends Controller
             $CartCountEnCours += $commande->lignecommande->count();
             }  
 
-        return view('guest/pages.about')->with(compact('productSubcategory','category','company','CompanyInfo','wishlistCount','CartCountEnCours'));
+        return view('guest/pages.about')->with(compact('productSubcategory','category','company','CompanyInfo','wishlistCount','CartCountEnCours','brandList'));
 
     }
 

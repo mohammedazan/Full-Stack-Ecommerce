@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
+use App\Models\Commande;
 use App\Models\CompanyInfo;
 use Illuminate\Http\Request;
 use App\Models\Wishlist;
@@ -23,13 +25,23 @@ class WishlistController extends Controller
         $wishlistItems = Wishlist::where('user_id', Auth::id())->with('product')->get();
         $CompanyInfo=CompanyInfo::get();
 
-        // Fetch additional data if needed, like product categories or subcategories
-        $productSubcategories = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
-        $categories = ProductCategory::where('status', 1)->where('deleted', 0)->get();
+        
+        $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
+        $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
+        $productCategory = ProductCategory::where('deleted', 0)->where('status', 1)->get();
+        $CompanyInfo=CompanyInfo::get();
+        $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
+        $commandesEnCours = Commande::where('users_id', Auth::id())
+        ->where('etat', 'en cours')
+        ->get();
+            $CartCountEnCours = 0;
+            foreach ($commandesEnCours as $commande) {
+            $CartCountEnCours += $commande->lignecommande->count();
+            }  
 
         
         // Return the wishlist view with the wishlist items and other necessary data
-        return view('guest.pages.wishlist', compact('wishlistItems', 'productSubcategories', 'categories','CompanyInfo'));
+        return view('guest.pages.wishlist', compact('wishlistItems','CompanyInfo','category', 'productCategory', 'productSubcategory','CompanyInfo','wishlistCount','CartCountEnCours'));
     }
 
     /**

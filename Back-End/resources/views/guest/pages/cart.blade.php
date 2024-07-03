@@ -207,7 +207,7 @@
 														<label class="custom-control-label" for="free-shipping">Free Shipping</label>
 													</div><!-- End .custom-control -->
 												</td>
-												<td>$0.00</td>
+												<td>0.00DH</td>
 											</tr>
 											<!-- End .summary-shipping-row -->
 											<tr class="summary-shipping-row">
@@ -217,7 +217,7 @@
 														<label class="custom-control-label" for="standard-shipping">Standard</label>
 													</div><!-- End .custom-control -->
 												</td>
-												<td>$10.00</td>
+												<td>10.00DH</td>
 											</tr>
 											<!-- End .summary-shipping-row -->
 											<tr class="summary-shipping-row">
@@ -227,7 +227,7 @@
 														<label class="custom-control-label" for="express-shipping">Express</label>
 													</div><!-- End .custom-control -->
 												</td>
-												<td>$20.00</td>
+												<td>20.00DH</td>
 											</tr>
 											<!-- End .summary-shipping-row -->
 											{{-- <tr class="summary-shipping-estimate">

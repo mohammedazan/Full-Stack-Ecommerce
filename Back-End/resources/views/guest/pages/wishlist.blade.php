@@ -53,10 +53,10 @@
 </head>
 
 <body>
+    @include('guest/partials.header')
     <div class="page-wrapper">
     
     <main class="main">
-
             <nav aria-label="breadcrumb" class="breadcrumb-nav">
                 <div class="container">
                     <ol class="breadcrumb">
@@ -101,16 +101,16 @@
 									</div><!-- End .product -->
 								</td>
 								<td class="price-col">
-                                    @if ($wishlistItem->product->discount_type == 1)
-                                        <span class="new-price">${{ number_format($wishlistItem->product->current_sale_price * (1 - $wishlistItem->product->discount / 100), 2) }}</span>
-                                        <span class="old-price">${{ number_format($wishlistItem->product->current_sale_price, 2) }}</span>
+                                    @if ($wishlistItem->product->previous_wholesale_price != $wishlistItem->product->current_sale_price)
+                                    <span class="new-price">{{ $wishlistItem->product->current_sale_price }}</span>
+                                        <sm class="old-price">Was {{ $wishlistItem->product->previous_wholesale_price  }}  DH</sm>
                                     @else
-                                        <span class="new-price">${{ number_format($wishlistItem->product->current_sale_price, 2) }}</span>
+                                        <span class="old-price">{{ $wishlistItem->product->current_sale_price }}  DH</span>
                                     @endif
                                 </td>
 																
 								<td class="stock-col">
-									@if($wishlistItem->product->available_quantity > 0)
+									@if($wishlistItem->product->wholesale_minimum_qty > 0)
 									<span class="in-stock">In Stock</span>
 								@else
 									<span class="out-of-stock">Out of Stock</span>
@@ -146,12 +146,12 @@
 					</table><!-- End .table table-wishlist -->
 	            	<div class="wishlist-share">
 	            		<div class="social-icons social-icons-sm mb-2">
+                            @foreach ($CompanyInfo as $key => $Company)
 	            			<label class="social-label">Share on:</label>
-	    					<a href="#" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
-	    					<a href="#" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
-	    					<a href="#" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
-	    					<a href="#" class="social-icon" title="Youtube" target="_blank"><i class="icon-youtube"></i></a>
-	    					<a href="#" class="social-icon" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a>
+	    					<a href="{{$Company->facebook_link}}" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
+	    					<a href="{{$Company->twitter_link}}" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+	    					<a href="{{$Company->youtube_link}}" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
+                            @endforeach
 	    				</div><!-- End .soial-icons -->
 	            	</div><!-- End .wishlist-share -->
 					@endif

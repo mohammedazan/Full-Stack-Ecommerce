@@ -79,7 +79,7 @@
 		                				</div><!-- End .row -->
 
 										<label>Country *</label>
-										<select name="country" id="country" class="form-control" required>
+										<select name="country2" id="country2" class="form-control" required>
 											<option value="">Select Country</option>
 										</select>
 							
@@ -227,8 +227,8 @@
 				});
 			}
 	
-			// Populate the country select with African countries
-			populateSelect('country', africanCountries);
+			// Populate the country2 select with African countries
+			populateSelect('country2', africanCountries);
 	
 			// Populate the city select with Moroccan cities
 			populateSelect('town_city', moroccanCities);

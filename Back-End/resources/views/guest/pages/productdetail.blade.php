@@ -176,8 +176,11 @@
                                             <button class="btn-product btn-cart" type="submit"><span>add to cart</span></button>
                                         </div>
                                         <div class="details-action-wrapper">
-                                    
-                                            {{-- <a href="#" class="btn-product btn-cart" title="Wishlist"><span>Add to Wishlist</span></a> --}}
+                                             <form action="{{ route('wishlist.add') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{ $productdetail->id }}">
+                                                <button type="submit" class="btn-product btn-cart"><span>Add to Wishlist</span></button>
+                                            </form>	
                                         </div>
                                     </div>
                                 </form>
