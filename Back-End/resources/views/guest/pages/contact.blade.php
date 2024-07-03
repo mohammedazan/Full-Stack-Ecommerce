@@ -49,8 +49,7 @@
             <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
                 <div class="container">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('/forbest') }}" >Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Contact us </li>
                     </ol>
                 </div><!-- End .container -->
@@ -59,30 +58,44 @@
             <div class="page-content">
                 <div class="container">
                     <div class="row">
+                        @foreach ($CompanyInfo as $key => $Company)
+                            
                         <div class="col-md-8">
-                            <div id="map" class="mb-5"></div><!-- End #map -->
-                        </div><!-- End .col-md-8 -->
+                            <div id="map" class="mb-5" style="position: relative;">
+                              <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3165.8767928302733!2d-122.08424938468195!3d37.42206537982562!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb5a5f2a6b97f%3A0xd8f28d798d6cd469!2sGoogleplex!5e0!3m2!1sen!2sus!4v1594861850145!5m2!1sen!2sus"
+                                width="780"
+                                height="500"
+                                frameborder="0"
+                                style="border:0;"
+                                allowfullscreen=""
+                                aria-hidden="false"
+                                tabindex="0">
+                              </iframe>
+                              <a href="https://maps.app.goo.gl/ZGna22EurDsEXksV9" target="_blank" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></a>
+                            </div><!-- End #map -->
+                          </div><!-- End .col-md-8 -->
+                          
                         <div class="col-md-4">
                             <div class="contact-box text-center">
                                 <h3>Office</h3>
-                                <address>1 New York Plaza, New York, <br>NY 10004, USA</address>
+                                <address>{{ $Company->company_address }}</address>
                             </div><!-- End .contact-box -->
                             <div class="contact-box text-center">
                                 <h3>Start a Conversation</h3>
-                                <div><a href="mailto:#">info@Molla.com</a></div>
-                                <div><a href="tel:#">+1 987-876-6543</a>, <a href="tel:#">+1 987-976-1234</a></div>
+                                <div><a href="mailto:#">{{ $Company->email }}</a></div>
+                                <div><a href="tel:#">{{ $Company->phone }}</div>
                             </div><!-- End .contact-box -->
                             <div class="contact-box text-center">
                                 <h3>Social</h3>
                                 <div class="social-icons social-icons-color justify-content-center">
-                                    <a href="#" class="social-icon social-facebook" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
-                                    <a href="#" class="social-icon social-twitter" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
-                                    <a href="#" class="social-icon social-instagram" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
-                                    <a href="#" class="social-icon social-youtube" title="Youtube" target="_blank"><i class="icon-youtube"></i></a>
-                                    <a href="#" class="social-icon social-pinterest" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a>
+                                    <a href="{{$Company->facebook_link}}" class="social-icon social-facebook" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
+                                    <a  href="{{$Company->twitter_link}}" class="social-icon social-twitter" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+                                    <a href="{{$Company->youtube_link}}"  class="social-icon social-instagram" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
                                 </div><!-- End .soial-icons -->
                             </div><!-- End .contact-box -->
                         </div><!-- End .col-md-4 -->
+                        @endforeach
                     </div><!-- End .row -->
         
                     <hr class="mt-3 mb-5 mt-md-1">
@@ -90,10 +103,6 @@
                         <div class="col-md-9 col-lg-7">
                             <div class="text-center">
                                 <h2 class="title mb-1">Get In Touch</h2><!-- End .title mb-2 -->
-                                <p class="lead text-primary">
-                                    We collaborate with ambitious brands and people; we’d love to build something great together.
-                                </p><!-- End .lead text-primary -->
-                                <p class="mb-3">Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
                             </div><!-- End .text-center -->
                   
                             <form id="contact-form" action="#" method="post" class="contact-form mb-2">
