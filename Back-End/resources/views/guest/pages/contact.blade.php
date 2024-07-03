@@ -42,7 +42,6 @@
     
     @include('guest/partials.header')
         <!-- End .header -->
- 
         <main class="main">
 
             <!-- End .page-header -->
@@ -127,7 +126,10 @@
                     </div><!-- End .row -->
                 </div><!-- End .container -->
             </div><!-- End .page-content -->
-        </main><!-- End .main -->
+        </main>
+        <!-- End .main -->
+
+
         
 
         
@@ -176,7 +178,7 @@
         }
     </script>
 
-    
+
     <script src= "{{asset('assets/js/jquery.min.js')}}"></script>
 
     <script src= "{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
