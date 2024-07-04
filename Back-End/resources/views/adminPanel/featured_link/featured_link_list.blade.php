@@ -30,7 +30,7 @@
                             <div class="d-flex gap-3 mt-3">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal">
-                                    <i class="lni lni-circle-plus"></i> Ajouter en vedette
+                                    <i class="lni lni-circle-plus"></i> Add Featured
                                 </button>
                             </div>
                         </div>
@@ -42,10 +42,10 @@
                         <thead>
                             <tr class="t-trcolor">
                                 <th>ID</th>
-                                <th>Titre</th>
-                                <th>Lien</th>
-                                <th>Image de mise en avant</th>
-                                <th>Date de création</th>
+                                <th>Title</th>
+                                <th>Link</th>
+                                <th>Feature Image</th>
+                                <th>Create Date</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
@@ -62,7 +62,7 @@
                                 <td>
                                     <div class="dropdown d-flex justify-content-center">
                                         <button class="btn btn-primary dropdown-toggle dr-btn" type="button"
-                                                data-bs-toggle="dropdown" aria-expanded="false">Action
+                                                data-bs-toggle="dropdown" aria-expanded="false">Settings
                                         </button>
                                         <ul class="dropdown-menu" style="">
                                             <li onclick="editCategoryData({{$feature}},'{{ asset($feature->image)}}')"><a
@@ -76,10 +76,10 @@
                                                         <path
                                                             d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                                                     </svg>
-                                                    Modifier</a>
+                                                    Edit</a>
                                             </li>
                                             <li class="align-items-center"
-                                            onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');">
+                                            onclick="return confirm('Are you sure you want to delete this item?');">
                                             <a class="dropdown-item"
                                                href="{{route('feature.delete',['id'=>$feature->id])}}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -90,7 +90,7 @@
                                                     <path
                                                         d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                                                 </svg>
-                                                Supprimer</a>
+                                                Delete</a>
                                         </li>
                                             {{-- Suppression --}}
                                             {{-- <li class="align-items-center"
@@ -127,27 +127,27 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Créer un élément en vedette</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Create Featured<</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
                         </div>
                         <div class="modal-body">
                             <div class="mb-2 row">
-                                <label for="inputname" class="col-sm-12  pr-0 col-form-label">Titre de l'élément en vedette
+                                <label for="inputname" class="col-sm-12  pr-0 col-form-label">Featured Title
                                     <strong class="text-danger">*</strong>
                                 </label>
                                 <div class="col-sm-12">
                                     <input type="text" id="inputname" class="form-control" name="title"
-                                           placeholder="Titre de l'élément en vedette">
+                                           placeholder="Featured Title">
                                 </div>
                             </div>
         
                             <div class="mb-2 row">
-                                <label for="inputname" class="col-sm-12  pr-0 col-form-label">Lien de l'élément en vedette
+                                <label for="inputname" class="col-sm-12  pr-0 col-form-label">Featured Link
                                     <strong class="text-danger">*</strong>
                                 </label>
                                 <div class="col-sm-12">
                                     <input type="text" id="inputname" class="form-control" name="featured_link"
-                                           placeholder="Lien de l'élément en vedette">
+                                           placeholder="Featured Link">
                                 </div>
                             </div>
         
@@ -164,11 +164,11 @@
         
                             <div class="mb-2 row">
                                 <div class="col-sm-12 mt-2">
-                                    <label for="inputProductDescription" class="form-label">Image de l'élément en vedette</label>
+                                    <label for="inputProductDescription" class="form-label">Featured Image</label>
                                     <input style="display:none" type="file" name="image" class="image">
                                     <div class="row d-flex justify-content-center" id="productImglist">
                                         <div class="col-sm-4 mb-2" style="position:relative" id="222" onclick="selectImage('222')">
-                                            <span class="text-center mainphototxt">Photo principale</span>
+                                            <span class="text-center mainphototxt">Main Photo</span>
                                             <input type="hidden" name="banner_img" class="222input">
                                             <div class="imgaddcard d-flex justify-content-center align-items-center 222view ">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-camera text-primary imgsvg">
@@ -183,7 +183,7 @@
                                         <div class="modal-dialog modal-lg" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="modalLabel">Recadrer l'image</h5>
+                                                    <h5 class="modal-title" id="modalLabel">Crop image</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
                                                         <span aria-hidden="true">�</span>
                                                     </button>
@@ -192,7 +192,8 @@
                                                     <div class="img-container">
                                                         <div class="row">
                                                             <div class="col-md-8">
-                                                                <!--  Image par défaut où nous définirons la source via jQuery-->
+                                                                <!-- default image where we will set the src via jquery-->
+
                                                                 <img id="image" src="" alt="">
                                                             </div>
                                                             <div class="col-md-4">
@@ -202,8 +203,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                                    <button type="button" class="btn btn-primary" id="crop">Recadrer</button>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                    <button type="button" class="btn btn-primary" id="crop">Crop</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -212,7 +213,7 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-end p-3">
-                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
                         </div>
                     </div>
                 </div>
@@ -227,29 +228,29 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modifier l'Élément Mis en Avant</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                            <h5 class="modal-title" id="exampleModalLabel">Update Featured</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="mb-2 row">
                                 <input type="hidden" name="id" id="category_id">
                                 <div class="mb-2 row">
-                                    <label for="inputname" class="col-sm-12 pr-0 col-form-label">Titre de l'Élément Mis en Avant
+                                    <label for="inputname" class="col-sm-12 pr-0 col-form-label">Featured Title
                                         <strong class="text-danger">*</strong>
                                     </label>
                                     <div class="col-sm-12">
                                         <input type="text" id="fetitle" class="form-control" name="title"
-                                               placeholder="Titre de l'Élément Mis en Avant">
+                                               placeholder="Featured Title">
                                     </div>
                                 </div>
         
                                 <div class="mb-2 row">
-                                    <label for="inputname" class="col-sm-12 pr-0 col-form-label">Lien de l'Élément Mis en Avant
+                                    <label for="inputname" class="col-sm-12 pr-0 col-form-label">Featured Link
                                         <strong class="text-danger">*</strong>
                                     </label>
                                     <div class="col-sm-12">
                                         <input type="text" id="felink" class="form-control" name="featured_link"
-                                               placeholder="Lien de l'Élément Mis en Avant">
+                                               placeholder="Featured Link">
                                     </div>
                                 </div>
         
@@ -292,7 +293,7 @@
         
                             </div>
                             <div class="d-flex justify-content-end p-3">
-                                <button type="submit" class="btn btn-primary">Mettre à Jour</button>
+                                <button type="submit" class="btn btn-primary">Update</button>
                             </div>
                         </div>
                     </div>

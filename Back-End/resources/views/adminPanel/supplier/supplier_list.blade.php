@@ -4,14 +4,14 @@
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title">Liste des fournisseurs</div>
+            <div class="breadcrumb-title">Supplier List</div>
 
             <div class="ms-auto">
                 <div class="btn-group">
                     <div class="d-flex gap-3 mt-3">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal">
-                            <i class="lni lni-circle-plus"></i> Ajouter un fournisseur
+                            <i class="lni lni-circle-plus"></i> Add Supplier
                         </button>
                         {{--                        <a href="#" class="btn btn-primary"><i class="lni lni-circle-plus"></i> Ajouter une catégorie</a>--}}
                     </div>
@@ -26,11 +26,11 @@
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Nom du fournisseur</th>
-                            <th>Téléphone</th>
-                            <th>Adresse du fournisseur</th>
-                            <th>Nom de la société</th>
-                            <th>Infos sur la société</th>
+                            <th>Supplier Name</th>
+                            <th>Phone</th>
+                            <th>Supplier Address</th>
+                            <th>Company Name</th>
+                            <th>Company Info</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -40,7 +40,7 @@
                             <tr>
                                 <td>{{$key+1}}</td>
                                 <td>
-                                   <strong class="namest">Nom</strong> :  {{$supplierList->supplier_name}} <br>
+                                   <strong class="namest">Name</strong> :  {{$supplierList->supplier_name}} <br>
                                    <strong class="namest">Email</strong> :  {{$supplierList->supplier_email}} <br>
 
                                 </td>
@@ -53,14 +53,14 @@
                                 <td>{{$supplierList->company_name}}</td>
                                 <td>
                                     @if($supplierList->company_phone)
-                                   <span> <strong class="namest">Téléphone : </strong>{{$supplierList->company_phone}}</span> <br>
+                                   <span> <strong class="namest">phone : </strong>{{$supplierList->company_phone}}</span> <br>
                                         @endif
                                         {{$supplierList->company_address}}
                                         </td>
                                     <td>
                                         <div class="dropdown d-flex justify-content-center">
                                             <button class="btn btn-primary dropdown-toggle dr-btn" type="button"
-                                                    data-bs-toggle="dropdown" aria-expanded="false">Paramètres
+                                                    data-bs-toggle="dropdown" aria-expanded="false">Settings
                                             </button>
                                             <ul class="dropdown-menu" style="">
                                                 <li onclick="editSupplierInfo({{$supplierList->id}})"><a class="dropdown-item"
@@ -74,10 +74,10 @@
                                                         <path
                                                             d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                                                     </svg>
-                                                    Modifier</a>
+                                                    Edit</a>
                                             </li>
                                             <li class="align-items-center"
-                                                onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');">
+                                                onclick="return confirm('Are you sure you want to delete this item? ?');">
                                                 <a
                                                     class="dropdown-item"
                                                     href="{{route('admin.delete.category',['id'=>1])}}">
@@ -90,7 +90,7 @@
                                                         
                                                             d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                                                     </svg>
-                                                    Supprimer</a>
+                                                    Delete</a>
                                             </li>
 
                                         </ul>
@@ -120,36 +120,36 @@
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Créer un fournisseur</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Create Supplier</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
                         </div>
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-sm-6" style="border-right:1px solid #dfdada">
                                     <div class="mb-2 row">
-                                        <div class="col-sm-12"><h6 class="titleheadst">Infos sur le fournisseur</h6></div>
+                                        <div class="col-sm-12"><h6 class="titleheadst">Supplier Info</h6></div>
                                         <div class="col-sm-6">
-                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Nom du fournisseur
+                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Supplier Name
                                                 <stong class="text-danger">*</stong>
                                             </label>
                                             <div class="col-sm-12">
                                                 <input type="text" id="inputname" class="form-control"
                                                        name="supplier_name"
-                                                       placeholder="Nom du fournisseur" required>
+                                                       placeholder="Supplier Name" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
-                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Téléphone du fournisseur
+                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Supplier Phone
                                                 <stong class="text-danger">*</stong>
                                             </label>
                                             <div class="col-sm-12">
                                                 <input type="text" id="inputname" class="form-control"
                                                        name="supplier_phone_one"
-                                                       placeholder="Téléphone du fournisseur" required>
+                                                       placeholder="Supplier Phone" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
-                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Téléphone du fournisseur 2
+                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Supplier Phone Two
                                             </label>
                                             <div class="col-sm-12">
                                                 <input type="text" id="inputname" class="form-control"
@@ -158,56 +158,59 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
-                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Email du fournisseur
+                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Supplier Phone
+                                                Two
                                             </label>
                                             <div class="col-sm-12">
                                                 <input type="text" id="inputname" class="form-control"
                                                        name="supplier_email"
-                                                       placeholder="Email du fournisseur">
+                                                       placeholder="Supplier Email">
                                             </div>
                                         </div>
                                         <div class="col-sm-12">
-                                            <label for="supplier_address" class="col-sm-12  pr-0 col-form-label">Adresse du fournisseur
+                                            <label for="supplier_address" class="col-sm-12  pr-0 col-form-label">Supplier
+                                                Address
                                             </label>
                                             <div class="col-sm-12">
                                                 <textarea name="supplier_address" class="form-control"
                                                           id="supplier_address" cols="10" rows="3"
-                                                          placeholder="Adresse du fournisseur"></textarea>
+                                                          placeholder="Supplier Address"></textarea>
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
                                 <div class="col-sm-6" style="border-right:1px solid #dfdada">
-                                    <div class="col-sm-12 "><h6 class="titleheadst">Infos sur la société</h6></div>
+                                    <div class="col-sm-12 "><h6 class="titleheadst">Company Info</h6></div>
                                     <div class="mb-2 row">
                                         <div class="col-sm-6">
-                                            <label for="company_name" class="col-sm-12  pr-0 col-form-label">Nom de la société
+                                            <label for="company_name" class="col-sm-12  pr-0 col-form-label">
+                                                Name   Company
                                                 <stong class="text-danger">*</stong>
                                             </label>
                                             <div class="col-sm-12">
                                                 <input type="text" id="company_name" class="form-control"
                                                        name="company_name"
-                                                       placeholder="Nom de la société" required>
+                                                       placeholder="Company Name" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
-                                            <label for="company_phone" class="col-sm-12  pr-0 col-form-label">Téléphone de la société
+                                            <label for="company_phone" class="col-sm-12  pr-0 col-form-label">Company Phone
                                                 <stong class="text-danger">*</stong>
                                             </label>
                                             <div class="col-sm-12">
                                                 <input type="text" id="company_phone" class="form-control"
                                                        name="company_phone"
-                                                       placeholder="Téléphone de la société" required>
+                                                       placeholder=" Company Email" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
-                                            <label for="com_email" class="col-sm-12  pr-0 col-form-label">Email de la société
+                                            <label for="com_email" class="col-sm-12  pr-0 col-form-label">Company Email
                                             </label>
                                             <div class="col-sm-12">
                                                 <input type="text" id="com_email" class="form-control"
                                                        name="company_email"
-                                                       placeholder="Email de la société">
+                                                       placeholder="Company Email">
                                             </div>
                                         </div>
                                        {{-- <div class="col-sm-6">
@@ -219,12 +222,12 @@
                                             </div>
                                         </div> --}} 
                                         <div class="col-sm-12">
-                                            <label for="company_address" class="col-sm-12  pr-0 col-form-label">Adresse de la société
+                                            <label for="company_address" class="col-sm-12  pr-0 col-form-label">Company Adresse 
                                             </label>
                                             <div class="col-sm-12">
                                                 <textarea name="company_address" class="form-control"
                                                           id="company_address" cols="10" rows="3"
-                                                          placeholder="Adresse de la société"></textarea>
+                                                          placeholder="Company Address"></textarea>
                                             </div>
                                         </div>
 
@@ -233,7 +236,7 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-end p-3">
-                            <button type="submit" class="btn btn-primary">Sauvegarder</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
                         </div>
                     </div>
 
@@ -249,14 +252,14 @@
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modifier le fournisseur</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Supplier</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body" id="updateinfo">
 
                     </div>
                     <div class="d-flex justify-content-end p-3">
-                        <button type="submit" class="btn btn-primary">Mettre à jour</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </div>
             </div>

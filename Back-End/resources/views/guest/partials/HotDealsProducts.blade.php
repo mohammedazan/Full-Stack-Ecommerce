@@ -31,7 +31,8 @@
                                 </li>
                                 @endforeach
                             </ul>
-                       </div><!-- End .heading-right -->
+                       </div>
+                       <!-- End .heading-right -->
                     </div><!-- End .heading -->
 
                     <div class="tab-content tab-content-carousel">
