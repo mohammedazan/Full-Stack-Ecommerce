@@ -33,7 +33,7 @@
             <a href="{{route('home')}}">
                 <div class="parent-icon" style="color: #2ECC71;"><i class='bx bx-home-circle'></i>
                 </div>
-                <div class="menu-title">Accueil</div>
+                <div class="menu-title">Home</div>
             </a>
         </li>
         @if(userCanAccess('h1'))
@@ -41,28 +41,28 @@
                 <a href="javascript:;" class="has-arrow">
                     <div class="parent-icon" style="color: #2ECC71;"><i class="lni lni-list"></i>
                     </div>
-                    <div class="menu-title">Rôle Admin</div>
+                    <div class="menu-title">Admin Role</div>
                 </a>
                 
                 <ul>
                     @if(userCanAccess('1'))
                         <li>
-                            <a href="{{route('admin.role.create')}}"><i class="bx bx-right-arrow-alt"></i>Rôle</a>
+                            <a href="{{route('admin.role.create')}}"><i class="bx bx-right-arrow-alt"></i>Role</a>
                         </li>
                     @endif
                     @if (userCanAccess('m1'))
                         <li>
-                            <a href="{{route('admin.role.list')}}"><i class="bx bx-right-arrow-alt"></i>Liste des rôles</a>
+                            <a href="{{route('admin.role.list')}}"><i class="bx bx-right-arrow-alt"></i>List Role</a>
                         </li>
                     @endif 
                     @if (userCanAccess('m2'))
                         <li>
-                            <a href="{{route('admin.user.list')}}"><i class="bx bx-right-arrow-alt"></i>Liste des utilisateurs</a>
+                            <a href="{{route('admin.user.list')}}"><i class="bx bx-right-arrow-alt"></i>List Users</a>
                         </li>
                     @endif   
                     @if(userCanAccess('2'))
                         <li>
-                            <a href="{{route('admin.admin.create')}}"><i class="bx bx-right-arrow-alt"></i>Créer Admin</a>
+                            <a href="{{route('admin.admin.create')}}"><i class="bx bx-right-arrow-alt"></i>Create Admin</a>
                         </li>
                     @endif
                 </ul>
@@ -102,28 +102,28 @@
                 <a href="javascript:;" class="has-arrow">
                     <div class="parent-icon" style="color: #2ECC71;"><i class="lni lni-producthunt"></i>
                     </div>
-                    <div class="menu-title">Produit </div>
+                    <div class="menu-title">Product </div>
                 </a>
                 <ul>
                     @if(userCanAccess('8'))
                         <li>
-                            <a href="{{route('admin.product.list')}}"><i class="bx bx-right-arrow-alt"></i>Liste des produits</a>
+                            <a href="{{route('admin.product.list')}}"><i class="bx bx-right-arrow-alt"></i>Products List</a>
                         </li>
                     @endif
                     
                     @if(userCanAccess('5'))
-                        <li><a href="{{route('admin.create.product')}}"><i class="bx bx-right-arrow-alt"></i>Ajouter
+                        <li><a href="{{route('admin.create.product')}}"><i class="bx bx-right-arrow-alt"></i>Add
 
-                                Produits</a>
+                            Products</a>
                         </li>
                     @endif
                     @if(userCanAccess('6'))
-                        <li><a href="{{route('admin.product.category')}}"><i class="bx bx-right-arrow-alt"></i>Catégorie</a>
+                        <li><a href="{{route('admin.product.category')}}"><i class="bx bx-right-arrow-alt"></i>Category</a>
                         </li>
                     @endif
                     @if(userCanAccess('7'))
                         <li>
-                            <a href="{{route('admin.product.subcategory')}}"><i class="bx bx-right-arrow-alt"></i>Sous-catégorie</a>
+                            <a href="{{route('admin.product.subcategory')}}"><i class="bx bx-right-arrow-alt"></i>Subcategory</a>
                         </li>
                     @endif
                         </li>
@@ -141,7 +141,8 @@
 
                     @if(userCanAccess('m6'))
                         <li>
-                            <a href="{{route('admin.product.brand')}}"><i class="bx bx-right-arrow-alt"></i>Marque du produit</a>
+                            <a href="{{route('admin.product.brand')}}"><i class="bx bx-right-arrow-alt"></i>Product
+                                Brand</a>
                         </li>
                     @endif    
                 </ul>
@@ -198,12 +199,12 @@
 <li>
     <a href="javascript:;" class="has-arrow">
         <div class="parent-icon" style="color: #2ECC71;"><i class="lni lni-cart"></i></div>
-        <div class="menu-title">Commande</div>
+        <div class="menu-title">Order</div>
     </a>
     <ul>
          @if(userCanAccess('Co2'))
         <li>
-            <a href="{{ route('order_in_the_cart') }}"><i class="bx bx-right-arrow-alt"></i> commande </a>
+            <a href="{{ route('order_in_the_cart') }}"><i class="bx bx-right-arrow-alt"></i>  Order </a>
         </li>
 
     
@@ -226,7 +227,7 @@
                 <a href="javascript:;" class="has-arrow">
                     <div class="parent-icon" style="color: #2ECC71;"><i class="lni lni-package"></i>
                     </div>
-                    <div class="menu-title">Fournisseur</div>
+                    <div class="menu-title">Supplier</div>
                 </a>
                 <ul>
                     {{-- @if(userCanAccess('9'))
@@ -244,7 +245,8 @@
 
                     @if(userCanAccess('9'))
                     <li>
-                        <a href="{{route('admin.supplier.list')}}"><i class="bx bx-right-arrow-alt"></i>Liste des fournisseurs</a>
+                        <a href="{{route('admin.supplier.list')}}"><i class="bx bx-right-arrow-alt"></i>Supplier
+                            List</a>
                     </li>
                      @endif
                 </ul>
@@ -255,12 +257,12 @@
                 <a href="javascript:;" class="has-arrow">
                     <div class="parent-icon" style="color: #2ECC71;"><i class="lni lni-offer"></i>
                     </div>
-                    <div class="menu-title">Paramètres de l'offre</div>
+                    <div class="menu-title">Offer Setting </div>
                 </a>
                 <ul>
                     @if(userCanAccess('10'))
                         <li>
-                            <a href="{{route('offer.list')}}"><i class="bx bx-right-arrow-alt"></i>Créer une offre</a>
+                            <a href="{{route('offer.list')}}"><i class="bx bx-right-arrow-alt"></i>Create Offer</a>
                         </li>
                     @endif
                 {{-- <li>
@@ -268,7 +270,8 @@
                 </li> --}}
                     @if(userCanAccess('11'))
                         <li>
-                            <a href="{{route('admin.offer.product.list')}}"><i class="bx bx-right-arrow-alt"></i>Liste des produits en promotion</a>
+                            <a href="{{route('admin.offer.product.list')}}"><i class="bx bx-right-arrow-alt"></i>Offer
+                                Product</a>
                         </li>
                     @endif
 
@@ -281,14 +284,14 @@
                 <div class="parent-icon" style="color: #2ECC71;">
                     <i class="lni lni-envelope"></i> <!-- Icône Newsletter de LineIcons -->
                 </div>
-                <div class="menu-title">Bulletin d'information</div>
+                <div class="menu-title">Newsletter</div>
             </a>
             <ul>
                 @if(userCanAccess('ne2'))
                 <li>
                     <a href="{{ route('list.subscribe') }}">
                         <i class="bx bx-right-arrow-alt"></i> <!-- Icône de flèche droite de Boxicons -->
-                        Liste des abonnés
+                        List subscribers
                     </a>
                 </li>
                 @endif
@@ -300,12 +303,13 @@
             <li>
                 <a href="javascript:;" class="has-arrow">
                     <div class="parent-icon" style="color: #2ECC71;"><i class="lni lni-cog" style="color: #2ECC71;"></i></div>
-                    <div class="menu-title">Paramètres</div>
+                    <div class="menu-title">Setting</div>
                 </a>
                 <ul>
                     @if(userCanAccess('12'))
                         <li>
-                            <a href="{{route('setting.company.details')}}"><i class="bx bx-right-arrow-alt"></i>Détails de l'entreprise</a>
+                            <a href="{{route('setting.company.details')}}"><i class="bx bx-right-arrow-alt"></i>Company
+                                Details</a>
                         </li>
                     @endif
                     {{-- @if(userCanAccess('12'))
@@ -315,12 +319,12 @@
                     @endif --}}
                     @if(userCanAccess('m7'))
                         <li>
-                            <a href="{{route('faq.view')}}"><i class="bx bx-right-arrow-alt"></i>FAQ</a>
+                            <a href="{{route('faq.view')}}"><i class="bx bx-right-arrow-alt"></i>FAQ Set</a>
                         </li>
                     @endif
                     @if(userCanAccess('m8'))
                         <li>
-                            <a href="{{route('ads.view')}}"><i class="bx bx-right-arrow-alt"></i>Publicités</a>
+                            <a href="{{route('ads.view')}}"><i class="bx bx-right-arrow-alt"></i>Ads Set</a>
                         </li>
                     @endif    
 
@@ -333,12 +337,13 @@
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon" style="color: #2ECC71;"><i class="lni lni-star"></i></div>
-                <div class="menu-title">Liens en vedette</div>
+                <div class="menu-title">Featured Link</div>
             </a>
             <ul>
                  @if(userCanAccess('m10'))
                 <li>
-                    <a href="{{route('admin.featured.link.list')}}"><i class="bx bx-right-arrow-alt"></i> Liste des liens en vedette </a>
+                    <a href="{{route('admin.featured.link.list')}}"><i class="bx bx-right-arrow-alt"></i> Featured Link
+                        List  </a>
                 </li>
                 @endif
             </ul>
@@ -354,7 +359,7 @@
     <ul>
          @if(userCanAccess('m10'))
         <li>
-            <a href="{{ route('blogs') }}"><i class="bx bx-right-arrow-alt"></i> Liste des blogs </a>
+            <a href="{{ route('blogs') }}"><i class="bx bx-right-arrow-alt"></i> Blog List </a>
         </li>
         @endif
     </ul>
@@ -368,12 +373,12 @@
 <li>
     <a href="javascript:;" class="has-arrow">
         <div class="parent-icon" style="color: #2ECC71;"><i class="fas fa-comment"></i></div>
-        <div class="menu-title">Avis sur les produits</div>
+        <div class="menu-title">Product Reviews</div>
     </a>
     <ul>
          @if(userCanAccess('m10'))
         <li>
-            <a href="{{ route('reviews') }}"><i class="bx bx-right-arrow-alt"></i> Liste des avis </a>
+            <a href="{{ route('reviews') }}"><i class="bx bx-right-arrow-alt"></i> Reviews List </a>
         </li>
         @endif
     </ul>

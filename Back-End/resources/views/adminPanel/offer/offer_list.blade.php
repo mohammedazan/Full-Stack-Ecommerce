@@ -25,7 +25,7 @@
                     <div class="d-flex gap-3 mt-3">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal">
-                            <i class="lni lni-circle-plus"></i> Ajouter une offre
+                            <i class="lni lni-circle-plus"></i> Add Offer
                         </button>
                         {{--                        <a href="#" class="btn btn-primary"><i class="lni lni-circle-plus"></i> Add Category</a>--}}
                     </div>
@@ -40,10 +40,10 @@
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Nom de l'offre</th>
-                            <th>Bannière</th>
-                            <th>Date de début</th>
-                            <th>Date de fin</th>
+                            <th>Offer Name</th>
+                            <th>Banner</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -63,7 +63,7 @@
                                 <td>
                                     <div class="dropdown d-flex justify-content-center">
                                         <button class="btn btn-primary dropdown-toggle dr-btn" type="button"
-                                                data-bs-toggle="dropdown" aria-expanded="false">Paramètres
+                                                data-bs-toggle="dropdown" aria-expanded="false">Settings
                                         </button>
                                         <ul class="dropdown-menu" style="">
                                             <li onclick="editSupplierInfo({{$offerList}},'{{asset($offerList->banner_image)}}')">
@@ -79,7 +79,7 @@
                                                         <path
                                                             d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                                                     </svg>
-                                                    Modifier</a>
+                                                    Edit</a>
                                             </li>
                                             <li>
 
@@ -103,7 +103,7 @@
                                                         <path
                                                             d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                                                     </svg>
-                                                    Supprimer</a>
+                                                    Delete</a>
                                             </li>
 
                                         </ul>
@@ -133,7 +133,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Créer une Offre</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Create Offer</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -141,41 +141,41 @@
                                 <div class="col-sm-12" style="border-right:1px solid #dfdada">
                                     <div class="mb-2 row">
                                         <div class="col-sm-12">
-                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Nom de l'Offre
+                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Offer Name
                                                 <stong class="text-danger">*</stong>
                                             </label>
                                             <div class="col-sm-12">
                                                 <input type="text" id="inputname" class="form-control"
                                                        name="offer_name"
-                                                       placeholder="Nom de l'Offre" required>
+                                                       placeholder="Offer Name" required>
                                             </div>
                                         </div>
         
                                         <div class="col-sm-6 mt-2">
-                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Date de Début
+                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Start Date
                                             </label>
                                             <div class="col-sm-12">
                                                 <input type="date" id="inputname" class="form-control"
                                                        name="start_date"
-                                                       placeholder="Date de Début" required>
+                                                       placeholder="Start Date" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-6 mt-2">
-                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Date de Fin
+                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">End Date
                                             </label>
                                             <div class="col-sm-12">
                                                 <input type="date" id="inputname" class="form-control"
                                                        name="end_date"
-                                                       placeholder="Date de Fin" required>
+                                                       placeholder="End Date" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-12 mt-2">
-                                            <label for="inputProductDescription" class="form-label">Photo de Bannière</label>
+                                            <label for="inputProductDescription" class="form-label">Banner Photo</label>
                                             <input style="display:none" type="file" name="image" class="image">
                                             <div class="row" id="productImglist">
                                                 <div class="col-sm-12 mb-2" style="position:relative" id="222"
                                                      onclick="selectImage('222')">
-                                                    <span class="text-center mainphototxt">Photo Principale</span>
+                                                    <span class="text-center mainphototxt">Main Photo</span>
                                                     <input type="hidden" name="banner_img" class="222input">
                                                     <div
                                                         class="imgaddcard d-flex justify-content-center align-items-center 222view ">
@@ -197,7 +197,7 @@
                                                 <div class="modal-dialog modal-lg" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="modalLabel">Rogner l'image</h5>
+                                                            <h5 class="modal-title" id="modalLabel">Crop image</h5>
                                                             <button type="button" class="close" data-dismiss="modal"
                                                                     aria-label="Close">
                                                                 <span aria-hidden="true">×</span>
@@ -217,9 +217,9 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">Annuler
+                                                                    data-dismiss="modal">Cancel
                                                             </button>
-                                                            <button type="button" class="btn btn-primary" id="crop">Rogner
+                                                            <button type="button" class="btn btn-primary" id="crop">Crop
                                                             </button>
                                                         </div>
                                                     </div>
@@ -232,7 +232,7 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-end p-3">
-                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
                         </div>
                     </div>
         
@@ -248,7 +248,7 @@
                 <div class="modal-dialog modal-md">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modifier l'Offre</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Edit Offer</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
                         </div>
                         <div class="modal-body">
@@ -257,32 +257,32 @@
                                     <div class="mb-2 row">
                                         <div class="col-sm-12">
                                             <input type="hidden" name="offer_id" id="offer_id">
-                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Nom de l'Offre
+                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Offer Name
                                                 <strong class="text-danger">*</strong>
                                             </label>
                                             <div class="col-sm-12">
                                                 <input type="text" id="offer_name" class="form-control"
                                                        name="offer_name"
-                                                       placeholder="Nom de l'Offre" required>
+                                                       placeholder="Offer Name" required>
                                             </div>
                                         </div>
         
                                         <div class="col-sm-6 mt-2">
-                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Date de Début
+                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Start Date
                                             </label>
                                             <div class="col-sm-12">
                                                 <input type="date" id="startdate" class="form-control"
                                                        name="start_date"
-                                                       placeholder="Date de Début" required>
+                                                       placeholder="Start Date" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-6 mt-2">
-                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Date de Fin
+                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">End Date
                                             </label>
                                             <div class="col-sm-12">
                                                 <input type="date" id="enddate" class="form-control"
                                                        name="end_date"
-                                                       placeholder="Date de Fin" required>
+                                                       placeholder="End Date" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-12 mt-2">
@@ -321,7 +321,7 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-end p-3">
-                            <button type="submit" class="btn btn-primary">Mettre à jour</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </div>
                 </div>

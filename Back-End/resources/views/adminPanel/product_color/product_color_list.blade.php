@@ -29,7 +29,7 @@
                         <div class="btn-group">
                             <div class="d-flex gap-3 mt-3">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <i class="lni lni-circle-plus"></i> Ajouter Couleur
+                                    <i class="lni lni-circle-plus"></i> Add Color
                                 </button>
                                 {{--                        <a href="#" class="btn btn-primary"><i class="lni lni-circle-plus"></i> Add Category</a>--}}
                             </div>
@@ -42,10 +42,10 @@
                         <thead>
                         <tr class="t-trcolor">
                         <th>ID</th>
-                            <th>Nom de la couleur</th>
-                            <th>Couleur</th>
-{{--                            <th>Statut</th>--}}
-{{--                            <th>Date de création</th>--}}
+                        <th>Color Name</th>
+                        <th>Color</th>
+{{--                            <th>Status</th>--}}
+{{--                            <th>Create Date</th>--}}
                             <th class="text-center">Action</th>
                         </tr>
                         </thead>
@@ -57,16 +57,16 @@
                                 <td>   <div style="background:{{$productColor->color_code}};height: 30px;width: 30px;border-radius: 50%"></div></td>
                                 <td>
                                     <div class="dropdown d-flex justify-content-center">
-                                        <button class="btn btn-primary dropdown-toggle dr-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">Paramètres</button>
+                                        <button class="btn btn-primary dropdown-toggle dr-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">Action</button>
                                         <ul class="dropdown-menu" style="">
                                             <li onclick="editCategoryData({{$productColor}})"><a class="dropdown-item" href="#">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit text-primary"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-                                                    Modifier</a>
+                                                    Edit</a>
                                             </li>
 
-                                            <li class="align-items-center" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');"><a class="dropdown-item" href="{{route('admin.delete.color',['id'=>$productColor->id])}}">
+                                            <li class="align-items-center" onclick="return confirm('Are you sure you want to delete this item ?');"><a class="dropdown-item" href="{{route('admin.delete.color',['id'=>$productColor->id])}}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash text-primary"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                                                    Supprimer</a>
+                                                    Delete</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -95,25 +95,25 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Créer une couleur</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Create Color</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="mb-2 row">
-                                <label for="inputname" class="col-sm-12  pr-0 col-form-label">Nom de la couleur <stong class="text-danger">*</stong></label>
+                                <label for="inputname" class="col-sm-12  pr-0 col-form-label">Color Name <stong class="text-danger">*</stong></label>
                                 <div class="col-sm-12">
-                                    <input type="text" id="inputname" class="form-control" name="name"  placeholder="Nom de la couleur">
+                                    <input type="text" id="inputname" class="form-control" name="name"  placeholder="Color Name">
                                 </div>
                             </div>
                             <div class="mb-2 row">
-                                <label for="description" class="col-sm-12  pr-0 col-form-label">Couleur</label>
+                                <label for="description" class="col-sm-12  pr-0 col-form-label">Color</label>
                                 <div class="col-sm-12 d-flex justify-content-center">
                                     <input type="color" name="color_code" style="height: 100px;width: 100px">
                                 </div>
                             </div>
                         </div>
                         <div class="d-flex justify-content-end p-3">
-                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
                         </div>
                     </div>
                 </div>
@@ -127,26 +127,26 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Couleur du produit</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Product Color</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="mb-2 row">
                                 <input type="hidden" name="id" id="category_id">
-                                <label for="inputname" class="col-sm-12  pr-0 col-form-label">Nom de la couleur <stong class="text-danger">*</stong></label>
+                                <label for="inputname" class="col-sm-12  pr-0 col-form-label">Color Name <stong class="text-danger">*</stong></label>
                                 <div class="col-sm-12">
-                                    <input type="text" id="ed_name" class="form-control" name="name"  placeholder="Nom de la couleur" required>
+                                    <input type="text" id="ed_name" class="form-control" name="name"  placeholder="Color Name" required>
                                 </div>
                             </div>
                             <div class="mb-2 row">
-                                <label for="inputPasswordww" class="col-sm-12  pr-0 col-form-label">Code de couleur</label>
+                                <label for="inputPasswordww" class="col-sm-12  pr-0 col-form-label">Color Code</label>
                                 <div class="col-sm-12">
-                                    <input type="color" class="form-control" name="color_code" id="color" placeholder="Nom de la couleur">
+                                    <input type="color" class="form-control" name="color_code" id="color" placeholder="Color Name">
                                 </div>
                             </div>
                         </div>
                         <div class="d-flex justify-content-end p-3">
-                            <button type="submit" class="btn btn-primary">Mettre à jour</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </div>
                 </div>

@@ -25,8 +25,8 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Nom du rôle</th>
-                                <th>Date de création</th>
+                                <th>Role Name</th>
+                                <th>Date created</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -39,7 +39,7 @@
                                     <td>
                                         <div class="dropdown d-flex justify-content-center">
                                             <button class="btn btn-primary dropdown-toggle dr-btn" type="button"
-                                                    data-bs-toggle="dropdown" aria-expanded="false">Paramètres
+                                                    data-bs-toggle="dropdown" aria-expanded="false">Settings
                                             </button>
                                             <ul class="dropdown-menu" style="">
                                                 {{-- <li onclick="editSupplierInfo({{$offerList->id}})">
@@ -77,7 +77,7 @@
                                                             <path
                                                                 d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                                                         </svg>
-                                                        Supprimer
+                                                        Delete
                                                     </a>
                                                 </li>
                                             </ul>

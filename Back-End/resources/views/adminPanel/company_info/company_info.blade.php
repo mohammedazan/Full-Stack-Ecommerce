@@ -25,7 +25,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="headst__set">
-                            <h4>Informations sur l'entreprise</h4>
+                            <h4>Company Info</h4>
                         </div>
                         <div class="row">
                             <div class="col-sm-9">
@@ -38,7 +38,7 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="mb-3">
-                                            <label for="exampleInputPassword1" class="form-label">Téléphone</label>
+                                            <label for="exampleInputPassword1" class="form-label">Phone</label>
                                             <input type="text" name="phone" value="{{$companyInfo->phone}}" class="form-control" id="exampleInputPassword1">
                                         </div>
                                     </div>
@@ -50,13 +50,13 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="mb-3">
-                                            <label for="exampleInputPassword1" class="form-label">Lien Facebook</label>
+                                            <label for="exampleInputPassword1" class="form-label"> Facebook Link</label>
                                             <input type="text" name="facebook_link" value="{{$companyInfo->facebook_link}}" class="form-control" id="exampleInputPassword1">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="mb-3">
-                                            <label for="exampleInputPassword1" class="form-label">Lien YouTube</label>
+                                            <label for="exampleInputPassword1" class="form-label"> YouTube Link</label>
                                             <input type="text" name="youtube_link" value="{{$companyInfo->youtube_link}}" class="form-control" id="exampleInputPassword1">
                                         </div>
                                     </div>
@@ -92,7 +92,7 @@
                                             <div class="modal-dialog modal-lg" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="modalLabel">Recadrer l'image</h5>
+                                                        <h5 class="modal-title" id="modalLabel">Crop image</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">�</span>
                                                         </button>
@@ -111,8 +111,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                                        <button type="button" class="btn btn-primary" id="crop">Recadrer</button>
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                        <button type="button" class="btn btn-primary" id="crop">Crop</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -130,7 +130,7 @@
                             </div>
                             <div class="col-sm-12">
                                 <div class="mb-3">
-                                    <label for="exampleInputPassword1" class="form-label">À propos de nous</label>
+                                    <label for="exampleInputPassword1" class="form-label">About Us</label>
                                     <textarea class="form-control" name="about_us" id="" cols="30" rows="3">{{$companyInfo->about_us}}</textarea>
                                 </div>
                             </div>
@@ -186,7 +186,7 @@
 
                             </div>
 
-                            <button type="submit" class="btn btn-primary w-100">Enregistrer</button>
+                            <button type="submit" class="btn btn-primary w-100">Save</button>
 
 
                     </div>

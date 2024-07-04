@@ -28,13 +28,13 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Référence</th>
-                                <th>Nom</th>
-                                {{--<th>Sous-catégorie</th>--}}
+                                <th>Name</th>
+                                <th>Reference</th>
+                                {{--<th>Subcategory</th>--}}
                                 <th>Photo</th>
-                                <th>Prix de vente</th>
-                                <th>Prix de gros</th>
-                                <th>Disponible</th>
+                                <th>Sell Price</th>
+                                <th>WholeSell Price</th>
+                                <th>Available</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -59,7 +59,7 @@
                                 <td>
                                     <div class="dropdown d-flex justify-content-center">
                                         <button class="btn btn-primary dropdown-toggle dr-btn" type="button" data-bs-toggle="dropdown"
-                                            aria-expanded="false">Paramètres</button>
+                                            aria-expanded="false">Settings</button>
                                         <ul class="dropdown-menu" style="">
 
 
@@ -75,7 +75,7 @@
 
                                                     </svg>
 
-                                                    Voir
+                                                    View
                                                 </a>
                                             </li> --}}
                                             
@@ -83,7 +83,7 @@
                                                 <span class="dropdown-item" href="">
                                                     <i class="lni lni-printer"
                                                         style="font-size: 18px;color: #008cff;"></i>
-                                                    Impression de code-barres
+                                                        Barcode Print
                                                 </span>
                                             </li>
                                             <li onclick="editProductInfo({{$product->id}})">
@@ -96,7 +96,7 @@
                                                         <path
                                                             d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                                                     </svg>
-                                                    Modifier
+                                                    Edit
                                                 </a>
                                             </li>
                                             <li class="align-items-center"
@@ -111,7 +111,7 @@
                                                             d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
                                                         </path>
                                                     </svg>
-                                                    Supprimer
+                                                    Delete
                                                 </a>
                                             </li>
                                         </ul>
