@@ -1,3 +1,4 @@
+```blade
 @extends('adminPanel.layout.layout')
 <style>
     img {
@@ -25,7 +26,7 @@
                     <div class="d-flex gap-3 mt-3">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal">
-                            <i class="lni lni-circle-plus"></i> Ajouter Utilisateur
+                            <i class="lni lni-circle-plus"></i> Add User
                         </button>
                         {{--                        <a href="#" class="btn btn-primary"><i class="lni lni-circle-plus"></i> Add Category</a>--}}
                     </div>
@@ -40,9 +41,9 @@
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Nom Admin</th>
+                            <th>Admin Name</th>
                             <th>Email</th>
-                            <th>Rôle</th>
+                            <th>Role</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -53,11 +54,11 @@
                                 <td>{{$key}}</td>
                                 <td>{{$admindata->name}}</td>
                                 <td> {{$admindata->email}}</td>
-                                <td>{{ $admindata->role ? $admindata->role->name : 'Aucun Rôle' }}</td>
+                                <td>{{ $admindata->role ? $admindata->role->name : 'No Role' }}</td>
                                 <td>
                                     <div class="dropdown d-flex justify-content-center">
                                         <button class="btn btn-primary dropdown-toggle dr-btn" type="button"
-                                                data-bs-toggle="dropdown" aria-expanded="false">Paramètres
+                                                data-bs-toggle="dropdown" aria-expanded="false">Settings
                                         </button>
                                         <ul class="dropdown-menu" style="">
 {{--                                            <li onclick="editSupplierInfo({{$offerList->id}})"><a--}}
@@ -72,7 +73,7 @@
 {{--                                                        <path--}}
 {{--                                                            d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>--}}
 {{--                                                    </svg>--}}
-{{--                                                    Modifier</a>--}}
+{{--                                                    Edit</a>--}}
 {{--                                            </li>--}}
 {{--                                            <li>--}}
 
@@ -81,10 +82,10 @@
 {{--                                                    href="#">--}}
 {{--                                                    <i class="lni lni-offer"--}}
 {{--                                                       style="    color: #008cff!important;font-size: 21px;"></i>--}}
-{{--                                                    Configuration d'offre</a>--}}
+{{--                                                    Offer Configuration</a>--}}
 {{--                                            </li>--}}
                                             <li class="align-items-center"
-                                                onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');">
+                                                onclick="return confirm('Are you sure you want to delete this item?');">
                                                 <a
                                                     class="dropdown-item"
                                                     href="{{route('admin.admin.delete',['id'=>$admindata->id])}}">
@@ -96,7 +97,7 @@
                                                         <path
                                                             d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                                                     </svg>
-                                                    Supprimer</a>
+                                                    Delete</a>
                                             </li>
 
                                         </ul>
@@ -126,7 +127,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Créer Utilisateur</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Create User</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -134,13 +135,13 @@
                                 <div class="col-sm-12" style="border-right:1px solid #dfdada">
                                     <div class="mb-2 row">
                                         <div class="col-sm-12">
-                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Nom
+                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Name
                                                 <stong class="text-danger">*</stong>
                                             </label>
                                             <div class="col-sm-12">
                                                 <input type="text" id="inputname" class="form-control"
                                                        name="name"
-                                                       placeholder="Nom" required>
+                                                       placeholder="Name" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-12">
@@ -154,12 +155,12 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-12 mt-2">
-                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Rôle
+                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Role
                                                 <stong class="text-danger">*</stong>
                                             </label>
                                             <div class="col-sm-12">
                                                 <select name="role_id" class="form-control" id="" required>
-                                                    <option value="">SÉLECTIONNER UN RÔLE</option>
+                                                    <option value="">SELECT A ROLE</option>
                                                     @foreach($role as $roledata)
                                                         <option value="{{$roledata->id}}">{{$roledata->name}}</option>
                                                     @endforeach
@@ -168,13 +169,13 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-12 mt-2">
-                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Mot de passe
+                                            <label for="inputname" class="col-sm-12  pr-0 col-form-label">Password
                                                 <stong class="text-danger">*</stong>
                                             </label>
                                             <div class="col-sm-12">
                                                 <input type="password" id="inputname" class="form-control"
                                                        name="password"
-                                                       placeholder="Mot de passe" required>
+                                                       placeholder="Password" required>
                                             </div>
                                         </div>
 
@@ -184,7 +185,7 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-end p-3">
-                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
                         </div>
                     </div>
 
@@ -200,14 +201,14 @@
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modifier Fournisseur</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Edit Supplier</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body" id="updateinfo">
 
                         </div>
                         <div class="d-flex justify-content-end p-3">
-                            <button type="submit" class="btn btn-primary">Mettre à jour</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </div>
                 </div>
@@ -215,7 +216,9 @@
         </form>
     </div>
     </div>
-    <!--end page wrapper -->
+    <!--end page
+
+ wrapper -->
     <!--end page-wrapper-->
 @endsection
 @section('scripts')
@@ -223,4 +226,4 @@
 
     </script>
 @endsection
-
+```

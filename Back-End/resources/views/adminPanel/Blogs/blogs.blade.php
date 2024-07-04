@@ -8,7 +8,7 @@
                 <div class="ms-auto">
                     <div class="btn-group">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createBlogModal">
-                            <i class="lni lni-circle-plus"></i> Ajouter un Blog
+                            <i class="lni lni-circle-plus"></i> Add  Blog
                         </button>
                     </div>
                 </div>

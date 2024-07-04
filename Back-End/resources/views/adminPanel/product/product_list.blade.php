@@ -32,9 +32,9 @@
                                 <th>Reference</th>
                                 {{--<th>Subcategory</th>--}}
                                 <th>Photo</th>
-                                <th>Sell Price</th>
-                                <th>WholeSell Price</th>
-                                <th>Available</th>
+                                <th>Purchasing price</th>
+                                <th>selling price</th>
+                                <th>Product quantity</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -53,9 +53,9 @@
                                 <td>
                                     <img class="productImglistst" src="{{asset($product->image_path)}}" alt="">
                                 </td>
+                                <td>{{$product->current_purchase_cost}}</td>
                                 <td>{{$product->current_sale_price}}</td>
-                                <td>{{$product->current_wholesale_price}}</td>
-                                <td>{{$product->available_quantity}}</td>
+                                <td>{{$product->wholesale_minimum_qty}}</td>
                                 <td>
                                     <div class="dropdown d-flex justify-content-center">
                                         <button class="btn btn-primary dropdown-toggle dr-btn" type="button" data-bs-toggle="dropdown"

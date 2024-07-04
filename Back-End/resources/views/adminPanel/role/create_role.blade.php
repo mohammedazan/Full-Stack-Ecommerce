@@ -145,13 +145,13 @@
 
                            <div class="row mb-2 roldiv">
                                 <div class="col-sm-12 role_head">
-                                    <h6><p>Fournisseur <input class="form-check-input" type="checkbox" value="h4"  name="role_id[]" id="flexCheckDefault" checked style="margin-left: 20px"></p></h6>
+                                    <h6><p>Supplier <input class="form-check-input" type="checkbox" value="h4"  name="role_id[]" id="flexCheckDefault" checked style="margin-left: 20px"></p></h6>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-check ">
                                         <input class="form-check-input" type="checkbox" value="9"  name="role_id[]" id="flexCheckDefault" checked>
                                         <label class="form-check-label" for="flexCheckDefault">
-                                            Liste des fournisseurs
+                                            Liste Supplier
                                         </label>
                                     </div>
                                 </div>
@@ -159,7 +159,7 @@
 
                             <div class="row mb-2 roldiv">
                                 <div class="col-sm-12 role_head">
-                                    <h6><p>Commande<input class="form-check-input" type="checkbox" value="Co1"  name="role_id[]" id="flexCheckDefault" checked style="margin-left: 20px"></p></h6>
+                                    <h6><p>Order<input class="form-check-input" type="checkbox" value="Co1"  name="role_id[]" id="flexCheckDefault" checked style="margin-left: 20px"></p></h6>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-check ">

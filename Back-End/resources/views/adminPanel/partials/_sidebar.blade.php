@@ -129,7 +129,7 @@
                         </li>
                     @if(userCanAccess('m4'))
                         <li>
-                            <a href="{{route('admin.product.color.show')}}"><i class="bx bx-right-arrow-alt"></i>Couleur du produit</a>
+                            <a href="{{route('admin.product.color.show')}}"><i class="bx bx-right-arrow-alt"></i> Product  Color</a>
                         </li>
                     @endif
 
@@ -213,7 +213,7 @@
 
         @if(userCanAccess('Co3'))
         <li>
-            <a href="{{ route('en_cours') }}"><i class="bx bx-right-arrow-alt"></i> commande en cours </a>
+            <a href="{{ route('en_cours') }}"><i class="bx bx-right-arrow-alt"></i> pending order </a>
         </li>
 
     
