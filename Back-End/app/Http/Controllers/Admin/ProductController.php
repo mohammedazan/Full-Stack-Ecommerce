@@ -65,7 +65,6 @@ class ProductController extends Controller
         if ($product) {
             // Check if the product is linked to any of the tables
             $linkedTables = [];
-    
             if (PurchaseDetails::where('product_id', $product->id)->exists()) {
                 $linkedTables[] = 'PurchaseDetails';
             }
@@ -78,6 +77,12 @@ class ProductController extends Controller
                 $linkedTables[] = 'Offer_product_list';
             }
     
+<<<<<<< HEAD
+=======
+            if (Wishlist::where('product_id', $product->id)->exists()) {
+                $linkedTables[] = 'Wishlist';
+            }
+>>>>>>> d3729f2968f6459e2681d4429e40e0b6270a5aa9
             if (!empty($linkedTables)) {
                 $linkedTablesList = implode(', ', $linkedTables);
                 return redirect()->back()->with('error', 'Cannot delete product because it is linked to the following tables: ' . $linkedTablesList);

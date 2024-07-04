@@ -24,10 +24,13 @@
                                     {{ $commande->postcode }}</p>
                                     <p><strong>Company Name:</strong> {{ $commande->company_name }}</p>
 
+                                      @if($commande->town_city)
+                                      <p><strong>town city:</strong> {{ $commande->town_city}}</p>
+                                       @endif
 
-                                    @if($commande->country)
-                                    <p><strong>Country:</strong> {{ $commande->country}}</p>
-                                @endif
+                                     @if($commande->state_county)
+                                     <p><strong>state county:</strong> {{ $commande->state_county}}</p>
+                                      @endif
 
                                 </div>
                             </div>

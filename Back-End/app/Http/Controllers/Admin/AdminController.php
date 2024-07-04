@@ -50,7 +50,8 @@ class AdminController extends Controller
     public function adminRole()
     {
         $common_data = new Array_();
-        $common_data->title = 'Role creation';
+        $common_data->title = 'Role Create';
+
         return view('adminPanel.role.create_role')->with(compact('common_data'));
     }
 

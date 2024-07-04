@@ -651,15 +651,9 @@
                 <div class="social-icons social-icons-color">
                     <span class="social-label">Social Media</span>
                     @foreach ($CompanyInfo as $key =>$Company )
-                    <a href="{{$Company->facebook_link}}" class="social-icon social-facebook" title="Facebook" target="_blank">
-                        <i class="fab fa-facebook-f" style="color: #ffffff"></i>
-                    </a>
-                    <a href="{{$Company->twitter_link}}" class="social-icon social-twitter" title="X" target="_blank" >
-                        <i class="fab fa-twitter" style="color: #ffffff"></i>
-                    </a>
-                    <a href="{{$Company->youtube_link}}" class="social-icon social-instagram" title="Instagram" target="_blank">
-                        <i class="fab fa-instagram" style="color: #ffffff"></i>
-                    </a>
+                    <a href="{{$Company->facebook_link}}" class="social-icon social-facebook" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
+                    <a  href="{{$Company->twitter_link}}" class="social-icon social-twitter" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+                    <a href="{{$Company->youtube_link}}"  class="social-icon social-instagram" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
                     @endforeach
                 </div><!-- End .social-icons -->
             </div>

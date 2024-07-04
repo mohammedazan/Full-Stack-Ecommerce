@@ -66,15 +66,9 @@
                         $ver = $CompanyInfo->shuffle()->take(1);
                         @endphp
                         @foreach ($ver as $key =>$Company )
-                        <a href="{{$Company->facebook_link}}" class="social-icon social-facebook" title="Facebook" target="_blank">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="{{$Company->twitter_link}}" class="social-icon social-twitter" title="X" target="_blank">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="{{$Company->youtube_link}}" class="social-icon social-instagram" title="Instagram" target="_blank">
-                            <i class="fab fa-instagram"></i>
-                        </a>
+                        <a href="{{$Company->facebook_link}}" class="social-icon social-facebook" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
+                        <a  href="{{$Company->twitter_link}}" class="social-icon social-twitter" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+                        <a href="{{$Company->youtube_link}}"  class="social-icon social-instagram" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
                         @endforeach
                     </div><!-- End .soial-icons -->
                 </div><!-- End .container -->
