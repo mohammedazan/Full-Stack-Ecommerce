@@ -269,10 +269,10 @@
                             
                                     <cite>
                                        by :
-                                        <span>{{ $r->user->name }}</span>
+                                        <span>{{ $r->user ? $r->user->name : 'Deleted User' }}</span>
                                     </cite>
                                     <span class="review-date">{{ $r->created_at->diffForHumans() }}</span>
-
+                                    
                                 </blockquote><!-- End .testimonial -->
                                 @endforeach
 

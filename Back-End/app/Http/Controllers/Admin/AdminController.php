@@ -51,7 +51,6 @@ class AdminController extends Controller
     {
         $common_data = new Array_();
         $common_data->title = 'Role Create';
-
         return view('adminPanel.role.create_role')->with(compact('common_data'));
     }
 
@@ -69,6 +68,7 @@ class AdminController extends Controller
             return redirect()->back()->with('error', 'Internal Error');
         }
     }
+
 
     public function adminCreate() {
         $common_data = new Array_();
