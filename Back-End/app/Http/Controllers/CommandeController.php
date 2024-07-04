@@ -124,7 +124,7 @@ class CommandeController extends Controller
 
         $commande->delete();
 
-        return redirect()->back()->with('success', 'Commande supprimée avec succès.');
+        return redirect()->back()->with('success', 'Order deleted successfully.');
     }
     
 
@@ -146,9 +146,9 @@ class CommandeController extends Controller
                 $commande->delete();
             }
     
-            return redirect()->back()->with('success', 'Ligne de commande supprimée');
+            return redirect()->back()->with('success', 'Order line deleted');
         }
-        return redirect()->back()->with('error', 'Ligne de commande introuvable');
+        return redirect()->back()->with('error', 'Order not found .');
     }
     
 

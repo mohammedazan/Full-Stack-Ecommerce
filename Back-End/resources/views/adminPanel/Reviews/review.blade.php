@@ -26,7 +26,7 @@
                                     <i class="fas fa-star" style="color: #ffc107;"></i>
                                 @endfor
                             </td>
-                            <td>{{ $r->user->name }}</td>
+                            <td>{{ $r->user ? $r->user->name : 'Deleted User'}}</td>
                             {{-- <td>{{ $r->product_id }}</td> --}}
                             <td>{{ $r->product->name }}</td>
                             <td>{{ $r->created_at }}</td>
