@@ -188,8 +188,8 @@
                 <div class="col-md-6">
                     <label for="inputPrice" class="form-label">Sell Price  <b>Prix_V_HT</b><strong
                             class="text-danger">*</strong> </label>
-                    <input type="number" name="current_sale_price"
-                           value="{{$productInfo->current_sale_price}}" class="form-control"
+                    <input type="number" name="previous_wholesale_price"
+                           value="{{$productInfo->previous_wholesale_price}}" class="form-control"
                            id="inputPrice" placeholder="00.00" required>
                 </div>
                 {{-- <div class="col-md-6">

@@ -201,6 +201,8 @@ Route::group(['middleware' => 'authCheck'], function () {
     Route::post('admin/ads/edit', [SettingController::class, 'adsEdit'])->name('admin.update.ads');
     Route::get('admin/ads/deleted', [SettingController::class, 'adsDelete'])->name('ads.delete');
 
+    Route::delete('/user/order/delete/{id}', [CommandeController::class, 'destroy'])->name('commande.delete');
+
 
 
     // _____________________ Route Blogs_______________________________________
@@ -262,7 +264,7 @@ Route::group(['middleware' => 'AuthCheckUser'], function () {
    Route::post('/user/order/store',[CommandeController::class,'store'])->name('cart.add');
    Route::post('/user/order/store/product_list',[GuestController::class,'product_list']);
 
-   Route::delete('/user/order/delete/{id}', [CommandeController::class, 'destroy'])->name('commande.delete');
+
 
    Route::get('/user/cart', [CommandeController::class, 'cart'])->name('cart');
    
