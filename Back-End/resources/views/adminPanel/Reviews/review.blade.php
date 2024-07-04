@@ -9,13 +9,12 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Évaluation</th>
-                            <th>Nom de l'utilisateur</th>
-                            {{-- <th>Détails de l'évaluation du produit</th> --}}
-                            <th>Nom du produit</th>
+                            <th>Rate</th>
+                            <th>Content</th>
+                            <th>Name User </th>
+                            <th>Product_review_details</th>
+                            <th>Name Product</th>
                             <th>Date</th>
-                            <th>Contenu</th>
-                            <td>Action</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,7 +39,7 @@
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li class="align-items-center">
-                                            <form action="{{ route('reviews.delete', ['id' => $r->id]) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet élément?');">
+                                            <form action="{{ route('reviews.delete', ['id' => $r->id]) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this item?');">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="dropdown-item" style="background: none; border: none; padding: 0; margin: 0; color: inherit; cursor: pointer;">
@@ -48,14 +47,14 @@
                                                         <polyline points="3 6 5 6 21 6"></polyline>
                                                         <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                                                     </svg>
-                                                    Supprimer
+                                                    Delete
                                                 </button>
                                             </form>
                                         </li>
                                     </ul>
                                 </div>
                             </td>
-
+                            
                         </tr>
                         @endforeach
                     </tbody>

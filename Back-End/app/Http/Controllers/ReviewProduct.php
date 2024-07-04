@@ -25,6 +25,10 @@ class ReviewProduct extends Controller
     
     public function addreview(Request $request){
         // dd($request);
+
+        if (!Auth::check()) {
+            return redirect()->back()->with('error', 'Please register to submit a review.');
+        }    
         $review=new Product_review();
         $review->rate=$request->rate;
         $review->product_id=$request->product_id;

@@ -18,6 +18,8 @@ class CommandeController extends Controller
 
     
     public function order_in_the_cart(){
+
+        
         $commande = Commande::with('lignecommande')
         ->where('etat', 'payee')
         ->get(); 
@@ -159,7 +161,6 @@ class CommandeController extends Controller
 
         
         $commande = Commande::where('users_id', Auth::user()->id)->where('etat', 'en cours')->first();
-    
         if ($commande) {
             foreach ($request->quantities as $ligneCommandeId => $quantity) {
                 $ligneCommande = LigneCommande::find($ligneCommandeId);
@@ -187,6 +188,7 @@ class CommandeController extends Controller
         $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
 
 
+     
         
         $commandesEnCours = Commande::where('users_id', Auth::id())
         ->where('etat', 'en cours')

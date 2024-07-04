@@ -80,7 +80,7 @@
 
 										<label>Country *</label>
 										<select name="country" id="country" class="form-control" required>
-											<option value="">Select Country</option>
+											<option value="Morocco">Select Country</option>
 										</select>
 							
 										<label>Town / City *</label>
@@ -229,6 +229,7 @@
 	
 			// Populate the country select with African countries
 			populateSelect('country', africanCountries);
+			
 	
 			// Populate the city select with Moroccan cities
 			populateSelect('town_city', moroccanCities);

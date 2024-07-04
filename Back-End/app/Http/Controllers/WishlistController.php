@@ -39,11 +39,13 @@ class WishlistController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function add(Request $request)
-    {
+    {   
         $request->validate([
             'product_id' => 'required|integer|exists:products,id',
         ]);
     
+    
+
         // Check if the product is already in the user's wishlist
         $exists = Wishlist::where('user_id', Auth::id())
             ->where('product_id', $request->product_id)
@@ -58,7 +60,7 @@ class WishlistController extends Controller
             'user_id' => Auth::id(),
             'product_id' => $request->product_id,
         ]);
-    
+
         return redirect()->back()->with('success', 'Product added to wishlist.');
     }
     
@@ -74,10 +76,7 @@ class WishlistController extends Controller
         // Find the wishlist item and delete it
         $wishlistItem = Wishlist::findOrFail($id);
         $wishlistItem->delete();
-
         // Redirect back to the wishlist page with a success message
         return redirect()->back()->with('success', 'Product removed from wishlist.');
-
-        
     }
 }

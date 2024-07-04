@@ -15,9 +15,9 @@
     }
 </style>
 @section('main_content')
-    <!-- Début du contenu de la page -->
+    <!-- Start page content -->
     <div class="page-content">
-        <!-- Carte principale -->
+        <!-- Main card -->
         <div class="card">
             <input type="hidden" id="selectimgdiv">
             <div class="card-body">
@@ -28,7 +28,7 @@
                             <div class="d-flex gap-3 mt-3">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal">
-                                    <i class="lni lni-circle-plus"></i> Ajouter FAQ
+                                    <i class="lni lni-circle-plus"></i> Add FAQ
                                 </button>
                             </div>
                         </div>
@@ -39,8 +39,8 @@
                         <thead>
                             <tr class="t-trcolor">
                                 <th>ID</th>
-                                <th>Titre</th>
-                                <th>Détails</th>
+                                <th>Title</th>
+                                <th>Details</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
@@ -53,7 +53,7 @@
                                     <td>
                                         <div class="dropdown d-flex justify-content-center">
                                             <button class="btn btn-primary dropdown-toggle dr-btn" type="button"
-                                                    data-bs-toggle="dropdown" aria-expanded="false">Paramètres
+                                                    data-bs-toggle="dropdown" aria-expanded="false">Settings
                                             </button>
                                             <ul class="dropdown-menu" style="">
                                                 <li onclick="editCategoryData({{$faq}},'')"><a class="dropdown-item"
@@ -67,10 +67,10 @@
                                                             <path
                                                                 d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                                                         </svg>
-                                                        Modifier</a>
+                                                        Edit</a>
                                                 </li>
                                                 <li class="align-items-center"
-                                                    onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');">
+                                                    onclick="return confirm('Are you sure you want to delete this item?');">
                                                     <a class="dropdown-item"
                                                        href="{{route('faq.delete',['id'=>$faq->id])}}">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -81,7 +81,7 @@
                                                             <path
                                                                 d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                                                         </svg>
-                                                        Supprimer</a>
+                                                        Delete</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -93,7 +93,7 @@
                 </div>
             </div>
         </div>
-        <!-- Modal d'ajout -->
+        <!-- Add FAQ Modal -->
         <form action="{{route('faq.store')}}" method="post">
             @csrf
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -101,36 +101,36 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Créer FAQ</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Create FAQ</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="mb-2 row">
-                                <label for="inputname" class="col-sm-12  pr-0 col-form-label">Titre
+                                <label for="inputname" class="col-sm-12  pr-0 col-form-label">Title
                                     <stong class="text-danger">*</stong>
                                 </label>
                                 <div class="col-sm-12">
                                     <input type="text" id="inputname" class="form-control" name="title"
-                                           placeholder="Titre" required>
+                                           placeholder="Title" required>
                                 </div>
                             </div>
                             <div class="mb-2 row">
                                 <label for="description" class="col-sm-12  pr-0 col-form-label">Description</label>
                                 <div class="col-sm-12">
-                                    <textarea class="form-control" id="description" name="details" id="" cols="30"
+                                    <textarea class="form-control" id="description" name="details" cols="30"
                                               rows="3" placeholder="Description" required></textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="d-flex justify-content-end p-3">
-                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
                         </div>
                     </div>
                 </div>
             </div>
         </form>
         
-        <!-- Modal d'édition -->
+        <!-- Edit FAQ Modal -->
         <form action="{{route('faq.edit')}}" method="post">
             @csrf
             <div class="modal fade" id="category_edit" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -138,18 +138,18 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modifier FAQ</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Edit FAQ</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="mb-2 row">
                                 <input type="hidden" name="id" id="category_id">
-                                <label for="inputname" class="col-sm-12  pr-0 col-form-label">Titre
+                                <label for="inputname" class="col-sm-12  pr-0 col-form-label">Title
                                     <stong class="text-danger">*</stong>
                                 </label>
                                 <div class="col-sm-12">
                                     <input type="text" id="ed_name" class="form-control" name="title"
-                                           placeholder="Nom de la catégorie" required>
+                                           placeholder="Category Name" required>
                                 </div>
                             </div>
                             <div class="mb-2 row">
@@ -161,7 +161,7 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-end p-3">
-                            <button type="submit" class="btn btn-primary">Mettre à jour</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </div>
                 </div>
@@ -169,7 +169,7 @@
         </form>
         
     </div>
-    <!-- Fin du contenu de la page -->
+    <!-- End page content -->
 @endsection
 
 @section('css_plugins')

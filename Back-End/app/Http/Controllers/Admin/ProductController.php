@@ -58,7 +58,7 @@ class ProductController extends Controller
 
     }
 
-    public function productDelete(Request $request)
+  public function productDelete(Request $request)
     {
         $product = Product::find($request->id);
     
@@ -78,14 +78,13 @@ class ProductController extends Controller
                 $linkedTables[] = 'Offer_product_list';
             }
     
-            if (Wishlist::where('product_id', $product->id)->exists()) {
-                $linkedTables[] = 'Wishlist';
-            }
-    
             if (!empty($linkedTables)) {
                 $linkedTablesList = implode(', ', $linkedTables);
-                return redirect()->back()->with('success', 'Cannot delete product because it is linked to the following tables: ' . $linkedTablesList);
+                return redirect()->back()->with('error', 'Cannot delete product because it is linked to the following tables: ' . $linkedTablesList);
             }
+    
+            // Delete the product from the wishlist
+            Wishlist::where('product_id', $product->id)->delete();
     
             // Permanently delete the product
             $product->delete();
@@ -93,9 +92,8 @@ class ProductController extends Controller
             return redirect()->back()->with('success', 'Product successfully deleted');
         }
     
-        return redirect()->back()->with('success', 'Product not found');
+        return redirect()->back()->with('error', 'Product not found');
     }
-    
 
     public function productColorUpdate(Request $request){
         $productColor= ProductColor::find($request->id);

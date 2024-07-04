@@ -50,7 +50,7 @@ class AdminController extends Controller
     public function adminRole()
     {
         $common_data = new Array_();
-        $common_data->title = 'Création de rôle';
+        $common_data->title = 'Role creation';
         return view('adminPanel.role.create_role')->with(compact('common_data'));
     }
 
@@ -71,7 +71,7 @@ class AdminController extends Controller
 
     public function adminCreate() {
         $common_data = new Array_();
-        $common_data->title = 'utilisateur';
+        $common_data->title = 'List admin';
         // Retrieve roles where status is 1
         $role = Role::where('status', 1)->get();
         // Retrieve all admins with their associated roles
