@@ -175,15 +175,18 @@
                                             </div>
                                             <button class="btn-product btn-cart" type="submit"><span>add to cart</span></button>
                                         </div>
+                                    </form>
                                         <div class="details-action-wrapper">
-                                             <form action="{{ route('wishlist.add') }}" method="POST">
+         
+                                            <form action="{{ route('wishlist.add') }}" method="POST">
                                                 @csrf
                                                 <input type="hidden" name="product_id" value="{{ $productdetail->id }}">
                                                 <button type="submit" class="btn-product btn-cart"><span>Add to Wishlist</span></button>
                                             </form>	
+
                                         </div>
                                     </div>
-                                </form>
+                              
                                 <div class="product-details-footer details-footer-col">
                                     <div class="product-cat">
                                         <span>Category:</span>
@@ -269,10 +272,10 @@
                             
                                     <cite>
                                        by :
-                                        <span>{{ $r->user->name }}</span>
+                                        <span>{{ $r->user ? $r->user->name : 'Deleted User' }}</span>
                                     </cite>
                                     <span class="review-date">{{ $r->created_at->diffForHumans() }}</span>
-
+                                    
                                 </blockquote><!-- End .testimonial -->
                                 @endforeach
 

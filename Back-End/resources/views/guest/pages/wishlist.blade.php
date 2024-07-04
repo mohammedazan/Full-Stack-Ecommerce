@@ -125,6 +125,14 @@
                                     <div class="dropdown-menu">
                                         <a href="{{ route('productdetail', ['id' => $wishlistItem->product->id]) }}"  class="dropdown-item" href="#">
 											Add to cart </a>
+
+                                            <form action="/user/order/store" method="post">
+                                                @csrf
+                                                <input type="hidden" name="idproduct" id="idproduct" class="form-control" value="{{$wishlistItem->product->id}}">
+                                                <input type="hidden" name="qte" id="qte" class="form-control" value="1" required>
+                                                <button class="dropdown-item" type="submit"><span>add to cart</span></button>
+                                            </form>  
+
 											<a  href="{{ route('product') }}" class="dropdown-item" href="#">
 												Start Shopping </a>
 											

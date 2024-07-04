@@ -214,10 +214,11 @@ Route::group(['middleware' => 'authCheck'], function () {
 
       Route::get('/admin/order_cart', [CommandeController::class, 'order_in_the_cart'])->name("order_in_the_cart");
       Route::get('/admin/en_cours', [CommandeController::class, 'en_cours'])->name("en_cours");
-
-
+      Route::delete('/user/order/delete/{id}', [CommandeController::class, 'destroy'])->name('commande.delete');
       Route::get('/commande/details/{id}', [CommandeController::class, 'showDetails'])->name('commande.details');
 
+
+      Route::get('/product/review',[ReviewProduct::class,'index'])->name('reviews');
 
 
 });
@@ -257,7 +258,6 @@ Route::group(['middleware' => 'AuthCheckUser'], function () {
    Route::delete('/wishlist/remove/{id}', [WishlistController::class, 'remove'])->name('wishlist.remove');   
    Route::post('/wishlist/add', [WishlistController::class, 'add'])->name('wishlist.add');
 
-   Route::get('/product/review',[ReviewProduct::class,'index'])->name('reviews');
    Route::post('/forbest/review/store', [ReviewProduct::class, 'addreview'])->name('forbest.review.store');
 
 

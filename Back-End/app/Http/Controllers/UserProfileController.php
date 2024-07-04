@@ -29,14 +29,15 @@ class UserProfileController extends Controller
         
         $CartCount = 0;
         $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
-        $commandes = Commande::where('users_id', Auth::id())->get();
+        $commandesEnCours = Commande::where('users_id', Auth::id())
+        ->where('etat', 'en cours')
+        ->get();
+            $CartCountEnCours = 0;
+            foreach ($commandesEnCours as $commande) {
+            $CartCountEnCours += $commande->lignecommande->count();
+            }  
 
-    // Loop through each Commande and count the total number of items
-    foreach ($commandes as $commande) {
-        $CartCount += $commande->lignecommande->count();
-    }
-
-         return view('guest/User/user_profile', compact('commande','CompanyInfo','commandeall','productSubcategory','category','CartCount','wishlistCount')); 
+         return view('guest/User/user_profile', compact('commande','CompanyInfo','commandeall','productSubcategory','category','CartCountEnCours','wishlistCount')); 
     }
 
 
