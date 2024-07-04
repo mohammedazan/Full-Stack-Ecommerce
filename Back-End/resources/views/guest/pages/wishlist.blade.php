@@ -79,7 +79,7 @@
 							<tr>
 								<th>Product</th>
 								<th>Price</th>
-								{{-- <th>Stock Status</th> --}}
+								<th>Stock Status</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
@@ -109,13 +109,13 @@
                                     @endif
                                 </td>
 																
-								{{-- <td class="stock-col">
+								<td class="stock-col">
 									@if($wishlistItem->product->wholesale_minimum_qty > 0)
 									<span class="in-stock">In Stock</span>
 								@else
 									<span class="out-of-stock">Out of Stock</span>
 								@endif
-								</td> --}}
+								</td>
 								<td class="action-col">
                                     <div class="dropdown">
 									<button class="btn btn-block btn-outline-primary-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -123,7 +123,8 @@
                                     </button>
 
                                     <div class="dropdown-menu">
-                                    
+                                        <a href="{{ route('productdetail', ['id' => $wishlistItem->product->id]) }}"  class="dropdown-item" href="#">
+											Add to cart </a>
 
                                             <form action="/user/order/store" method="post">
                                                 @csrf
