@@ -63,7 +63,7 @@
                                 <td>
                                     <div class="dropdown d-flex justify-content-center">
                                         <button class="btn btn-primary dropdown-toggle dr-btn" type="button"
-                                                data-bs-toggle="dropdown" aria-expanded="false">Settings
+                                                data-bs-toggle="dropdown" aria-expanded="false">Action
                                         </button>
                                         <ul class="dropdown-menu" style="">
                                             <li onclick="editSupplierInfo({{$offerList}},'{{asset($offerList->banner_image)}}')">

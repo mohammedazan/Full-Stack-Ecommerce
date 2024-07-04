@@ -50,7 +50,7 @@
                                 <td>
                                     <div class="dropdown d-flex justify-content-center">
                                         <button class="btn btn-primary dropdown-toggle dr-btn" type="button" data-bs-toggle="dropdown"
-                                            aria-expanded="false">Paramètres</button>
+                                            aria-expanded="false">Action</button>
                                         <ul class="dropdown-menu" style="">
                                        
                                                <li>
@@ -62,12 +62,12 @@
                                                         <line x1="12" y1="8" x2="12" y2="12"></line>
                                                         <line x1="12" y1="16" x2="12.01" y2="16"></line>
                                                     </svg>
-                                                    Voir les détails
+                                                    See the details
                                                 </a>
                                             </li>
                                             
                                             <li class="align-items-center"
-                                                onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette commande ?');">
+                                                onclick="return confirm('Are you sure you want to delete this command ?');">
                                                 <form action="{{ route('commande.delete', $c->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
@@ -80,7 +80,7 @@
                                                                 d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
                                                             </path>
                                                         </svg>
-                                                        Supprimer
+                                                        delete
                                                     </button>
                                                 </form>
                                             </li>

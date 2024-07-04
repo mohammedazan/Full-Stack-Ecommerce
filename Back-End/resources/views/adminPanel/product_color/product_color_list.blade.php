@@ -15,11 +15,11 @@
     }
 </style>
 @section('main_content')
-    <!-- Début du wrapper de page -->
+    <!-- Page wrapper start -->
     <div class="page-content">
-        <!-- Fil d'Ariane -->
+        <!-- Breadcrumb -->
 
-        <!-- Fin du fil d'Ariane -->
+        <!-- End of breadcrumb -->
         <div class="card">
             <input type="hidden" id="selectimgdiv">
             <div class="card-body">
@@ -41,11 +41,9 @@
 
                         <thead>
                         <tr class="t-trcolor">
-                        <th>ID</th>
-                        <th>Color Name</th>
-                        <th>Color</th>
-{{--                            <th>Status</th>--}}
-{{--                            <th>Create Date</th>--}}
+                            <th>ID</th>
+                            <th>Color Name</th>
+                            <th>Color</th>
                             <th class="text-center">Action</th>
                         </tr>
                         </thead>
@@ -100,7 +98,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="mb-2 row">
-                                <label for="inputname" class="col-sm-12  pr-0 col-form-label">Color Name <stong class="text-danger">*</stong></label>
+                                <label for="inputname" class="col-sm-12  pr-0 col-form-label">Color Name <strong class="text-danger">*</strong></label>
                                 <div class="col-sm-12">
                                     <input type="text" id="inputname" class="form-control" name="name"  placeholder="Color Name">
                                 </div>
@@ -127,13 +125,13 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Product Color</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Update Color</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="mb-2 row">
                                 <input type="hidden" name="id" id="category_id">
-                                <label for="inputname" class="col-sm-12  pr-0 col-form-label">Color Name <stong class="text-danger">*</stong></label>
+                                <label for="inputname" class="col-sm-12  pr-0 col-form-label">Color Name <strong class="text-danger">*</strong></label>
                                 <div class="col-sm-12">
                                     <input type="text" id="ed_name" class="form-control" name="name"  placeholder="Color Name" required>
                                 </div>
@@ -155,8 +153,9 @@
 
         {{--        modal--}}
     </div>
-    <!-- Fin du wrapper de page -->
+    <!-- End of page wrapper -->
 @endsection
+
 
 @section('css_plugins')
     <link href="{{asset('assets/adminPanel')}}/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />

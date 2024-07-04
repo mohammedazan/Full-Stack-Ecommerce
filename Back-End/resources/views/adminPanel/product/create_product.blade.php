@@ -16,6 +16,7 @@
     </style>
 @endsection
 
+
 @section('main_content')
     <div class="page-content">
         <div class="card">
@@ -30,20 +31,20 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="mb-3">
-                                                <label for="inputProductTitle" class="form-label">Nom du produit<strong
+                                                <label for="inputProductTitle" class="form-label">Product Name<strong
                                                         class="text-danger">*</strong> </label>
                                                 <input type="text" class="form-control" name="name"
                                                        id="inputProductTitle"
-                                                       placeholder="Entrez le nom du produit" required>
+                                                       placeholder="Enter product name" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mb-2">
-                                                <label for="single-select-field" class="form-label">Catégorie du produit
+                                                <label for="single-select-field" class="form-label">Product Category
                                                     <strong class="text-danger">*</strong> </label>
                                                 <select class="form-select" onchange="getSubcategory(this)"
                                                         name="category_id" id="single-select-field"
-                                                        data-placeholder="Choisir une catégorie" required>
+                                                        data-placeholder="Choose a category" required>
                                                     <option></option>
                                                     @foreach($productCategory as $category)
                                                         <option value="{{$category->id}}">{{$category->name}}</option>
@@ -53,17 +54,17 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mb-2">
-                                                <label for="single-select-field" class="form-label">Sous-catégorie du produit</label>
+                                                <label for="single-select-field" class="form-label">Product Subcategory</label>
                                                 <select class="form-select select2 " id="subcategory_id"
-                                                        name="subcategory_id" data-placeholder="Choisir une sous-catégorie">
+                                                        name="subcategory_id" data-placeholder="Choose a subcategory">
                                                     <option></option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
-                                            <label for="inputProductType" class="form-label">Fournisseur</label>
+                                            <label for="inputProductType" class="form-label">Supplier</label>
                                             <select name="supplier_id" class="form-select select2" id="inputProductType"
-                                                    data-placeholder="Choisir un fournisseur">
+                                                    data-placeholder="Choose a supplier">
                                                 <option></option>
                                                 @foreach($supplierList as $supplier)
                                                     <option
@@ -73,9 +74,9 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mb-3">
-                                                <label class="form-label">Marque</label>
+                                                <label class="form-label">Brand</label>
                                                 <select class="form-control form-control-color w-100"   name="brand_id" >
-                                                    <option value="">Aucune marque</option>
+                                                    <option value="">No Brand</option>
                                                     @foreach($brand as $dataBrand)
                                                         <option value="{{$dataBrand->id}}">{{$dataBrand->name}}</option>
                                                     @endforeach
@@ -83,7 +84,7 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
-                                            <label for="inputProductType" class="form-label">Couleur</label>
+                                            <label for="inputProductType" class="form-label">Color</label>
                                             <select class="js-example-basic-multiple form-control form-control-color w-100"   name="color[]" multiple="multiple">
                                                 @foreach($color as $dataColor)
                                                     <option value="{{$dataColor->name}}">{{$dataColor->name}} </option>
@@ -91,13 +92,13 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-6">
-                                            <label for="inputProductType" class="form-label">Référence
+                                            <label for="inputProductType" class="form-label">Reference
                                                 <stong class="text-danger">*</stong>
                                             </label>
                                             <div class="col-sm-12">
                                                 <input type="text" class="form-control" name="reference"
                                                     id="inputProductreference"
-                                                    placeholder="Entrez le nom de référence" required data-role="tagsinput" >
+                                                    placeholder="Enter reference name" required data-role="tagsinput" >
                                             </div>
                                         </div>
                                     </div>
@@ -108,12 +109,12 @@
                                                   rows="3"></textarea>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="inputProductDescription" class="form-label">Photo du produit</label>
+                                        <label for="inputProductDescription" class="form-label">Product Photo</label>
                                         <input style="display:none" type="file" name="image" class="image">
                                         <div class="row" id="productImglist">
                                             <div class="col-sm-3 mb-2" style="position:relative" id="222"
                                                  onclick="selectImage('222')">
-                                                <span class="text-center mainphototxt">Photo principale</span>
+                                                <span class="text-center mainphototxt">Main Photo</span>
                                                 <input type="hidden" name="product_img[]" multiple class="222input">
                                                 <!--input type="file" name="product_img[]" multiple class="form-control"-->
                                                 <div
@@ -135,17 +136,17 @@
                                             <div class="modal-dialog modal-lg" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="modalLabel">Recadrer l'image</h5>
+                                                        <h5 class="modal-title" id="modalLabel">Crop Image</h5>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                                 aria-label="Close">
-                                                            <span aria-hidden="true">�</span>
+                                                            <span aria-hidden="true">×</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="img-container">
                                                             <div class="row">
                                                                 <div class="col-md-8">
-                                                                    <!--  default image where we will set the src via jquery-->
+                                                                    <!-- Default image where we will set source via jQuery -->
                                                                     <img id="image">
                                                                 </div>
                                                                 <div class="col-md-4">
@@ -156,10 +157,8 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
-                                                                data-dismiss="modal">Annuler
-                                                        </button>
-                                                        <button type="button" class="btn btn-primary" id="crop">Recadrer
-                                                        </button>
+                                                                data-dismiss="modal">Cancel</button>
+                                                        <button type="button" class="btn btn-primary" id="crop">Crop</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -171,7 +170,7 @@
                                 <div class="border border-3 p-4 rounded">
                                     <div class="row g-3">
                                         <div class="col-md-6">
-                                            <label for="inputCostPerPrice" class="form-label">Coût d'achat <small>Prix_V_HT</small>
+                                            <label for="inputCostPerPrice" class="form-label">Purchase Cost <small>Price_V_HT</small>
                                                 <strong class="text-danger">*</strong>
                                             </label>
                                             <input type="number" name="current_purchase_cost"
@@ -179,59 +178,39 @@
                                                    class="form-control" id="inputCostPerPrice" placeholder="00.00">
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="inputPrice" class="form-label">Prix de vente <small>Prix_V_TTC</small> <strong
+                                            <label for="inputPrice" class="form-label">Selling Price <small>Price_V_TTC</small> <strong
                                                     class="text-danger">*</strong> </label>
                                             <input type="number" name="previous_wholesale_price"
                                                    value="{{old('previous_wholesale_price')}}" class="form-control"
                                                    id="inputPrice" placeholder="00.00" required>
                                         </div>
                                         {{-- <div class="col-md-6">
-                                            <label for="inputCompareatprice" class="form-label">Prix de gros</label>
+                                            <label for="inputCompareatprice" class="form-label">Wholesale Price</label>
                                             <input type="number" name="current_wholesale_price"
                                                    value="{{old('current_wholesale_price')}}" class="form-control"
                                                    id="wholesalepricce" placeholder="00.00">
-                                        </div> --}}  
+                                        </div> --}}
                                         <div class="col-md-6">
-                                            <label for="inputStarPoints" class="form-label">Quantité</label>
+                                            <label for="inputStarPoints" class="form-label">Quantity</label>
                                             <input type="number" name="wholesale_minimum_qty" class="form-control"
                                                    id="inputStarPoints" placeholder="00.00">
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="inputStarPoints" class="form-label">Type de réduction</label>
+                                            <label for="inputStarPoints" class="form-label">Discount Type</label>
                                             <select name="discount_type" class="form-control" id=""
                                                     onchange="discountType(this)">
-                                                <option value="0">Fixe</option>
-                                                <option value="1">Pourcentage (%)</option>
+                                                <option value="0">Fixed</option>
+                                                <option value="1">Percentage (%)</option>
                                             </select>
                                         </div>
                                         <div class="col-md-6" id="discount">
-                                            <label for="inputStarPoints" class="form-label">Montant de réduction</label>
+                                            <label for="inputStarPoints" class="form-label">Discount Amount</label>
                                             <input type="number" name="discount" class="form-control"
-                                                   placeholder="Montant">
+                                                   placeholder="Amount">
                                         </div>
-                                        {{-- <div class="col-md-6">
-                                            <div class="form-check">
-                                                <input class="form-check-input" name="is_trending" type="checkbox"
-                                                       value="1">
-                                                <label class="form-check-label">
-                                                    Tendance
-                                                </label>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="form-check">
-                                                <input class="form-check-input" name="is_popular" type="checkbox"
-                                                       value="1">
-                                                <label class="form-check-label">
-                                                    Populaire
-                                                </label>
-                                            </div>
-                                        </div> --}}
-                                        
                                         <div class="col-12">
                                             <div class="d-grid">
-                                                <button type="submit" class="btn btn-primary">Enregistrer le produit</button>
+                                                <button type="submit" class="btn btn-primary">Save Product</button>
                                             </div>
                                         </div>
                                     </div>
