@@ -192,18 +192,18 @@
                            value="{{$productInfo->current_sale_price}}" class="form-control"
                            id="inputPrice" placeholder="00.00" required>
                 </div>
-                <div class="col-md-6">
+                {{-- <div class="col-md-6">
                     <label for="inputCompareatprice" class="form-label">Wholesale
                         Price</label>
                     <input type="number" name="current_wholesale_price"
                            value="{{$productInfo->current_wholesale_price}}"
                            class="form-control"
                            id="wholesalepricce" placeholder="00.00">
-                </div>
+                </div> --}}
 
                 <div class="col-md-6">
-                    <label for="inputStarPoints" class="form-label">Wholesale
-                        Qty </label>
+                    <label for="inputStarPoints" class="form-label">
+                        Quantity </label>
                     <input type="number" name="wholesale_minimum_qty"
                            class="form-control"
                            value="{{$productInfo->wholesale_minimum_qty}}"

@@ -46,7 +46,7 @@
                                 <td>
                                     <div class="dropdown d-flex justify-content-center">
                                         <button class="btn btn-primary dropdown-toggle dr-btn" type="button" data-bs-toggle="dropdown"
-                                            aria-expanded="false">Paramètres</button>
+                                            aria-expanded="false">Action</button>
                                         <ul class="dropdown-menu" style="">
                                        
                                             <li class="align-items-center"
@@ -63,7 +63,8 @@
                                                                 d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
                                                             </path>
                                                         </svg>
-                                                        Supprimer
+            
+                                                        delete
                                                     </button>
                                                 </form>
                                             </li>
