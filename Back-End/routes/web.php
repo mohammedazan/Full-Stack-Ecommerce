@@ -22,20 +22,20 @@ use App\Http\Controllers\api\StripePaymentController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\BlogController;
-use App\Http\Controllers\BlogsController;
-use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\CommandeController;
+use App\Http\Controllers\Guest\BlogsController;
+use App\Http\Controllers\Guest\CheckoutController;
+use App\Http\Controllers\Guest\CommandeController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\GuestController;
-use App\Http\Controllers\PayPalController;
-use App\Http\Controllers\ReviewProduct;
-use App\Http\Controllers\UserProfileController;
-use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\Guest\GuestController;
+use App\Http\Controllers\Guest\PayPalController;
+use App\Http\Controllers\Guest\ReviewProduct;
+use App\Http\Controllers\Guest\UserProfileController;
+use App\Http\Controllers\Guest\WishlistController;
 use App\Models\Supplier;
 use Illuminate\Support\Facades\Route;
 
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\Guest\NewsletterController;
 
 
 /*
@@ -358,7 +358,6 @@ Route::get('/productdetail', [GuestController::class, 'productdetail'])->name('p
 
 
 // Routes accessible only to authenticated users
-
 
 
 
