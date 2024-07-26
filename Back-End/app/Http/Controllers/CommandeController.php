@@ -175,6 +175,15 @@ class CommandeController extends Controller
         }
     }
 
+
+    public function updateStatus(Request $request, $id)
+    {
+        $commande = Commande::findOrFail($id);
+        $commande->deliver_status = $request->input('deliver_status');
+        $commande->save();
+
+        return redirect()->back()->with('success', 'Order status updated successfully.');
+    }
     
 
     public function cart(){

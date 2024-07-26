@@ -60,6 +60,10 @@ Route::post('admin/login', array(AdminController::class, 'loginAdmin'))->name('a
 
 
 
+
+Route::patch('/commande/{id}/update-status', [CommandeController::class, 'updateStatus'])->name('commande.updateStatus');
+
+
 Route::group(['middleware' => 'authCheck'], function () {
     
 // _____________________ Route product_______________________________________ 
@@ -184,6 +188,7 @@ Route::group(['middleware' => 'authCheck'], function () {
     Route::get('admin/delete', array(AdminController::class, 'adminDelete'))->name('admin.admin.delete');
     Route::get('admin/setting/company/details', [CompanyInfoController::class, 'companyDetails'])->name('setting.company.details');
 
+    
     Route::get('admin/featured/link/list', [FeaturedLinkController::class, 'featuredLinkList'])->name('admin.featured.link.list');
     Route::post('admin/featured/store', [FeaturedLinkController::class, 'featuredLinkStore'])->name('admin.featured.store');
     Route::post('admin/featured/update', [FeaturedLinkController::class, 'featuredLinkUpdate'])->name('admin.featured.update');

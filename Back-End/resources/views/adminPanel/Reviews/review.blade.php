@@ -12,9 +12,10 @@
                             <th>Rate</th>
                             <th>Content</th>
                             <th>Name User </th>
-                            <th>Product_review_details</th>
+                            {{-- <th>Product_review_details</th> --}}
                             <th>Name Product</th>
                             <th>Date</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -26,11 +27,11 @@
                                     <i class="fas fa-star" style="color: #ffc107;"></i>
                                 @endfor
                             </td>
+                            <td>{{ $r->content }}</td>
                             <td>{{ $r->user ? $r->user->name : 'Deleted User'}}</td>
                             {{-- <td>{{ $r->product_id }}</td> --}}
                             <td>{{ $r->product->name }}</td>
                             <td>{{ $r->created_at }}</td>
-                            <td>{{ $r->content }}</td>
 
                             <td>
                                 <div class="dropdown d-flex justify-content-center">

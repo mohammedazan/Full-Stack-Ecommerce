@@ -14,6 +14,7 @@
                                 <th>Name Product</th>
                                 {{-- <th>QTY</th> --}}
                                 <th>Order Status</th>
+                                <th>Deliver Status</th> 
                                 <th>Total </th>
                                 {{-- <th>Created At</th> --}}
                                 <th>Action</th>
@@ -44,6 +45,17 @@
                                         </span>
                                     </td>
                                 @endif
+
+                                <td>
+                                    <form action="{{ route('commande.updateStatus', $c->id) }}" method="POST">
+                                        @csrf
+                                        @method('PATCH')
+                                        <select name="deliver_status" class="form-select" onchange="this.form.submit()">
+                                            <option value="processed" {{ $c->deliver_status === 'processed' ? 'selected' : '' }}>Processed</option>
+                                            <option value="delivered" {{ $c->deliver_status === 'delivered' ? 'selected' : '' }}>Delivered</option>
+                                        </select>
+                                    </form>
+                                </td>
 
                                 <td>{{ $c->getTotal()}}DH</td>
 

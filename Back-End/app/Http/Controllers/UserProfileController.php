@@ -22,6 +22,7 @@ class UserProfileController extends Controller
         $commande = Commande::where('users_id', Auth::user()->id)->where('etat', 'payee')->first();
         $CompanyInfo=CompanyInfo::get();
         $commandeall = Commande::where('users_id', Auth::user()->id)
+        ->where('etat', 'payee')
         ->with('lignecommande')
         ->get(); 
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
