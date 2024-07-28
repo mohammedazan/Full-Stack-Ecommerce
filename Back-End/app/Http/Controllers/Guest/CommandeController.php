@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 class CommandeController extends Controller
 {
 
-    
+
     public function order_in_the_cart(){
 
         
@@ -67,13 +67,13 @@ class CommandeController extends Controller
 
     
     public function store(Request $request) {
-        // Validate the request data
+
         $request->validate([
             'qte' => 'required|integer',
             'idproduct' => 'required|integer|exists:products,id',
         ]);
     
-        // Get the ongoing order for the authenticated user
+
         $commande = Commande::where('users_id', Auth::user()->id)->where('etat', 'en cours')->first();
     
         if ($commande) {
@@ -88,7 +88,7 @@ class CommandeController extends Controller
                 }
             }
     
-            // If the product does not exist in the order, create a new line item
+
             if (!$existe) {
                 $Lc = new LigneCommande();
                 $Lc->qte = $request->qte;
@@ -99,13 +99,14 @@ class CommandeController extends Controller
     
             return redirect('/user/cart')->with('success', 'Product added to order successfully.');
         } else {
-            // If no ongoing order, create a new order
+
             $commande = new Commande();
             $commande->users_id = Auth::user()->id;
-            $commande->etat = 'en cours'; // Assuming 'en cours' is a valid state for a new order
+            $commande->etat = 'en cours'; 
+            
     
             if ($commande->save()) {
-                // Create the line item for the new order
+
                 $Lc = new LigneCommande();
                 $Lc->qte = $request->qte;
                 $Lc->product_id = $request->idproduct;

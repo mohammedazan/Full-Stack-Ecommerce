@@ -361,4 +361,6 @@ Route::get('/productdetail', [GuestController::class, 'productdetail'])->name('p
 
 
 
-
+Route::fallback(function () {
+    return response()->view('errors', [], 404);
+});

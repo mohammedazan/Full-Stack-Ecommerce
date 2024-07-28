@@ -78,12 +78,12 @@ class CheckoutController extends Controller
         $commandeId = $request->input('commande');
         $commande = Commande::find($commandeId);
     
-        // If the command doesn't exist, redirect back with an error message
+
         if (!$commande) {
             return redirect()->back()->with('error', 'Invalid command');
         }
     
-        // Update the command with billing details
+
         $commande->update([
             'first_name' => $request->input('first_name'),
             'last_name' => $request->input('last_name'),
@@ -98,6 +98,7 @@ class CheckoutController extends Controller
         ]);
     
         // Prepare payment data for PayPal or Visa based on selected method
+
         $totalPrice = $this->calculateTotalPrice($commande);
         $data = [];
         $data['items'] = $this->getItemsForPaypal($commande); // Get items in the cart
@@ -190,7 +191,7 @@ class CheckoutController extends Controller
             $commande = Commande::find($commandeId);
 
             if ($commande) {
-                // Update the order status to 'payee'
+
                 $commande->etat = 'payee';
                 $commande->save();
             }
