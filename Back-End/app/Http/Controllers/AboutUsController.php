@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AboutUs;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\Array_;
 
 class AboutUsController extends Controller
 {
@@ -13,72 +15,58 @@ class AboutUsController extends Controller
      */
     public function index()
     {
-        //
+            $common_data = new Array_();
+            $common_data->title= 'About Us  Details';
+            $aboutUs =AboutUs::first();
+            return view('adminPanel.AboutUs.aboutus')->with(compact('common_data', 'aboutUs'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+
+    public function updateAboutUs(Request $request)
     {
-        //
+        $getinfo = AboutUs::first();
+        if ($getinfo) {
+            $aboutUs = $getinfo;
+        } else {
+            $aboutUs = new AboutUs();
+        }
+
+        $aboutUs->title = $request->title;
+        $aboutUs->history = $request->history;
+        $aboutUs->mission = $request->mission;
+        $aboutUs->vision = $request->vision;
+        $aboutUs->values = $request->values;
+        $aboutUs->additional_info = $request->additional_info;
+        
+        $aboutUs->save();
+
+        return redirect()->back()->with('success', 'Successfully Updated');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    // public function processImage($image)
+    // {
+    //     if (isset($image) && ($image != '') && ($image != null)) {
+    //         $ext = explode('/', mime_content_type($image))[1];
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+    //         $image_url = "about_us_image-" . time() . rand(1000, 9999) . '.' . $ext;
+    //         $image_directory = public_path('storage/about_us_images/');
+    //         $filePath = $image_directory;
+    //         $image_path = $filePath . $image_url;
+    //         $db_image_path = 'storage/about_us_images/' . $image_url;
+    //         if (!file_exists($filePath)) {
+    //             mkdir($filePath, 0777, true);
+    //         }
+    //         $image = Image::make(file_get_contents($image));
+    //         $image->brightness(8);
+    //         $image->contrast(11);
+    //         $image->sharpen(5);
+    //         $image->encode('webp', 70);
+    //         $image->save($image_path);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+    //         return $db_image_path;
+    //     }
+    // }
 }
+   
+    
+

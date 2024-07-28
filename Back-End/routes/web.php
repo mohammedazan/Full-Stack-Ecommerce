@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BankAccountController;
 use App\Http\Controllers\Admin\BrandController;
@@ -36,7 +37,7 @@ use Illuminate\Support\Facades\Route;
 
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\Guest\NewsletterController;
-
+use App\Models\AboutUs;
 
 /*
 |--------------------------------------------------------------------------
@@ -169,6 +170,7 @@ Route::group(['middleware' => 'authCheck'], function () {
     Route::get('admin/district/list/get', [SettingController::class, 'districtList']);
     Route::post('admin/shipping/cost/setting/store', [SettingController::class, 'shippingCostStore'])->name('shipping.cost.setting.store');
     Route::post('admin/currency/setting/store', [SettingController::class, 'currencyCostStore'])->name('currency.setting.store');
+
     Route::post('admin/company/info', [CompanyInfoController::class, 'CompanyInfo'])->name('company.info.store');
 
     //Route::get('admin/setting/company/details', [CompanyInfoController::class, 'companyDetails'])->name('setting.company.details');
@@ -186,6 +188,7 @@ Route::group(['middleware' => 'authCheck'], function () {
     Route::get('admin/create', array(AdminController::class, 'adminCreate'))->name('admin.admin.create');
     Route::post('admin/store', array(AdminController::class, 'adminStore'))->name('admin.admin.store');
     Route::get('admin/delete', array(AdminController::class, 'adminDelete'))->name('admin.admin.delete');
+    
     Route::get('admin/setting/company/details', [CompanyInfoController::class, 'companyDetails'])->name('setting.company.details');
 
     
@@ -358,6 +361,11 @@ Route::get('/productdetail', [GuestController::class, 'productdetail'])->name('p
 
 
 // Routes accessible only to authenticated users
+
+
+Route::post('admin/aboutus/info', [AboutUsController::class, 'updateAboutUs'])->name('company.aboutus.store');
+
+Route::get('admin/aboutus/details', [AboutUsController::class, 'index'])->name('setting.aboutus.details');
 
 
 

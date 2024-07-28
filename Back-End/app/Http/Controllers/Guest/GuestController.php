@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
+use App\Models\AboutUs;
 use App\Models\Blogs;
 use App\Models\CompanyInfo;
 use App\Models\ProductCategory;
@@ -127,6 +128,8 @@ class GuestController extends Controller
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $company = CompanyInfo::first();
         $CompanyInfo=CompanyInfo::get();
+        $aboutUs = AboutUs::first();
+        $AboutUsInfo=AboutUs::get();
         $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
         $brandList=Brand::get();
    
@@ -138,7 +141,7 @@ class GuestController extends Controller
             $CartCountEnCours += $commande->lignecommande->count();
             }  
 
-        return view('guest/pages.about')->with(compact('productSubcategory','category','company','CompanyInfo','wishlistCount','CartCountEnCours','brandList'));
+        return view('guest/pages.about')->with(compact('productSubcategory','category','company','CompanyInfo','wishlistCount','CartCountEnCours','brandList','aboutUs','AboutUsInfo'));
 
     }
 

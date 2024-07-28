@@ -47,8 +47,8 @@
                 </div><!-- End .container -->
             </nav><!-- End .breadcrumb-nav -->
             <div class="container">
-            <div class="page-header page-header-big text-center" style="background-image: url('{{ asset($company->company_logo) }}')">
-        			<h1 class="page-title text-white">About us<span class="text-white">Who we are {{$company->name}}</span></h1>
+            <div class="page-header page-header-big text-center" style="background-image: url('{{ asset($company->company_logo)}}')">
+        			<h1 class="page-title text-white">About us<span class="text-white">Who we are {{$aboutUs->title}}</span></h1>
 	        	</div><!-- End .page-header -->
             </div><!-- End .container -->
 
@@ -57,12 +57,12 @@
                     <div class="row">
                         <div class="col-lg-6 mb-3 mb-lg-0">
                             <h2 class="title">Our Vision</h2><!-- End .title -->
-                            <p> {{$company->privacy_policy}} </p>
+                            <p> {{$aboutUs->vision}} </p>
                         </div><!-- End .col-lg-6 -->
                         
                         <div class="col-lg-6">
                             <h2 class="title">Our Mission</h2><!-- End .title -->
-                            <p> {{$company->refund_policy}} </p>
+                            <p> {{$aboutUs->mission}} </p>
                         </div><!-- End .col-lg-6 -->
                     </div><!-- End .row -->
 
@@ -74,7 +74,7 @@
                         <div class="row">
                             <div class="col-lg-5 mb-3 mb-lg-0">
                                 <h2 class="title">Who We Are</h2><!-- End .title -->
-                                <p class="mb-2">{{$company->about_us}} </p>
+                                <p class="mb-2">{{$aboutUs->history}} </p>
 
                                 <a href="{{ url('/blogall') }}" class="btn btn-sm btn-minwidth btn-outline-primary-2">
                                     <span>VIEW OUR NEWS</span>
