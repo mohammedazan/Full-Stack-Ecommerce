@@ -480,3 +480,102 @@ Performance issues: Some developers may avoid using foreign keys to improve perf
 							</form>
 						</aside><!-- End .col-lg-3 -->
 					</div>
+
+
+
+/////------------------------------------------------------------- function home 
+
+    public function Home(Request $request){
+
+        $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
+        $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
+        $productCategory = ProductCategory::where('deleted', 0)->where('status', 1)->get();
+        $offer = Offer::where('deleted', 0)->get();
+        $featuredImage=FeaturedLink::get();
+        $Blogs=Blogs::all();
+        $brandList=Brand::get();
+        $CompanyInfo=CompanyInfo::get();
+
+        $categoryId = $request->id;
+        if ($categoryId) {
+            $productList = Product::where('category_id', $categoryId)
+                                  ->where('deleted', 0)
+                                  ->get();
+        } else {
+            $productList = Product::where('deleted', 0)->get();
+        }
+        if ($productList->isEmpty()) {
+            return redirect()->back();
+        }
+
+        // Calculate average rating and reviews count for each product
+        foreach ($productList as $product) {
+            $reviews = $product->reviews;
+            if ($reviews->count() > 0) {
+                $totalRating = $reviews->sum('rate');
+                $product->avgRating = $totalRating / $reviews->count();
+                $product->reviewsCount = $reviews->count();
+            } else {
+                $product->avgRating = 0;
+                $product->reviewsCount = 0;
+            }
+        }
+
+        $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
+
+
+
+        $commandesEnCours = Commande::where('users_id', Auth::id())
+        ->where('etat', 'en cours')
+        ->get();
+            $CartCountEnCours = 0;
+            foreach ($commandesEnCours as $commande) {
+            $CartCountEnCours += $commande->lignecommande->count();
+            }
+
+
+
+
+
+        return view('guest/home')->with(compact('productSubcategory','productList','category','productCategory','offer','featuredImage','brandList','Blogs','CompanyInfo','wishlistCount','CartCountEnCours'));
+    }
+
+// ------------------------------------------ div class = menu-vertical sf-arrows 
+                    <div class="dropdown-menu">
+                        <nav class="side-nav">
+                            <ul class="menu-vertical sf-arrows">
+                                    @php
+                                        // Group subcategories by category
+                                        $groupedSubcategories = $productSubcategory->groupBy('category_id');
+                                    @endphp
+                                
+                                    @foreach($groupedSubcategories as $categoryId => $subcategories)
+                                        @php
+                                            // Get the category name from the first subcategory in the group
+                                            $categoryName = $subcategories->first()->category->name;
+                                            $categoryid = $subcategories->first()->category->id;
+                                        @endphp
+                                    <li class="megamenu-container">
+                                        <a class="sf-with-ul" href="{{ route('product.category', ['id' => $categoryid]) }}">{{ $categoryName }}</a>
+                                        <div class="megamenu" style="width:300px">
+                                            <div class="row no-gutters">
+                                                <div class="col-md-8">
+                                                    <div class="menu-col">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                @foreach($subcategories as $subcategory)
+                                                                    <div class="menu-title" style="width:270px">
+                                                                        <a href="{{ route('product.subcategory', ['id' => $subcategory->id]) }}">{{ $subcategory->name }}</a>
+                                                                    </div><!-- End .menu-title -->
+                                                                @endforeach
+                                                            </div><!-- End .col-md-6 -->
+                                                        </div><!-- End .row -->
+                                                    </div><!-- End .menu-col -->
+                                                </div><!-- End .col-md-8 -->
+                                            </div><!-- End .row -->
+                                        </div><!-- End .megamenu -->
+                                    </li>
+                                    @endforeach
+                            </ul>
+                        </nav>
+                    </div>	
