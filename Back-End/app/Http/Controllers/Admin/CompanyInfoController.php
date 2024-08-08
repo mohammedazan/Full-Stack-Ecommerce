@@ -9,12 +9,14 @@ use Image;
 use PhpParser\Node\Expr\Array_;
 
 class CompanyInfoController extends Controller
-{public function companyDetails(){
+{
+    public function companyDetails(){
     $common_data = new Array_();
     $common_data->title = 'Company Details';
     $companyInfo = CompanyInfo::first();
     return view('adminPanel.company_info.company_info')->with(compact('common_data', 'companyInfo'));
 }
+
 
 public function CompanyInfo(Request $request){
     $mainimg = $request->company_logo;

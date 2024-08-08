@@ -566,38 +566,33 @@
                     <div class="dropdown-menu">
                         <nav class="side-nav">
                             <ul class="menu-vertical sf-arrows">
-                                    @php
-                                        // Group subcategories by category
-                                        $groupedSubcategories = $productSubcategory->groupBy('category_id');
-                                    @endphp
-                                
-                                    @foreach($groupedSubcategories as $categoryId => $subcategories)
-                                        @php
-                                            // Get the category name from the first subcategory in the group
-                                            $categoryName = $subcategories->first()->category->name;
-                                            $categoryid = $subcategories->first()->category->id;
-                                        @endphp
+                                @foreach($category as $cat)
                                     <li class="megamenu-container">
-                                        <a class="sf-with-ul" href="{{ route('product.category', ['id' => $categoryid]) }}">{{ $categoryName }}</a>
-                                        <div class="megamenu" style="width:300px">
-                                            <div class="row no-gutters">
-                                                <div class="col-md-8">
-                                                    <div class="menu-col">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                @foreach($subcategories as $subcategory)
-                                                                    <div class="menu-title" style="width:270px">
-                                                                        <a href="{{ route('product.subcategory', ['id' => $subcategory->id]) }}">{{ $subcategory->name }}</a>
-                                                                    </div><!-- End .menu-title -->
-                                                                @endforeach
-                                                            </div><!-- End .col-md-6 -->
-                                                        </div><!-- End .row -->
-                                                    </div><!-- End .menu-col -->
-                                                </div><!-- End .col-md-8 -->
-                                            </div><!-- End .row -->
-                                        </div><!-- End .megamenu -->
+                                        <a class="sf-with-ul" href="{{ route('product.category', ['id' => $cat->id]) }}">{{ $cat->name }}</a>
+                                        @php
+                                            $subcategories = $productSubcategory->where('category_id', $cat->id);
+                                        @endphp
+                                        @if($subcategories->isNotEmpty())
+                                            <div class="megamenu" style="width:300px">
+                                                <div class="row no-gutters">
+                                                    <div class="col-md-8">
+                                                        <div class="menu-col">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    @foreach($subcategories as $subcategory)
+                                                                        <div class="menu-title" style="width:270px">
+                                                                            <a href="{{ route('product.subcategory', ['id' => $subcategory->id]) }}">{{ $subcategory->name }}</a>
+                                                                        </div><!-- End .menu-title -->
+                                                                    @endforeach
+                                                                </div><!-- End .col-md-6 -->
+                                                            </div><!-- End .row -->
+                                                        </div><!-- End .menu-col -->
+                                                    </div><!-- End .col-md-8 -->
+                                                </div><!-- End .row -->
+                                            </div><!-- End .megamenu -->
+                                        @endif
                                     </li>
-                                    @endforeach
+                                @endforeach
                             </ul>
                         </nav>
                     </div>

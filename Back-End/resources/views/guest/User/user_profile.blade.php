@@ -110,6 +110,7 @@
 													<th >Product Name</th>
 													<th >Total Price</th>
 													<th >Order Date</th>
+													<th>Status</th>
 												</tr>
 											</thead>
 											@foreach($commandeall as $orderUser)
@@ -124,6 +125,13 @@
 													</td>
 													<td>{{$orderUser->getTotal()}}DH</td>
 													<td>{{ $orderUser->created_at }}</td>
+													<td>
+														@if($orderUser->deliver_status === 'delivered')
+															<span class="badge bg-success">Delivered</span>
+														@elseif($orderUser->deliver_status==='processed')
+															<span class="badge bg-warning">Processed</span>
+														@endif
+													</td>
 													{{-- <td>
 														<span class="badge badge-success">Delivered</span>
 													</td>
