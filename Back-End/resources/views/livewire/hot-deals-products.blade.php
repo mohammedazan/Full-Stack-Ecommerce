@@ -187,5 +187,3 @@
             <!-- End .HotDealsProducts -->
             <!-- End .bg-light pt-5 pb-5 -->
 
-
-            

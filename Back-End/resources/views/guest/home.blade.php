@@ -35,27 +35,27 @@
     <link href="{{ asset('assets/css/skins/skin-demo-13.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/demos/demo-13.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Toastr CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
-        <!-- Toastr CSS -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <!-- Place your HTML content here -->
 
-        <!-- Place your HTML content here -->
+    <!-- Toastr Initialization -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            // Toastr Initialization
+            @if(Session::has('success'))
+                toastr.success("{{ Session::get('success') }}");
+            @endif
 
-        <!-- Toastr Initialization -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-        <script>
-            $(document).ready(function(){
-                // Toastr Initialization
-                @if(Session::has('success'))
-                    toastr.success("{{ Session::get('success') }}");
-                @endif
-
-                @if(Session::has('error'))
-                    toastr.error("{{ Session::get('error') }}");
-                @endif
-            });
-        </script>
+            @if(Session::has('error'))
+                toastr.error("{{ Session::get('error') }}");
+            @endif
+        });
+    </script>
+    @livewireStyles
 </head>
 
 
@@ -92,7 +92,8 @@
             <div class="mb-3"></div><!-- End .mb-3 -->
 
             <!-- start .HotDealsProducts -->
-            @include('guest/partials.HotDealsProducts')
+            {{-- @include('guest/partials.HotDealsProducts') --}}
+            @livewire('hot-deals-products')
             <!-- End .HotDealsProducts -->
             <!-- End .bg-light pt-5 pb-5 -->
 
@@ -204,9 +205,7 @@
     <script src= "{{asset('assets/js/main.js')}}"></script>
 
     <script src= "{{asset('assets/js/demos/demo-13.js')}}"></script>
-
+    @livewireScripts
 </body>
-
-
 <!-- molla/index-13.html  22 Nov 2019 09:59:31 GMT -->
 </html>

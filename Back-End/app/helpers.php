@@ -28,7 +28,7 @@ function userCanAccess($access_id) {
         return in_array($access_id, $accessListArray);
     } 
     // Return false if the role is not found
-    return true;
+    return false;
 }
 
 function calculateDiscount($item)
