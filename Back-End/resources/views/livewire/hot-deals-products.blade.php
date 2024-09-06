@@ -1,8 +1,3 @@
-<!-- start .HotDealsProducts -->
-<head>
-    <!-- Add Font Awesome for stars -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-</head>
    <div class="bg-light pt-3 pb-5">
                 <div class="container">
                     <div class="heading heading-flex heading-border mb-3">
@@ -13,7 +8,7 @@
                        <div class="heading-right">
                             <ul class="nav nav-pills nav-border-anim justify-content-center" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" {{-- id="hot-all-link" data-toggle="tab" --}} href="{{ route('forbest') }}"  role="tab" aria-controls="hot-all-tab" aria-selected="true">All</a>
+                                    <a class="nav-link active" wire:click="CategoryFilter()" role="tab" aria-controls="hot-all-tab" aria-selected="true">All</a>
                                 </li>
                                 @php
                                 // Shuffle the category collection and take the first six
@@ -24,7 +19,7 @@
                                    $id  = $categorylist->id
                                 @endphp
                                 <li class="nav-item">
-                                    <a class="nav-link"  href="{{ route('forbest', ['id' => $id]) }}"  role="tab" aria-controls="hot-elec-tab" aria-selected="false">
+                                    <a class="nav-link" wire:click="CategoryFilter('{{ $id }}')" role="tab" aria-controls="hot-elec-tab" aria-selected="false">
                                         {{ $categorylist->name }}
                                     </a>
                                 </li>
@@ -36,31 +31,31 @@
 
                     <div class="tab-content tab-content-carousel">
                         <div class="tab-pane p-0 fade show active" id="hot-all-tab" role="tabpanel" aria-labelledby="hot-all-link">
-                            <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
-                                data-owl-options='{
-                                    "nav": false, 
-                                    "dots": true,
-                                    "margin": 20,
-                                    "loop": false,
-                                    "responsive": {
-                                        "0": {
-                                            "items":2
-                                        },
-                                        "480": {
-                                            "items":2
-                                        },
-                                        "768": {
-                                            "items":3
-                                        },
-                                        "992": {
-                                            "items":4
-                                        },
-                                        "1280": {
-                                            "items":5,
-                                            "nav": true
-                                        }
+                            <div id="filtered-carousel" class="owl-carousel owl-simple carousel-equal-height" data-toggle="owl"
+                            data-owl-options='{
+                                "nav": false,
+                                "dots": true,
+                                "margin": 20,
+                                "loop": false,
+                                "responsive": {
+                                    "0": {
+                                        "items":2
+                                    },
+                                    "480": {
+                                        "items":2
+                                    },
+                                    "768": {
+                                        "items":3
+                                    },
+                                    "992": {
+                                        "items":4
+                                    },
+                                    "1280": {
+                                        "items":5,
+                                        "nav": true
                                     }
-                                }'>
+                                }
+                            }'>
                                 @foreach($productList as $key=>$product)
                                 @php
                                     // Initialize the original price
@@ -179,6 +174,44 @@
                                 </a>
                                 </div><!-- End .product -->
                             @endforeach
+                            <script>
+                                window.addEventListener('contentChanged', event => {
+                                    const owl = $('#filtered-carousel'); // Target the specific carousel
+                                    if (owl.length > 0) {
+                                        // Destroy the existing carousel to prevent duplication
+                                        $(owl).trigger('destroy.owl.carousel');
+                                        
+                                        // Remove any leftover Owl Carousel classes and elements
+                                        $(owl).html($(owl).find('.owl-stage-outer').html()).removeClass('owl-loaded owl-drag');
+                                        
+                                        // Reinitialize the Owl Carousel with the correct settings
+                                        $(owl).owlCarousel({
+                                            nav: false,
+                                            dots: true,
+                                            margin: 20,
+                                            loop: false,
+                                            responsive: {
+                                                0: {
+                                                    items: 2
+                                                },
+                                                480: {
+                                                    items: 2
+                                                },
+                                                768: {
+                                                    items: 3
+                                                },
+                                                992: {
+                                                    items: 4
+                                                },
+                                                1280: {
+                                                    items: 5,
+                                                    nav: true
+                                                }
+                                            }
+                                        });
+                                    }
+                                });
+                            </script>
                             </div><!-- End .owl-carousel -->
                         </div><!-- .End .tab-pane -->
                     </div><!-- End .tab-content -->
