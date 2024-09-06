@@ -16,6 +16,7 @@ class HotDealsProducts extends Component
         // Load initial categories and products
         $this->category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $this->productList = Product::where('deleted', 0)->get();
+
         foreach ($this->productList as $product) {
             $reviews = $product->reviews;
             if ($reviews->count() > 0) {
@@ -29,25 +30,27 @@ class HotDealsProducts extends Component
         }
     }
 
-    public function CategoryFilter($id)
+    public function CategoryFilter($id = null)
     {
         if ($id) {
+            // Filter products by category ID
             $this->productList = Product::where('category_id', $id)
                 ->where('deleted', 0)
                 ->get();
-        $this->dispatchBrowserEvent('contentChanged');
-
         } else {
+            // If no ID is passed, show all products
             $this->productList = Product::where('deleted', 0)->get();
         }
 
-        // If no products found, return to the previous page or handle accordingly
+        // Dispatch an event to handle the UI update
+        $this->dispatchBrowserEvent('contentChanged');
+
+        // Handle case when no products are found
         if ($this->productList->isEmpty()) {
             session()->flash('message', 'No products found for this category.');
             return;
         }
     }
-    
 
     public function render()
     {
@@ -57,3 +60,4 @@ class HotDealsProducts extends Component
         ]);
     }
 }
+
