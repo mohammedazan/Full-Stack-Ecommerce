@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Livewire;
+
+use App\Models\Brand;
 use App\Models\Commande;
 use App\Models\Product;
 use App\Models\ProductCategory;
@@ -17,6 +19,7 @@ class ProductDisplay extends Component
     public $productSubcategory;
     public $wishlistCount;
     public $CartCountEnCours = 0;
+    public $brandList;
 
     public function mount()
     {
@@ -25,6 +28,7 @@ class ProductDisplay extends Component
         $this->category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $this->productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $this->wishlistCount = Wishlist::where('user_id', Auth::id())->count();
+        $this->brandList = Brand::get();
 
         // Calculate average ratings for products
         foreach ($this->productList as $product) {
@@ -54,6 +58,32 @@ class ProductDisplay extends Component
         $this->layout = $layout;
     }
 
+    public function  productcategory($categoryId){
+        if ($categoryId) {
+            $this->productList= Product::where('category_id', $categoryId)
+                                  ->where('deleted', 0)
+                                  ->get();
+        } else {
+            $this->productList = Product::where('deleted', 0)->get();
+        }
+
+
+        if ($this->productList->isEmpty()) {
+            return redirect()->back();
+        }
+    }
+    public function productbrand($brandId) {
+        if (!$brandId) {
+            return redirect()->back();
+        }
+    
+        $this->productList= Product::where('brand_id', $brandId)->where('deleted', 0)->get();
+    
+        if ($this->productList->isEmpty()) {
+            return redirect()->back();
+        }
+    }
+
     public function render()
     {
         return view('livewire.product-display', [
@@ -62,7 +92,8 @@ class ProductDisplay extends Component
             'productSubcategory' => $this->productSubcategory,
             'wishlistCount' => $this->wishlistCount,
             'CartCountEnCours' => $this->CartCountEnCours,
-            'layout' => $this->layout
+            'layout' => $this->layout,
+            'brandList'=>$this->brandList
         ]);
     }
     

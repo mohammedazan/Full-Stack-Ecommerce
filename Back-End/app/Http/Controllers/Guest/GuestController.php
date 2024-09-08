@@ -213,8 +213,7 @@ class GuestController extends Controller
 
 
 
-
-    public function productcategory(Request $request) {
+/*     public function productcategory(Request $request) {
         $brandList = Brand::get();
         $CompanyInfo=CompanyInfo::get();
         $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
@@ -246,7 +245,8 @@ class GuestController extends Controller
         return view('guest/pages.product')->with(compact('productList','productSubcategory', 'category', 'brandList','CompanyInfo','wishlistCount','CartCountEnCours'));
     }
 
-  
+  */
+
 
 
 
