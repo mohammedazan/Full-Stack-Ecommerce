@@ -150,12 +150,7 @@ class GuestController extends Controller
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $brandList=Brand::get();
         $CompanyInfo=CompanyInfo::get();
-
         $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
-
-    
-
-
         foreach ($productList as $product) {
             $reviews = $product->reviews;
             if ($reviews->count() > 0) {
