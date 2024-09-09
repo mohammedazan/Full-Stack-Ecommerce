@@ -10,6 +10,7 @@ use App\Models\ProductSubCategory;
 use App\Models\Wishlist;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use App\Models\ProductImage;
 
 class ProductDisplay extends Component
 {
@@ -20,6 +21,8 @@ class ProductDisplay extends Component
     public $wishlistCount;
     public $CartCountEnCours = 0;
     public $brandList;
+    public $productdetail ;
+    public $productImage ; 
 
     public function mount()
     {
@@ -29,6 +32,8 @@ class ProductDisplay extends Component
         $this->productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $this->wishlistCount = Wishlist::where('user_id', Auth::id())->count();
         $this->brandList = Brand::get();
+        $this->productdetail = Product::get();
+        $this->productImage = ProductImage::get();
 
         // Calculate average ratings for products
         foreach ($this->productList as $product) {
@@ -93,7 +98,9 @@ class ProductDisplay extends Component
             'wishlistCount' => $this->wishlistCount,
             'CartCountEnCours' => $this->CartCountEnCours,
             'layout' => $this->layout,
-            'brandList'=>$this->brandList
+            'brandList'=>$this->brandList,
+            'productdetail' =>$this->productdetail ,
+            'productImage' => $this->productImage
         ]);
     }
     
