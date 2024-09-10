@@ -215,33 +215,36 @@
                                 @endforeach
                             </div><!-- End .products -->
                     
-                            <nav aria-label="Page navigation">
-                                <ul class="pagination">
-                                    @php
-                                        // Calculate the previous and next page numbers
-                                        $prevPage = max(1, $currentPage - 1);
-                                        $nextPage = min($totalPages, $currentPage + 1);
-                                    @endphp
-                            
-                                    <li class="page-item {{ $currentPage == 1 ? 'disabled' : '' }}">
-                                        <a class="page-link page-link-prev" href="?page={{ $prevPage }}" aria-label="Previous" tabindex="-1" aria-disabled="{{ $currentPage == 1 ? 'true' : 'false' }}">
-                                            <span aria-hidden="true"><i class="icon-long-arrow-left"></i></span>Prev
-                                        </a>
+                            @php
+                            // Preserve the layout in pagination links
+                            $prevPage = max(1, $currentPage - 1);
+                            $nextPage = min($totalPages, $currentPage + 1);
+                        @endphp
+                        
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination">
+                                <li class="page-item {{ $currentPage == 1 ? 'disabled' : '' }}">
+                                    <a class="page-link page-link-prev" href="?page={{ $prevPage }}&layout={{ $layout }}" aria-label="Previous" tabindex="-1" aria-disabled="{{ $currentPage == 1 ? 'true' : 'false' }}">
+                                        <span aria-hidden="true"><i class="icon-long-arrow-left"></i></span>Prev
+                                    </a>
+                                </li>
+                                
+                                @for($i = 1; $i <= $totalPages; $i++)
+                                    <li class="page-item {{ $currentPage == $i ? 'active' : '' }}">
+                                        <a class="page-link" href="?page={{ $i }}&layout={{ $layout }}">{{ $i }}</a>
                                     </li>
-                            
-                                    @for($i = 1; $i <= $totalPages; $i++)
-                                    <li class="page-item {{ $currentPage == $i ? 'active' : '' }}"><a class="page-link" href="?page={{ $i }}">{{ $i }}</a></li>
-                                    @endfor
-                            
-                                    <li class="page-item-total">of {{ $totalPages }}</li>
-                            
-                                    <li class="page-item {{ $currentPage == $totalPages ? 'disabled' : '' }}">
-                                        <a class="page-link page-link-next" href="?page={{ $nextPage }}" aria-label="Next">
-                                            Next <span aria-hidden="true"><i class="icon-long-arrow-right"></i></span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
+                                @endfor
+                                
+                                <li class="page-item-total">of {{ $totalPages }}</li>
+                                
+                                <li class="page-item {{ $currentPage == $totalPages ? 'disabled' : '' }}">
+                                    <a class="page-link page-link-next" href="?page={{ $nextPage }}&layout={{ $layout }}" aria-label="Next">
+                                        Next <span aria-hidden="true"><i class="icon-long-arrow-right"></i></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                
             @else
                             {{-- Display products in a vertical list --}}
                             <div class="products mb-3">
@@ -441,6 +444,15 @@
                 <div class="collapse show" id="widget-1">
                     <div class="widget-body">
                         <div class="filter-items filter-items-count">
+                            <div class="filter-item">
+                                <ul>
+                                    <li>
+                                        <a wire:click="productcategory()" href="#">
+                                            All
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div><!-- End .filter-item -->
                             @foreach($category as $key => $categorylist)
                             <div class="filter-item">
                                 <ul>
@@ -560,8 +572,7 @@
                     </div><!-- End .widget-body -->
                 </div><!-- End .collapse -->
             </div><!-- End .widget -->
-
-            <div class="widget widget-collapsible">
+{{--             <div class="widget widget-collapsible">
                 <h3 class="widget-title">
                     <a data-toggle="collapse" href="#widget-5" role="button" aria-expanded="true" aria-controls="widget-5">
                         Price
@@ -586,6 +597,27 @@
                 </div><!-- End .collapse -->
                 
                 
+            </div><!-- End .widget --> --}}
+
+            <div class="widget widget-collapsible">
+                <h3 class="widget-title">
+                    <a data-toggle="collapse" href="#widget-5" role="button" aria-expanded="true" aria-controls="widget-5">
+                        Price
+                    </a>
+                </h3><!-- End .widget-title -->
+
+                <div class="collapse show" id="widget-5">
+                    <div class="widget-body">
+                        <div class="filter-price">
+                            <div class="filter-price-text">
+                                Price Range:
+                                <span id="filter-price-range"></span>
+                            </div><!-- End .filter-price-text -->
+
+                            <div id="price-slider"></div><!-- End #price-slider -->
+                        </div><!-- End .filter-price -->
+                    </div><!-- End .widget-body -->
+                </div><!-- End .collapse -->
             </div><!-- End .widget -->
         </div><!-- End .sidebar sidebar-shop -->
     </aside><!-- End .col-lg-3 -->

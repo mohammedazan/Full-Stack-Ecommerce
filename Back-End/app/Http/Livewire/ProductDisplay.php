@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Brand;
 use App\Models\Commande;
+use App\Models\CompanyInfo;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProductSubCategory;
@@ -23,6 +24,7 @@ class ProductDisplay extends Component
     public $brandList;
     public $productdetail ;
     public $productImage ; 
+    public $CompanyInfo ;
 
     public function mount()
     {
@@ -34,6 +36,9 @@ class ProductDisplay extends Component
         $this->brandList = Brand::get();
         $this->productdetail = Product::get();
         $this->productImage = ProductImage::get();
+        $this->CompanyInfo = CompanyInfo::get() ;
+        // Set layout based on query string or default to 'grid'
+        $this->layout = request()->query('layout', 'grid');
 
         // Calculate average ratings for products
         foreach ($this->productList as $product) {
@@ -58,12 +63,15 @@ class ProductDisplay extends Component
         }
     }
 
+    // The layout switcher
     public function switchLayout($layout)
     {
         $this->layout = $layout;
+        session()->put('layout', $this->layout);
     }
+    
 
-    public function  productcategory($categoryId){
+    public function  productcategory($categoryId  = null ){
         if ($categoryId) {
             $this->productList= Product::where('category_id', $categoryId)
                                   ->where('deleted', 0)
