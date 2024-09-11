@@ -76,21 +76,6 @@
                                 @endphp
                                 @foreach($currentProducts as $key=>$product)
                                 @php
-                                        // Initialize the original price
-                                        $originalPrice = $product->current_sale_price;
-                            
-                                        // Calculate the discounted price based on discount type
-                                        if ($product->discount_type == 1) { // Percentage discount
-                                            $discountedPrice = $originalPrice - ($originalPrice * ($product->discount / 100));
-                                            $discountLabel = $product->discount . '% off';
-                                        } else if ($product->discount_type == 0) { // Fixed discount
-                                            $discountedPrice = $originalPrice - $product->discount;
-                                            $discountLabel = number_format(($product->discount / $originalPrice) * 100, 2) . '% off';
-                                        } else {
-                                            $discountedPrice = $originalPrice;
-                                            $discountLabel = null;
-                                        }
-                    
                                     // Get average rating and reviews count
                                     $avgRating = $product->avgRating;
                                     $reviewsCount = $product->reviewsCount;
@@ -108,6 +93,9 @@
                                     <div class="row">
                                         <div class="col-6 col-lg-3">
                                             <figure class="product-media">
+                                                @if($product->unit_type  >= 1 )
+                                                   <span class="product-label label-new">{{ $product->unit_type }} OFF</span>
+                                                @endif
                                                 <a  href="{{ route('productdetail', ['id' => $product->id]) }}">
                                                     <img src="{{ asset($product->image_path) }}"  alt="Product image" class="product-image">
                                                 </a>
@@ -182,18 +170,28 @@
                                                 @endphp
                                                     <a href="{{ route('product.category', ['id' => $id]) }}">{{ $product->productCategory->name }}</a>
                                                 </div><!-- End .product-cat -->
-                                                <h3 class="product-title"><a href="{{ route('productdetail', ['id' => $product->id]) }}">{{ $product->name }}</a></h3><!-- End .product-title -->
+                                                <h3 class="product-title">
+                                                    @php
+                                                    // Specify the desired length and use Str directly
+                                                    $name = $product->name;
+                                                    $limit_name = 50; // Limit to 100 characters
+                                                    @endphp
+                                                    <a href="{{ route('productdetail', ['id' => $product->id]) }}">{{ \Illuminate\Support\Str::limit($name, $limit_name, '') }} 
+                                                    @if(\Illuminate\Support\Str::length($name) > $limit_name)
+                                                        <a href="{{ route('productdetail', ['id' => $product->id]) }}" class="more-link">...</a>
+                                                    @endif
+                                                    </a></h3><!-- End .product-title -->
                     
                                                 <div class="product-content">
                                                     @php
                                                         // Specify the desired length and use Str directly
-                                                        $note = $product->productCategory->note;
+                                                        $description = $product->description;
                                                         $limit = 100; // Limit to 100 characters
                                                     @endphp
 
                                                     <p>
-                                                        {{ \Illuminate\Support\Str::limit($note, $limit, '') }} 
-                                                        @if(\Illuminate\Support\Str::length($note) > $limit)
+                                                        {{ \Illuminate\Support\Str::limit($description, $limit, '') }} 
+                                                        @if(\Illuminate\Support\Str::length($description) > $limit)
                                                             <a href="{{ route('productdetail', ['id' => $product->id]) }}" class="more-link">More</a>
                                                         @endif
                                                     </p>
@@ -201,7 +199,7 @@
                                                 @if($product->productImage->isNotEmpty()) 
                                                     <div class="product-nav product-nav-thumbs">
                                                         @foreach($product->productImage as $image)
-                                                            <a href="#" class="{{ $loop->first ? 'active' : '' }}">
+                                                            <a href="{{ route('productdetail', ['id' => $product->id]) }}" class="{{ $loop->first ? 'active' : '' }}">
                                                                 <img src="{{ asset($image->image) }}" alt="product image">
                                                             </a>
                                                         @endforeach
@@ -219,8 +217,7 @@
                             // Preserve the layout in pagination links
                             $prevPage = max(1, $currentPage - 1);
                             $nextPage = min($totalPages, $currentPage + 1);
-                        @endphp
-                        
+                            @endphp
                         <nav aria-label="Page navigation">
                             <ul class="pagination">
                                 <li class="page-item {{ $currentPage == 1 ? 'disabled' : '' }}">
@@ -275,28 +272,11 @@
                                 
                             
                                     @foreach($currentProducts as $key=>$product)
-                                    @php
-                                        // Initialize the original price
-                                        $originalPrice = $product->current_sale_price;
-                            
-                                        // Calculate the discounted price based on discount type
-                                        if ($product->discount_type == 1) { // Percentage discount
-                                            $discountedPrice = $originalPrice - ($originalPrice * ($product->discount / 100));
-                                            $discountLabel = $product->discount . '% off';
-                                        } else if ($product->discount_type == 0) { // Fixed discount
-                                            $discountedPrice = $originalPrice - $product->discount;
-                                            $discountLabel = number_format(($product->discount / $originalPrice) * 100, 2) . '% off';
-                                        } else {
-                                            $discountedPrice = $originalPrice;
-                                            $discountLabel = null;
-                                        }
-                                    @endphp
-                            
                                     <div class="col-6 col-md-4 col-lg-4">
                                         <div class="product product-7 text-center">
                                             <figure class="product-media">
-                                                @if($discountLabel  >= 1 )
-                                                <span class="product-label label-new">{{ $discountLabel }}</span>
+                                                @if($product->unit_type  >= 1 )
+                                                   <span class="product-label label-new">{{ $product->unit_type }} OFF</span>
                                                 @endif
                                                 <a href="{{ route('productdetail', ['id' => $product->id]) }}">
                                                     <img src="{{ asset($product->image_path) }}"  alt="Product image" class="product-image">
@@ -328,7 +308,16 @@
                                                     <a href="{{ route('product.category', ['id' => $id]) }}">{{ $product->productCategory->name }}</a>
                                                 </div><!-- End .product-cat -->
                                                 <h3 class="product-title">
-                                                    <a href="{{ route('productdetail', ['id' => $product->id]) }}">{{ $product->name }}</a>
+                                                    @php
+                                                    // Specify the desired length and use Str directly
+                                                    $name = $product->name;
+                                                    $limit_name = 25 // Limit to 100 characters
+                                                    @endphp
+                                                    <a href="{{ route('productdetail', ['id' => $product->id]) }}">{{ \Illuminate\Support\Str::limit($name, $limit_name, '') }} 
+                                                    @if(\Illuminate\Support\Str::length($name) > $limit_name)
+                                                        <a href="{{ route('productdetail', ['id' => $product->id]) }}" class="more-link">..</a>
+                                                    @endif
+                                                    </a>
                                                 </h3><!-- End .product-title -->
                                                 <div class="product-price">
                                                     @if ($product->previous_wholesale_price != $product->current_sale_price)
@@ -361,7 +350,7 @@
                                                 @if($product->productImage->isNotEmpty()) 
                                                     <div class="product-nav product-nav-thumbs">
                                                         @foreach($product->productImage as $image)
-                                                            <a href="#" class="{{ $loop->first ? 'active' : '' }}">
+                                                            <a href="{{ route('productdetail', ['id' => $product->id]) }}" class="{{ $loop->first ? 'active' : '' }}">
                                                                 <img src="{{ asset($image->image) }}" alt="product image">
                                                             </a>
                                                         @endforeach
@@ -572,7 +561,7 @@
                     </div><!-- End .widget-body -->
                 </div><!-- End .collapse -->
             </div><!-- End .widget -->
-{{--             <div class="widget widget-collapsible">
+            <div class="widget widget-collapsible">
                 <h3 class="widget-title">
                     <a data-toggle="collapse" href="#widget-5" role="button" aria-expanded="true" aria-controls="widget-5">
                         Price
@@ -597,9 +586,8 @@
                 </div><!-- End .collapse -->
                 
                 
-            </div><!-- End .widget --> --}}
-
-            <div class="widget widget-collapsible">
+            </div><!-- End .widget -->
+{{--             <div class="widget widget-collapsible">
                 <h3 class="widget-title">
                     <a data-toggle="collapse" href="#widget-5" role="button" aria-expanded="true" aria-controls="widget-5">
                         Price
@@ -618,7 +606,8 @@
                         </div><!-- End .filter-price -->
                     </div><!-- End .widget-body -->
                 </div><!-- End .collapse -->
-            </div><!-- End .widget -->
+            </div><!-- End .widget --> --}}
+
         </div><!-- End .sidebar sidebar-shop -->
     </aside><!-- End .col-lg-3 -->
     <script>

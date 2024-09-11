@@ -58,22 +58,8 @@
                             }'>
                                 @foreach($productList as $key=>$product)
                                 @php
-                                    // Initialize the original price
-                                    $originalPrice = $product->current_sale_price;
-                            
-                                    // Calculate the discounted price based on discount type
-                                    if ($product->discount_type == 1) { // Percentage discount
-                                        $discountedPrice = $originalPrice - ($originalPrice * ($product->discount / 100));
-                                        $discountLabel = $product->discount . '% off';
-                                    } else if ($product->discount_type == 0) { // Fixed discount
-                                        $discountedPrice = $originalPrice - $product->discount;
-                                        $discountLabel = number_format(($product->discount / $originalPrice) * 100, 2) . '% off';
-                                    } else {
-                                        $discountedPrice = $originalPrice;
-                                        $discountLabel = null;
-                                    }
-                                    									  // Get average rating and reviews count
-									  $avgRating = $product->avgRating;
+                                    // Get average rating and reviews count
+									$avgRating = $product->avgRating;
                                     $reviewsCount = $product->reviewsCount;
                                     
                                     // Calculate full stars and half star
@@ -87,8 +73,8 @@
                             
                                 <div class="product">
                                     <figure class="product-media">
-                                        @if($discountLabel >= 1)
-                                            <span class="product-label label-sale">{{ $discountLabel }}</span>
+                                        @if($product->unit_type  >= 1 )
+                                        <span class="product-label label-sale">{{ $product->unit_type }} OFF</span>
                                         @endif
                                         <a href="{{ route('productdetail', ['id' => $product->id]) }}">
                                             <img src="{{ asset($product->image_path) }}" alt="Product image" class="product-image">
