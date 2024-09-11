@@ -106,10 +106,10 @@
                                             <div class="product-list-action">
                                                 <div class="product-price">
                                                     @if ($product->previous_wholesale_price != $product->current_sale_price)
-                                                        <span class="new-price">{{ $product->current_sale_price }}</span>
-                                                        <sm class="old-price">Was {{ $product->previous_wholesale_price  }}  DH</sm>
+                                                        <span class="new-price">{{ number_format($product->current_sale_price, 0) }}</span>
+                                                        <sm class="old-price">Was {{ number_format($product->previous_wholesale_price, 0) }} DH</sm>
                                                     @else
-                                                        <span class="old-price">{{ $product->current_sale_price }}  DH</span>
+                                                        <span class="old-price"> {{ number_format($product->previous_wholesale_price, 0) }}  DH</span>
                                                     @endif
                                                 </div><!-- End .product-price -->
                                                 @if ($product->reviews->isNotEmpty())
@@ -321,10 +321,10 @@
                                                 </h3><!-- End .product-title -->
                                                 <div class="product-price">
                                                     @if ($product->previous_wholesale_price != $product->current_sale_price)
-                                                        <span class="new-price">{{ $product->current_sale_price }}</span>
-                                                        <sm class="old-price">Was {{ $product->previous_wholesale_price  }}  DH</sm>
-                                                    @else
-                                                        <span class="old-price">{{ $product->current_sale_price }}  DH</span>
+                                                    <span class="new-price">{{ number_format($product->current_sale_price, 0) }}</span>
+                                                    <sm class="old-price">Was {{ number_format($product->previous_wholesale_price, 0) }} DH</sm>
+                                                     @else
+                                                    <span class="old-price"> {{ number_format($product->previous_wholesale_price, 0) }}  DH</span>
                                                     @endif
                                                 </div><!-- End .product-price -->
                                                 @if (isset($product->reviewsCount) && $product->reviewsCount > 0)
