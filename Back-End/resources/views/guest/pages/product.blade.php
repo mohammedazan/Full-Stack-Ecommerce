@@ -70,7 +70,7 @@
 
             <div class="page-content">
                 <div class="container">
-						@livewire('product-display')
+                        @livewire('product-display', ['id' => $ID])
                 </div><!-- End .container -->
             </div><!-- End .page-content -->
         </main><!-- End .main -->

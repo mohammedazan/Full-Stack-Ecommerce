@@ -22,23 +22,50 @@ class ProductDisplay extends Component
     public $wishlistCount;
     public $CartCountEnCours = 0;
     public $brandList;
-    public $productdetail ;
-    public $productImage ; 
-    public $CompanyInfo ;
+    public $productdetail;
+    public $productImage;
+    public $CompanyInfo;
 
-    public function mount()
-    {
-        // Initialize your properties
-        $this->productList = Product::where('deleted', 0)->get();
+    // Mount method to initialize properties and filter products
+    public function mount($id = null) {
+        // Initialize properties
         $this->category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $this->productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $this->wishlistCount = Wishlist::where('user_id', Auth::id())->count();
         $this->brandList = Brand::get();
         $this->productdetail = Product::get();
         $this->productImage = ProductImage::get();
-        $this->CompanyInfo = CompanyInfo::get() ;
+        $this->CompanyInfo = CompanyInfo::get();
+
         // Set layout based on query string or default to 'grid'
         $this->layout = request()->query('layout', 'grid');
+
+        // Filter products by category
+        $this->productcategory($id);
+    }
+
+        // The layout switcher
+    public function switchLayout($layout) {
+        $this->layout = $layout;
+        session()->put('layout', $this->layout);
+    }
+
+    // Function to filter products by category
+    public function productcategory($categoryId = null) {
+        if ($categoryId) {
+            // Filter products based on the selected category
+            $this->productList = Product::where('category_id', $categoryId)
+                                        ->where('deleted', 0)
+                                        ->get();
+        } else {
+            // Show all products if no category is selected
+            $this->productList = Product::where('deleted', 0)->get();
+        }
+
+        // If no products are found, redirect back
+        if ($this->productList->isEmpty()) {
+            return redirect()->back();
+        }
 
         // Calculate average ratings for products
         foreach ($this->productList as $product) {
@@ -55,50 +82,21 @@ class ProductDisplay extends Component
 
         // Calculate cart count for ongoing orders
         $commandesEnCours = Commande::where('users_id', Auth::id())
-            ->where('etat', 'en cours')
-            ->get();
+                                    ->where('etat', 'en cours')
+                                    ->get();
 
         foreach ($commandesEnCours as $commande) {
             $this->CartCountEnCours += $commande->lignecommande->count();
         }
     }
-
-    // The layout switcher
-    public function switchLayout($layout)
-    {
-        $this->layout = $layout;
-        session()->put('layout', $this->layout);
-    }
+    public function productbrand($brandId) { if (!$brandId) { return redirect()->back();
+    } $this->productList= Product::where('brand_id', $brandId)->where('deleted', 0)->get();
     
+    if ($this->productList->isEmpty()) { return redirect()->back();
+    } } 
 
-    public function  productcategory($categoryId  = null ){
-        if ($categoryId) {
-            $this->productList= Product::where('category_id', $categoryId)
-                                  ->where('deleted', 0)
-                                  ->get();
-        } else {
-            $this->productList = Product::where('deleted', 0)->get();
-        }
-
-
-        if ($this->productList->isEmpty()) {
-            return redirect()->back();
-        }
-    }
-    public function productbrand($brandId) {
-        if (!$brandId) {
-            return redirect()->back();
-        }
-    
-        $this->productList= Product::where('brand_id', $brandId)->where('deleted', 0)->get();
-    
-        if ($this->productList->isEmpty()) {
-            return redirect()->back();
-        }
-    }
-
-    public function render()
-    {
+    // Render the view
+    public function render() {
         return view('livewire.product-display', [
             'productList' => $this->productList,
             'category' => $this->category,
@@ -106,11 +104,10 @@ class ProductDisplay extends Component
             'wishlistCount' => $this->wishlistCount,
             'CartCountEnCours' => $this->CartCountEnCours,
             'layout' => $this->layout,
-            'brandList'=>$this->brandList,
-            'productdetail' =>$this->productdetail ,
-            'productImage' => $this->productImage
+            'brandList' => $this->brandList,
+            'productdetail' => $this->productdetail,
+            'productImage' => $this->productImage,
         ]);
     }
-    
 }
 

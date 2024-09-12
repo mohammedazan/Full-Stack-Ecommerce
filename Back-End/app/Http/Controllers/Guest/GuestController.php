@@ -145,6 +145,7 @@ class GuestController extends Controller
     // }
 
     public function product(){
+        $ID = null ;
         $productList = Product::where('deleted', 0)->get();
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
@@ -172,7 +173,7 @@ class GuestController extends Controller
             $CartCountEnCours += $commande->lignecommande->count();
             }  
 
-        return view('guest/pages.product')->with(compact('productList','category','brandList','productSubcategory','CompanyInfo','wishlistCount','CartCountEnCours'));
+        return view('guest/pages.product')->with(compact('productList','category','brandList','productSubcategory','CompanyInfo','wishlistCount','CartCountEnCours','ID'));
     }
 
 
@@ -213,7 +214,8 @@ class GuestController extends Controller
 
 
 
-/*     public function productcategory(Request $request) {
+    public function productcategory(Request $request) {
+        $ID =  $request->id ;
         $brandList = Brand::get();
         $CompanyInfo=CompanyInfo::get();
         $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
@@ -242,10 +244,10 @@ class GuestController extends Controller
  
 
         
-        return view('guest/pages.product')->with(compact('productList','productSubcategory', 'category', 'brandList','CompanyInfo','wishlistCount','CartCountEnCours'));
+        return view('guest/pages.product')->with(compact('productList','productSubcategory', 'category', 'brandList','CompanyInfo','wishlistCount','CartCountEnCours','ID'));
     }
 
-  */
+
 
 
 
@@ -284,6 +286,7 @@ class GuestController extends Controller
 
 
     public function productsubcategory(Request $request) {
+        $ID =  $request->id ; 
         $brandList = Brand::get();
         $CompanyInfo=CompanyInfo::get();
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
@@ -312,7 +315,7 @@ class GuestController extends Controller
             $CartCountEnCours += $commande->lignecommande->count();
             }
  
-        return view('guest/pages.product')->with(compact('productList', 'productSubcategory','category', 'brandList','CompanyInfo','wishlistCount','CartCountEnCours'));
+        return view('guest/pages.product')->with(compact('productList', 'productSubcategory','category', 'brandList','CompanyInfo','wishlistCount','CartCountEnCours','ID'));
     }
     
 

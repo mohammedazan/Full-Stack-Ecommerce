@@ -378,7 +378,7 @@ public function productUpdate(Request $request)
             if (!file_exists($filePath)) {
                 mkdir($filePath, 666, true);
             }
-            $logo_image = Image::make(file_get_contents($image))->resize(400, 400);
+            $logo_image = Imag::make(file_get_contents($image))->resize(400, 400);
             $logo_image->brightness(8);
             $logo_image->contrast(11);
             $logo_image->sharpen(5);
