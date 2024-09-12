@@ -144,8 +144,8 @@
             <!-- End .blog-posts -->
 
 
-                 <!-- start .container-Subscribe  -->
-                 @include('guest/partials.container-Subscribe ')
+            <!-- start .container-Subscribe  -->
+                 @livewire('container-subscribe')
             <!-- End .container-Subscribe  -->
 
 

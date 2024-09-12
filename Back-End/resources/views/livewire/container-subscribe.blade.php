@@ -1,4 +1,3 @@
-{{-- 
 <div class="icon-boxes-container">
     <div class="container">
         <div class="row">
@@ -82,4 +81,4 @@
                         
                     </div><!-- End .row -->
                 </div><!-- End .container -->
-            </div> --}}
+            </div>
