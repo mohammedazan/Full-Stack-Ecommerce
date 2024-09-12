@@ -436,7 +436,7 @@
                             <div class="filter-item">
                                 <ul>
                                     <li>
-                                        <a wire:click="productcategory()" href="#">
+                                        <a wire:click="filterByCategory()" href="#">
                                             All
                                         </a>
                                     </li>
@@ -446,7 +446,7 @@
                             <div class="filter-item">
                                 <ul>
                                     <li>
-                                        <a wire:click="productcategory('{{ $categorylist->id }}')" href="#">
+                                        <a wire:click="filterByCategory('{{ $categorylist->id }}')" href="#">
                                             {{ $categorylist->name }}
                                         </a>
                                     </li>
@@ -551,7 +551,7 @@
                             <div class="filter-item">
                                 <ul>
                                     <li>
-                                        <a wire:click="productbrand('{{ $brand->id }}')" href="#">{{ $brand->name }}</a>
+                                        <a wire:click="filterByBrand('{{ $brand->id }}')" href="#">{{ $brand->name }}</a>
                                     </li>
                                 </ul>
                             </div><!-- End .filter-item -->
