@@ -128,7 +128,9 @@
                                     </div><!-- End .ratings -->
                                     <span class="ratings-text">({{ $productdetail->reviews->count() }} Reviews)</span>
                                 </div><!-- End .rating-container -->
-                                
+                                <div class="product-content">
+                                    <p></p>
+                                </div>
                                 <div class="product-price">
                                     @php
                                     $originalPrice = $productdetail->current_sale_price;
@@ -143,15 +145,12 @@
                                         $discountLabel = null;
                                     }
                                     @endphp
-									@if ($productdetail->previous_wholesale_price != $productdetail->current_sale_price)
-                                    <span class="new-price">{{ $productdetail->current_sale_price }}</span>
-                                    <sm class="old-price">Was {{ $productdetail->previous_wholesale_price  }}  DH</sm>
+                                    @if ($productdetail->previous_wholesale_price != $productdetail->current_sale_price)
+                                        <span class="new-price">{{ number_format($productdetail->current_sale_price, 0) }}</span>
+                                        <sm class="old-price">Was {{ number_format($productdetail->previous_wholesale_price, 0) }} DH</sm>
                                     @else
-                                        <span class="old-price">{{ $productdetail->current_sale_price }}  DH</span>
+                                        <span class="old-price"> {{ number_format($productdetail->previous_wholesale_price, 0) }}  DH</span>
                                     @endif
-                                </div>
-                                <div class="product-content">
-                                    <p>{{ $productdetail->productCategory->note }}</p>
                                 </div>
                                 @if($productdetail->color)
                                     <div class="details-filter-row details-row-size">
@@ -180,11 +179,16 @@
          
                                             <form action="{{ route('wishlist.add') }}" method="POST">
                                                 @csrf
-                                                <input type="hidden" name="product_id" value="{{ $productdetail->id }}">
-                                                <button type="submit" class="btn-product btn-cart"><span>Add to Wishlist</span></button>
+                                                <input type="hidden" name="product_id" value="{{ $productdetail->id }}" >
+                                                <button type="submit"class="btn-product btn-wishlist"><span>Add to Wishlist</span></button>
                                             </form>	
 
                                         </div>
+                                        {{-- 
+                                        <div class="details-action-wrapper">
+                                            <a href="#" class="btn-product btn-wishlist" title="Wishlist"><span>Add to Wishlist</span></a>
+                                            <a href="#" class="btn-product btn-compare" title="Compare"><span>Add to Compare</span></a>
+                                        </div><!-- End .details-action-wrapper --> --}}
                                     </div>
                               
                                 <div class="product-details-footer details-footer-col">
@@ -378,12 +382,12 @@
                             <a href="{{ route('product.category', ['id' => $id]) }}">{{ $product->productCategory->name }}</a>
                         </div><!-- End .product-cat -->
                         <h3 class="product-title"><a href="{{ route('productdetail', ['id' => $product->id]) }}">{{ $product->name }}</a></h3><!-- End .product-title -->
-                        <div class="product-price">
-                            @if ($product->previous_wholesale_price != $product->current_sale_price)
-                            <span class="new-price">{{ $product->current_sale_price }}</span>
-                            <sm class="old-price">Was {{ $product->previous_wholesale_price  }}  DH</sm>
+                        <div class="product-price">                        
+                        @if ($product->previous_wholesale_price != $product->current_sale_price)
+                            <span class="new-price">{{ number_format($product->current_sale_price, 0) }}</span>
+                            <sm class="old-price">Was {{ number_format($product->previous_wholesale_price, 0) }} DH</sm>
                         @else
-                            <span class="old-price">{{ $product->current_sale_price }}  DH</span>
+                            <span class="old-price"> {{ number_format($product->previous_wholesale_price, 0) }}  DH</span>
                         @endif
                         </div><!-- End .product-price -->
                         @if ($product->reviews->isNotEmpty())

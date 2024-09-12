@@ -130,7 +130,6 @@ class ProductDisplay extends Component
                 $product->reviewsCount = 0;
             }
         }
-
         // Calculate cart count for ongoing orders
         $commandesEnCours = Commande::where('users_id', Auth::id())
                                     ->where('etat', 'en cours')
