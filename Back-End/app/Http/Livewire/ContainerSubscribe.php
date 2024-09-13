@@ -11,16 +11,19 @@ class ContainerSubscribe extends Component
 
     public function subscribe()
     {
+        // Debugging log to check if the function is being accessed
+        logger('Function subscribe is being accessed');
+
         $this->validate([
             'email' => 'required|email|unique:newsletters',
         ]);
 
-        $newsletter = new Newsletter();
+        $newsletter = new Newsletter;
         $newsletter->email = $this->email;
-        $newsletter->save();
-
+        $newsletter->save(); // Corrected line
         session()->flash('success', 'Thank you for subscribing!');
-        $this->email = '';
+
+        $this->reset('email');
     }
 
     public function render()

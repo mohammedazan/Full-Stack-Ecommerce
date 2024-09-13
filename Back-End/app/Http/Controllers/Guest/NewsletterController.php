@@ -9,19 +9,6 @@ use function PHPUnit\Framework\returnSelf;
 
 class NewsletterController extends Controller
 {
-    public function subscribe(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|email|unique:newsletters',
-        ]);
-
-        $newsletter = new Newsletter;
-        $newsletter->email = $request->email;
-        $newsletter->save(); // Corrected line
-
-        return back()->with('success', 'Thank you for subscribing!');
-    }
-
     public function list_subscribe(){
         $list_subscribe = Newsletter::get();
         return view('adminPanel.Newsletter.list-subscribe')->with(compact('list_subscribe'));

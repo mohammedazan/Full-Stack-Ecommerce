@@ -1,8 +1,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
-
 <!-- molla/index-13.html  22 Nov 2019 09:59:06 GMT -->
 <head>
     <meta charset="UTF-8">
@@ -56,6 +54,7 @@
         });
     </script>
     @livewireStyles
+    <livewire:styles />
 </head>
 
 
@@ -145,7 +144,7 @@
 
 
             <!-- start .container-Subscribe  -->
-                 @livewire('container-subscribe')
+            @livewire('container-subscribe')
             <!-- End .container-Subscribe  -->
 
 
@@ -206,6 +205,7 @@
 
     <script src= "{{asset('assets/js/demos/demo-13.js')}}"></script>
     @livewireScripts
+    <livewire:scripts />
 </body>
 <!-- molla/index-13.html  22 Nov 2019 09:59:31 GMT -->
 </html>

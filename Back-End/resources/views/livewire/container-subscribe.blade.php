@@ -1,3 +1,5 @@
+<div>
+
 <div class="icon-boxes-container">
     <div class="container">
         <div class="row">
@@ -60,15 +62,21 @@
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-2xl-5col">
-                            <h3 class="cta-title text-white">Join Our Newsletter</h3><!-- End .cta-title -->
+                            <h3 class="cta-title text-white">Join Our Newsletter </h3><!-- End .cta-title -->
                             <p class="cta-desc text-white">Subcribe to get information about products and coupons</p><!-- End .cta-desc -->
+                            <a wire:click="subscribe()" href="#">
+                                TEST
+                             </a>
                         </div><!-- End .col-lg-5 -->
-                        
                         <div class="col-3xl-5col">
-                            <form action="{{ route('subscribe') }}" method="POST">
-                                @csrf
+                            @if (session()->has('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+                            <form wire:submit.prevent="subscribe">
                                 <div class="input-group">
-                                    <input type="email" name="email" class="form-control form-control-white" placeholder="Enter your Email Address" aria-label="Email Address" required>
+                                    <input type="email" name="email" wire:model='email' class="form-control form-control-white" placeholder="Enter your Email Address" aria-label="Email Address" required>
                                     <div class="input-group-append">
                                         <button class="btn btn-outline-white-2" type="submit">
                                             <span>Subscribe</span>
@@ -78,7 +86,7 @@
                                 </div><!-- .End .input-group -->
                             </form>
                         </div><!-- End .col-lg-7 -->
-                        
                     </div><!-- End .row -->
                 </div><!-- End .container -->
             </div>
+</div>
