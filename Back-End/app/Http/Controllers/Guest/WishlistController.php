@@ -24,8 +24,6 @@ class WishlistController extends Controller
         // Fetch wishlist items associated with the authenticated user
         $wishlistItems = Wishlist::where('user_id', Auth::id())->with('product')->get();
         $CompanyInfo=CompanyInfo::get();
-
-        
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $productCategory = ProductCategory::where('deleted', 0)->where('status', 1)->get();
@@ -83,12 +81,5 @@ class WishlistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function remove($id)
-    {
-        // Find the wishlist item and delete it
-        $wishlistItem = Wishlist::findOrFail($id);
-        $wishlistItem->delete();
-        // Redirect back to the wishlist page with a success message
-        return redirect()->back()->with('success', 'Product removed from wishlist.');
-    }
+
 }

@@ -263,9 +263,7 @@ Route::group(['middleware' => 'AuthCheckUser'], function () {
 
 
    Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
-   Route::delete('/wishlist/remove/{id}', [WishlistController::class, 'remove'])->name('wishlist.remove');   
    Route::post('/wishlist/add', [WishlistController::class, 'add'])->name('wishlist.add');
-
    Route::post('/forbest/review/store', [ReviewProduct::class, 'addreview'])->name('forbest.review.store');
 
 
