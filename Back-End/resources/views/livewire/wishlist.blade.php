@@ -1,7 +1,7 @@
 <div class="page-content">
     <div class="container">
         @if($wishlistItems->isEmpty())
-        <div class="alert alert-info text-center">
+        <div class="alert  text-center">
             Your wishlist is empty. <a href="{{ route('product') }}" class="btn btn-primary">Start Shopping</a>
         </div>
         @else

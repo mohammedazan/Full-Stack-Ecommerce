@@ -26,6 +26,7 @@ class ProductDisplay extends Component
     public $productdetail;
     public $productImage;
     public $CompanyInfo;
+    public $product_id;
 
     // Initialize properties and filter products based on $id and $filterSource
     public function mount($id = null, $filterSource = null) {
@@ -138,6 +139,38 @@ class ProductDisplay extends Component
         foreach ($commandesEnCours as $commande) {
             $this->CartCountEnCours += $commande->lignecommande->count();
         }
+    }
+
+    public function add($id_Wishlist)
+    {
+        // Assign the passed ID to the public property
+        $this->product_id = $id_Wishlist;
+
+        // Validate the product ID
+        $this->validate([
+            'product_id' => 'required|integer|exists:products,id', // Validate the product exists
+        ]);
+
+        // Check if the product is already in the user's wishlist
+        $exists = Wishlist::where('user_id', Auth::id())
+            ->where('product_id', $this->product_id)
+            ->exists();
+
+        if ($exists) {
+            return redirect()->back()->with('error', 'Product is already in your wishlist.');
+        }
+
+        // Create a new wishlist item
+        Wishlist::create([
+            'user_id' => Auth::id(),
+            'product_id' => $this->product_id,
+        ]);
+
+        // Optionally, update the wishlist count
+        $this->wishlistCount = Wishlist::where('user_id', Auth::id())->count();
+
+        // Redirect or notify the user
+        return redirect()->back()->with('success', 'Product added to wishlist.');
     }
 
     // Layout switcher
