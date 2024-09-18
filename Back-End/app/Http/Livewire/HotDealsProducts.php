@@ -10,13 +10,23 @@ class HotDealsProducts extends Component
 {
     public $category;
     public $productList;
+    public $activeCategory = null; // Default to null for "All"
 
     public function mount()
     {
-        // Load initial categories and products
-        $this->category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
+        // Fetch categories with related products count and sort them consistently
+        $this->category = ProductCategory::where('status', 1)
+            ->where('deleted', 0)
+            ->withCount('products')
+            ->orderBy('products_count', 'desc')
+            ->orderBy('name', 'asc')
+            ->take(4)
+            ->get();
+
+        // Load all products
         $this->productList = Product::where('deleted', 0)->get();
 
+        // Calculate ratings for each product
         foreach ($this->productList as $product) {
             $reviews = $product->reviews;
             if ($reviews->count() > 0) {
@@ -32,20 +42,18 @@ class HotDealsProducts extends Component
 
     public function CategoryFilter($id = null)
     {
+        $this->activeCategory = $id; // Set the active category
+
         if ($id) {
-            // Filter products by category ID
             $this->productList = Product::where('category_id', $id)
                 ->where('deleted', 0)
                 ->get();
         } else {
-            // If no ID is passed, show all products
             $this->productList = Product::where('deleted', 0)->get();
         }
 
-        // Dispatch an event to handle the UI update
         $this->dispatchBrowserEvent('contentChanged');
 
-        // Handle case when no products are found
         if ($this->productList->isEmpty()) {
             session()->flash('message', 'No products found for this category.');
             return;
@@ -60,4 +68,7 @@ class HotDealsProducts extends Component
         ]);
     }
 }
+
+
+
 

@@ -53,9 +53,7 @@ class WishlistController extends Controller
         $request->validate([
             'product_id' => 'required|integer|exists:products,id',
         ]);
-    
-    
-
+        
         // Check if the product is already in the user's wishlist
         $exists = Wishlist::where('user_id', Auth::id())
             ->where('product_id', $request->product_id)

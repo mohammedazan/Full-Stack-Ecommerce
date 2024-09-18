@@ -4,28 +4,23 @@
                         <div class="heading-left">
                             <h2 class="title">Our Products</h2><!-- End .title -->
                         </div><!-- End .heading-left -->
-
-                       <div class="heading-right">
-                            <ul class="nav nav-pills nav-border-anim justify-content-center" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" wire:click="CategoryFilter()" role="tab" aria-controls="hot-all-tab" aria-selected="true">All</a>
-                                </li>
-                                @php
-                                // Shuffle the category collection and take the first six
-                                $randomCategories = $category->shuffle()->take(4);
-                                @endphp
-                                @foreach($randomCategories as $key => $categorylist)
-                                @php
-                                   $id  = $categorylist->id
-                                @endphp
-                                <li class="nav-item">
-                                    <a class="nav-link" wire:click="CategoryFilter('{{ $id }}')" role="tab" aria-controls="hot-elec-tab" aria-selected="false">
-                                        {{ $categorylist->name }}
-                                    </a>
-                                </li>
-                                @endforeach
-                            </ul>
-                       </div>
+                            <div class="heading-right">
+                                <ul class="nav nav-pills nav-border-anim justify-content-center" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link {{ is_null($activeCategory) ? 'active' : '' }}" wire:click="CategoryFilter()" role="tab" aria-controls="hot-all-tab" aria-selected="{{ is_null($activeCategory) ? 'true' : 'false' }}">All</a>
+                                    </li>
+                                    @foreach($category as $categorylist)
+                                        @php
+                                        $id  = $categorylist->id;
+                                        @endphp
+                                        <li class="nav-item">
+                                            <a class="nav-link {{ $activeCategory == $id ? 'active' : '' }}" wire:click="CategoryFilter('{{ $id }}')" role="tab" aria-controls="hot-elec-tab" aria-selected="{{ $activeCategory == $id ? 'true' : 'false' }}">
+                                                {{ $categorylist->name }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
                        <!-- End .heading-right -->
                     </div><!-- End .heading -->
 

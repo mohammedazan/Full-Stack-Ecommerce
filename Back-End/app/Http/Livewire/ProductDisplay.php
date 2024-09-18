@@ -143,36 +143,38 @@ class ProductDisplay extends Component
 
     public function add($id_Wishlist)
     {
-        // Assign the passed ID to the public property
+        if (!Auth::check()) {
+            return redirect()->back()->with('success', 'تم إضافة المنتج إلى قائمة الأمنيات.');
+        }
+    
         $this->product_id = $id_Wishlist;
-
-        // Validate the product ID
+    
         $this->validate([
-            'product_id' => 'required|integer|exists:products,id', // Validate the product exists
+            'product_id' => 'required|integer|exists:products,id',
         ]);
-
-        // Check if the product is already in the user's wishlist
+    
         $exists = Wishlist::where('user_id', Auth::id())
             ->where('product_id', $this->product_id)
             ->exists();
-
+    
         if ($exists) {
-            return redirect()->back()->with('error', 'Product is already in your wishlist.');
+            return redirect()->back()->with('error', 'المنتج موجود بالفعل في قائمة الأمنيات.');
         }
-
-        // Create a new wishlist item
+    
         Wishlist::create([
             'user_id' => Auth::id(),
             'product_id' => $this->product_id,
         ]);
-
-        // Optionally, update the wishlist count
-        $this->wishlistCount = Wishlist::where('user_id', Auth::id())->count();
-
-        // Redirect or notify the user
-        return redirect()->back()->with('success', 'Product added to wishlist.');
+    
+        // إطلاق الحدث لتحديث عدد المنتجات في قائمة الأمنيات في الهيدر
+        $this->emit('wishlistUpdated');
+        dd('test conextion new'); 
+        
+    
+        return redirect()->back()->with('success', 'تم إضافة المنتج إلى قائمة الأمنيات.');
     }
-
+    
+    
     // Layout switcher
     public function switchLayout($layout) {
         $this->layout = $layout;

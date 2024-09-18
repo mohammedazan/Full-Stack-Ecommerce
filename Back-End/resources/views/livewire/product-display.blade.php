@@ -159,15 +159,23 @@
                                         <div class="col-lg-6">
                                             <div class="product-body product-action-inner">
                                                 {{-- <a href="#" class="btn-product btn-wishlist" title="Add to wishlist"><span>add to wishlist</span></a> --}}
-                                                    <form action="{{ route('wishlist.add') }}" method="POST">
-                                                        @csrf
-                                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                                        <button type="submit" class="btn-product-icon btn-wishlist btn-expandable"><span>Add to Wishlist</span></button>
-                                                    </form>												
-                                                    <div class="product-cat">
-                                                @php
-                                                    $id = $product->productCategory->id
-                                                @endphp
+                                                <script>
+                                                    $(document).ready(function(){
+                                                        // Toastr Initialization
+                                                        @if(Session::has('success'))
+                                                            toastr.success("{{ Session::get('success') }}");
+                                                        @endif
+                                            
+                                                        @if(Session::has('error'))
+                                                            toastr.error("{{ Session::get('error') }}");
+                                                        @endif
+                                                    });
+                                                </script>
+                                                <button type="button" wire:click="add('{{ $product->id }}')"  class="btn-product-icon btn-wishlist btn-expandable"><span>Add to Wishlist</span></button>
+                                                <div class="product-cat">
+                                                    @php
+                                                        $id = $product->productCategory->id
+                                                    @endphp
                                                     <a href="{{ route('product.category', ['id' => $id]) }}">{{ $product->productCategory->name }}</a>
                                                 </div><!-- End .product-cat -->
                                                 <h3 class="product-title">
