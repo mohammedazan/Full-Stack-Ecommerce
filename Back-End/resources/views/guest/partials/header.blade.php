@@ -148,15 +148,14 @@
                   
         <div class="header-right">
             <div class="header-dropdown-link">  
-                {{-- <a href="{{route('wishlist')}}" class="wishlist-link">
+                <a href="{{route('wishlist')}}" class="wishlist-link">
                     <i class="icon-heart-o"></i>
                     <span class="wishlist-count">
                         {{$wishlistCount}}
                     </span>
                     <span class="wishlist-txt">
                         Wishlist</span>
-                </a> --}}  
-                @livewire('header')            
+                </a> 
                 <div class="dropdown cart-dropdown">
                     <a href="{{ route('cart') }}" class="dropdown-toggle" >
                         <i class="icon-shopping-cart"></i>

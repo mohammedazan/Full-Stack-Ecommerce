@@ -27,7 +27,7 @@ class ProductDisplay extends Component
     public $productImage;
     public $CompanyInfo;
     public $product_id;
-
+    
     // Initialize properties and filter products based on $id and $filterSource
     public function mount($id = null, $filterSource = null) {
         // Load shared data
@@ -74,9 +74,13 @@ class ProductDisplay extends Component
 
     // Filter products by category
     public function filterByCategory($categoryId = null) {
-        $this->productList = Product::where('category_id', $categoryId)
-                                    ->where('deleted', 0)
-                                    ->get();
+        if ($categoryId) {
+            $this->productList = Product::where('category_id', $categoryId)
+                                        ->where('deleted', 0)
+                                        ->get();
+        }else {
+            $this->productList = Product::where('deleted', 0)->get();
+        }
     }
     public function filterBySubCategory($subcategoryId = null) {
         if ($subcategoryId) {
@@ -93,10 +97,14 @@ class ProductDisplay extends Component
     }
 
     // Filter products by brand
-    public function filterByBrand($brandId) {
-        $this->productList = Product::where('brand_id', $brandId)
-                                    ->where('deleted', 0)
-                                    ->get();
+    public function filterByBrand($brandId = null) {
+        if($brandId){
+            $this->productList = Product::where('brand_id', $brandId)
+            ->where('deleted', 0)
+            ->get();
+        }else{
+            $this->productList  = Product::where('deleted', 0)->get();
+        }
     }
 
     // Filter products by offer
