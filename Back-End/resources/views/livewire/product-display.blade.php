@@ -159,18 +159,6 @@
                                         <div class="col-lg-6">
                                             <div class="product-body product-action-inner">
                                                 {{-- <a href="#" class="btn-product btn-wishlist" title="Add to wishlist"><span>add to wishlist</span></a> --}}
-                                                <script>
-                                                    $(document).ready(function(){
-                                                        // Toastr Initialization
-                                                        @if(Session::has('success'))
-                                                            toastr.success("{{ Session::get('success') }}");
-                                                        @endif
-                                            
-                                                        @if(Session::has('error'))
-                                                            toastr.error("{{ Session::get('error') }}");
-                                                        @endif
-                                                    });
-                                                </script>
                                                 <button type="button" wire:click="add('{{ $product->id }}')"  class="btn-product-icon btn-wishlist btn-expandable"><span>Add to Wishlist</span></button>
                                                 <div class="product-cat">
                                                     @php
@@ -549,13 +537,19 @@
 
                 <div class="collapse show" id="widget-4">
                     <div class="widget-body">
-                        @foreach($brandList as $key=>$brand)
                         <div class="filter-items">
                             <div class="filter-item">
                                 <ul>
                                     <li>
                                         <a wire:click="filterByBrand" href="#">All</a>
                                     </li>
+                                </ul>
+                            </div><!-- End .filter-item -->
+                        </div><!-- End .filter-items -->
+                        @foreach($brandList as $key=>$brand)
+                        <div class="filter-items">
+                            <div class="filter-item">
+                                <ul>
                                     <li>
                                         <a wire:click="filterByBrand('{{ $brand->id }}')" href="#">{{ $brand->name }}</a>
                                     </li>

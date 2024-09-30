@@ -22,6 +22,7 @@ class Wishlist extends Component
         // Find and delete the wishlist item
         $wishlistItem = ModelsWishlist::findOrFail($id);
         $wishlistItem->delete();
+        $this->emit('wishlistUpdated');
         // After deletion, reload the wishlist items to reflect the changes
         $this->wishlistItems = ModelsWishlist::where('user_id', Auth::id())->with('product')->get();
     }

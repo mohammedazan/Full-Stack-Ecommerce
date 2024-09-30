@@ -1,9 +1,8 @@
-<!-- header.blade.php -->
-
-<a href="{{ route('wishlist') }}" class="wishlist-link">
+<a href="{{route('wishlist')}}" class="wishlist-link">
     <i class="icon-heart-o"></i>
     <span class="wishlist-count">
-        @livewire('header')
+        {{$wishlistCount}}
     </span>
-    <span class="wishlist-txt">قائمة الأمنيات</span>
-</a>
+    <span class="wishlist-txt">
+        Wishlist</span>
+</a> 

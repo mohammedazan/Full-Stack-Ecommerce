@@ -176,9 +176,6 @@ class ProductDisplay extends Component
     
         // إطلاق الحدث لتحديث عدد المنتجات في قائمة الأمنيات في الهيدر
         $this->emit('wishlistUpdated');
-        dd('test conextion new'); 
-        
-    
         return redirect()->back()->with('success', 'تم إضافة المنتج إلى قائمة الأمنيات.');
     }
     
