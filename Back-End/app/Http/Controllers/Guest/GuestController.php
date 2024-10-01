@@ -99,18 +99,9 @@ class GuestController extends Controller
                 $product->reviewsCount = 0;
             }
         }
+
     
-        $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
-    
-        $commandesEnCours = Commande::where('users_id', Auth::id())
-            ->where('etat', 'en cours')
-            ->get();
-        $CartCountEnCours = 0;
-        foreach ($commandesEnCours as $commande) {
-            $CartCountEnCours += $commande->lignecommande->count();
-        }
-    
-        return view('guest/home')->with(compact('productSubcategory', 'productList', 'category', 'offer', 'featuredImage', 'brandList', 'Blogs', 'CompanyInfo', 'wishlistCount', 'CartCountEnCours'));
+        return view('guest/home')->with(compact('productSubcategory', 'productList', 'category', 'offer', 'featuredImage', 'brandList', 'Blogs', 'CompanyInfo'));
     }
     
 

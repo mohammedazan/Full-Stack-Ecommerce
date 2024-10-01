@@ -79,19 +79,31 @@
                                             <form action="{{ route('wishlist.add') }}" method="POST">
                                                 @csrf
                                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                                <button type="button" wire:click="add('{{ $product->id }}')" class="btn-product-icon btn-wishlist btn-expandable"><span>Add to Wishlist</span></button>
+                                                <button type="button" wire:click="addWishlist('{{ $product->id }}')" class="btn-product-icon btn-wishlist btn-expandable"><span>Add to Wishlist</span></button>
                                             </form>
                                               {{-- <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a> --}}
                                             {{-- <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a> --}}
                                         </div><!-- End .product-action-vertical -->
-                                        <form action="/user/order/store" method="post">
+                                        {{-- 
+                                                <form action="/user/order/store" method="post">
                                                 @csrf
                                                 <input type="hidden" name="idproduct" id="idproduct" class="form-control" value="{{$product->id}}">
                                                 <input type="hidden" name="qte" id="qte" class="form-control" value="1" required>
-                                                <div class="product-action"><button class="btn-product btn-cart" title="Add to cart" type="submit"><span>add to cart</span></button></div>
+                                                <div class="product-action"><button type="button"  class="btn-product btn-cart" title="Add to cart" ><span>add to cart</span></button></div>
                                         </form> 
-
-                                            {{-- <a href="#" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a> --}}
+                                         --}}
+                                         <div>
+                                            @csrf
+                                            <input type="hidden" name="idproduct" id="idproduct" class="form-control" value="{{$product->id}}">
+                                            <input type="hidden" name="qte" id="qte" class="form-control" value="1" required>
+                                            <div class="product-action">
+                                                <!-- Livewire method call with product ID -->
+                                                <button type="button" wire:click="addToCart({{ $product->id }}, 1)" class="btn-product btn-cart" title="Add to cart">
+                                                    <span>Add to cart</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        
                                     </figure><!-- End .product-media -->
                                 <a href="{{ route('productdetail', ['id' => $product->id]) }}">
                                     <div class="product-body">

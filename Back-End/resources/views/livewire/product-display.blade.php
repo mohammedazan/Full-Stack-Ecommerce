@@ -144,15 +144,14 @@
                                                     <a href="#" class="btn-product btn-wishlist" title="Add to wishlist"><span>add to wishlist</span></a>
                                                 </div> --}}
                                                 <!-- End .product-action -->
-                    
-                                                
-                                                <form action="/user/order/store" method="post">
+                                                {{-- <form action="/user/order/store" method="post">
                                                     @csrf
                                                     <input type="hidden" name="idproduct" id="idproduct" class="form-control" value="{{$product->id}}">
                                                     <input type="hidden" name="qte" id="qte" class="form-control" value="1" required>
-                                                    <button class="btn-product btn-cart" type="submit"><span>add to cart</span></button>
-                                                </form>  
-                                                {{-- <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>  --}}                                         
+                                                    <button class="btn-product btn-cart" type="submit"><span>add to cart hhhh</span></button>
+                                                </form>   --}}
+                                                
+                                                <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>                                         
                                             </div><!-- End .product-list-action -->
                                         </div><!-- End .col-sm-6 col-lg-3 -->
                     

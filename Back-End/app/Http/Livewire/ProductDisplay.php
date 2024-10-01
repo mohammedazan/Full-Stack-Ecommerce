@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Brand;
 use App\Models\Commande;
 use App\Models\CompanyInfo;
+use App\Models\LigneCommande;
 use App\Models\Offer_product_list;
 use App\Models\Product;
 use App\Models\ProductCategory;
@@ -177,6 +178,67 @@ class ProductDisplay extends Component
         // إطلاق الحدث لتحديث عدد المنتجات في قائمة الأمنيات في الهيدر
         $this->emit('wishlistUpdated');
         return redirect()->back()->with('success', 'تم إضافة المنتج إلى قائمة الأمنيات.');
+    }
+
+    public function addToCart($productId, $quantity)
+    {
+        $userId = Auth::id();
+
+        // Validate the product and quantity
+        if (!$userId || !$productId || !$quantity) {
+            return redirect()->back()->with('error', 'Invalid product or quantity.');
+        }
+
+        // Check if an active order exists for the user
+        $commande = Commande::where('users_id', $userId)->where('etat', 'en cours')->first();
+    
+        if ($commande) {
+            $existe = false;
+
+            // Check if the product already exists in the order
+            foreach ($commande->lignecommande as $lignec) {
+                if ($lignec->product_id == $productId) {
+                    $existe = true;
+                    $lignec->qte += $quantity;
+                    $lignec->save(); // Save the updated quantity
+                    break;
+                }
+            }
+
+            // If the product doesn't exist in the order, create a new line item
+            if (!$existe) {
+                $Lc = new LigneCommande();
+                $Lc->qte = $quantity;
+                $Lc->product_id = $productId;
+                $Lc->commande_id = $commande->id;
+                $Lc->save();
+            }
+
+            // Redirect to the cart with a success message
+            session()->flash('success', 'Product added to order successfully.');
+        } else {
+            // Create a new order if none exists
+            $commande = new Commande();
+            $commande->users_id = $userId;
+            $commande->etat = 'en cours';
+
+            if ($commande->save()) {
+                // Add the product to the new order
+                $Lc = new LigneCommande();
+                $Lc->qte = $quantity;
+                $Lc->product_id = $productId;
+                $Lc->commande_id = $commande->id;
+                $Lc->save();
+
+                session()->flash('success', 'Order created and product added successfully.');
+            } else {
+                session()->flash('error', "Unable to create order.");
+            }
+        }
+
+        // Dispatch event to refresh the cart in the frontend, if necessary
+        $this->emit('cartUpdated');
+        // Refresh the product list
     }
     
     
