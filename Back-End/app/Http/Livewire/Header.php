@@ -33,7 +33,7 @@ class Header extends Component
     public function updateCartCount()
     {
         if (Auth::check()) {
-            // Get the user's orders that are 'en cours'
+            // Get the user's active orders ('en cours')
             $commandesEnCours = Commande::where('users_id', Auth::id())
                 ->where('etat', 'en cours')
                 ->get();
@@ -41,20 +41,19 @@ class Header extends Component
             // Initialize the cart count to zero
             $cartItemCount = 0;
 
-            // Loop through each order and sum the quantities of products
+            // Loop through each order and count unique products (ignoring quantity)
             foreach ($commandesEnCours as $commande) {
-                foreach ($commande->lignecommande as $ligne) {
-                    $cartItemCount += $ligne->qte; // Sum the quantity for each product in the order
-                }
+                $cartItemCount += $commande->lignecommande->count(); // Count unique products in the order
             }
 
-            // Assign the total count of items to the cartCount property
+            // Assign the count of unique products to the cartCount property
             $this->cartCount = $cartItemCount;
         } else {
             // Set the cart count to zero if the user is not logged in
             $this->cartCount = 0;
         }
     }
+
     public function render()
     {
         return view('livewire.header');

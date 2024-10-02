@@ -94,8 +94,6 @@
                                          --}}
                                          <div>
                                             @csrf
-                                            <input type="hidden" name="idproduct" id="idproduct" class="form-control" value="{{$product->id}}">
-                                            <input type="hidden" name="qte" id="qte" class="form-control" value="1" required>
                                             <div class="product-action">
                                                 <!-- Livewire method call with product ID -->
                                                 <button type="button" wire:click="addToCart({{ $product->id }}, 1)" class="btn-product btn-cart" title="Add to cart">

@@ -184,7 +184,6 @@ class GuestController extends Controller
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $color = ProductColor::get();
-
         $productdetail = Product::find($request->id);
         $CompanyInfo=CompanyInfo::get();
         $productList = Product::where('deleted', 0)->get();
@@ -201,18 +200,7 @@ class GuestController extends Controller
                     }
                     $avgRating = $totalRating / $productdetail->reviews->count();
                 }
-
-
-        $wishlistCount = Wishlist::where('user_id', Auth::id())->count();
-
-        $commandesEnCours = Commande::where('users_id', Auth::id())
-        ->where('etat', 'en cours')
-        ->get();
-            $CartCountEnCours = 0;
-            foreach ($commandesEnCours as $commande) {
-            $CartCountEnCours += $commande->lignecommande->count();
-            }
-        return view('guest/pages/productdetail')->with(compact('productSubcategory', 'category', 'productdetail','productList', 'avgRating','CompanyInfo','color','wishlistCount','CartCountEnCours'));
+        return view('guest/pages/productdetail')->with(compact('productSubcategory', 'category', 'productdetail','productList', 'avgRating','CompanyInfo','color'));
     }
 
 

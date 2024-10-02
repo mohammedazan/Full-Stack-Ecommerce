@@ -151,7 +151,10 @@
                                                     <button class="btn-product btn-cart" type="submit"><span>add to cart hhhh</span></button>
                                                 </form>   --}}
                                                 
-                                                <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>                                         
+                                                <a href="#" class="btn-product btn-cart" wire:click.prevent="addToCart({{ $product->id }}, 1)">
+                                                    <span>add to cart</span>
+                                                </a>
+                                                                                         
                                             </div><!-- End .product-list-action -->
                                         </div><!-- End .col-sm-6 col-lg-3 -->
                     
@@ -280,14 +283,11 @@
                                                 <div class="product-action-vertical">
                                                     <button type="button" wire:click="add('{{ $product->id }}')" class="btn-product-icon btn-wishlist btn-expandable"><span>Add to Wishlist</span></button>
                                                 </div>
-                                                <!-- End .product-action-vertical -->
-                                                    <form action="/user/order/store" method="post">
-                                                        @csrf
-                                                        <input type="hidden" name="idproduct" id="idproduct" class="form-control" value="{{$product->id}}">
-                                                        <input type="hidden" name="qte" id="qte" class="form-control" value="1" required>
-                                                        <div  class="product-action"><button class="btn-product btn-cart" title="Add to cart" type="submit"><span>add to cart</span></button></div>
-                                                    </form> 
-                                                    {{-- <a href="#" class="btn-product btn-cart"><span>add to cart</span></a> --}}
+                                                <div class="product-action">
+                                                    <a href="#" class="btn-product btn-cart" wire:click.prevent="addToCart({{ $product->id }}, 1)">
+                                                        <span>add to cart</span>
+                                                    </a>
+                                                </div><!-- End .product-action -->
                                             </figure><!-- End .product-media -->
                             
                                             <div class="product-body">
