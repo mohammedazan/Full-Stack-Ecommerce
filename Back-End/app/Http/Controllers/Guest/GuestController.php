@@ -181,6 +181,7 @@ class GuestController extends Controller
     
 
     public function productdetail(Request $request){
+        $id = $request->id ;
         $productSubcategory = ProductSubCategory::where('deleted', 0)->where('status', 1)->get();
         $category = ProductCategory::where('status', 1)->where('deleted', 0)->get();
         $color = ProductColor::get();
@@ -200,7 +201,7 @@ class GuestController extends Controller
                     }
                     $avgRating = $totalRating / $productdetail->reviews->count();
                 }
-        return view('guest/pages/productdetail')->with(compact('productSubcategory', 'category', 'productdetail','productList', 'avgRating','CompanyInfo','color'));
+        return view('guest/pages/productdetail')->with(compact('productSubcategory','category','CompanyInfo','id'));
     }
 
 

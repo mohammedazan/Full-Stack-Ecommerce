@@ -44,105 +44,99 @@
             <div class="product-details product-details-centered product-details-separator">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-6">
-                            <h1 class="product-title">{{ $productdetail->name }}</h1>
-                            <div class="ratings-container">
-                                <div class="">
+                            <div class="col-md-6">
+                                <h1 class="product-title">{{ $productdetail->name }}</h1>
+                                <div class="ratings-container">
+                                    <div class="">
+                                        @php
+                                            $fullStars = floor($avgRating); // Number of full stars (whole number part)
+                                            $halfStar = ceil($avgRating - $fullStars); // Whether to display a half star
+                                        @endphp
+                                
+                                        @for ($i = 0; $i < $fullStars; $i++)
+                                            <i class="fas fa-star" style="color: #ffc107;"></i>
+                                        @endfor
+                                
+                                        @if ($halfStar)
+                                            <i class="fas fa-star-half-alt" style="color: #ffc107;"></i>
+                                        @endif
+                                    </div><!-- End .ratings -->
+                                    <span class="ratings-text">({{ $productdetail->reviews->count() }} Reviews)</span>
+                                </div><!-- End .rating-container -->
+                                <div class="product-content">
+                                    <p></p>
+                                </div>
+                                <div class="product-price">
                                     @php
-                                        $fullStars = floor($avgRating); // Number of full stars (whole number part)
-                                        $halfStar = ceil($avgRating - $fullStars); // Whether to display a half star
+                                    $originalPrice = $productdetail->current_sale_price;
+                                    if ($productdetail->discount_type == 1) {
+                                        $discountedPrice = $originalPrice - ($originalPrice * ($productdetail->discount / 100));
+                                        $discountLabel = $productdetail->discount . '% off';
+                                    } else if ($productdetail->discount_type == 0) {
+                                        $discountedPrice = $originalPrice - $productdetail->discount;
+                                        $discountLabel = number_format(($productdetail->discount / $originalPrice) * 100, 2) . '% off';
+                                    } else {
+                                        $discountedPrice = $originalPrice;
+                                        $discountLabel = null;
+                                    }
                                     @endphp
-                            
-                                    @for ($i = 0; $i < $fullStars; $i++)
-                                        <i class="fas fa-star" style="color: #ffc107;"></i>
-                                    @endfor
-                            
-                                    @if ($halfStar)
-                                        <i class="fas fa-star-half-alt" style="color: #ffc107;"></i>
+                                    @if ($productdetail->previous_wholesale_price != $productdetail->current_sale_price)
+                                        <span class="new-price">{{ number_format($productdetail->current_sale_price, 0) }}</span>
+                                        <sm class="old-price">Was {{ number_format($productdetail->previous_wholesale_price, 0) }} DH</sm>
+                                    @else
+                                        <span class="new-price"> {{ number_format($productdetail->previous_wholesale_price, 0) }}  DH</span>
                                     @endif
-                                </div><!-- End .ratings -->
-                                <span class="ratings-text">({{ $productdetail->reviews->count() }} Reviews)</span>
-                            </div><!-- End .rating-container -->
-                            <div class="product-content">
-                                <p></p>
-                            </div>
-                            <div class="product-price">
-                                @php
-                                $originalPrice = $productdetail->current_sale_price;
-                                if ($productdetail->discount_type == 1) {
-                                    $discountedPrice = $originalPrice - ($originalPrice * ($productdetail->discount / 100));
-                                    $discountLabel = $productdetail->discount . '% off';
-                                } else if ($productdetail->discount_type == 0) {
-                                    $discountedPrice = $originalPrice - $productdetail->discount;
-                                    $discountLabel = number_format(($productdetail->discount / $originalPrice) * 100, 2) . '% off';
-                                } else {
-                                    $discountedPrice = $originalPrice;
-                                    $discountLabel = null;
-                                }
-                                @endphp
-                                @if ($productdetail->previous_wholesale_price != $productdetail->current_sale_price)
-                                    <span class="new-price">{{ number_format($productdetail->current_sale_price, 0) }}</span>
-                                    <sm class="old-price">Was {{ number_format($productdetail->previous_wholesale_price, 0) }} DH</sm>
-                                @else
-                                    <span class="old-price"> {{ number_format($productdetail->previous_wholesale_price, 0) }}  DH</span>
+                                </div>
+                                @if($productdetail->color)
+                                    <div class="details-filter-row details-row-size">
+                                    <label>Color:</label>
+                                    {{-- {{ {{ $productdetail->color->color_code }} }} --}}
+                                    <div class="product-nav product-nav-dots">
+                                        <a href="#" class="active" style="background:{{$productdetail->color}};"><span class="sr-only">Color name</span></a>
+                                    </div>
+                                    </div>
                                 @endif
-                            </div>
-                            @if($productdetail->color)
-                                <div class="details-filter-row details-row-size">
-                                <label>Color:</label>
-                                {{-- {{ {{ $productdetail->color->color_code }} }} --}}
-                                <div class="product-nav product-nav-dots">
-                                    <a href="#" class="active" style="background:{{$productdetail->color}};"><span class="sr-only">Color name</span></a>
-                                </div>
-                                 </div>
-                            @endif
 
-                        </div>
-                        <div class="col-md-6">
-                            <form action="/user/order/store" method="post">
-                                @csrf
-                                <input type="hidden" name="idproduct" id="idproduct" class="form-control" value="{{$productdetail->id}}">
-                                <div class="product-details-action">
-                                    <div class="details-action-col">
-                                        <div class="product-details-quantity">
-                                            <input type="number" name="qte" id="qte" class="form-control" value="1" required>
+                            </div>
+                            <div class="col-md-6">
+                                <form action="/user/order/store" method="post">
+                                    @csrf
+                                    <input type="hidden" name="idproduct" id="idproduct" class="form-control" value="{{$productdetail->id}}">
+                                    <div class="product-details-action">
+                                        <div class="details-action-col">
+                                            <div class="product-details-quantity">
+                                                <input type="number" name="qte" id="qte" class="form-control" value="1" required>
+                                            </div>
+                                            <button class="btn-product btn-cart" type="submit"><span>add to cart</span></button>
                                         </div>
-                                        <button class="btn-product btn-cart" type="submit"><span>add to cart</span></button>
-                                    </div>
                                 </form>
-                                    <div class="details-action-wrapper">
-     
-                                        <form action="{{ route('wishlist.add') }}" method="POST">
-                                            @csrf
-                                            <input type="hidden" name="product_id" value="{{ $productdetail->id }}" >
-                                            <button type="submit"class="btn-product btn-wishlist"><span>Add to Wishlist</span></button>
-                                        </form>	
+                                <div class="details-action-wrapper">
+        
+                                            <form action="{{ route('wishlist.add') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{ $productdetail->id }}" >
+                                                <button type="submit"class="btn-product btn-wishlist"><span>Add to Wishlist</span></button>
+                                            </form>	
 
-                                    </div>
-                                    {{-- 
-                                    <div class="details-action-wrapper">
-                                        <a href="#" class="btn-product btn-wishlist" title="Wishlist"><span>Add to Wishlist</span></a>
-                                        <a href="#" class="btn-product btn-compare" title="Compare"><span>Add to Compare</span></a>
-                                    </div><!-- End .details-action-wrapper --> --}}
-                                </div>
-                          
-                            <div class="product-details-footer details-footer-col">
-                                <div class="product-cat">
-                                    <span>Category:</span>
-                                    <a href="{{ route('product.category', ['id' => $productdetail->productCategory->id]) }}">{{ $productdetail->productCategory->name }}</a>,
-                                </div>
-                                <div class="social-icons social-icons-sm">
-                                    <span class="social-label">Share:</span>
-                                    @php
-                                    $ver = $CompanyInfo->shuffle()->take(1);
-                                    @endphp
-                                    @foreach ($ver as $key =>$Company )
-                                    <a href="{{$Company->facebook_link}}"class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
-                                    <a href="{{$Company->twitter_link}}" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
-                                    <a href="{{$Company->youtube_link}}" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
-                                    @endforeach
                                 </div>
                             </div>
+                                <div class="product-details-footer details-footer-col">
+                                    <div class="product-cat">
+                                        <span>Category:</span>
+                                        <a href="{{ route('product.category', ['id' => $productdetail->productCategory->id]) }}">{{ $productdetail->productCategory->name }}</a>,
+                                    </div>
+                                    <div class="social-icons social-icons-sm">
+                                        <span class="social-label">Share:</span>
+                                        @php
+                                        $ver = $CompanyInfo->shuffle()->take(1);
+                                        @endphp
+                                        @foreach ($ver as $key =>$Company )
+                                        <a href="{{$Company->facebook_link}}"class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
+                                        <a href="{{$Company->twitter_link}}" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+                                        <a href="{{$Company->youtube_link}}" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
+                                        @endforeach
+                                    </div>
+                                </div>
                         </div>
                     </div>
                 </div>

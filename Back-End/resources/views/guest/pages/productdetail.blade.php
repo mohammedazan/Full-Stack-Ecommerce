@@ -52,10 +52,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-
     @include('guest/partials.header')
     <div class="page-wrapper">
             <!-- start .footer -->
+    @livewire('product-detail',['id' => $id])
+
             @include('guest/partials.footer')
             <!-- End .footer -->
     </div>
