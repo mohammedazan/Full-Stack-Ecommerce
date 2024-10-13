@@ -7,93 +7,42 @@ use App\Models\CompanyInfo;
 use App\Models\LigneCommande;
 use App\Models\Product;
 use App\Models\ProductColor;
+use App\Models\Wishlist;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class ProductDetail extends Component
 {
-    public $color , $productdetail , $productList , $avgRating ,$CompanyInfo ,$product_id ,  $qte = 1; 
+    public $color, $productdetail, $productList, $avgRating, $CompanyInfo, $product_id;
+    public $quantity = 1; // Add a public property for quantity
 
-    public function mount($id){
+    public function mount($id)
+    {
         $this->ProductDetail($id);
-
     }
 
-    public function ProductDetail($id){
+    public function ProductDetail($id)
+    {
         $this->productdetail = Product::find($id);
-        $this->CompanyInfo=CompanyInfo::get();
+        $this->CompanyInfo = CompanyInfo::get();
         $this->color = ProductColor::get();
         $this->productList = Product::where('deleted', 0)->get();
         $this->avgRating = 0;
-                // Calculate average rating if there are reviews
-                if ($this->productdetail && $this->productdetail->reviews->isNotEmpty()) {
-                    $totalRating = 0;
-                    foreach ($this->productdetail->reviews as $review) {
-                        $totalRating += $review->rate;
-                    }
-                    $this->avgRating = $totalRating / $this->productdetail->reviews->count();
-                }
 
-
-    }
-    
-    public function addToCart($productId, $quantity)
-    {
-        $userId = Auth::id();
-
-        if (!$userId || !$productId || !$quantity) {
-            session()->flash('error', 'Invalid product or quantity.');
-            return;
+        // Calculate average rating if there are reviews
+        if ($this->productdetail && $this->productdetail->reviews->isNotEmpty()) {
+            $totalRating = 0;
+            foreach ($this->productdetail->reviews as $review) {
+                $totalRating += $review->rate;
+            }
+            $this->avgRating = $totalRating / $this->productdetail->reviews->count();
         }
-
-        $commande = Commande::where('users_id', $userId)->where('etat', 'en cours')->first();
-    
-        if ($commande) {
-            $exists = false;
-
-            foreach ($commande->lignecommande as $lignec) {
-                if ($lignec->product_id == $productId) {
-                    $exists = true;
-                    $lignec->qte += $quantity;
-                    $lignec->save();
-                    break;
-                }
-            }
-
-            if (!$exists) {
-                $Lc = new LigneCommande();
-                $Lc->qte = $quantity;
-                $Lc->product_id = $productId;
-                $Lc->commande_id = $commande->id;
-                $Lc->save();
-            }
-
-            session()->flash('success', 'Product added to order successfully.');
-        } else {
-            $commande = new Commande();
-            $commande->users_id = $userId;
-            $commande->etat = 'en cours';
-
-            if ($commande->save()) {
-                $Lc = new LigneCommande();
-                $Lc->qte = $quantity;
-                $Lc->product_id = $productId;
-                $Lc->commande_id = $commande->id;
-                $Lc->save();
-
-                session()->flash('success', 'Order created and product added successfully.');
-            } else {
-                session()->flash('error', "Unable to create order.");
-            }
-        }
-
-        $this->emit('cartUpdated'); // Refresh the cart in the UI
     }
 
     public function addWishlist($id_Wishlist)
     {
         if (!Auth::check()) {
-            return redirect()->back()->with('error', 'Please log in to add products to your wishlist.');
+            return redirect()->back()->with('success', 'تم إضافة المنتج إلى قائمة الأمنيات.');
         }
 
         $this->product_id = $id_Wishlist;
@@ -107,8 +56,7 @@ class ProductDetail extends Component
             ->exists();
 
         if ($exists) {
-            session()->flash('error', 'Product already exists in wishlist.');
-            return;
+            return redirect()->back()->with('error', 'المنتج موجود بالفعل في قائمة الأمنيات.');
         }
 
         Wishlist::create([
@@ -116,18 +64,82 @@ class ProductDetail extends Component
             'product_id' => $this->product_id,
         ]);
 
-        $this->emit('wishlistUpdated'); // Refresh wishlist count in the header
-        session()->flash('success', 'Product added to wishlist successfully.');
+        // Trigger event to update the wishlist count in the header
+        $this->emit('wishlistUpdated');
+        return redirect()->back()->with('success', 'تم إضافة المنتج إلى قائمة الأمنيات.');
+    }
+
+
+    public function addToCart($productId, $quantity)
+    {
+        $userId = Auth::id();
+
+        // Validate the product and quantity
+        if (!$userId || !$productId || !$quantity) {
+            return redirect()->back()->with('error', 'Invalid product or quantity.');
+        }
+
+        // Check if an active order exists for the user
+        $commande = Commande::where('users_id', $userId)->where('etat', 'en cours')->first();
+
+        if ($commande) {
+            $existe = false;
+
+            // Check if the product already exists in the order
+            foreach ($commande->lignecommande as $lignec) {
+                if ($lignec->product_id == $productId) {
+                    $existe = true;
+                    $lignec->qte += $quantity;
+                    $lignec->save(); // Save the updated quantity
+                    break;
+                }
+            }
+
+            // If the product doesn't exist in the order, create a new line item
+            if (!$existe) {
+                $Lc = new LigneCommande();
+                $Lc->qte = $quantity;
+                $Lc->product_id = $productId;
+                $Lc->commande_id = $commande->id;
+                $Lc->save();
+            }
+
+            // Redirect to the cart with a success message
+            session()->flash('success', 'Product added to order successfully.');
+        } else {
+            // Create a new order if none exists
+            $commande = new Commande();
+            $commande->users_id = $userId;
+            $commande->etat = 'en cours';
+
+            if ($commande->save()) {
+                // Add the product to the new order
+                $Lc = new LigneCommande();
+                $Lc->qte = $quantity;
+                $Lc->product_id = $productId;
+                $Lc->commande_id = $commande->id;
+                $Lc->save();
+
+                session()->flash('success', 'Order created and product added successfully.');
+            } else {
+                session()->flash('error', "Unable to create order.");
+            }
+        }
+
+        // Dispatch event to refresh the cart in the frontend, if necessary
+        $this->emit('cartUpdated');
+        // Refresh the product list
     }
 
     public function render()
     {
-        return view('livewire.product-detail',[
-            'color'=>$this->color,
-            'productdetail'=>$this->productdetail,
-            'productList'=>$this->productList,
-            'avgRating'=>$this->avgRating,
-            'CompanyInfo'=>$this->CompanyInfo
+        return view('livewire.product-detail', [
+            'color' => $this->color,
+            'productdetail' => $this->productdetail,
+            'productList' => $this->productList,
+            'avgRating' => $this->avgRating,
+            'CompanyInfo' => $this->CompanyInfo
         ]);
     }
 }
+

@@ -50,6 +50,8 @@
     </script>
     <!-- Add Font Awesome for stars -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    @livewireStyles
+    <livewire:styles />
 </head>
 <body>
     @include('guest/partials.header')
@@ -86,6 +88,8 @@
     <script src= "{{asset('assets/js/main.js')}}"></script>
     <script src= "{{asset('assets/js/demos/demo-13.js')}}"></script>
     <script src="{{asset('assets/js/jquery.magnific-popup.min.js')}}"></script>
+    @livewireScripts
+    <livewire:scripts />
     
 </body>
 </html>

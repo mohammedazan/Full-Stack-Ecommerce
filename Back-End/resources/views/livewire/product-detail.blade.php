@@ -99,8 +99,6 @@
 
                             </div>
                             <div class="col-md-6">
-                                <form action="/user/order/store" method="post">
-                                    @csrf
                                     <input type="hidden" name="idproduct" id="idproduct" class="form-control" value="{{$productdetail->id}}">
                                     <div class="product-details-action">
                                         <div class="details-action-col">
@@ -109,15 +107,8 @@
                                             </div>
                                             <button class="btn-product btn-cart" type="submit"><span>add to cart</span></button>
                                         </div>
-                                </form>
                                 <div class="details-action-wrapper">
-        
-                                            <form action="{{ route('wishlist.add') }}" method="POST">
-                                                @csrf
-                                                <input type="hidden" name="product_id" value="{{ $productdetail->id }}" >
-                                                <button type="submit"class="btn-product btn-wishlist"><span>Add to Wishlist</span></button>
-                                            </form>	
-
+                                    <button type="submit"class="btn-product btn-wishlist"><span>Add to Wishlist</span></button>
                                 </div>
                             </div>
                                 <div class="product-details-footer details-footer-col">
@@ -283,26 +274,21 @@
                     </a>
 
                     <div class="product-action-vertical">
-                        
-                        <form action="{{ route('wishlist.add') }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="product_id" value="{{ $product->id }}">
-                            <button type="submit" class="btn-product-icon btn-wishlist btn-expandable"><span>Add to Wishlist</span></button>
-                        </form>
-                        {{-- <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a> --}}
+                        @csrf
+                        <button type="button" wire:click="addWishlist('{{ $product->id }}')" class="btn-product-icon btn-wishlist btn-expandable"><span>Add to Wishlist</span></button>
                         {{-- <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
                         <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a> --}}
                     </div><!-- End .product-action-vertical -->
 
+                    @csrf
                     <div class="product-action">
-                        <form class="product-action" action="/user/order/store" method="post">
-                            @csrf
-                            <input type="hidden" name="idproduct" id="idproduct" class="form-control" value="{{$product->id}}">
-                            <input type="hidden" name="qte" id="qte" class="form-control" value="1" required>
-                            <button class="btn-product btn-cart" title="Add to cart" type="submit"><span>add to cart</span></button>
-                        </form>                         </div><!-- End .product-action -->
+                        <!-- Livewire method call with product ID -->
+                        <button type="button" wire:click="addToCart({{ $product->id }}, 1)" class="btn-product btn-cart" title="Add to cart">
+                            <span>Add to cart</span>
+                        </button>
+                    </div>
                 </figure><!-- End .product-media -->
-               <a href="{{ route('productdetail', ['id' => $product->id]) }}"></a>
+                <a href="{{ route('productdetail', ['id' => $product->id]) }}"></a>
                 <div class="product-body">
                     <div class="product-cat">
                         @php

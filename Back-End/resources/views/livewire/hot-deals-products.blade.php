@@ -76,11 +76,8 @@
                                         </a>
                             
                                         <div class="product-action-vertical">
-                                            <form action="{{ route('wishlist.add') }}" method="POST">
                                                 @csrf
-                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
                                                 <button type="button" wire:click="addWishlist('{{ $product->id }}')" class="btn-product-icon btn-wishlist btn-expandable"><span>Add to Wishlist</span></button>
-                                            </form>
                                               {{-- <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a> --}}
                                             {{-- <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a> --}}
                                         </div><!-- End .product-action-vertical -->
