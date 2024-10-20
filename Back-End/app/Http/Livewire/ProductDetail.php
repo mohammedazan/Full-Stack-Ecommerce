@@ -56,7 +56,8 @@ class ProductDetail extends Component
             ->exists();
 
         if ($exists) {
-            return redirect()->back()->with('error', 'المنتج موجود بالفعل في قائمة الأمنيات.');
+            session()->flash('error', 'المنتج موجود بالفعل في قائمة الأمنيات.');
+            return;
         }
 
         Wishlist::create([
@@ -64,24 +65,26 @@ class ProductDetail extends Component
             'product_id' => $this->product_id,
         ]);
 
-        // Trigger event to update the wishlist count in the header
+        // Emit an event to update the wishlist count in the header
         $this->emit('wishlistUpdated');
-        return redirect()->back()->with('success', 'تم إضافة المنتج إلى قائمة الأمنيات.');
+        session()->flash('success', 'تم إضافة المنتج إلى قائمة الأمنيات.');
+        //$this->refreshProductList();
     }
 
-
-    public function addToCart($productId, $quantity)
+    public function addToCart($productId)
     {
         $userId = Auth::id();
+        $quantity = $this->quantity; // Get the quantity from the Livewire property
 
         // Validate the product and quantity
         if (!$userId || !$productId || !$quantity) {
-            return redirect()->back()->with('error', 'Invalid product or quantity.');
+            session()->flash('error', 'Invalid product or quantity.');
+            return;
         }
 
         // Check if an active order exists for the user
         $commande = Commande::where('users_id', $userId)->where('etat', 'en cours')->first();
-
+    
         if ($commande) {
             $existe = false;
 
@@ -104,7 +107,6 @@ class ProductDetail extends Component
                 $Lc->save();
             }
 
-            // Redirect to the cart with a success message
             session()->flash('success', 'Product added to order successfully.');
         } else {
             // Create a new order if none exists
@@ -128,7 +130,7 @@ class ProductDetail extends Component
 
         // Dispatch event to refresh the cart in the frontend, if necessary
         $this->emit('cartUpdated');
-        // Refresh the product list
+        //$this->refreshProductList();
     }
 
     public function render()
@@ -142,4 +144,5 @@ class ProductDetail extends Component
         ]);
     }
 }
+
 
