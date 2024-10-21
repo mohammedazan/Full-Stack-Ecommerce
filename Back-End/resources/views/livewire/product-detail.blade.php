@@ -105,7 +105,7 @@
                                             <div class="product-details-quantity">
                                                 <input type="number" name="qte" id="qte" class="form-control" value="1" required wire:model="quantity">
                                             </div>
-                                            <button class="btn-product btn-cart" type="button" wire:click="addToCart({{ $productdetail->id }})"><span>Add to Cart</span></button>
+                                            <button class="btn-product btn-cart" type="button" wire:click="addToCart({{ $productdetail->id }}, {{ $quantity }})"><span>Add to Cart</span></button>
                                         </div>
                                         <div class="details-action-wrapper">
                                             <button type="button" class="btn-product btn-wishlist" wire:click="addWishlist({{ $productdetail->id }})"><span>Add to Wishlist</span></button>

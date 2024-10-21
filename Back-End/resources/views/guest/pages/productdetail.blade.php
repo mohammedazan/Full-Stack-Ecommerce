@@ -57,8 +57,7 @@
     @include('guest/partials.header')
     <div class="page-wrapper">
             <!-- start .footer -->
-    @livewire('product-detail',['id' => $id])
-
+            @livewire('product-detail', ['productId' => $id])
             @include('guest/partials.footer')
             <!-- End .footer -->
     </div>
