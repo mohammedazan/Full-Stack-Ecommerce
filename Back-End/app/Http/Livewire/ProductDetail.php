@@ -100,6 +100,7 @@ class ProductDetail extends Component
 
         // Emit event to update wishlist count
         $this->emit('wishlistUpdated');
+        $this->dispatchBrowserEvent('contentUpdated');
 
         // Refresh the product list
         $this->refreshProductList();
@@ -166,6 +167,7 @@ class ProductDetail extends Component
 
         // Emit event to refresh cart in frontend
         $this->emit('cartUpdated');
+        $this->dispatchBrowserEvent('contentUpdated');
 
         // Refresh the product list
         $this->refreshProductList();
