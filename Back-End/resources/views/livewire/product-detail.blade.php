@@ -1,15 +1,4 @@
 <main class="main">
-    <script>
-        document.addEventListener('livewire:load', function () {
-    Livewire.on('contentUpdated', function () {
-        // إعادة تهيئة OwlCarousel
-        $('.owl-carousel').owlCarousel({
-            // خيارات OwlCarousel الخاصة بك
-        });
-    });
-});
-
-    </script>
     <div class="page-content">
         <div class="product-details-top">
             <div class="bg-light pb-5 mb-4">
