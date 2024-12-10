@@ -18,7 +18,7 @@ class CompanyInfoSeeder extends Seeder
          //DB::table('company_infos')->delete();
         DB::table('company_infos')->insert([
             'name' => 'ForBest',
-            'email' => 'info@example.com',
+            'email' => 'ForBest@example.com',
             'phone' => '123-456-7890',
             'company_logo' => 'default_logo.jpg', // Example default logo file
             'facebook_link' => 'https://www.facebook.com/example',
