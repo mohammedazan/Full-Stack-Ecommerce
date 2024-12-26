@@ -45,6 +45,7 @@ function calculateDiscount($item)
             $discount = ($product->discount * $product->current_sale_price) / 100;
         }
     }
+    /*ghjkl*/
 
     if ($item['offerId'] > 0) {
         $offerInfo = Offer_product_list::with('offerInfo')->where('product_id', $item['id'])->where('offer_id', $item['offerId'])->first();
