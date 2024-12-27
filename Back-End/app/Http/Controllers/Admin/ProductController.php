@@ -19,7 +19,7 @@ use App\Models\Sell;
 use App\Models\Supplier;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Image;
+use Intervention\Image\Facades\Image;
 use PhpParser\Node\Expr\Array_;
 use PDF;
 
@@ -363,34 +363,32 @@ public function productUpdate(Request $request)
 }
 
     
+public function productImageSave($image)
+{
+    if (isset($image) && ($image != '') && ($image != null)) {
+        $ext = explode('/', mime_content_type($image))[1];
 
-    public function productImageSave($image)
-    {
-        if (isset($image) && ($image != '') && ($image != null)) {
-            $ext = explode('/', mime_content_type($image))[1];
+        $logo_url = "product_images-" . time() . rand(1000, 9999) . '.' . $ext;
+        $logo_directory = public_path('storage/product_images/');
+        $filePath = $logo_directory;
+        $logo_path = $filePath . $logo_url;
+        $db_media_img_path = 'storage/product_images/' . $logo_url;
 
-            $logo_url = "product_images-" . time() . rand(1000, 9999) . '.' . $ext;
-            $logo_directory = getUploadPath() . '/product_images/';
-            $filePath = $logo_directory;
-            $logo_path = $filePath . $logo_url;
-            $db_media_img_path = 'storage/product_images/' . $logo_url;
-
-            if (!file_exists($filePath)) {
-                mkdir($filePath, 666, true);
-            }
-            $logo_image = Imag::make(file_get_contents($image))->resize(400, 400);
-            $logo_image->brightness(8);
-            $logo_image->contrast(11);
-            $logo_image->sharpen(5);
-            $logo_image->encode('webp', 70);
-            $logo_image->save($logo_path);
-
-            return $db_media_img_path;
-
+        if (!file_exists($filePath)) {
+            mkdir($filePath, 0755, true);
         }
+        $logo_image = Image::make(file_get_contents($image))->resize(400, 400);
+        $logo_image->brightness(8);
+        $logo_image->contrast(11);
+        $logo_image->sharpen(5);
+        $logo_image->encode('webp', 70);
+        $logo_image->save($logo_path);
 
+        return $db_media_img_path;
     }
 
+    return null;
+}
     public function productBarcodeGenerate(Request $request)
     {
         $product = Product::find($request->product_id);
