@@ -560,7 +560,7 @@
                     </div><!-- End .widget-body -->
                 </div><!-- End .collapse -->
             </div><!-- End .widget -->
-            <div class="widget widget-collapsible">
+            {{--             <div class="widget widget-collapsible">
                 <h3 class="widget-title">
                     <a data-toggle="collapse" href="#widget-5" role="button" aria-expanded="true" aria-controls="widget-5">
                         Price
@@ -583,9 +583,54 @@
                         </div><!-- End .filter-price -->
                     </div><!-- End .widget-body -->
                 </div><!-- End .collapse -->
-                
-                
-            </div><!-- End .widget -->
+            </div> --}}
+
+            <div class="widget widget-collapsible">
+                <h3 class="widget-title">
+                    <a data-toggle="collapse" href="#widget-5" role="button" aria-expanded="true" aria-controls="widget-5" class="">
+                        Price ttt
+                    </a>
+                </h3>
+            
+                <div class="collapse show" id="widget-5" style="">
+                    <div class="widget-body">
+                        <div class="filter-price">
+                            <div class="filter-price-text">
+                                Price Range:
+                                <span id="filter-price-range">${{ $minPrice }} - ${{ $maxPrice }}</span>
+                            </div>
+            
+                            <div id="price-slider" wire:ignore></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            @push('scripts')
+            <script>
+                document.addEventListener('livewire:load', function () {
+                    var slider = document.getElementById('price-slider');
+            
+                    noUiSlider.create(slider, {
+                        start: [{{ $minPrice }}, {{ $maxPrice }}],
+                        connect: true,
+                        range: {
+                            'min': 0,
+                            'max': 1000
+                        }
+                    });
+            
+                    slider.noUiSlider.on('set', function (values, handle) {
+                        let minPrice = Math.round(values[0]);
+                        let maxPrice = Math.round(values[1]);
+            
+                        document.getElementById('filter-price-range').innerText = `$${minPrice} - $${maxPrice}`;
+                        Livewire.emit('priceRangeUpdated', minPrice, maxPrice);
+                    });
+                });
+            </script>
+            @endpush
+            <!-- End .widget -->
 {{--             <div class="widget widget-collapsible">
                 <h3 class="widget-title">
                     <a data-toggle="collapse" href="#widget-5" role="button" aria-expanded="true" aria-controls="widget-5">

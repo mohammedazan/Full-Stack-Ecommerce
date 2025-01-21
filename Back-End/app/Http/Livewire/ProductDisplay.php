@@ -28,8 +28,11 @@ class ProductDisplay extends Component
     public $productImage;
     public $CompanyInfo;
     public $product_id;
-    
-    // Initialize properties and filter products based on $id and $filterSource
+
+    // Add these properties for price filtering
+    public $minPrice = 0;
+    public $maxPrice = 1000;
+
     public function mount($id = null, $filterSource = null) {
         // Load shared data
         $this->loadSharedData();
@@ -60,6 +63,15 @@ class ProductDisplay extends Component
 
         // Calculate additional data such as ratings and cart count
         $this->calculateAdditionalData();
+    }
+
+    protected $listeners = ['priceRangeUpdated' => 'updatePriceRange'];
+
+    public function updatePriceRange($minPrice, $maxPrice)
+    {
+        $this->minPrice = $minPrice;
+        $this->maxPrice = $maxPrice;
+        $this->filterByPrice();
     }
 
     // Load shared data used across all filters
@@ -248,18 +260,27 @@ class ProductDisplay extends Component
         session()->put('layout', $this->layout);
     }
 
-    // Render the view with the data
-    public function render() {
-        return view('livewire.product-display', [
-            'productList' => $this->productList,
-            'category' => $this->category,
-            'productSubcategory' => $this->productSubcategory,
-            'wishlistCount' => $this->wishlistCount,
-            'CartCountEnCours' => $this->CartCountEnCours,
-            'layout' => $this->layout,
-            'brandList' => $this->brandList,
-            'productdetail' => $this->productdetail,
-            'productImage' => $this->productImage,
-        ]);
-    }
+        // Add this method to filter products by price
+        public function filterByPrice()
+        {
+            $this->productList = Product::where('deleted', 0)
+                                        ->whereBetween('price', [$this->minPrice, $this->maxPrice])
+                                        ->get();
+        }
+    
+        // Update the render method to include the price filter
+        public function render()
+        {
+            return view('livewire.product-display', [
+                'productList' => $this->productList,
+                'category' => $this->category,
+                'productSubcategory' => $this->productSubcategory,
+                'wishlistCount' => $this->wishlistCount,
+                'CartCountEnCours' => $this->CartCountEnCours,
+                'layout' => $this->layout,
+                'brandList' => $this->brandList,
+                'productdetail' => $this->productdetail,
+                'productImage' => $this->productImage,
+            ]);
+        }
 }

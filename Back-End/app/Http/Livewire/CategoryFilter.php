@@ -22,7 +22,7 @@ class CategoryFilter extends Component
     public $CartCountEnCours = 0;
     public $brandList;
     public $productdetail ;
-    public $productImage ; 
+    public $productImage ;
     public $CompanyInfo ;
 
     public function mount()

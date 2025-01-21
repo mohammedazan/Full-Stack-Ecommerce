@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <!-- molla/index-13.html  22 Nov 2019 09:59:06 GMT -->
 <head>
     <meta charset="UTF-8">
@@ -27,12 +26,10 @@
     <link href="{{asset('assets/css/plugins/jquery.countdown.css')}}" rel="stylesheet">
     <link rel="stylesheet"  href="{{asset('assets/css/plugins/nouislider/nouislider.css')}}" >
 
-
     <!-- Main CSS File -->
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/skins/skin-demo-13.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/demos/demo-13.css')}}" rel="stylesheet">
-	
 
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
@@ -52,13 +49,12 @@
 		});
 	</script>
 	@livewireStyles
-</head>
 
+</head>
 <body>
     <div class="page-wrapper">
     @include('guest/partials.header')
     <main class="main">
-
             <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
                 <div class="container">
                     <ol class="breadcrumb">
@@ -67,13 +63,12 @@
                     </ol>
                 </div><!-- End .container -->
             </nav><!-- End .breadcrumb-nav -->
-
             <div class="page-content">
                 <div class="container">
                     @livewire('product-display', ['id' => $ID, 'filterSource' => $filterSource])
                 </div><!-- End .container -->
             </div><!-- End .page-content -->
-        </main><!-- End .main -->
+    </main><!-- End .main -->
 		<script>
 			document.addEventListener('DOMContentLoaded', function () {
 				var priceSlider = document.getElementById('price-slider');

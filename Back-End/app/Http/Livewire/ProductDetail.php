@@ -16,7 +16,7 @@ use Livewire\Component;
 class ProductDetail extends Component
 {
     public $productId; // Renamed from $id to $productId
-    public $product_id; 
+    public $product_id;
     public $productSubcategory;
     public $category;
     public $color;
