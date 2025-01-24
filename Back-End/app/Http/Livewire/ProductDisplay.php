@@ -28,14 +28,19 @@ class ProductDisplay extends Component
     public $productImage;
     public $CompanyInfo;
     public $product_id;
-
-    // Add these properties for price filtering
     public $minPrice = 0;
-    public $maxPrice = 1000;
+    public $maxPrice;
+    public $highestPrice;
 
     public function mount($id = null, $filterSource = null) {
         // Load shared data
         $this->loadSharedData();
+        $this->highestPrice = Product::where('deleted', 0)->max('current_sale_price');
+        $this->maxPrice = $this->highestPrice;
+        $this->productList = Product::where('current_sale_price', '>=', $this->minPrice)
+                                    ->where('current_sale_price', '<=', $this->maxPrice)
+                                    ->where('deleted', 0)
+                                    ->get();
 
         // Handle filtering based on source
         switch ($filterSource) {
@@ -64,15 +69,22 @@ class ProductDisplay extends Component
         // Calculate additional data such as ratings and cart count
         $this->calculateAdditionalData();
     }
+    protected $listeners = [
+        'priceFilterUpdated' => 'filterByPrice',
+    ];
 
-    protected $listeners = ['priceRangeUpdated' => 'updatePriceRange'];
-
-    public function updatePriceRange($minPrice, $maxPrice)
+    public function filterByPrice($min, $max)
     {
-        $this->minPrice = $minPrice;
-        $this->maxPrice = $maxPrice;
-        $this->filterByPrice();
+        dd("test connex");
+        $this->minPrice = $min;
+        $this->maxPrice = $max;
+
+        $this->productList = Product::where('current_sale_price', '>=', $this->minPrice)
+                                    ->where('current_sale_price', '<=', $this->maxPrice)
+                                    ->where('deleted', 0)
+                                    ->get();
     }
+
 
     // Load shared data used across all filters
     private function loadSharedData() {
@@ -259,28 +271,19 @@ class ProductDisplay extends Component
         $this->layout = $layout;
         session()->put('layout', $this->layout);
     }
-
-        // Add this method to filter products by price
-        public function filterByPrice()
-        {
-            $this->productList = Product::where('deleted', 0)
-                                        ->whereBetween('price', [$this->minPrice, $this->maxPrice])
-                                        ->get();
-        }
     
         // Update the render method to include the price filter
-        public function render()
-        {
-            return view('livewire.product-display', [
-                'productList' => $this->productList,
-                'category' => $this->category,
-                'productSubcategory' => $this->productSubcategory,
-                'wishlistCount' => $this->wishlistCount,
-                'CartCountEnCours' => $this->CartCountEnCours,
-                'layout' => $this->layout,
-                'brandList' => $this->brandList,
-                'productdetail' => $this->productdetail,
-                'productImage' => $this->productImage,
-            ]);
-        }
+        public function render() {
+        return view('livewire.product-display', [
+            'productList' => $this->productList,
+            'category' => $this->category,
+            'productSubcategory' => $this->productSubcategory,
+            'wishlistCount' => $this->wishlistCount,
+            'CartCountEnCours' => $this->CartCountEnCours,
+            'layout' => $this->layout,
+            'brandList' => $this->brandList,
+            'productdetail' => $this->productdetail,
+            'productImage' => $this->productImage,
+        ]);
+    }
 }

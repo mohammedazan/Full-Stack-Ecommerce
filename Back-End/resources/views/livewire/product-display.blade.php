@@ -560,39 +560,14 @@
                     </div><!-- End .widget-body -->
                 </div><!-- End .collapse -->
             </div><!-- End .widget -->
-            {{--             <div class="widget widget-collapsible">
-                <h3 class="widget-title">
-                    <a data-toggle="collapse" href="#widget-5" role="button" aria-expanded="true" aria-controls="widget-5">
-                        Price
-                    </a>
-                </h3><!-- End .widget-title -->
-
-                <div class="collapse show" id="widget-5">
-                    <div class="widget-body">
-                        <div class="filter-price">
-                            <div class="filter-price-text">
-                                Price Range:
-                                <span id="filter-price-range"></span>
-                            </div><!-- End .filter-price-text -->
-                
-                            <form id="price-filter-form" method="GET" action="{{ url()->current() }}">
-                                <input type="hidden" name="min_price" id="min_price" value="{{ request()->get('min_price', 0) }}">
-                                <input type="hidden" name="max_price" id="max_price" value="{{ request()->get('max_price', 10000) }}">
-                                <div id="price-slider"></div><!-- End #price-slider -->
-                            </form>
-                        </div><!-- End .filter-price -->
-                    </div><!-- End .widget-body -->
-                </div><!-- End .collapse -->
-            </div> --}}
-
             <div class="widget widget-collapsible">
                 <h3 class="widget-title">
                     <a data-toggle="collapse" href="#widget-5" role="button" aria-expanded="true" aria-controls="widget-5" class="">
-                        Price ttt
+                        Price
                     </a>
                 </h3>
             
-                <div class="collapse show" id="widget-5" style="">
+                <div class="collapse show" id="widget-5">
                     <div class="widget-body">
                         <div class="filter-price">
                             <div class="filter-price-text">
@@ -600,92 +575,48 @@
                                 <span id="filter-price-range">${{ $minPrice }} - ${{ $maxPrice }}</span>
                             </div>
             
-                            <div id="price-slider" wire:ignore></div>
+                            <div id="price-slider" wire:ignore>
+                                <!-- Slider component -->
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             
+            <!-- Product List -->
+            <div class="product-list">
+                @foreach($productList as $product)
+                    <div class="product-item">
+                        <h5>{{ $product->name }}</h5>
+                        <p>${{ $product->current_sale_price }}</p>
+                    </div>
+                @endforeach
+            </div>
+            
             @push('scripts')
             <script>
-                document.addEventListener('livewire:load', function () {
-                    var slider = document.getElementById('price-slider');
-            
+                document.addEventListener('DOMContentLoaded', function () {
+                    let slider = document.getElementById('price-slider');
+                    const.console.log("test connex ");
+                    
                     noUiSlider.create(slider, {
                         start: [{{ $minPrice }}, {{ $maxPrice }}],
                         connect: true,
                         range: {
                             'min': 0,
-                            'max': 1000
+                            'max': {{ $highestPrice }}
                         }
                     });
             
-                    slider.noUiSlider.on('set', function (values, handle) {
-                        let minPrice = Math.round(values[0]);
-                        let maxPrice = Math.round(values[1]);
-            
-                        document.getElementById('filter-price-range').innerText = `$${minPrice} - $${maxPrice}`;
-                        Livewire.emit('priceRangeUpdated', minPrice, maxPrice);
+                    slider.noUiSlider.on('update', function (values) {
+                        let min = Math.round(values[0]);
+                        let max = Math.round(values[1]);
+                        Livewire.emit('priceFilterUpdated', min, max);
                     });
                 });
             </script>
             @endpush
-            <!-- End .widget -->
-{{--             <div class="widget widget-collapsible">
-                <h3 class="widget-title">
-                    <a data-toggle="collapse" href="#widget-5" role="button" aria-expanded="true" aria-controls="widget-5">
-                        Price
-                    </a>
-                </h3><!-- End .widget-title -->
-
-                <div class="collapse show" id="widget-5">
-                    <div class="widget-body">
-                        <div class="filter-price">
-                            <div class="filter-price-text">
-                                Price Range:
-                                <span id="filter-price-range"></span>
-                            </div><!-- End .filter-price-text -->
-
-                            <div id="price-slider"></div><!-- End #price-slider -->
-                        </div><!-- End .filter-price -->
-                    </div><!-- End .widget-body -->
-                </div><!-- End .collapse -->
-            </div><!-- End .widget --> --}}
-
+            
         </div><!-- End .sidebar sidebar-shop -->
     </aside><!-- End .col-lg-3 -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var priceSlider = document.getElementById('price-slider');
-            var minPriceInput = document.getElementById('min_price');
-            var maxPriceInput = document.getElementById('max_price');
-            var filterPriceRange = document.getElementById('filter-price-range');
-            var priceFilterForm = document.getElementById('price-filter-form');
-
-            noUiSlider.create(priceSlider, {
-                start: [{{ request()->get('min_price', 0) }}, {{ request()->get('max_price', 10000) }}],
-                connect: true,
-                range: {
-                    'min': 0,
-                    'max': 5000
-                },
-                step: 10,
-                format: wNumb({
-                    decimals: 0,
-                    thousand: ','
-                })
-            });
-
-            priceSlider.noUiSlider.on('update', function (values, handle) {
-                minPriceInput.value = values[0].replace(/,/g, '');
-                maxPriceInput.value = values[1].replace(/,/g, '');
-                filterPriceRange.innerHTML = values[0]  + ' DH ' + ' - '+values[1] + ' DH ' ;
-            });
-
-            priceSlider.noUiSlider.on('change', function (values, handle) {
-                // Submit the form automatically when the price range is changed
-                priceFilterForm.submit();
-            });
-        });
-    </script>
-</div>       
+</div>

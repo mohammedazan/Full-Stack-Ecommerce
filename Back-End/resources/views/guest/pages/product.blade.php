@@ -69,43 +69,10 @@
                 </div><!-- End .container -->
             </div><!-- End .page-content -->
     </main><!-- End .main -->
-		<script>
-			document.addEventListener('DOMContentLoaded', function () {
-				var priceSlider = document.getElementById('price-slider');
-				var minPriceInput = document.getElementById('min_price');
-				var maxPriceInput = document.getElementById('max_price');
-				var filterPriceRange = document.getElementById('filter-price-range');
-				var priceFilterForm = document.getElementById('price-filter-form');
 
-				noUiSlider.create(priceSlider, {
-					start: [{{ request()->get('min_price', 0) }}, {{ request()->get('max_price', 10000) }}],
-					connect: true,
-					range: {
-						'min': 0,
-						'max': 5000
-					},
-					step: 10,
-					format: wNumb({
-						decimals: 0,
-						thousand: ','
-					})
-				});
-
-				priceSlider.noUiSlider.on('update', function (values, handle) {
-					minPriceInput.value = values[0].replace(/,/g, '');
-					maxPriceInput.value = values[1].replace(/,/g, '');
-					filterPriceRange.innerHTML = values[0]  + ' DH ' + ' - '+values[1] + ' DH ' ;
-				});
-
-				priceSlider.noUiSlider.on('change', function (values, handle) {
-					// Submit the form automatically when the price range is changed
-					priceFilterForm.submit();
-				});
-			});
-		</script>
-        <!-- start .footer -->
-        @include('guest/partials.footer')
-        <!-- End .footer -->
+    <!-- start .footer -->
+    @include('guest/partials.footer')
+    <!-- End .footer -->
     </div>
     <!-- End .page-wrapper -->
     <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
