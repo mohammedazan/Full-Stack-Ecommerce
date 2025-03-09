@@ -29,18 +29,13 @@ class ProductDisplay extends Component
     public $CompanyInfo;
     public $product_id;
     public $minPrice = 0;
-    public $maxPrice;
-    public $highestPrice;
+    public $maxPrice = 1000;
 
+    
+    // Initialize properties and filter products based on $id and $filterSource
     public function mount($id = null, $filterSource = null) {
         // Load shared data
         $this->loadSharedData();
-        $this->highestPrice = Product::where('deleted', 0)->max('current_sale_price');
-        $this->maxPrice = $this->highestPrice;
-        $this->productList = Product::where('current_sale_price', '>=', $this->minPrice)
-                                    ->where('current_sale_price', '<=', $this->maxPrice)
-                                    ->where('deleted', 0)
-                                    ->get();
 
         // Handle filtering based on source
         switch ($filterSource) {
@@ -69,21 +64,6 @@ class ProductDisplay extends Component
         // Calculate additional data such as ratings and cart count
         $this->calculateAdditionalData();
     }
-    protected $listeners = [
-        'priceFilterUpdated' => 'filterByPrice',
-    ];
-
-    public function filterByPrice($min, $max)
-    {
-        dd("test connex");
-        $this->minPrice = $min;
-        $this->maxPrice = $max;
-
-        $this->productList = Product::where('current_sale_price', '>=', $this->minPrice)
-                                    ->where('current_sale_price', '<=', $this->maxPrice)
-                                    ->where('deleted', 0)
-                                    ->get();
-    }
 
 
     // Load shared data used across all filters
@@ -96,6 +76,24 @@ class ProductDisplay extends Component
         $this->productImage = ProductImage::get();
         $this->CompanyInfo = CompanyInfo::get();
     }
+
+    public function filterByPrice($minPrice, $maxPrice) {
+        dd('test connexe');
+        \Log::info('Price Updated:', ['minPrice' => $minPrice, 'maxPrice' => $maxPrice]);
+    
+        $this->minPrice = $minPrice;
+        $this->maxPrice = $maxPrice;
+    
+        $this->productList = Product::where('deleted', 0)
+                                    ->whereBetween('current_sale_price', [$this->minPrice, $this->maxPrice])
+                                    ->get();
+    
+        $this->calculateAdditionalData();
+    }
+    
+    protected $listeners = ['priceUpdated' => 'filterByPrice'];
+    
+
 
     // Filter products by category
     public function filterByCategory($categoryId = null) {
@@ -272,18 +270,20 @@ class ProductDisplay extends Component
         session()->put('layout', $this->layout);
     }
     
-        // Update the render method to include the price filter
+        // Render the view with the data
         public function render() {
-        return view('livewire.product-display', [
-            'productList' => $this->productList,
-            'category' => $this->category,
-            'productSubcategory' => $this->productSubcategory,
-            'wishlistCount' => $this->wishlistCount,
-            'CartCountEnCours' => $this->CartCountEnCours,
-            'layout' => $this->layout,
-            'brandList' => $this->brandList,
-            'productdetail' => $this->productdetail,
-            'productImage' => $this->productImage,
-        ]);
-    }
+            return view('livewire.product-display', [
+                'productList' => $this->productList,
+                'category' => $this->category,
+                'productSubcategory' => $this->productSubcategory,
+                'wishlistCount' => $this->wishlistCount,
+                'CartCountEnCours' => $this->CartCountEnCours,
+                'layout' => $this->layout,
+                'brandList' => $this->brandList,
+                'productdetail' => $this->productdetail,
+                'productImage' => $this->productImage,
+                'minPrice' => $this->minPrice,
+                'maxPrice' => $this->maxPrice,
+            ]);
+        }
 }

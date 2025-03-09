@@ -60,12 +60,12 @@
                                 $currentPage = request()->get('page', 1);
                             
                                 // Get the minimum and maximum price from query parameters
-                                $minPrice = request()->get('min_price', 0);
-                                $maxPrice = request()->get('max_price', PHP_INT_MAX);
+                                $minPrice2 = request()->get('min_price', 0);
+                                $maxPrice2 = request()->get('max_price', PHP_INT_MAX);
                             
                                 // Filter the products based on the price range
-                                $filteredProducts = $productList->filter(function($product) use ($minPrice, $maxPrice) {
-                                    return $product->current_sale_price >= $minPrice && $product->current_sale_price <= $maxPrice;
+                                $filteredProducts = $productList->filter(function($product) use ($minPrice2, $maxPrice2) {
+                                    return $product->current_sale_price >= $minPrice2 && $product->current_sale_price <= $maxPrice2;
                                 });
                             
                                 // Calculate the total number of pages
@@ -252,12 +252,12 @@
                                     $currentPage = request()->get('page', 1);
                                 
                                     // Get the minimum and maximum price from query parameters
-                                    $minPrice = request()->get('min_price', 0);
-                                    $maxPrice = request()->get('max_price', PHP_INT_MAX);
+                                    $minPrice2 = request()->get('min_price', 0);
+                                    $maxPrice2 = request()->get('max_price', PHP_INT_MAX);
                                 
                                     // Filter the products based on the price range
-                                    $filteredProducts = $productList->filter(function($product) use ($minPrice, $maxPrice) {
-                                        return $product->current_sale_price >= $minPrice && $product->current_sale_price <= $maxPrice;
+                                    $filteredProducts = $productList->filter(function($product) use ($minPrice2, $maxPrice2) {
+                                        return $product->current_sale_price >= $minPrice2 && $product->current_sale_price <= $maxPrice2;
                                     });
                                 
                                     // Calculate the total number of pages
@@ -560,63 +560,62 @@
                     </div><!-- End .widget-body -->
                 </div><!-- End .collapse -->
             </div><!-- End .widget -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M3.002 9.75Q3 10.337 3 11v2c0 3.75 0 5.625.955 6.939a5 5 0 0 0 1.106 1.106C6.375 22 8.251 22 12 22s5.625 0 6.939-.955a5 5 0 0 0 1.106-1.106C21 18.625 21 16.749 21 13v-2q0-.663-.002-1.25h-3.352a2.75 2.75 0 0 1-2.646 2H9a2.75 2.75 0 0 1-2.646-2zm.019-1.5h3.333A2.75 2.75 0 0 1 9 6.25h6a2.75 2.75 0 0 1 2.646 2h3.333c-.055-2.01-.248-3.245-.934-4.189a5 5 0 0 0-1.106-1.106C17.625 2 15.749 2 12 2s-5.625 0-6.939.955A5 5 0 0 0 3.955 4.06c-.686.944-.88 2.178-.934 4.189"/><path fill="currentColor" d="M7.75 9c0-.69.56-1.25 1.25-1.25h6a1.25 1.25 0 1 1 0 2.5H9c-.69 0-1.25-.56-1.25-1.25"/></svg>
             <div class="widget widget-collapsible">
                 <h3 class="widget-title">
                     <a data-toggle="collapse" href="#widget-5" role="button" aria-expanded="true" aria-controls="widget-5" class="">
                         Price
                     </a>
-                </h3>
+                </h3><!-- End .widget-title -->
             
-                <div class="collapse show" id="widget-5">
+                <div class="collapse show" id="widget-5" style="">
                     <div class="widget-body">
                         <div class="filter-price">
                             <div class="filter-price-text">
-                                Price Range:
+                                Price Range: 
                                 <span id="filter-price-range">${{ $minPrice }} - ${{ $maxPrice }}</span>
-                            </div>
-            
-                            <div id="price-slider" wire:ignore>
-                                <!-- Slider component -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                            </div>>
+                            
+                            <div id="price-slider" 
+                            wire:ignore
+                            x-data="{}"
+                            x-init="
+                               noUiSlider.create($refs.slider, {
+                                   start: [{{ $minPrice }}, {{ $maxPrice }}],
+                                   connect: true,
+                                   range: {
+                                       'min': 0,
+                                       'max': 1000
+                                   },
+                                   tooltips: true,
+                                   format: {
+                                       to: function(value) {
+                                           return '$' + parseInt(value);
+                                       },
+                                       from: function(value) {
+                                           return Number(value.replace('$', ''));
+                                       }
+                                   }
+                               });
+                       
+                               $refs.slider.noUiSlider.on('set', function(values, handle) {
+                                   // Emit the event with the new price range
+                                   Livewire.emit('priceUpdated', values[0], values[1]);
+                               });
+                       
+                               // Update the price range display dynamically
+                               $refs.slider.noUiSlider.on('update', function(values, handle) {
+                                   document.getElementById('filter-price-range').textContent = '$' + values[0] + ' - $' + values[1];
+                               });
+                            ">
+                           <div x-ref="slider" class="noUi-target noUi-ltr noUi-horizontal"></div>
+                       </div>
+                        </div><!-- End .filter-price -->
+                    </div><!-- End .widget-body -->
+                </div><!-- End .collapse -->
             </div>
-            
-            <!-- Product List -->
-            <div class="product-list">
-                @foreach($productList as $product)
-                    <div class="product-item">
-                        <h5>{{ $product->name }}</h5>
-                        <p>${{ $product->current_sale_price }}</p>
-                    </div>
-                @endforeach
-            </div>
-            
-            @push('scripts')
-            <script>
-                document.addEventListener('DOMContentLoaded', function () {
-                    let slider = document.getElementById('price-slider');
-                    const.console.log("test connex ");
-                    
-                    noUiSlider.create(slider, {
-                        start: [{{ $minPrice }}, {{ $maxPrice }}],
-                        connect: true,
-                        range: {
-                            'min': 0,
-                            'max': {{ $highestPrice }}
-                        }
-                    });
-            
-                    slider.noUiSlider.on('update', function (values) {
-                        let min = Math.round(values[0]);
-                        let max = Math.round(values[1]);
-                        Livewire.emit('priceFilterUpdated', min, max);
-                    });
-                });
-            </script>
-            @endpush
             
         </div><!-- End .sidebar sidebar-shop -->
     </aside><!-- End .col-lg-3 -->
 </div>
+
